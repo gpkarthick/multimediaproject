@@ -1,0 +1,215 @@
+<odoo>
+    <data>
+
+        <record id="odoopi_dashboard_purchase_search_id" model="ir.ui.view">
+            <field name="model">dashboard.purchase</field>
+            <field name="arch" type="xml">
+                <search>
+                    <group expand="0" string="Group By">
+                        <filter string="Purchase Representative" name="representative" domain="[]"
+                                context="{'group_by': 'user_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+
+        <record id="odoopi_dashboard_purchase_graph_id" model="ir.ui.view">
+            <field name="model">dashboard.purchase</field>
+            <field name="arch" type="xml">
+                <graph>
+                    <field name="user_id" string="Purchase Representative"/>
+                    <field name="partner_purchase_no" type="measure"/>
+                </graph>
+            </field>
+        </record>
+
+
+        <record id="odoopi_dashboard_purchase_kanban_id" model="ir.ui.view">
+            <field name="model">dashboard.purchase</field>
+            <field name="arch" type="xml">
+                <kanban class="oe_background_grey o_kanban_dashboard o_account_kanban" create="false" delete="false">
+                    <field name="id"/>
+                    <field name="user_id"/>
+                    <field name="name"/>
+                    <field name="purchase_request_no"/>
+                    <field name="purchase_request_amount"/>
+                    <field name="purchase_order_no"/>
+                    <field name="purchase_order_amount"/>
+                    <field name="purchase_locked_no"/>
+                    <field name="purchase_locked_amount"/>
+                    <field name="purchase_canceled_no"/>
+                    <field name="purchase_canceled_amount"/>
+                    <field name="partner_purchase_no"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div>
+                                <div class="row container shadow-lg p-3 mb-5 bg-white rounded">
+                                    <div class="o_kanban_image  justify-content-center col-2">
+                                        <img alt="Avatar"
+                                             t-att-src="kanban_image('dashboard.purchase', 'image_128', record.id.raw_value)"
+                                             class="oe_kanban_picture rounded-circle"
+                                             style="max-height: 90px; max-width: 80px;"/>
+                                    </div>
+                                    <div class="col-8 text-truncate mt-5 ">
+                                        <!--                                        fa fa-user-circle-o-->
+                                        <h1>
+                                            <field name="name"/>
+                                        </h1>
+                                    </div>
+                                    <div class="col-2 oe_button_box mt-5" name="partner_purchase_view">
+                                        <button name="partner_purchase_view"
+                                                type="object"
+                                                class="oe_stat_button fa fa-users"
+                                        >
+                                            <field name="partner_purchase_no" widget="boolean_button"/>
+                                        </button>
+                                    </div>
+                                </div>
+                                <!--                                class="container"-->
+
+
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <button type="object" name="request_purchase_view"
+                                                    class="btn btn-secondary mt-2 fa fa-hand-o-right">
+                                                <field name="purchase_request_no"/>
+                                            </button>
+                                        </div>
+                                        <div class="col-5">
+                                            <button type="object" name="request_purchase_view"
+                                                    class="btn btn-primary mt-2 fa fa-folder-open-o">
+                                                Purchase Arrival Confirmed
+                                            </button>
+                                        </div>
+                                        <div class="col-4">
+                                            <button type="object" name="request_purchase_view"
+                                                    class="btn btn-info mt-2 fa fa-inr">
+                                                <field name="purchase_request_amount"/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2">
+
+                                            <button type="object" name="production_purchase_view"
+                                                    class="btn btn-secondary mt-2 fa fa-hand-o-right">
+                                                <field name="purchase_order_no"/>
+                                            </button>
+                                        </div>
+                                        <div class="col-5">
+
+                                            <button type="object" name="production_purchase_view"
+                                                    class="btn btn-primary mt-2 fa fa-folder-open-o">
+                                                Load Sheet Arrival
+                                            </button>
+                                        </div>
+                                        <div class="col-4">
+
+                                            <button type="object" name="production_purchase_view"
+                                                    class="btn btn-info mt-2 fa fa-inr">
+                                                <field name="purchase_order_amount"/>
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-2">
+
+                                            <button type="object" name="load_sheet_purchase_view"
+                                                    class="btn btn-secondary mt-2 fa fa-hand-o-right">
+                                                <field name="purchase_invoiced_no"/>
+                                            </button>
+                                        </div>
+                                        <div class="col-5">
+
+                                            <button type="object" name="load_sheet_purchase_view"
+                                                    class="btn btn-primary mt-2 fa fa-folder-open-o">
+                                                Production Completed
+                                            </button>
+                                        </div>
+                                        <div class="col-4">
+
+                                            <button type="object" name="load_sheet_purchase_view"
+                                                    class="btn btn-info mt-2 fa fa-inr">
+                                                <field name="purchase_invoiced_amount"/>
+                                            </button>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="row">
+                                        <div class="col-2">
+
+                                            <button type="object"
+                                                    name="pandl_purchase_view"
+                                                    class="btn btn-secondary mt-2 fa fa-hand-o-right">
+                                                <field name="purchase_locked_no"/>
+                                            </button>
+                                        </div>
+                                        <div class="col-5">
+
+                                            <button type="object" name="pandl_purchase_view"
+                                                    class="btn btn-primary mt-2 fa fa-folder-open-o">
+                                                Profit and Loss
+                                            </button>
+
+                                        </div>
+                                        <div class="col-4">
+
+                                            <button type="object"
+                                                    name="pandl_purchase_view"
+                                                    class="btn btn-info mt-2 fa fa-inr">
+                                                <field name="purchase_locked_amount"/>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <div class="row">
+                                        <div class="col-2">
+                                            <button type="object" name="completed_purchase_view"
+                                                    class="btn btn-secondary mt-2 fa fa-hand-o-right">
+                                                <field name="purchase_canceled_no"/>
+                                            </button>
+                                        </div>
+                                        <div class="col-5">
+
+                                            <button type="object" name="completed_purchase_view"
+                                                    class="btn btn-primary mt-2 fa fa-folder-open-o">
+                                                Production Done
+                                            </button>
+                                        </div>
+                                        <div class="col-4">
+
+                                            <button type="object" name="completed_purchase_view"
+                                                    class="btn btn-info mt-2 fa fa-inr">
+                                                <field name="purchase_canceled_amount"/>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+
+        <record model="ir.actions.server" id="odoopi_dashboard_purchase_action_id">
+            <field name="name">Purchase Dashboard</field>
+            <field name="model_id" ref="model_dashboard_purchase"/>
+            <field name="state">code</field>
+            <field name="code">action=model.data_dashboard_purchase()</field>
+        </record>
+        
+        <menuitem id="purchase_dashboard_action_menu_id" name="Purchase Dashboard"
+                  parent="marine.marine_sub_dashboards_task"
+                  action="odoopi_dashboard_purchase_action_id" sequence="3"
+                  groups="marine.vvmarine_group_admin,odoopi_purchase_report.purchase_dashboard_group_id"/>
+        
+    </data>
+</odoo>

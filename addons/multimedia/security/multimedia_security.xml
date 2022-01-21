@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    
+    <record model="ir.module.category" id="multimedia_management">
+      <field name="name">Access Rights</field>
+      <field name="description">Master Access Rights</field>
+      <field name="sequence">1</field>
+    </record>
+
+    <record id="media_rights_user" model="res.groups">
+     <field name="name">User</field>
+     <field name="category_id" ref="multimedia.multimedia_management"/>
+    </record>
+
+    <record id="media_rights_manager" model="res.groups">
+      <field name="name">Manager</field>
+      <field name="category_id" ref="multimedia.multimedia_management"/>
+    </record>
+    
+    <record id="media_purchase_user" model="res.groups">
+      <field name="name">Purchase User</field>
+      <field name="category_id" ref="multimedia.multimedia_management"/>
+    </record>
+    
+    <record id="media_purchase_manager" model="res.groups">
+      <field name="name">Purchase Manager</field>
+      <field name="category_id" ref="multimedia.multimedia_management"/>
+    </record>
+
+    <record id="media_forms_users" model="res.groups">
+      <field name="name">Forms User</field>
+      <field name="category_id" ref="multimedia.multimedia_management"/>
+    </record>
+
+    <record id="media_forms_management" model="res.groups">
+      <field name="name">Forms Management</field>
+      <field name="category_id" ref="multimedia.multimedia_management"/>
+    </record>
+
+    <record model="res.groups" id="group_hidden">
+        <field name="name">Hidden</field>
+        <field name="category_id" ref="multimedia.multimedia_management"/>
+    </record>
+    
+</odoo>

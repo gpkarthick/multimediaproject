@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_odoopi_purchase_report_odoopi_purchase_report,odoopi_purchase_report.odoopi_purchase_report,model_dashboard_purchase,purchase_dashboard_group_id,1,1,1,1
+access_odoopi_sales_report_odoopi_sales_report,odoopi_sales_report.odoopi_sales_report,model_dashboard_sales,purchase_dashboard_group_id,1,1,1,1

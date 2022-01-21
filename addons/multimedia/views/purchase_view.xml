@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		<record model="ir.ui.view" id="purchase_bills_tree_view">
+            <field name="name">purchase.bills.tree</field>
+            <field name="model">purchase.bills</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Purchase Bills" decoration-danger="state in ('done')" decoration-success="state in ('draft')">
+                    <field name="name" />
+                    <field name="purchase_date" />
+                    <field name="partner_id" />
+                    <field name="total_amount" sum='total_amount'/>
+                    <field name="state" />
+                </tree>
+            </field>
+        </record>
+        
+        
+		<record model="ir.ui.view" id="purchase_bills_form_view">
+            <field name="name">purchase.bills.form</field>
+            <field name="model">purchase.bills</field>
+            <field name="type">form</field>
+            <field name="arch" type="xml">
+                <form string="Purchase Bills">
+                    <header>
+                        <button name="action_confirm" states="draft" string="Confirm" type="object" class="oe_highlight"/>
+                        <button name="button_reset" string="Reset" states="done" type="object" class="oe_highlight"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,done" default="draft" />
+                    </header>
+                    <sheet>
+                        <h1>
+                            <field name="name" readonly='1'/>
+                        </h1>
+                        <group>
+							<group>
+								<field name="purchase_date" attrs="{'readonly':[('state','=','done')]}"/>
+								<field name="partner_id" domain="[('supplier_rank','=',1)]" attrs="{'readonly':[('state','=','done')]}"
+								options="{'limit': 10, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
+								<field name="currency_id" invisible='1'/>
+								<field name="company_id" invisible='1'/>
+							</group>
+							<group>
+								<field name="create_uid"/>
+								<field name="write_uid"/>
+								<field name="create_date"/>
+								<field name="write_date"/>
+							</group>
+						</group>
+                        <notebook>
+                            <page string="Bill Entries">
+                                <field name="bill_lines" attrs="{'readonly':[('state','=','done')]}">
+                                    <tree string="Product Lines" editable="bottom">
+                                        <field name="product_category_id"/>
+                                        <field name="product_id"/>
+                                        <field name="product_uom_qty"/>
+                                        <field name="price_unit"/>
+                                        <field name="product_uom_id"/>
+                                        <field name="subtotal" sum='subtotal'/>
+                                        <field name="company_id" invisible='1' domain="['|', ('company_id', '=', False), ('company_id', '=', company_id)]"/>
+                                    </tree>
+                                </field>  
+                                <group class="oe_subtotal_footer oe_right">
+									<div class="oe_subtotal_footer_separator oe_inline">
+										<label for="total_amount"/>
+									</div>
+									<field name="total_amount" nolabel="1" class="oe_subtotal_footer_separator" widget="monetary" options="{'currency_field': 'currency_id'}"/>
+								</group>                   
+                                <field name="reason" class="oe_inline" placeholder="Define your Reason ..." attrs="{'readonly':[('state','=','done')]}"/>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_purchase_bills_tree_view" model="ir.actions.act_window">
+            <field name="name">Purchase</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.bills</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="purchase_bills_tree_view" />
+            <field name="help" type="html">
+				<p>
+					To create purchase order bills.
+				</p>
+			</field>
+        </record>
+                
+<!--        <menuitem id="multimedia_purchase_menu" name="Purchase" sequence="3" action="action_purchase_bills_tree_view" parent="multimedia_product_sub_menu"/>-->
+        
+        
+        <record model="ir.ui.view" id="purchase_bill_entries_tree_view">
+            <field name="name">purchase.bill.line.tree</field>
+            <field name="model">purchase.bill.line</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Bill Entries">
+                    <field name="product_category_id"/>
+                    <field name="product_id"/>
+                    <field name="purchase_date"/>
+                    <field name="partner_id"/>
+                    <field name="product_uom_qty" sum='product_uom_qty'/>
+                    <field name="price_unit"/>
+                    <field name="product_uom_id"/>
+                    <field name="subtotal" sum='subtotal'/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_purchase_bill_line_search" model="ir.ui.view">
+			<field name="name">Bill Entries Search</field>
+			<field name="model">purchase.bill.line</field>
+			<field name="arch" type="xml">
+				<search string="Bill Entries">					
+					<field name="product_id" string="Product" filter_domain="[('product_id','ilike',self)]"/>     
+					<field name="purchase_date" string="Purchase Date" filter_domain="[('purchase_date','ilike',self)]"/>     
+					<field name="partner_id" string="Party" filter_domain="[('partner_id','ilike',self)]"/>
+					<field name="product_category_id" string="Category" filter_domain="[('product_category_id','ilike',self)]"/>
+					<separator/>
+					<group expand="1" string="Group By">                                   
+						<filter string="Month" name="group_date" context="{'group_by':'purchase_date:month'}" help="Purchase Date"/>
+						<filter string="Category" name="group_category" context="{'group_by':'product_category_id'}" help="Category"/>
+						<filter string="Product" name="group_product" context="{'group_by':'product_id'}" help="Product"/>
+				   </group>
+			   </search>
+			</field>
+		</record>
+        
+        <record id="action_purchase_bill_line_view" model="ir.actions.act_window">
+            <field name="name">Bill Entries</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">purchase.bill.line</field>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="purchase_bill_entries_tree_view"/>
+            <field name="search_view_id" ref="view_purchase_bill_line_search"/>
+            <field name="context">{'search_default_group_date': 1,'search_default_group_product': 1}</field>
+            <field name="help" type="html">
+				<p>
+					To create purchase order bills.
+				</p>
+			</field>
+        </record>
+        		
+<!--        <menuitem id="multimedia_purchase_bill_entries_menu" name="Bill Entries" sequence="4" action="action_purchase_bill_line_view" parent="multimedia_product_sub_menu"/>-->
+        
+        <record id="media_view_partner_tree" model="ir.ui.view">
+            <field name="name">res.partner.tree</field>
+            <field name="model">res.partner</field>
+            <field eval="8" name="priority"/>
+            <field name="arch" type="xml">
+                <tree string="Contacts">
+                    <field name="name" string="Name"/>
+                    <field name="phone" optional="show"/>
+                    <field name="city" optional="hide"/>
+                    <field name="state_id" optional="hide"/>
+                </tree>
+            </field>
+        </record>
+        
+        <record id="view_partner_supplier_form" model="ir.ui.view">
+            <field name="name">media.res.partner.form.supplier</field>
+            <field name="model">res.partner</field>
+            <field name="priority" eval="20"/>
+            <field name="arch" type="xml">
+                <form string="Partner">
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" required="1"/>
+                        </h1>
+                    </div>
+                    <field name="parent_id" invisible="1"/>
+                    <group>
+                        <group>
+                            <label for="type" attrs="{'invisible': [('parent_id','=', False)]}" groups="base.group_no_one"/>
+                            <div attrs="{'invisible': [('parent_id','=', False)]}" name="div_type" groups="base.group_no_one">
+                                <field name="type" class="oe_inline"/>
+                            </div>
+                            <label for="street" string="Address"/>
+                            <div class="o_address_format">
+                                <field name="street" placeholder="Street..." class="o_address_street"/>
+                                <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                                <field name="city" placeholder="City" class="o_address_city"/>
+                                <field name="state_id" class="o_address_state" placeholder="State" options='{"no_open": True}'/>
+                                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                                <field name="country_id" placeholder="Country" class="o_address_country" options='{"no_open": True, "no_create": True}'/>
+                            </div>
+                            <field name="website" widget="url" placeholder="e.g. https://www.odoo.com"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                </form>
+            </field>
+        </record>
+        
+        <record id="action_media_partner_supplier_form" model="ir.actions.act_window">
+            <field name="name">Supplier</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">res.partner</field>
+            <field name="domain">[('supplier_rank','=',1)]</field>
+            <field name="view_mode">kanban,tree,form</field>
+            <field name="context">{'res_partner_search_mode': 'supplier', 'supplier_rank': 1}</field>
+            <field name="filter" eval="True"/>
+            <field name="help" type="html">
+              <p class="o_view_nocontent_smiling_face">
+                Create a new vendor in your address book
+              </p><p>
+                Odoo helps you easily track all activities related to a vendor.
+              </p>
+            </field>
+        </record>
+        
+        <record model="ir.actions.act_window.view" id="action_media_supplier_tree">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="media_view_partner_tree"/>
+            <field name="act_window_id" ref="action_media_partner_supplier_form"/>
+        </record>
+		
+		<record model="ir.actions.act_window.view" id="action_media_supplier_form">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_partner_supplier_form"/>
+            <field name="act_window_id" ref="action_media_partner_supplier_form"/>
+        </record>
+       
+<!--		<menuitem id="multimedia_supplier_menu" name="Supplier" sequence="5" action="action_media_partner_supplier_form" parent="multimedia_product_sub_menu"/>-->
+   
+    </data>
+</odoo>

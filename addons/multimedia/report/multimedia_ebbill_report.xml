@@ -1,0 +1,239 @@
+<odoo>
+    <data>
+		<template id="report_multimedia">
+			<t t-call="web.html_container">
+				<t t-foreach="docs" t-as="o">
+					<div class="header">
+						<style>
+							.headertable {
+                                    vertical-align: middle;
+				                    border-collapse: collapse;
+				                    border: none; 
+				                    width:100%;
+				                    }   
+			                    .headertable td {
+		                    		 vertical-align: middle;
+			                   		}
+			                   		
+								.invoicenamestyle {                    
+				                    text-align:center; 
+				                    font-size:22px;                    
+				                    font-weight: bold;
+				                }
+						</style>
+						<table class="headertable">
+							<tr>
+								<td width="15%">
+									<img src='/multimedia/static/src/img/pay1.png' style="max-height: 100px; text-align: right;"/> 
+								</td>
+								<td width="70%">
+									<p class="invoicenamestyle">Tamilnadu Generation and Distribution Corporation Limited</p>
+								</td>
+								<td width="15%">
+									<img src='/multimedia/static/src/img/bharat.png' style="max-height: 100px; text-align: center;"/> 
+								</td>
+							</tr>
+						</table>
+					</div>
+					<div class="page">  
+						<style>
+							.invoicename {
+				                    border-collapse: collapse;
+				                    border: 1px solid black;				                    
+				                    width:100%;
+				                    height: 60px;
+				                    } 
+				                .invoicenamestyle {                    
+				                    text-align:center; 
+				                    font-size:19px;                    
+				                    font-weight: bold;
+				                }
+							
+							.company-details {
+								vertical-align: middle;
+								border-collapse: collapse;
+								border: 1px solid black;
+								border-top: none;
+								text-align:left;
+								font-size: 16px;
+								width:100%;
+							}
+							.company-details td {
+								border: 1px solid black;
+								border-top: none;								
+								text-align:left;
+								}
+							.company-details-span {   
+								margin-left:15PX;
+								line-height: 40px;
+							}
+							.amt-to-text-table {
+	                                vertical-align: middle;
+	                                border-collapse: collapse;
+	                                border-left: 1px solid black;
+	                                border-right: 1px solid black;
+	                                width: 100%;
+	                                font-size: 17.5px;
+							}
+							.amt-to-text-table td {
+								border: none;	
+							}
+							.spanfooter {                           	
+							 	 	margin-left:50PX;
+                                    line-height: 30px;
+							 	 	font-size: 17.5px;
+								}
+						
+						</style>					
+						
+						
+						<table class="invoicename">
+							<tr>
+								<td width="20%">
+								</td>
+								<td width="60%">
+									<p class="invoicenamestyle">E-Receipt</p>
+								</td>
+								<td width="20%">
+									<span><t t-esc="p"/></span>					        		
+								</td>
+							</tr>
+						</table>					
+						
+						
+						<table class="company-details">				        		
+							<tr>
+								<td style="width:14%;border-right: none;">			        			
+									<span class="company-details-span" t-if="o.bill_name"><strong>Customer Name</strong></span>
+								</td>
+								<td style="width:36%;border-left: none;">			        				
+									<span class="company-details-span" t-if="o.bill_name">: <span t-field="o.bill_name"/></span>
+								</td>    
+								<td style="width:14%;border-right: none;">			        			
+									<span class="company-details-span" t-if="o.auto_no"><strong>Bill No</strong></span>
+								</td>
+								<td style="width:36%;border-left: none;">			        				
+									<span class="company-details-span" t-if="o.auto_no">: <span t-field="o.auto_no"/></span>
+								</td>       			
+							</tr>			        		
+						</table>
+				        	
+					
+						<table class="company-details">				        		
+							<tr>
+								<td style="width:14%;border-right: none;">			        			
+									<span class="company-details-span" t-if="o.name"><strong>Consumer No</strong></span>
+								</td>
+								<td style="width:36%;border-left: none;">			        				
+									<span class="company-details-span" t-if="o.bill_name">: <span t-field="o.name"/></span>
+								</td>    
+								<td style="width:14%;border-right: none;">			        			
+									<span class="company-details-span"><strong>Coverage</strong></span>
+								</td>
+								<td style="width:36%;border-left: none;">			        				
+									<span class="company-details-span">: -</span>
+								</td>       			
+							</tr>			        		
+						</table>
+						
+						<table class="company-details">				        		
+							<tr>
+								<td style="width:14%;border-right: none;">			        			
+									<span class="company-details-span" t-if="o.name"><strong>Service Provider</strong></span>
+								</td>
+								<td style="width:36%;border-left: none;">			        				
+									<span class="company-details-span" t-if="o.bill_name">: Tamil Nadu Electricity Board(TNEB)</span>
+								</td>    
+								<td style="width:14%;border-right: none;">			        			
+									<span class="company-details-span" t-if="o.name"><strong>Shop Name</strong></span>
+								</td>
+								<td style="width:36%;border-left: none;">			        				
+									<span class="company-details-span" t-if="o.bill_name">: Prime Multimedia Solution</span>
+								</td>       			
+							</tr>			        		
+						</table>
+						
+						<table class="company-details">				        		
+							<tr>
+								<td style="width:14%;border-right: none;">			        			
+									<span class="company-details-span"><strong>Mobile Number</strong></span>
+								</td>
+								<td style="width:36%;border-left: none;">			        				
+									<span class="company-details-span" t-if="o.mobile_no">: <span t-field="o.mobile_no"/></span>
+								</td>    
+								<td style="width:14%;border-right: none;">			        			
+									<span class="company-details-span"><strong>Bill Period</strong></span>
+								</td>
+								<td style="width:36%;border-left: none;">			        				
+									<span class="company-details-span">: Monthly</span>
+								</td>       			
+							</tr>			        		
+						</table>
+						
+						<table class="company-details">				        		
+							<tr>
+								<td style="width:14%;border-right: none;">			        			
+									<span class="company-details-span"><strong>Due Date</strong></span>
+								</td>
+								<td style="width:36%;border-left: none;">			        				
+									<span class="company-details-span" t-if="o.due_date">: <span t-field="o.due_date"/></span>
+								</td>    
+								<td style="width:14%;border-right: none;">			        			
+									<span class="company-details-span"><strong>Bill Date</strong></span>
+								</td>
+								<td style="width:36%;border-left: none;">			        				
+<!--
+									<span class="company-details-span">: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')"/></span>
+-->
+									<span class="company-details-span">: <span t-esc="o.get_invoice_date_time(context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S'))"/></span>
+								</td>       			
+							</tr>			        		
+						</table>
+						
+						<table class="company-details">				        		
+							<tr>
+								<td style="width:14%;border-right: none;">			        			
+									<span class="company-details-span"><strong>Bill Amount</strong></span>
+								</td>
+								<td style="width:36%;border-left: none;">			        				
+									<span class="company-details-span" t-if="o.due_amount">: <span t-field="o.due_amount"/></span>
+								</td>    
+								<td style="width:14%;border-right: none;">			        			
+									<span class="company-details-span"><strong>Paid Amount</strong></span>
+								</td>
+								<td style="width:36%;border-left: none;">			        				
+									<span class="company-details-span" t-if="o.paid_amount">: <span t-field="o.paid_amount"/></span>
+								</td>       			
+							</tr>			        		
+						</table>
+						
+						<p>
+						
+						
+						
+						</p>
+						
+						<p style="text-align: justify; font-size:18px;padding:0px 25px 0px 25px;line-height: 30px;">
+								&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
+								Please Note: Dear Consumer, the bill payment will reflect in next 72
+working hours or in the next billing cycle, at your service provider’s end.
+DECLARATION:This is not an invoice but only a confirmation of the
+receipt of the amount paid against for the service as described
+above.(This is computer generated receipt and does not require a physical
+signature.)
+								
+						</p>
+						
+						
+						
+					</div>
+
+                    </t>
+                </t>
+				        	
+				        	</template>
+				        	
+
+    </data>
+</odoo>
+

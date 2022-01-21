@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="pan_form_tree_view" model="ir.ui.view">
+           <field name="name">pan.form.tree</field>
+            <field name="model">pan.form</field>
+            <field name="arch" type="xml">
+                <tree string="Pan Form" decoration-danger="state in ('done')" decoration-success="state in ('draft')" decoration-info="state in ('processing')">
+                    <field name="name"/>
+                    <field name="seq_no"/>
+                    <field name="party_name"/>
+                    <field name="mobile_no"/>
+					<field name="create_uid"/>
+					<field name="create_date"/>
+					<field name="state"/>
+				</tree>
+            </field>
+        </record>
+
+        <record id="pan_form_form_view" model="ir.ui.view">
+            <field name="name">pan.form</field>
+            <field name="model">pan.form</field>
+            <field name="arch" type="xml">
+              <form string="Pan Form">
+                <header>
+                    <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+				</header>
+				<sheet>
+                    <div class="oe_title">
+						<h1>
+							<field name="seq_no" readonly="1"/>
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name="form_type"/>
+							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
+							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
+							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
+							<field name="address" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
+						</group>
+						<group>
+							<field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+							<field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+							<field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+							<field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+						</group>
+					</group>
+                    <field name="attachment" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+				</sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_pan_form_view" model="ir.actions.act_window">
+            <field name="name">Pan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pan.form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('form_type','=','new_pan')]</field>
+            <field name="context">{'form_type':'new_pan'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Pan Form
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="forms_main_menu" name="Forms" sequence="1"/>
+        <menuitem id="forms_sub_menu" name="Forms" sequence="2" parent="forms_main_menu"/>
+        <menuitem id="pan_form_menu" name="Pan" sequence="1" action="action_pan_form_view" parent="forms_sub_menu"/>
+
+        <menuitem name="Discuss" id="mail.menu_root_discuss" groups="group_hidden" sequence="1"/>
+
+        <record model="ir.ui.menu" id="mail.menu_root_discuss">
+            <field name="groups_id" eval="[(6,0,[ref('multimedia.group_hidden')])]"/>
+        </record>
+
+    </data>
+</odoo>

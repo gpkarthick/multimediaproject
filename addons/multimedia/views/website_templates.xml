@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	
+	<template id="multi_base_layout" inherit_id="web.layout" name="layout" priority="17">
+		<xpath expr="//head//link" position="replace">
+			<link rel="shortcut icon" href="/multimedia/static/src/img/favicon.ico" type="image/x-icon"/>
+		</xpath>
+		<xpath expr="//head//title" position="replace">
+			<title t-esc="title or 'Prime'"/>
+		</xpath>
+	</template>
+	
+	
+</odoo>

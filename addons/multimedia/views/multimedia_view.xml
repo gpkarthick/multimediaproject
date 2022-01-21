@@ -1,0 +1,407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+		
+		<record id="multimedia_eb_bill_tree_view" model="ir.ui.view">
+           <field name="name">multimedia.eb.bill.tree</field>
+            <field name="model">multimedia.eb.bill</field>
+            <field name="arch" type="xml">
+                <tree string="EB Bill" decoration-danger="state in ('paid')" decoration-success="state in ('draft')">
+                    <field name="seq_no"/>
+                    <field name="name"/>
+					<field name="bill_name"/>
+					<field name="due_date"/>
+					<field name="paid_date"/>
+					<field name="due_amount" sum="Total Amount"/>
+					<field name="paid_amount" sum="Total Amount"/>
+					<field name="payment_mode_id"/>
+					<field name="create_uid"/>
+					<field name="write_uid"/>
+					<field name="state"/>
+				</tree>
+            </field>
+        </record>                    
+        
+        <record id="multimedia_eb_bill_form_view" model="ir.ui.view">
+            <field name="name">multimedia.eb.bill.form</field>
+            <field name="model">multimedia.eb.bill</field>
+            <field name="arch" type="xml">
+              <form string="EB Bill Form">
+                <header>
+					<button name="action_pay_bill" type="object" string="Pay Bill" class="oe_highlight" attrs="{'invisible': [('state', '=', 'paid')]}"/>					
+					<button name="bill_print" string="Print" type="object"/>
+					<field name="state" widget="statusbar" statusbar_visible="draft,paid"/>					
+				</header>
+				<sheet>
+					<div class="oe_title">
+						<h1>
+							<field name="seq_no" readonly="1"/>
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name="name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+							<field name="bill_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>	
+							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'paid')]}"/>							
+							<field name="due_date" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+							<field name="due_amount" attrs="{'readonly': [('state', '=', 'paid')]}" sum="Total Amount"/>
+						</group>
+						<group>										
+							<field name="paid_date"  attrs="{'readonly': [('state', '=', 'paid')]}"/>					
+							<field name="create_uid"/>
+							<field name="write_uid"/>
+							<field name="create_date"/>
+							<field name="write_date"/>
+						</group>
+					</group>   
+					<group>
+						<group>
+							<field name="paid_amount" attrs="{'readonly': [('state', '=', 'paid')]}"/>								
+						</group>
+						<group>	
+							<field name="payment_mode_id" options="{'no_open': True, 'no_create': True}" attrs="{'readonly': [('state', '=', 'paid')]}"/>	
+						</group>
+					</group>
+					
+<!--
+						<field name="attachment" widget="image"  class="oe_avatar" options='{"zoom": true, "preview_image":"image_128"}'/>						
+-->
+						<field name="attachment" widget='image' attrs="{'readonly': [('state', '=', 'paid')]}"/>				
+					
+				</sheet>
+              </form>
+            </field>
+        </record>
+        
+        
+		<record id="view_eb_bill_search" model="ir.ui.view">
+			<field name="name">EB Bill Search</field>
+			<field name="model">multimedia.eb.bill</field>
+			<field name="arch" type="xml">
+				<search string="Search EB Bill">					
+					<field name="name" string="Bill No" filter_domain="[('name','ilike',self)]"/>     
+					<field name="due_date" string="Due Date" filter_domain="[('due_date','ilike',self)]"/>     
+					<field name="state" string="State" filter_domain="[('state','ilike',self)]"/>
+					<separator/>
+						<filter string="Paid" name="paid" domain="[('state','=','paid')]"/>
+						<filter string="Draft" name="draft" domain="[('state','=','draft')]"/>
+					<group expand="1" string="Group By">                                   
+						<filter string="Month" name="creation_month" context="{'group_by':'due_date:month'}" help="Creation Date"/>
+				   </group>
+			   </search>
+			</field>
+		</record>
+        
+        <record id="action_eb_bill_action_view" model="ir.actions.act_window">
+            <field name="name">EB Bill</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">multimedia.eb.bill</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="search_view_id" ref="view_eb_bill_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a EB Bill
+                </p><p>
+                    Once the EB is confirmed, it becomes a done
+                </p>
+            </field>
+        </record>
+        
+        
+        <record id="payment_mode_tree_view" model="ir.ui.view">
+           <field name="name">payment.mode.tree</field>
+            <field name="model">payment.mode</field>
+            <field name="arch" type="xml">
+                <tree string="Payment Mode">
+                    <field name="name"/>
+				</tree>
+            </field>
+        </record>                    
+        
+        <record id="payment_mode_form_view" model="ir.ui.view">
+            <field name="name">payment.mode.form</field>
+            <field name="model">payment.mode</field>
+            <field name="arch" type="xml">
+              <form string="Payment Mode">
+                <header>
+				</header>
+				<sheet>
+					<group>
+						<group>
+							<field name="name"/>							
+						</group>
+						<group>	
+						</group>
+					</group>   					
+				</sheet>
+              </form>
+            </field>
+        </record>        
+        
+        <record id="action_payment_mode_view" model="ir.actions.act_window">
+            <field name="name">Payment Mode</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">payment.mode</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Payment Mode
+                </p>
+            </field>
+        </record>
+        
+        
+		<record id="invoice_payment_tree_view" model="ir.ui.view">
+			<field name="name">invoice.payment.tree</field>
+            <field name="model">invoice.payment</field>
+            <field name="arch" type="xml">
+                <tree string="Payment Details" decoration-danger="state in ('done')" decoration-success="state in ('draft')">
+                    <field name="payment_type"/>
+                    <field name="date"/>
+					<field name="bank_id"/>
+					<field name="amount" sum="Total Amount"/>
+					<field name="create_uid"/>
+					<field name="create_date"/>
+					<field name="state"/>
+				</tree>
+            </field>
+        </record>                    
+        
+        <record id="invoice_payment_form_view" model="ir.ui.view">
+            <field name="name">invoice.payment.form</field>
+            <field name="model">invoice.payment</field>
+            <field name="arch" type="xml">
+              <form string="Payments">
+                <header>
+					<button name="action_confirm" type="object" string="Confirm" class="oe_highlight" attrs="{'invisible': [('state', '=', 'done')]}"/>					
+					<field name="state" widget="statusbar" statusbar_visible="draft,done"/>					
+				</header>
+				<sheet>
+					<div class="oe_title">
+						<h1>
+							<field name="name" readonly="1"/>
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name="payment_type"/>
+							<field name="date" attrs="{'readonly': [('state', '=', 'done')]}"/>	
+							<field name="bank_id" attrs="{'readonly': [('state', '=', 'done')]}"/>							
+							<field name="amount" attrs="{'readonly': [('state', '=', 'done')]}"  sum="Total Amount"/>
+						</group>
+						<group>					
+							<field name="create_uid"/>
+							<field name="write_uid"/>
+							<field name="create_date"/>
+							<field name="write_date"/>
+						</group>
+					</group>   					
+				</sheet>
+              </form>
+            </field>
+        </record>
+        
+        
+        <record id="action_invoice_payment_action_view" model="ir.actions.act_window">
+            <field name="name">Bank Payment</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">invoice.payment</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Bank Payment Details
+                </p><p>
+                    Details
+                </p>
+            </field>
+        </record>
+		
+        <menuitem id="multimedia_main_menu" name="Multi Media" sequence="1"/>
+        <menuitem id="multimedia_sub_menu" name="Multi Media" sequence="2" parent="multimedia_main_menu"/>
+        <menuitem id="multimedia_ebbill_menu" name="EB Bill" sequence="1" action="action_eb_bill_action_view" parent="multimedia_sub_menu"/>
+        <menuitem id="multimedia_bank_payment_menu" name="Bank Payment" sequence="2" action="action_invoice_payment_action_view" parent="multimedia_sub_menu"/>
+        <menuitem id="multimedia_payment_mode_menu" name="Payment Mode" sequence="2" action="action_payment_mode_view" parent="multimedia_sub_menu"/>
+        
+        
+        <record id="prime_product_category_form_view" model="ir.ui.view">
+            <field name="name">product.category.form1</field>
+            <field name="model">product.category</field>
+            <field name="arch" type="xml">
+                <form class="oe_form_configuration">
+                    <sheet>
+                        <div class="oe_button_box" name="button_box">
+                            <button class="oe_stat_button"
+                                name="%(product.product_template_action_all)d"
+                                icon="fa-th-list"
+                                type="action"
+                                context="{'search_default_categ_id': active_id, 'default_categ_id': active_id, 'group_expand': True}">
+                                <div class="o_field_widget o_stat_info">
+                                    <span class="o_stat_value"><field name="product_count"/></span>
+                                    <span class="o_stat_text"> Products</span>
+                                </div>
+                            </button>
+                        </div>
+                        <div class="oe_title">
+                            <label for="name" string="Category name" class="oe_edit_only"/>
+                            <h1><field name="name" placeholder="e.g. Lamps"/></h1>
+                        </div>
+                        <group name="first" col="2">
+                            <field name="parent_id" class="oe_inline"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+        <record id="prime_product_category_list_view" model="ir.ui.view">
+            <field name="name">product.category.list</field>
+            <field name="model">product.category</field>
+            <field name="priority">1</field>
+            <field name="arch" type="xml">
+                <tree string="Product Categories">
+                    <field name="display_name" string="Product Category"/>
+                </tree>
+            </field>
+        </record>
+        <record id="prime_product_category_action" model="ir.actions.act_window">
+            <field name="name">Product Categories</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.category</field>
+            <field name="view_id" ref="prime_product_category_list_view"/>
+        </record>
+        
+        <record model="ir.actions.act_window.view" id="action_media_product_category_tree">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="prime_product_category_list_view"/>
+            <field name="act_window_id" ref="prime_product_category_action"/>
+        </record>
+		
+		<record model="ir.actions.act_window.view" id="action_media_product_category_form">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="prime_product_category_form_view"/>
+            <field name="act_window_id" ref="prime_product_category_action"/>
+        </record>
+        
+        <record id="prime_product_template_form_view" model="ir.ui.view">
+			<field name="name">product.template.common.form1</field>
+			<field name="model">product.template</field>
+			<field name="mode">primary</field>
+			<field name="arch" type="xml">
+				<form string="Product">
+					<header>
+					</header>
+					<sheet>
+						<field name='product_variant_count' invisible='1'/>
+						<field name='is_product_variant' invisible='1'/>
+						<field name='attribute_line_ids' invisible='1'/>
+						<div class="oe_button_box" name="button_box"/>
+						<widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+						<field name="id" invisible="True"/>
+						<field name="image_1920" widget="image" class="oe_avatar" options="{'preview_image': 'image_128'}"/>
+						<div class="oe_title">
+							<label class="oe_edit_only" for="name" string="Product Name"/>
+							<h1><field name="name" placeholder="Product Name"/></h1>
+							<div name="options" groups="base.group_user">
+								<div>
+									<field name="sale_ok"/>
+									<label for="sale_ok"/>
+								</div>
+								<div>
+									<field name="purchase_ok"/>
+									<label for="purchase_ok"/>
+								</div>
+							</div>
+						</div>
+						<notebook>
+							<page string="General Information" name="general_information">
+								<group>
+									<group name="group_general">
+										<field name="active" invisible="1"/>
+										<field name="type"/>
+										<field name="categ_id" string="Product Category"/>
+									</group>
+									<group name="group_standard_price">										
+										<field name="company_id" groups="base.group_multi_company"
+											options="{'no_create': True}"/>
+										<field name="uom_id" groups="uom.group_uom" options="{'no_create': True}"/>
+										<field name="uom_po_id" groups="uom.group_uom" options="{'no_create': True}"/>
+										<field name="currency_id" invisible="1"/>
+									</group>
+								</group>
+								<group string="Internal Notes">
+									<field name="description" nolabel="1" placeholder="This note is only for internal purposes."/>
+								</group>
+							</page>
+						</notebook>
+					</sheet>					
+				</form>
+			</field>
+		</record>
+		
+		<record id="prime_product_template_tree_view" model="ir.ui.view">
+        <field name="name">product.template.product.tree1</field>
+        <field name="model">product.template</field>
+        <field name="arch" type="xml">
+            <tree string="Product" multi_edit="1">
+                <field name="product_variant_count" invisible="1"/>
+
+                <field name="sequence" widget="handle" readonly="1"/>
+                <field name="default_code" optional="show"/>
+                <field name="barcode" optional="hide" attrs="{'readonly': [('product_variant_count', '>', 1)]}"/>
+                <field name="name"/>
+                <field name="company_id" options="{'no_create_edit': True}"
+                    groups="base.group_multi_company" optional="hide"/>
+                <field name="list_price" string="Sales Price" optional="show"/>
+                <field name="standard_price" optional="show" readonly="1"/>
+                <field name="categ_id" optional="hide"/>
+                <field name="type" optional="hide" readonly="1"/>
+                <field name="uom_id" readonly="1" optional="show" groups="uom.group_uom"/>
+                <field name="active" invisible="1"/>
+                <field name="activity_exception_decoration" widget="activity_exception"/>
+            </tree>
+        </field>
+    </record>
+    
+		<record id="multimedia_product_template_action_product" model="ir.actions.act_window">
+			<field name="name">Products</field>
+			<field name="type">ir.actions.act_window</field>
+			<field name="res_model">product.template</field>
+			<field name="view_mode">tree,form</field>
+			<field name="context">{"search_default_consumable": 1, 'default_type': 'product', 'quantity_available_locations_domain': ('internal',)}</field>
+			<field name="help" type="html">
+				<p class="o_view_nocontent_smiling_face">
+					Create a new product
+				</p>
+			</field>
+		</record>
+		
+		<record model="ir.actions.act_window.view" id="action_media_product_tree">
+            <field name="sequence" eval="1"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="prime_product_template_tree_view"/>
+            <field name="act_window_id" ref="multimedia_product_template_action_product"/>
+        </record>
+		
+		<record model="ir.actions.act_window.view" id="action_media_product_form">
+            <field name="sequence" eval="2"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="prime_product_template_form_view"/>
+            <field name="act_window_id" ref="multimedia_product_template_action_product"/>
+        </record>
+    
+       
+<!--		<menuitem id="multimedia_main_product_menu" name="Products" sequence="1"/>-->
+<!--        <menuitem id="multimedia_product_sub_menu" name="Products" sequence="2" parent="multimedia_main_product_menu"/>-->
+<!--&lt;!&ndash;        <menuitem id="multimedia_product_menu" name="Products" sequence="1" action="multimedia_product_template_action_product" parent="multimedia_product_sub_menu"/>&ndash;&gt;-->
+<!--        <menuitem id="multimedia_product_category_menu" name="Category" sequence="2" action="prime_product_category_action" parent="multimedia_product_sub_menu"/>-->
+        
+       
+    </data>
+</odoo>
