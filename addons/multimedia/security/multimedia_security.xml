@@ -32,6 +32,11 @@
       <field name="category_id" ref="multimedia.multimedia_management"/>
     </record>
 
+    <record id="media_forms_employee" model="res.groups">
+      <field name="name">Forms employee</field>
+      <field name="category_id" ref="multimedia.multimedia_management"/>
+    </record>
+
     <record id="media_forms_management" model="res.groups">
       <field name="name">Forms Management</field>
       <field name="category_id" ref="multimedia.multimedia_management"/>

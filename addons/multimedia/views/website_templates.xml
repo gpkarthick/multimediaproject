@@ -10,5 +10,11 @@
 		</xpath>
 	</template>
 	
+	<template id="assets_login" inherit_id="web.assets_frontend">
+		<xpath expr="." position="inside">
+			<link rel="stylesheet" href="/multimedia/static/src/css/web_login_style.css"/>
+		</xpath>
+	</template>
+	
 	
 </odoo>

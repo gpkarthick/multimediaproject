@@ -23,4 +23,14 @@ access_media_product_category_user,access.media.product.category.user,product.mo
 access_media_res_partner_user,access.media.res.partner.user,base.model_res_partner,multimedia.media_purchase_user,1,0,0,0
 ,,,,,,,
 access_pan_form_user,access.pan.form.user,model_pan_form,multimedia.media_forms_users,1,1,1,1
+access_pan_form_employee,access.pan.form.employee,model_pan_form,multimedia.media_forms_employee,1,1,1,1
 access_pan_form_management,access.pan.form.management,model_pan_form,multimedia.media_forms_management,1,1,1,1
+,,,,,,,
+access_state_master_user,access.state.master.user,model_state_master,multimedia.media_forms_users,1,1,1,0
+access_state_master_management,access.state.master.management,model_state_master,multimedia.media_forms_management,1,1,1,0
+,,,,,,,
+access_district_master_user,access.district.master.user,model_district_master,multimedia.media_forms_users,1,1,1,0
+access_district_master_management,access.district.master.management,model_district_master,multimedia.media_forms_management,1,1,1,0
+,,,,,,,
+access_village_master_user,access.village.master.user,model_village_master,multimedia.media_forms_users,1,1,1,0
+access_village_master_management,access.village.master.management,model_village_master,multimedia.media_forms_management,1,1,1,0

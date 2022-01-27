@@ -24,9 +24,10 @@
             <field name="arch" type="xml">
               <form string="Pan Form">
                 <header>
-                    <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_management"/>
-                    <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_management"/>
-                    <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
 				</header>
 				<sheet>
@@ -35,20 +36,26 @@
 							<field name="seq_no" readonly="1"/>
 						</h1>
 					</div>
+                    <field name="user_logo" widget='image' class="oe_avatar"/>
 					<group>
 						<group>
 							<field name="form_type"/>
+							<field name="district_id"/>
+							<field name="village_id"/>
+							<field name="assigned_to_uid" groups="multimedia.media_forms_management"/>
 							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
 							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
 							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
 							<field name="address" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
 						</group>
 						<group>
-							<field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}"/>
-							<field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}"/>
-							<field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}"/>
-							<field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+<!--                            <field name="user_logo" widget='image' class="oe_avatar" nolabel="1"/>-->
+							<field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
 						</group>
+
 					</group>
                     <field name="attachment" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
 				</sheet>
@@ -61,7 +68,7 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[('form_type','=','new_pan')]</field>
+            <field name="domain">[]</field>
             <field name="context">{'form_type':'new_pan'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
@@ -70,9 +77,112 @@
             </field>
         </record>
 
+        <record id="base.view_users_form" model="ir.ui.view">
+            <field name="name">res.users.form</field>
+            <field name="model">res.users</field>
+            <field name="arch" type="xml">
+                <form string="Users">
+                    <header>
+                    </header>
+                    <sheet>
+                        <field name="id" invisible="1"/>
+                        <div class="oe_button_box" name="button_box">
+                            <button name="action_show_groups" type="object" groups="base.group_no_one" class="oe_stat_button" icon="fa-users">
+                                <field string="Groups" name="groups_count" widget="statinfo"/>
+                            </button>
+                            <button name="action_show_accesses" type="object" groups="base.group_no_one" class="oe_stat_button" icon="fa-list">
+                                <field string="Access Rights" name="accesses_count" widget="statinfo"/>
+                            </button>
+                            <button name="action_show_rules" type="object" groups="base.group_no_one" class="oe_stat_button" icon="fa-list-ul">
+                                <field string="Record Rules" name="rules_count" widget="statinfo"/>
+                            </button>
+                        </div>
+                        <widget name="web_ribbon" title="Archived" bg_color="bg-danger" attrs="{'invisible': [('active', '=', True)]}"/>
+                        <field name="active_partner" required="0" readonly="1" invisible="1"/>
+                        <div class="alert alert-info text-center o_form_header"
+                            attrs="{'invisible': [
+                                '|', '|',
+                                '&amp;', ('active', '=', True), ('active_partner', '=', True),
+                                '&amp;', ('active', '=', False), ('active_partner', '=', False),
+                                '&amp;', ('active', '=', True), ('active_partner', '=', False),
+                            ]}"
+                            role="alert">
+                          <a class="close" data-dismiss="alert" href="#">x</a>
+                          <div>
+                            <strong>The contact linked to this user is still active</strong>
+                          </div>
+                          <div>You can archive the contact
+                            <field name="partner_id" required="0" readonly="1"/>
+                          </div>
+                        </div>
+                        <field name="image_1920" widget='image' class="oe_avatar" options='{"preview_image": "image_128"}'/>
+                        <div class="oe_title">
+                            <label for="name" class="oe_edit_only"/>
+                            <h1><field name="name" required="1"/></h1>
+                            <field name="email" invisible="1"/>
+                            <label for="login" class="oe_edit_only" string="Login"/>
+                            <h2><field name="login"/></h2>
+                            <group>
+                                <field name="partner_id" readonly="1" required="0" groups="base.group_no_one"
+                                        attrs="{'invisible': [('id', '=', False)]}"/>
+                            </group>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="user_type"/>
+                                <field name="mail_id"/>
+                                <field name="mobile_no"/>
+                            </group>
+                            <group>
+                                <field name="district_id" options="{'no_open': True, 'no_create': True}"/>
+                                <field name="village_id" options="{'no_open': True, 'no_create': True}"/>
+                            </group>
+                        </group>
+                        <notebook colspan="4">
+                            <page name="access_rights" string="Access Rights">
+                                <group string="Multi Companies" attrs="{'invisible': [('companies_count', '&lt;=', 1)]}">
+                                    <field string="Allowed Companies" name="company_ids" widget="many2many_tags" options="{'no_create': True}"/>
+                                    <field string="Default Company" name="company_id" context="{'user_preference': 0}"/>
+                                    <field string="Companies count" name="companies_count" invisible="1"/>
+                                </group>
+                                <field name="groups_id"/>
+                            </page>
+                            <page string="Preferences">
+                                <group>
+                                    <group string="Localization" name="preferences">
+                                        <field name="active" invisible="1"/>
+                                        <label for="lang" />
+                                        <div class="o_row">
+                                            <field name="lang"/>
+                                            <button
+                                                type="action"
+                                                name="%(base.res_lang_act_window)d"
+                                                class="btn-sm btn-link mb4 fa fa-globe"
+                                                aria-label="More languages"
+                                                title="More languages"/>
+                                        </div>
+                                        <field name="tz" widget="timezone_mismatch" options="{'tz_offset_field': 'tz_offset'}" />
+                                        <field name="tz_offset" invisible="1"/>
+                                    </group>
+                                    <group string="Menus Customization" groups="base.group_no_one">
+                                        <field name="action_id"/>
+                                    </group>
+                                </group>
+                                <group name="messaging">
+                                    <field name="signature"/>
+                                </group>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+
         <menuitem id="forms_main_menu" name="Forms" sequence="1"/>
         <menuitem id="forms_sub_menu" name="Forms" sequence="2" parent="forms_main_menu"/>
         <menuitem id="pan_form_menu" name="Pan" sequence="1" action="action_pan_form_view" parent="forms_sub_menu"/>
+
 
         <menuitem name="Discuss" id="mail.menu_root_discuss" groups="group_hidden" sequence="1"/>
 
