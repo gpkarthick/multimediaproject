@@ -184,11 +184,13 @@
         <menuitem id="pan_form_menu" name="Pan" sequence="1" action="action_pan_form_view" parent="forms_sub_menu"/>
 
 
+<!--
         <menuitem name="Discuss" id="mail.menu_root_discuss" groups="group_hidden" sequence="1"/>
 
         <record model="ir.ui.menu" id="mail.menu_root_discuss">
             <field name="groups_id" eval="[(6,0,[ref('multimedia.group_hidden')])]"/>
         </record>
+-->
 
     </data>
 </odoo>
