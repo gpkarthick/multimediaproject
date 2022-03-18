@@ -77,8 +77,8 @@ class SurveyQuestion(models.Model):
     random_questions_count = fields.Integer(
         'Random questions count', default=1,
         help="Used on randomized sections to take X random questions from all the questions of that section.")
-    title = fields.Char('Title', required=True, translate=True)
-    question = fields.Char('Question', related="title")
+    title = fields.Html('Title', required=True, translate=True)
+    question = fields.Html('Question', related="title")
     description = fields.Html('Description', help="Use this field to add additional explanations about your question", translate=True)
     question_type = fields.Selection([
         ('free_text', 'Multiple Lines Text Box'),
