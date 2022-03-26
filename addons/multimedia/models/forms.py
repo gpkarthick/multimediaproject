@@ -18,6 +18,10 @@ class PanForm(models.Model):
     write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
     create_uid = fields.Many2one('res.users', string='Created by', readonly=True)
     attachment = fields.Binary(string="Image", attachment=True)
+    aadhar_front = fields.Binary(string="Aadhar Front", attachment=True)
+    aadhar_back = fields.Binary(string="Aadhar Back", attachment=True)
+    pan_front = fields.Binary(string="Pan Front", attachment=True)
+    pan_back = fields.Binary(string="Pan Back", attachment=True)
     form_type = fields.Selection([('new_pan', 'New Pan'), ('update_pan', 'Update Pan'), ('child_pan', 'Child Pan')], string='Type')
     state = fields.Selection([('draft', 'Draft'), ('processing', 'Processing'), ('done', 'Done'), ('verified', 'Verified')], string='Status', readonly=True, default='draft')
 

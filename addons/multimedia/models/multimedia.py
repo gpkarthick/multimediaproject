@@ -21,9 +21,9 @@ class MultimediaEBBill(models.Model):
     write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
     create_uid = fields.Many2one('res.users', string='Created by', readonly=True)
     payment_mode_id = fields.Many2one('payment.mode', string='Payment Through')
-    state = fields.Selection([('draft', 'Draft'), ('paid', 'Paid')], string='Status', readonly=True, default='draft')    
     attachment = fields.Binary(string="Image", attachment=True)
-    
+    state = fields.Selection([('draft', 'Draft'), ('paid', 'Paid')], string='Status', readonly=True, default='draft')
+
     def bill_print(self):
         return self.env.ref('multimedia.action_report_multimedia').report_action(self)        
     
