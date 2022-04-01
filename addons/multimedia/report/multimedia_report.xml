@@ -10,5 +10,12 @@
             name="multimedia.report_multimedia"
             print_report_name="'%s' % (object.name)"
         />
+
+        <report id="report_pan_receipt"
+                string="Pan Acknowledgement"
+                model="pan.form"
+                report_type="qweb-pdf"
+                name="multimedia.report_pan_form_receipt"
+                file="multimedia.report_pan_form_receipt"/>
     </data>
 </odoo>

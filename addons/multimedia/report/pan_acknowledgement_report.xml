@@ -1,0 +1,121 @@
+<odoo>
+    <data>
+
+        <template id="report_pan_form_receipt">
+                <t t-call="web.html_container">
+                    <t t-foreach="docs" t-as="o">
+                        <t t-call="web.external_layout">
+                            <link rel="stylesheet" href="/multimedia/static/src/css/style.css"/>
+                            <div class="page">
+                                <t t-foreach="['OFFICE COPY','BUYER COPY']" t-as="p">
+                                <table class="header-table">
+                                    <tr>
+                                        <td style="width:100%;border-bottom: none;">
+                                            <p class="header-company"> </p>
+                                            <p class="header-company">
+                                                <span t-if="o.create_uid.name">
+                                                    <span t-field="o.create_uid.name"/>
+                                                    <br/>
+                                                </span>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="invoice-name-table1">
+                                    <tr>
+                                        <td>
+                                            <p class="invoice-name-para">ACKNOWLEDGEMENT RECEIPT</p>
+                                        </td>
+                                        <td>
+                                            <span class="invoice-copy"><t t-esc="p"/></span>
+                                        </td>
+                                    </tr>
+                                </table>
+                                <table class="customer-address" style="height: 130px;">
+                                    <tr>
+                                        <td style="width:15%;border-right:none;border-left:none">
+                                            <span class="company-details-span" t-if="o.seq_no">
+                                                <strong>Ref No</strong>
+                                                <br/>
+                                            </span>
+                                            <span class="company-details-span" t-if="o.name">
+                                                <strong>Name</strong>
+                                                <br/>
+                                            </span>
+                                            <span class="company-details-span" t-if="o.father_name">
+                                                <strong>Father Name</strong>
+                                                <br/>
+                                            </span>
+                                            <span class="company-details-span" t-if="o.dob">
+                                                <strong>Date Of Birth</strong>
+                                                <br/>
+                                            </span>
+                                        </td>
+                                        <td style="width:35%;border-left:none">
+                                            <span class="company-details-span2" t-if="o.seq_no"><span>: </span>
+                                                <span t-esc="o.seq_no"/>
+                                                <br/>
+                                            </span>
+                                            <span class="company-details-span2" t-if="o.name"><span>: </span>
+                                                <span t-esc="o.name"/>
+                                                <br/>
+                                            </span>
+                                            <span class="company-details-span2" t-if="o.father_name"><span>: </span>
+                                                <span t-esc="o.father_name"/>
+                                                <br/>
+                                            </span>
+                                            <span class="company-details-span2" t-if="o.dob"><span>: </span>
+                                                <span t-esc="o.dob.strftime('%d/%m/%Y')"/>
+                                                <br/>
+                                            </span>
+                                        </td>
+                                        <td style="width:12%; border: none;">
+                                            <span class="company-details-span" t-if="o.create_date">
+                                                <strong>Date</strong>
+                                                <br/>
+                                            </span>
+                                            <span class="company-details-span" t-if="o.mail_id">
+                                                <strong>Mail ID</strong>
+                                                <br/>
+                                            </span>
+                                            <span class="company-details-span" t-if="o.mobile_no">
+                                                <strong>Mobile No</strong>
+                                                <br/>
+                                            </span>
+                                        </td>
+                                        <td style="width:38%; border: none;padding:5px;">
+                                            <span class="company-details-span2" t-if="o.create_date"><span>: </span>
+                                                <span t-field="o.create_date" t-options='{"format": "d MMMM, yyyy"}'/>
+                                                <br/>
+                                            </span>
+                                            <span class="company-details-span2" t-if="o.mail_id"><span>: </span>
+                                                <span t-esc="o.mail_id"/>
+                                                <br/>
+                                            </span>
+                                            <span class="company-details-span2" t-if="o.mobile_no"><span>: </span>
+                                                <span t-esc="o.mobile_no"/>
+                                                <br/>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                </table>
+                                    <table class="total_value">
+                                        <tr>
+                                            <td class="text-center">
+                                            <span>
+                                            &#160;&#160;&#160;
+                                            </span>
+                                            </td>
+                                        </tr>
+
+			        	            </table>
+                                </t>
+                            </div>
+                        </t>
+                    </t>
+                </t>
+
+        </template>
+
+    </data>
+</odoo>

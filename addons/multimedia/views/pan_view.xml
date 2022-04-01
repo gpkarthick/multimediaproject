@@ -45,12 +45,12 @@
 							<field name="district_id" invisible="1"/>
 							<field name="village_id" invisible="1"/>
 							<field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]"/>
-							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')],'invisible': [('state', '=', 'draft')]}"/>
+							<field name="name" attrs="{'readonly': [('state', '=', 'done')]}"/>
+							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
 						</group>
 						<group>
 <!--                            <field name="user_logo" widget='image' class="oe_avatar" nolabel="1"/>-->

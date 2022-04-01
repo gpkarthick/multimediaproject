@@ -1,0 +1,434 @@
+.header-table{
+    border-collapse: collapse;
+    font-family: Times New Roman;
+    width:100%;
+    height: 70px;
+    border: 1px solid black;
+}
+
+.header-table td {
+    border: 0px solid black;
+}
+
+
+.header-table-image {
+    text-align:center;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.header-company{
+    font-size: 1.6rem;
+    font-family: Times New Roman;
+    text-align:center;
+    font-weight: bold;
+    line-height: 1.0;
+}
+
+.header-company-address {
+    font-size: 1.0rem;
+    font-family: FreeSerif;
+    text-align:center;
+    font-weight: bold;
+    line-height: 0.5;
+}
+
+.invoice-copy{
+    font-size: 0.8rem;
+    font-weight: normal;
+    vertical-align: top;
+    line-height: 0.5;
+}
+
+.styled-table-para {
+    font-size: 1.0rem;
+    font-family: FreeSerif;
+    text-align:center;
+    font-weight: bold;
+    line-height: 0.5;
+}
+
+.invoice-name-table {
+    width:100%;
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 10px;;
+    border-collapse: collapse;
+    border: 1px solid black;
+    font-family: Times New Roman;
+    text-align:center;
+}
+invoice-name-table td {
+    vertical-align: middle;
+    font-family: Times New Roman;
+    text-align:center;
+}
+.invoice-name-para {
+  padding-top: 8px;
+  margin-left:135PX;
+}
+.customer-address {
+    vertical-align: top;
+    border-collapse: collapse;
+    border: 1px solid black;
+    border-top: none;
+    width: 100%;
+    font-size: 14px;
+    font-family: Times New Roman;
+}
+.customer-address td {
+    vertical-align: top;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+}
+.customer-address-head-span {
+    padding-top: 8px;
+    margin-left:05PX;
+    line-height: 30px;
+    font-weight: bold;
+    font-size: 16px;
+    font-family: Times New Roman;
+}
+.customer-address-detail-span {
+    margin-left:20PX;
+    line-height: 23px;
+    font-family: Times New Roman;
+    font-size: 16px;
+}
+.company-details-span{
+    margin-left: 8PX;
+    line-height: 30px;
+    font-size:16px;
+}
+.company-details-span2{
+    margin-left: 5PX;
+    line-height: 30px;
+    font-size:16px;
+    font-weight: normal;
+}
+.company-details-span3{
+    margin-left: 5PX;
+    line-height: 30px;
+    font-size:14px;
+    font-weight: normal;
+}
+
+.detailslinetaxinfo1{
+    border-collapse: collapse;
+    vertical-align: middle;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-top: none;
+    width: 100%;
+}
+.detailslinetaxinfo1 td {
+    height: 35px;
+    font-size: 16px;
+    font-family: Times New Roman;
+    border-collapse: collapse;
+    vertical-align: middle;
+    border: none;
+}
+
+.detailsline-span-right-bold{
+    margin-right:10PX;
+    height: 37px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.detailslinetaxinfo{
+    vertical-align: middle;
+    border-collapse: collapse;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-top: none;
+    width: 100%;
+}
+.detailslinetaxinfo td {
+    vertical-align: middle;
+    height: 35px;
+    font-size: 16px;
+    font-family: Times New Roman;
+    border-collapse: collapse;
+    vertical-align: right;
+    border: none;
+}
+
+.detailslinetaxinfo2{
+    vertical-align: middle;
+    border-collapse: collapse;
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-top: none;
+    width: 100%;
+}
+.detailslinetaxinfo2 td {
+    vertical-align: middle;
+    height: 30px;
+    font-size: 16px;
+    font-family: Times New Roman;
+    border-collapse: collapse;
+    vertical-align: right;
+    border: none;
+}
+
+.certification-table {
+    vertical-align: middle;
+    border-collapse: collapse;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    width: 100%;
+    font-size: 16px;
+}
+.certification-table td {
+    border: none;
+}
+.spanrupees_bold {
+    margin-left:10PX;
+    line-height: 25px;
+    font-size: 16px;
+    font-family: Times New Roman;
+    font-weight: bold;
+}
+.spanrupees-words-bold {
+    margin-left:35PX;
+    line-height: 25px;
+    font-size: 16px;
+    font-family: Times New Roman;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.spanrupees-words-normal {
+    margin-left:35PX;
+    vertical-align: middle;
+    line-height: 30px;
+    font-size: 12px;
+    font-family: Times New Roman;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+
+.spanrupees {
+    margin-left:10PX;
+    line-height: 25px;
+    font-family: Times New Roman;
+    font-size: 15.0px;
+    }
+    .spanrupeesright {
+    margin-left:2PX;
+    line-height: 25px;
+    font-size: 15px;
+    font-family: Times New Roman;
+    }
+.certification-table-bank {
+    vertical-align: middle;
+    border-collapse: collapse;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 100%;
+    font-size: 16px;
+    height: 245px;
+}
+.certification-table-bank td {
+    border: none;
+}
+
+.header-table-image1 {
+    text-align:center;
+    vertical-align: middle;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.height-set1 {
+    height: 185px;
+    border-collapse: collapse;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+.detailsheader {
+    vertical-align: middle;
+    border-collapse: collapse;
+    text-align:center;
+    width: 100%;
+}
+.detailsheader th {
+    vertical-align: middle;
+    border-collapse: collapse;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    text-align:center;
+    font-family: Times New Roman;
+    height: 30px;
+    font-size: 16px;
+}
+.detailsline {
+    vertical-align: middle;
+    border-collapse: collapse;
+    border: none;
+    height: 29px;
+    font-size: 16px;
+}
+.detailsline td {
+    vertical-align: middle;
+    border-right: none;
+    font-family: Times New Roman;
+    height: 30px;
+}
+.detailsline-span-right {
+    margin-right:10PX;
+    height: 29px;
+}
+
+.v_1 {
+  border-left: 1px solid black;
+  height: 185px;
+  position: absolute;
+  left: 10%;
+  margin-left: 0px;
+  top: 100;
+}
+.v_2 {
+  border-left: 1px solid black;
+  height: 185px;
+  position: absolute;
+  left: 36%;
+  margin-left: 0px;
+  top: 100;
+}
+.v_3 {
+  border-left: 1px solid black;
+  height: 185px;
+  position: absolute;
+  left: 50.1%;
+  margin-left: 0px;
+  top: 100;
+}
+.v_4 {
+  border-left: 1px solid black;
+  height: 185px;
+  position: absolute;
+  left: 64.5%;
+  margin-left: 0px;
+  top: 100;
+}
+.v_5 {
+  border-left: 1px solid black;
+  height: 185px;
+  position: absolute;
+  left: 79%;
+  margin-left: 0px;
+  top: 100;
+}
+
+.height-set_new1 {
+    height: 185px;
+    border-collapse: collapse;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    width: 100%;
+}
+
+.height-set_new {
+    height: 185px;
+    border-collapse: collapse;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 100%;
+}
+
+.v_1_new {
+  border-left: 1px solid black;
+  height: 185px;
+  position: absolute;
+  left: 35.7%;
+  margin-left: 0px;
+  top: 70;
+}
+.v_2_new {
+  border-left: 1px solid black;
+  height: 185px;
+  position: absolute;
+  left: 50.1%;
+  margin-left: 0px;
+  top: 70;
+}
+.v_3_new {
+  border-left: 1px solid black;
+  height: 185px;
+  position: absolute;
+  left: 64.5%;
+  margin-left: 0px;
+  top: 70;
+}
+.v_4_new {
+  border-left: 1px solid black;
+  height: 185px;
+  position: absolute;
+  left: 79%;
+  margin-left: 0px;
+  top: 80;
+}
+
+.invoice-name-table1 {
+    width:100%;
+    font-size: 1.1rem;
+    font-weight: bold;
+    line-height: 8px;
+    border-collapse: collapse;
+    border: 1px solid black;
+    border-top: none;
+    font-family: Times New Roman;
+    text-align:center;
+}
+invoice-name-table1 td {
+    vertical-align: middle;
+    font-family: Times New Roman;
+    text-align:center;
+}
+.invoice-name-para1 {
+  padding-top: 10px;
+}
+
+.certification-table-bank1 {
+    vertical-align: bottom;
+    border-collapse: collapse;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    width: 100%;
+    font-size: 16px;
+    height: 45px;
+    text-align: bottom;
+}
+.certification-table-bank1 td {
+    border: none;
+    font-family: Times New Roman;
+    font-size: 16px;
+}
+
+.spanrupees1 {
+    line-height: 25px;
+    font-family: Times New Roman;
+    font-size: 16px;
+    font-weight: bold;
+    }
+
+.spanrupeesright1 {
+line-height: 10px;
+font-size: 16px;
+font-family: Times New Roman;
+font-weight: bold;
+text-align:bottom;
+}
+

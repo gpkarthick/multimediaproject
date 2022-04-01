@@ -18,6 +18,7 @@
         'views/website_templates.xml',    
         'report/multimedia_report.xml',    
         'report/multimedia_ebbill_report.xml',    
+        'report/pan_acknowledgement_report.xml',
     ],
     'demo': [],
     'installable': True,
