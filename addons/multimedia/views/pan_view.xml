@@ -70,7 +70,7 @@
                     </group>
                     <group string="Pan Form Details">
                         <group>
-                            <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}" string="ஆதார் முதல் பக்கம்"/>
                         </group>
                         <group>
                             <field name="pan_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
