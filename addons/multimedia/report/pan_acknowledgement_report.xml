@@ -34,7 +34,7 @@
                                 <table class="customer-address" style="height: 130px;">
                                     <tr>
                                         <td style="width:15%;border-right:none;border-left:none">
-                                            <span class="company-details-span" t-if="o.seq_no">
+                                            <span class="company-details-span" t-if="o.name">
                                                 <strong>Ref No</strong>
                                                 <br/>
                                             </span>
@@ -52,8 +52,8 @@
                                             </span>
                                         </td>
                                         <td style="width:35%;border-left:none">
-                                            <span class="company-details-span2" t-if="o.seq_no"><span>: </span>
-                                                <span t-esc="o.seq_no"/>
+                                            <span class="company-details-span2" t-if="o.name"><span>: </span>
+                                                <span t-esc="o.name"/>
                                                 <br/>
                                             </span>
                                             <span class="company-details-span2" t-if="o.party_name"><span>: </span>

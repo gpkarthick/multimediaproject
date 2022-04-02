@@ -12,8 +12,8 @@
         />
 
         <report id="report_pan_receipt"
-                string="Pan Acknowledgement"
-                model="pan.form"
+                string="Acknowledgement Slip"
+                model="acknowledgement.slip"
                 report_type="qweb-pdf"
                 name="multimedia.report_pan_form_receipt"
                 file="multimedia.report_pan_form_receipt"/>

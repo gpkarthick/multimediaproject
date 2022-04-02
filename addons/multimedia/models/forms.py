@@ -100,3 +100,27 @@ class VillageMaster(models.Model):
     name = fields.Char('Village Name', required=True)
     village_code = fields.Char('Village Code')
 
+
+class AcknowledgementSlip(models.Model):
+    _name = "acknowledgement.slip"
+    _description = "Acknowledgement Slip"
+    _order = 'id desc'
+
+    name = fields.Char(string='Sequence No', size=18, readonly=True, default=lambda self: _('New'))
+    party_name = fields.Char(string='Name')
+    father_name = fields.Char(string='Father Name')
+    mobile_no = fields.Char(string='Mobile No')
+    address = fields.Text(string='Address')
+    mail_id = fields.Char(string='Mail ID')
+    dob = fields.Date(string='DOB')
+    create_date = fields.Datetime(string='Created Date', readonly=True)
+    write_date = fields.Datetime(string='Last Updated Date', readonly=True)
+    write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
+    create_uid = fields.Many2one('res.users', string='Created by', readonly=True)
+    state = fields.Selection([('draft', 'Draft'), ('done', 'Done')], string='Status', readonly=True, default='draft')
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', _('New')) == _('New'):
+            vals['name'] = self.env['ir.sequence'].next_by_code('acknowledgement.slip') or _('New')
+        return super(AcknowledgementSlip, self).create(vals)
