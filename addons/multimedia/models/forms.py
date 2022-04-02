@@ -7,6 +7,9 @@ class PanForm(models.Model):
     _description = "Pan form"
     _order = 'id desc'
 
+    def _default_pan_type(self):
+        return self.env.context.get('pan_type')
+
     name = fields.Char(string='Pan Card No')
     party_name = fields.Char(string='Name')
     father_name = fields.Char(string='Father Name')
@@ -25,7 +28,17 @@ class PanForm(models.Model):
     aadhar_back = fields.Binary(string="Aadhar Back", attachment=True, required=True)
     pan_front = fields.Binary(string="Pan Front", attachment=True, required=True)
     pan_back = fields.Binary(string="Pan Back", attachment=True, required=True)
+    parent_aadhar_front = fields.Binary(string="Aadhar Front", attachment=True, required=True)
+    parent_aadhar_back = fields.Binary(string="Aadhar Back", attachment=True, required=True)
+    old_pan_front = fields.Binary(string="Old Pan Front", attachment=True, required=True)
+    gst_fist = fields.Binary(string="GST First", attachment=True, required=True)
+    gst_second = fields.Binary(string="GST Second", attachment=True, required=True)
+    gst_third = fields.Binary(string="GST Third", attachment=True, required=True)
+    kazhu_declaration_certificate_front = fields.Binary(string="Kazhu Certificate Front", attachment=True, required=True)
+    kazhu_declaration_certificate_back = fields.Binary(string="Kazhu Certificate Back", attachment=True, required=True)
     writtern_form = fields.Binary(string="Form", attachment=True, required=True)
+    pan_type = fields.Selection([('major', 'major'), ('minor', 'minor'), ('minor_to_major', 'minor_to_major'), ('correction', 'correction'), ('company', 'company'), ('trust', 'trust'), ('kuzhu', 'kuzhu')], string='Pan Type', readonly=True, default=_default_pan_type)
+
     state = fields.Selection([('draft', 'Draft'), ('processing', 'Processing'), ('done', 'Done'), ('verified', 'Verified')], string='Status', readonly=True, default='draft')
 
     user_logo = fields.Binary("Company Image", related='create_uid.image_1920')

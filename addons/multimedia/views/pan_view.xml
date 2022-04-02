@@ -45,7 +45,7 @@
 							<field name="district_id" invisible="1"/>
 							<field name="village_id" invisible="1"/>
 							<field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]"/>
-							<field name="name" attrs="{'readonly': [('state', '=', 'done')]}"/>
+							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
 							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
 							<field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
 							<field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
@@ -61,7 +61,7 @@
                             <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
 						</group>
 					</group>
-                    <group>
+                    <group string="Candidate Aadhar Details">
                         <group>
                             <field name="aadhar_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
@@ -69,7 +69,7 @@
                             <field name="aadhar_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                     </group>
-                    <group>
+                    <group string="Pan Form Details">
                         <group>
                             <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
@@ -77,7 +77,7 @@
                             <field name="pan_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                     </group>
-                    <group>
+                    <group string="Writtern Form Details">
                         <group>
                             <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
@@ -95,8 +95,8 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
+            <field name="domain">[('pan_type','=','major')]</field>
+            <field name="context">{'pan_type':'major'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a Major Pan Form
@@ -110,12 +110,13 @@
             <field name="name">pan.form</field>
             <field name="model">pan.form</field>
             <field name="arch" type="xml">
-              <form string="Pan Form">
+              <form string="Minor Pan Form">
                 <header>
                     <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
 				</header>
 				<sheet>
@@ -124,27 +125,58 @@
 							<field name="seq_no" readonly="1"/>
 						</h1>
 					</div>
-                    <field name="user_logo" widget='image' class="oe_avatar"/>
 					<group>
 						<group>
-							<field name="district_id"/>
-							<field name="village_id"/>
-							<field name="assigned_to_uid" groups="multimedia.media_forms_management"/>
+							<field name="district_id" invisible="1"/>
+							<field name="village_id" invisible="1"/>
+							<field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]"/>
 							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="address" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
+							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
 						</group>
 						<group>
-<!--                            <field name="user_logo" widget='image' class="oe_avatar" nolabel="1"/>-->
 							<field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
 							<field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
 							<field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
 							<field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
 						</group>
-
 					</group>
-                    <field name="attachment" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <group string="Candidate Aadhar Details">
+                        <group>
+                            <field name="aadhar_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="aadhar_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Pan Form Details">
+                        <group>
+                            <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="pan_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Candidate Mother or Father Aadhar">
+                        <group>
+                            <field name="parent_aadhar_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="parent_aadhar_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Writtern Form Details">
+                        <group>
+                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="user_logo" widget='image' class="oe_avatar" invisible="1"/>
+                        </group>
+                    </group>
 				</sheet>
               </form>
             </field>
@@ -155,8 +187,8 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
+            <field name="domain">[('pan_type','=','minor')]</field>
+            <field name="context">{'pan_type':'minor'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a Minor Pan Form
@@ -164,17 +196,31 @@
             </field>
         </record>
 
+        <record id="action_connect_minor_pan_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="pan_form_tree_view"/>
+            <field name="act_window_id" ref="action_minor_pan_form_view"/>
+        </record>
+
+        <record id="action_connect_minor_pan_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="minor_pan_card_form_view"/>
+            <field name="act_window_id" ref="action_minor_pan_form_view"/>
+        </record>
 
         <record id="minor_to_major_pan_form_view" model="ir.ui.view">
             <field name="name">pan.form</field>
             <field name="model">pan.form</field>
             <field name="arch" type="xml">
-              <form string="Pan Form">
+              <form string="Minor to Major Pan Form">
                 <header>
                     <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
 				</header>
 				<sheet>
@@ -183,27 +229,58 @@
 							<field name="seq_no" readonly="1"/>
 						</h1>
 					</div>
-                    <field name="user_logo" widget='image' class="oe_avatar"/>
 					<group>
 						<group>
-							<field name="district_id"/>
-							<field name="village_id"/>
-							<field name="assigned_to_uid" groups="multimedia.media_forms_management"/>
+							<field name="district_id" invisible="1"/>
+							<field name="village_id" invisible="1"/>
+							<field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]"/>
 							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="address" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
+							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
 						</group>
 						<group>
-<!--                            <field name="user_logo" widget='image' class="oe_avatar" nolabel="1"/>-->
 							<field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
 							<field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
 							<field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
 							<field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
 						</group>
-
 					</group>
-                    <field name="attachment" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <group string="Candidate Aadhar Details">
+                        <group>
+                            <field name="aadhar_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="aadhar_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Old Pan Details">
+                        <group>
+                            <field name="old_pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                    <group string="Pan Form Details">
+                        <group>
+                            <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="pan_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Writtern Form Details">
+                        <group>
+                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="user_logo" widget='image' class="oe_avatar" invisible="1"/>
+                        </group>
+                    </group>
 				</sheet>
               </form>
             </field>
@@ -214,8 +291,8 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
+            <field name="domain">[('pan_type','=','minor_to_major')]</field>
+            <field name="context">{'pan_type':'minor_to_major'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a Minor to Major Pan Form
@@ -223,16 +300,31 @@
             </field>
         </record>
 
+        <record id="action_connect_minor_to_major_pan_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="pan_form_tree_view"/>
+            <field name="act_window_id" ref="action_minor_to_major_pan_form_view"/>
+        </record>
+
+        <record id="action_connect_minor_to_major_pan_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="minor_to_major_pan_form_view"/>
+            <field name="act_window_id" ref="action_minor_to_major_pan_form_view"/>
+        </record>
+
         <record id="correction_pan_form_view" model="ir.ui.view">
             <field name="name">pan.form</field>
             <field name="model">pan.form</field>
             <field name="arch" type="xml">
-              <form string="Pan Form">
+              <form string="Correction Pan Form">
                 <header>
                     <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
 				</header>
 				<sheet>
@@ -241,27 +333,58 @@
 							<field name="seq_no" readonly="1"/>
 						</h1>
 					</div>
-                    <field name="user_logo" widget='image' class="oe_avatar"/>
 					<group>
 						<group>
-							<field name="district_id"/>
-							<field name="village_id"/>
-							<field name="assigned_to_uid" groups="multimedia.media_forms_management"/>
+							<field name="district_id" invisible="1"/>
+							<field name="village_id" invisible="1"/>
+							<field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]"/>
 							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="address" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
+							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
 						</group>
 						<group>
-<!--                            <field name="user_logo" widget='image' class="oe_avatar" nolabel="1"/>-->
 							<field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
 							<field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
 							<field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
 							<field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
 						</group>
-
 					</group>
-                    <field name="attachment" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <group string="Candidate Aadhar Details">
+                        <group>
+                            <field name="aadhar_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="aadhar_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Old Pan Details">
+                        <group>
+                            <field name="old_pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                    <group string="Pan Form Details">
+                        <group>
+                            <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="pan_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Writtern Form Details">
+                        <group>
+                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="user_logo" widget='image' class="oe_avatar" invisible="1"/>
+                        </group>
+                    </group>
 				</sheet>
               </form>
             </field>
@@ -272,8 +395,8 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
+            <field name="domain">[('pan_type','=','correction')]</field>
+            <field name="context">{'pan_type':'correction'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a Correction Pan Form
@@ -281,16 +404,31 @@
             </field>
         </record>
 
+        <record id="action_connect_correction_pan_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="pan_form_tree_view"/>
+            <field name="act_window_id" ref="action_correction_pan_form_view"/>
+        </record>
+
+        <record id="action_connect_correction_pan_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="correction_pan_form_view"/>
+            <field name="act_window_id" ref="action_correction_pan_form_view"/>
+        </record>
+
         <record id="company_pan_form_view" model="ir.ui.view">
             <field name="name">pan.form</field>
             <field name="model">pan.form</field>
             <field name="arch" type="xml">
-              <form string="Pan Form">
+              <form string="Company Pan Form">
                 <header>
                     <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
 				</header>
 				<sheet>
@@ -299,27 +437,57 @@
 							<field name="seq_no" readonly="1"/>
 						</h1>
 					</div>
-                    <field name="user_logo" widget='image' class="oe_avatar"/>
 					<group>
 						<group>
-							<field name="district_id"/>
-							<field name="village_id"/>
-							<field name="assigned_to_uid" groups="multimedia.media_forms_management"/>
+							<field name="district_id" invisible="1"/>
+							<field name="village_id" invisible="1"/>
+							<field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]"/>
 							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
-							<field name="address" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
+							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
 						</group>
 						<group>
-<!--                            <field name="user_logo" widget='image' class="oe_avatar" nolabel="1"/>-->
 							<field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
 							<field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
 							<field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
 							<field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
 						</group>
-
 					</group>
-                    <field name="attachment" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                    <group string="Pan Form Details">
+                        <group>
+                            <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="pan_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="GST Details">
+                        <group>
+                            <field name="gst_fist" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="gst_second" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group>
+                        <group>
+                            <field name="gst_third" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                        </group>
+                    </group>
+                    <group string="Writtern Form Details">
+                        <group>
+                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="user_logo" widget='image' class="oe_avatar" invisible="1"/>
+                        </group>
+                    </group>
 				</sheet>
               </form>
             </field>
@@ -330,13 +498,213 @@
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[]</field>
-            <field name="context">{}</field>
+            <field name="domain">[('pan_type','=','company')]</field>
+            <field name="context">{'pan_type':'company'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a Correction Pan Form
                 </p>
             </field>
+        </record>
+
+        <record id="action_connect_company_pan_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="pan_form_tree_view"/>
+            <field name="act_window_id" ref="action_company_pan_form_view"/>
+        </record>
+
+        <record id="action_connect_company_pan_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="company_pan_form_view"/>
+            <field name="act_window_id" ref="action_company_pan_form_view"/>
+        </record>
+
+        <record id="trust_pan_form_view" model="ir.ui.view">
+            <field name="name">pan.form</field>
+            <field name="model">pan.form</field>
+            <field name="arch" type="xml">
+              <form string="Trust Pan Form">
+                <header>
+                    <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+				</header>
+				<sheet>
+                    <div class="oe_title">
+						<h1>
+							<field name="seq_no" readonly="1"/>
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name="district_id" invisible="1"/>
+							<field name="village_id" invisible="1"/>
+							<field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]"/>
+							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
+							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+						</group>
+						<group>
+							<field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+						</group>
+					</group>
+                    <group string="Pan Form Details">
+                        <group>
+                            <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="pan_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Writtern Form Details">
+                        <group>
+                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="user_logo" widget='image' class="oe_avatar" invisible="1"/>
+                        </group>
+                    </group>
+				</sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_trust_pan_form_view" model="ir.actions.act_window">
+            <field name="name">Trust Pan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pan.form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('pan_type','=','trust')]</field>
+            <field name="context">{'pan_type':'trust'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a trust Pan Form
+                </p>
+            </field>
+        </record>
+
+        <record id="action_connect_trust_pan_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="pan_form_tree_view"/>
+            <field name="act_window_id" ref="action_trust_pan_form_view"/>
+        </record>
+
+        <record id="action_connect_trust_pan_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="trust_pan_form_view"/>
+            <field name="act_window_id" ref="action_trust_pan_form_view"/>
+        </record>
+
+<!--        Kazhu Pan-->
+
+        <record id="kazhu_pan_form_view" model="ir.ui.view">
+            <field name="name">pan.form</field>
+            <field name="model">pan.form</field>
+            <field name="arch" type="xml">
+              <form string="Kazhu Pan Form">
+                <header>
+                    <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+				</header>
+				<sheet>
+                    <div class="oe_title">
+						<h1>
+							<field name="seq_no" readonly="1"/>
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name="district_id" invisible="1"/>
+							<field name="village_id" invisible="1"/>
+							<field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]"/>
+							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}"/>
+							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+						</group>
+						<group>
+							<field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}"/>
+						</group>
+					</group>
+                    <group string="Pan Form Details">
+                        <group>
+                            <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="pan_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Kuzhu Registration Certificate">
+                        <group>
+                            <field name="kazhu_declaration_certificate_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="kazhu_declaration_certificate_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Writtern Form Details">
+                        <group>
+                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="user_logo" widget='image' class="oe_avatar" invisible="1"/>
+                        </group>
+                    </group>
+				</sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_kazhu_pan_form_view" model="ir.actions.act_window">
+            <field name="name">Kazhu Pan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pan.form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('pan_type','=','kazhu')]</field>
+            <field name="context">{'pan_type':'kazhu'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Kazhu Pan Form
+                </p>
+            </field>
+        </record>
+
+        <record id="action_connect_trust_pan_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="pan_form_tree_view"/>
+            <field name="act_window_id" ref="action_kazhu_pan_form_view"/>
+        </record>
+
+        <record id="action_connect_trust_pan_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="kazhu_pan_form_view"/>
+            <field name="act_window_id" ref="action_kazhu_pan_form_view"/>
         </record>
 
         <menuitem id="forms_main_menu" name="Online" sequence="1"/>
@@ -345,8 +713,10 @@
         <menuitem id="major_pan_form_menu" name="Major Pan" sequence="1" action="action_major_pan_form_view" parent="forms_sub_menu"/>
         <menuitem id="minor_pan_form_menu" name="Minor Pan" sequence="2" action="action_minor_pan_form_view" parent="forms_sub_menu"/>
         <menuitem id="minor_to_major_pan_form_menu" name="Minor to major Pan" sequence="3" action="action_minor_to_major_pan_form_view" parent="forms_sub_menu"/>
-        <menuitem id="correction_pan_form_menu" name="correction Pan" sequence="3" action="action_correction_pan_form_view" parent="forms_sub_menu"/>
-        <menuitem id="company_pan_form_menu" name="Company Pan" sequence="3" action="action_company_pan_form_view" parent="forms_sub_menu"/>
+        <menuitem id="correction_pan_form_menu" name="Correction Pan" sequence="4" action="action_correction_pan_form_view" parent="forms_sub_menu"/>
+        <menuitem id="company_pan_form_menu" name="Company Pan" sequence="5" action="action_company_pan_form_view" parent="forms_sub_menu"/>
+        <menuitem id="trust_pan_form_menu" name="Trust Pan" sequence="6" action="action_trust_pan_form_view" parent="forms_sub_menu"/>
+        <menuitem id="kazhu_pan_form_menu" name="Kazhu Pan" sequence="7" action="action_kazhu_pan_form_view" parent="forms_sub_menu"/>
 
         <record id="base.view_users_form" model="ir.ui.view">
             <field name="name">res.users.form</field>
