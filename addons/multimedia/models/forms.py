@@ -10,6 +10,9 @@ class PanForm(models.Model):
     def _default_pan_type(self):
         return self.env.context.get('pan_type')
 
+    def _default_work_type(self):
+        return self.env.context.get('work_type')
+
     name = fields.Char(string='Pan Card No')
     party_name = fields.Char(string='Name')
     father_name = fields.Char(string='Father Name')
@@ -37,7 +40,22 @@ class PanForm(models.Model):
     kazhu_declaration_certificate_front = fields.Binary(string="Kazhu Certificate Front", attachment=True, required=True)
     kazhu_declaration_certificate_back = fields.Binary(string="Kazhu Certificate Back", attachment=True, required=True)
     writtern_form = fields.Binary(string="Form", attachment=True, required=True)
-    pan_type = fields.Selection([('major', 'major'), ('minor', 'minor'), ('minor_to_major', 'minor_to_major'), ('correction', 'correction'), ('company', 'company'), ('trust', 'trust'), ('kuzhu', 'kuzhu')], string='Pan Type', readonly=True, default=_default_pan_type)
+
+
+    # Ration Card
+    family_head_aadhar_front = fields.Binary(string="Family Head Aadhar Front", attachment=True, required=True)
+    family_head_aadhar_back = fields.Binary(string="Family Head Aadhar Back", attachment=True, required=True)
+    candidate_ration_remove_proof_first = fields.Binary(string="Candidate Remove Proof First Page", attachment=True, required=True)
+    candidate_ration_remove_proof_second = fields.Binary(string="Candidate Remove Proof First Page", attachment=True, required=True)
+    old_ration_card_front = fields.Binary(string="Old Ration Card Xerox Front", attachment=True, required=True)
+    old_ration_card_back = fields.Binary(string="Old Ration Card Xerox Back", attachment=True, required=True)
+
+    pan_type = fields.Selection([('major', 'major'), ('minor', 'minor'), ('minor_to_major', 'minor_to_major'),
+                                 ('correction', 'correction'), ('company', 'company'), ('trust', 'trust'), ('kuzhu', 'kuzhu'),
+                                 ('newrationcard', 'New Ration Card'), ('rationnameadd', 'Ration Name Add'), ('rationnameremove', 'Ration Name Remove'),
+                                 ('rationheadchange', 'Ration Head Change'), ('rationduplicate', 'Ration Duplicate Apply')
+                                 ], string='Pan Type', readonly=True, default=_default_pan_type)
+    work_type = fields.Selection([('pan', 'Pan'), ('rationcard', 'Ration Card'), ('aadharcard', 'Aadhar Card'), ('certificates', 'Certificates'), ('oapandpension', 'OAP and Pension'), ('welfare_of_differently_abled_ersons', 'Welfare of Differently Abled Persons'), ('project_work', 'Project Work'), ('multiple_xerox', 'Multiple Xerox'), ('marriage_registration', 'Marriage  Registration'), ('pmfby', 'PMFBY'), ('employment', 'Employment'), ('birth_and_death_certificate', 'Birth and Death Certificate')], string='Pan Type', readonly=True, default=_default_work_type)
 
     state = fields.Selection([('draft', 'Draft'), ('processing', 'Processing'), ('done', 'Done'), ('verified', 'Verified')], string='Status', readonly=True, default='draft')
 
@@ -52,8 +70,13 @@ class PanForm(models.Model):
 
     @api.model
     def create(self, vals):
-        if vals.get('seq_no', _('New')) == _('New'):
-            vals['seq_no'] = self.env['ir.sequence'].next_by_code('pan.form') or _('New')
+        print(self.env.context)
+        if self.env.context['work_type'] == 'pan':
+            if vals.get('seq_no', _('New')) == _('New'):
+                vals['seq_no'] = self.env['ir.sequence'].next_by_code('pan.form') or _('New')
+        if self.env.context['work_type'] == 'rationcard':
+            if vals.get('seq_no', _('New')) == _('New'):
+                vals['seq_no'] = self.env['ir.sequence'].next_by_code('pan.form.ration') or _('New')
         return super(PanForm, self).create(vals)
 
     def action_process(self):
@@ -91,7 +114,6 @@ class DistrictMaster(models.Model):
     name = fields.Char('District Name', required=True)
     district_code = fields.Char('District Code')
 
-
 class VillageMaster(models.Model):
     _name = 'village.master'
     _description = 'Village Master'
@@ -99,7 +121,6 @@ class VillageMaster(models.Model):
 
     name = fields.Char('Village Name', required=True)
     village_code = fields.Char('Village Code')
-
 
 class AcknowledgementSlip(models.Model):
     _name = "acknowledgement.slip"
