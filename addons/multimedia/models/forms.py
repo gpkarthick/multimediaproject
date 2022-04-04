@@ -88,12 +88,33 @@ class PanForm(models.Model):
     age_proof_certificate_front = fields.Binary(string="Age Proof Front", attachment=True, required=True)
     age_proof_certificate_back = fields.Binary(string="Age Proof Back", attachment=True, required=True)
 
+    solvency_proof_certificate_front = fields.Binary(string="Solvency Proof Front", attachment=True, required=True)
+    solvency_proof_certificate_back = fields.Binary(string="Solvency Proof Back", attachment=True, required=True)
+
+    bank_pass_book_front = fields.Binary(string="Bank Passbook Front", attachment=True, required=True)
+    bank_pass_book_back = fields.Binary(string="Bank Passbook Back", attachment=True, required=True)
+
+    identity_proof_front = fields.Binary(string="Identity Proof Front", attachment=True, required=True)
+    identity_proof_back = fields.Binary(string="Identity Proof Back", attachment=True, required=True)
+
+    national_disability_idcard_front = fields.Binary(string="National Disability ID Card Front", attachment=True, required=True)
+    national_disability_idcard_back = fields.Binary(string="National Disability ID Card Back", attachment=True, required=True)
+
+    aadhar_consent_form = fields.Binary(string="Aadhar Consent Form", attachment=True, required=True)
+
+    encumbrance_certificate = fields.Binary(string="Encumbrance Certificate", attachment=True, required=True)
+
     qualification_proof_certificate = fields.Binary(string="Educational Qualification Proof", attachment=True)
     transfer_certificate_front = fields.Binary(string="Transfer Certificate Front", attachment=True)
     transfer_certificate_back = fields.Binary(string="Transfer Certificate Back", attachment=True)
 
     employment_card = fields.Binary(string="Employment Card", attachment=True)
 
+    husband_death_certificate = fields.Binary(string="Husband Death Certificate", attachment=True)
+
+    deserted_proof_page1 = fields.Binary(string="Deserted Proof Page1", attachment=True)
+    deserted_proof_page2 = fields.Binary(string="Deserted Proof Page2", attachment=True)
+    deserted_proof_page3 = fields.Binary(string="Deserted Proof Page3", attachment=True)
 
     pan_type = fields.Selection([('major', 'major'), ('minor', 'minor'), ('minor_to_major', 'minor_to_major'),
                                  ('correction', 'correction'), ('company', 'company'), ('trust', 'trust'), ('kuzhu', 'kuzhu'),
@@ -104,7 +125,11 @@ class PanForm(models.Model):
                                  ('nomalechildcertificate', 'Irupen kualanthai (or) No Male child Certificate'),('obccertificate', 'OBC Certificate'),
                                  ('certificate', 'First Graduate Certificate'),('unemploymentCertificate', 'Unemployment Certificate'),
                                  ('intercastemarriagecertificate', 'Inter Caste Marriage Certificate'),('unmarriedcertificate', 'Unmarried Certificate'),
-                                 ('familymigrationcertificate', 'Family Migration Certificate'),('losscertificate', 'Damage or loss Certificate')
+                                 ('familymigrationcertificate', 'Family Migration Certificate'),('losscertificate', 'Damage or loss Certificate'),
+                                 ('smallmarginalfarmercertificate', 'Small / Marginal Farmer Certificate'),('solvencycertificate', 'Solvency Certificate'),
+                                 ('widowcertificate', 'Widow Certificate'),('desertedwomanertificate', 'Deserted Woman Certificate'),('ignops', 'Indira Gandhi National Old Age Pension Scheme (IGNOPS)'),
+                                 ('destitute_deserted_pension_scheme', 'Destitute Deserted Woman Pension Scheme'),('unmarried_women_pension_scheme', 'Unmarried Women Pension Scheme (UWPS)'),
+                                 ('differently_abled_pension_scheme', 'Differently Abled Pension Scheme (DAPS)'),('uzhavar_pathukapu_thittam', 'Minister Uzhavar Pathukapu Thittam(CMUPT)')
                                  ], string='Pan Type', readonly=True, default=_default_pan_type)
     work_type = fields.Selection([('pan', 'Pan'), ('rationcard', 'Ration Card'), ('aadharcard', 'Aadhar Card'), ('certificates', 'Certificates'), ('oapandpension', 'OAP and Pension'), ('welfare_of_differently_abled_ersons', 'Welfare of Differently Abled Persons'), ('project_work', 'Project Work'), ('multiple_xerox', 'Multiple Xerox'), ('marriage_registration', 'Marriage  Registration'), ('pmfby', 'PMFBY'), ('employment', 'Employment'), ('birth_and_death_certificate', 'Birth and Death Certificate')], string='Pan Type', readonly=True, default=_default_work_type)
 
