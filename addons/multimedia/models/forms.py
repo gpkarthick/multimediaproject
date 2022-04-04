@@ -64,8 +64,35 @@ class PanForm(models.Model):
     birth_certificate_front = fields.Binary(string="Birth Certificate Front", attachment=True, required=True)
     birth_certificate_back = fields.Binary(string="Birth Certificate Back", attachment=True, required=True)
 
+    income_certificate = fields.Binary(string="Income Certificate", attachment=True, required=True)
+
     # certificate
     candidate_photo = fields.Binary(string="Photo", attachment=True, required=True)
+
+    residency_certificate = fields.Binary(string="Residency Certificate", attachment=True, required=True)
+
+    previous_residence_address_certificate_front = fields.Binary(string="Previous Residence Address Front", attachment=True, required=True)
+    previous_residence_address_certificate_back = fields.Binary(string="Previous Residence Address Back", attachment=True, required=True)
+
+    marriage_invitation_front = fields.Binary(string="Marriage Certificate Front", attachment=True, required=True)
+    marriage_invitation_back = fields.Binary(string="Marriage Certificate Back", attachment=True, required=True)
+
+    certificate_loss_disaster_front = fields.Binary(string="Damage Certificate Front", attachment=True, required=True)
+    certificate_loss_disaster_back = fields.Binary(string="Damage Certificate Back", attachment=True, required=True)
+
+    sterilization_certificate = fields.Binary(string="Sterilization Certificate", attachment=True, required=True)
+
+    birth_certificate_child1 = fields.Binary(string="Birth certificate of First Children", attachment=True, required=True)
+    birth_certificate_child2 = fields.Binary(string="Birth certificate of Second Children", attachment=True)
+
+    age_proof_certificate_front = fields.Binary(string="Age Proof Front", attachment=True, required=True)
+    age_proof_certificate_back = fields.Binary(string="Age Proof Back", attachment=True, required=True)
+
+    qualification_proof_certificate = fields.Binary(string="Educational Qualification Proof", attachment=True)
+    transfer_certificate_front = fields.Binary(string="Transfer Certificate Front", attachment=True)
+    transfer_certificate_back = fields.Binary(string="Transfer Certificate Back", attachment=True)
+
+    employment_card = fields.Binary(string="Employment Card", attachment=True)
 
 
     pan_type = fields.Selection([('major', 'major'), ('minor', 'minor'), ('minor_to_major', 'minor_to_major'),
@@ -73,7 +100,11 @@ class PanForm(models.Model):
                                  ('newrationcard', 'New Ration Card'), ('rationnameadd', 'Ration Name Add'), ('rationnameremove', 'Ration Name Remove'),
                                  ('rationheadchange', 'Ration Head Change'), ('rationduplicate', 'Ration Duplicate Apply'),
                                  ('incomecertificate', 'Income Certificate'),('residencecertificate', 'Residence Certificate'),
-                                 ('nativitycertificate', 'Nativity Certificate')
+                                 ('nativitycertificate', 'Nativity Certificate'),('legalheircertificate', 'Legal Heir Certificate'),
+                                 ('nomalechildcertificate', 'Irupen kualanthai (or) No Male child Certificate'),('obccertificate', 'OBC Certificate'),
+                                 ('certificate', 'First Graduate Certificate'),('unemploymentCertificate', 'Unemployment Certificate'),
+                                 ('intercastemarriagecertificate', 'Inter Caste Marriage Certificate'),('unmarriedcertificate', 'Unmarried Certificate'),
+                                 ('familymigrationcertificate', 'Family Migration Certificate'),('losscertificate', 'Damage or loss Certificate')
                                  ], string='Pan Type', readonly=True, default=_default_pan_type)
     work_type = fields.Selection([('pan', 'Pan'), ('rationcard', 'Ration Card'), ('aadharcard', 'Aadhar Card'), ('certificates', 'Certificates'), ('oapandpension', 'OAP and Pension'), ('welfare_of_differently_abled_ersons', 'Welfare of Differently Abled Persons'), ('project_work', 'Project Work'), ('multiple_xerox', 'Multiple Xerox'), ('marriage_registration', 'Marriage  Registration'), ('pmfby', 'PMFBY'), ('employment', 'Employment'), ('birth_and_death_certificate', 'Birth and Death Certificate')], string='Pan Type', readonly=True, default=_default_work_type)
 
