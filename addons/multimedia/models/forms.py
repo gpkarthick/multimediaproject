@@ -47,13 +47,33 @@ class PanForm(models.Model):
     family_head_aadhar_back = fields.Binary(string="Family Head Aadhar Back", attachment=True, required=True)
     candidate_ration_remove_proof_first = fields.Binary(string="Candidate Remove Proof First Page", attachment=True, required=True)
     candidate_ration_remove_proof_second = fields.Binary(string="Candidate Remove Proof First Page", attachment=True, required=True)
+    ration_card_front = fields.Binary(string="Ration Card Xerox Front", attachment=True, required=True)
+    ration_card_back = fields.Binary(string="Ration Card Xerox Back", attachment=True, required=True)
     old_ration_card_front = fields.Binary(string="Old Ration Card Xerox Front", attachment=True, required=True)
     old_ration_card_back = fields.Binary(string="Old Ration Card Xerox Back", attachment=True, required=True)
+
+    payslip_front = fields.Binary(string="Payslip Front", attachment=True, required=True)
+    payslip_back = fields.Binary(string="payslip Back", attachment=True, required=True)
+
+    form_front = fields.Binary(string="Form Front", attachment=True, required=True)
+    form_back = fields.Binary(string="Form Back", attachment=True, required=True)
+
+    community_front = fields.Binary(string="Community Proof Front", attachment=True, required=True)
+    community_back = fields.Binary(string="Community Proof Back", attachment=True, required=True)
+
+    birth_certificate_front = fields.Binary(string="Birth Certificate Front", attachment=True, required=True)
+    birth_certificate_back = fields.Binary(string="Birth Certificate Back", attachment=True, required=True)
+
+    # certificate
+    candidate_photo = fields.Binary(string="Photo", attachment=True, required=True)
+
 
     pan_type = fields.Selection([('major', 'major'), ('minor', 'minor'), ('minor_to_major', 'minor_to_major'),
                                  ('correction', 'correction'), ('company', 'company'), ('trust', 'trust'), ('kuzhu', 'kuzhu'),
                                  ('newrationcard', 'New Ration Card'), ('rationnameadd', 'Ration Name Add'), ('rationnameremove', 'Ration Name Remove'),
-                                 ('rationheadchange', 'Ration Head Change'), ('rationduplicate', 'Ration Duplicate Apply')
+                                 ('rationheadchange', 'Ration Head Change'), ('rationduplicate', 'Ration Duplicate Apply'),
+                                 ('incomecertificate', 'Income Certificate'),('residencecertificate', 'Residence Certificate'),
+                                 ('nativitycertificate', 'Nativity Certificate')
                                  ], string='Pan Type', readonly=True, default=_default_pan_type)
     work_type = fields.Selection([('pan', 'Pan'), ('rationcard', 'Ration Card'), ('aadharcard', 'Aadhar Card'), ('certificates', 'Certificates'), ('oapandpension', 'OAP and Pension'), ('welfare_of_differently_abled_ersons', 'Welfare of Differently Abled Persons'), ('project_work', 'Project Work'), ('multiple_xerox', 'Multiple Xerox'), ('marriage_registration', 'Marriage  Registration'), ('pmfby', 'PMFBY'), ('employment', 'Employment'), ('birth_and_death_certificate', 'Birth and Death Certificate')], string='Pan Type', readonly=True, default=_default_work_type)
 
