@@ -717,6 +717,121 @@
         <menuitem id="trust_pan_form_menu" name="Trust Pan" sequence="6" action="action_trust_pan_form_view" parent="forms_sub_menu"/>
         <menuitem id="kazhu_pan_form_menu" name="Kazhu Pan" sequence="7" action="action_kazhu_pan_form_view" parent="forms_sub_menu"/>
 
+
+        <!-- ************************ Aadhar card ******************************* -->
+
+        <!-- Aadhar Card Address Correction -->
+
+        <record id="aadhar_tree_view" model="ir.ui.view">
+           <field name="name">pan.form.tree</field>
+            <field name="model">pan.form</field>
+            <field name="arch" type="xml">
+                <tree string="Pan Form" decoration-danger="state in ('done')" decoration-success="state in ('draft')" decoration-info="state in ('processing')">
+                    <field name="name"/>
+                    <field name="seq_no"/>
+                    <field name="party_name"/>
+                    <field name="mobile_no"/>
+                    <field name="assigned_to_uid" groups="multimedia.media_forms_management"/>
+					<field name="create_uid"/>
+					<field name="create_date"/>
+					<field name="state"/>
+				</tree>
+            </field>
+        </record>
+
+
+        <record id="aadhar_address_correction_form_view" model="ir.ui.view">
+            <field name="name">pan.form</field>
+            <field name="model">pan.form</field>
+            <field name="arch" type="xml">
+              <form string="Aadhar Address Correction">
+                <header>
+                    <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+				</header>
+				<sheet>
+                    <div class="oe_title">
+						<h1>
+							<field name="seq_no" readonly="1"/>
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name="district_id" invisible="1"/>
+							<field name="village_id" invisible="1"/>
+							<field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]" />
+							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+						</group>
+						<group>
+							<field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+						</group>
+					</group>
+                    <group string="Address Correction">
+                        <group>
+                            <field name="identity_proof_front" string="Any Address Proof Front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="identity_proof_back" string="Any Address Proof Back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Writtern Form Details">
+                        <group>
+                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="user_logo" widget='image' class="oe_avatar" invisible="1"/>
+                        </group>
+                    </group>
+				</sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_aadhar_address_correction_form_view" model="ir.actions.act_window">
+            <field name="name">Address Correction</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pan.form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('pan_type','=','aadhar_address_correction')]</field>
+            <field name="context">{'pan_type':'aadhar_address_correction','work_type':'aadharcard'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Aadhar Address Correction
+                </p>
+            </field>
+        </record>
+
+        <record id="action_connect_aadhar_address_correction_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="aadhar_tree_view"/>
+            <field name="act_window_id" ref="action_aadhar_address_correction_form_view"/>
+        </record>
+
+        <record id="action_connect_aadhar_address_correction_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="aadhar_address_correction_form_view"/>
+            <field name="act_window_id" ref="action_aadhar_address_correction_form_view"/>
+        </record>
+
+        <menuitem id="aadhar_card_sub_menu" name="Aadhar Card" sequence="3" parent="forms_main_menu"/>
+        <menuitem id="aadhar_address_correction_menu" name="Address Correction" sequence="1" action="action_aadhar_address_correction_form_view" parent="aadhar_card_sub_menu"/>
+
+
         <record id="base.view_users_form" model="ir.ui.view">
             <field name="name">res.users.form</field>
             <field name="model">res.users</field>
@@ -1367,7 +1482,7 @@
             <field name="act_window_id" ref="action_ration_card_duplicate_apply_form_view"/>
         </record>
 
-        <menuitem id="ration_card_sub_menu" name="Ration Card" sequence="3" parent="forms_main_menu"/>
+        <menuitem id="ration_card_sub_menu" name="Ration Card" sequence="4" parent="forms_main_menu"/>
         <menuitem id="new_ration_card_form_menu" name="New Ration" sequence="1" action="action_new_ration_card_form_view" parent="ration_card_sub_menu"/>
         <menuitem id="ration_card_name_add_form_menu" name="Ration Name add" sequence="2" action="action_ration_card_name_add_form_view" parent="ration_card_sub_menu"/>
         <menuitem id="ration_card_name_remove_form_menu" name="Ration Name Remove" sequence="3" action="action_ration_card_name_remove_form_view" parent="ration_card_sub_menu"/>
@@ -3558,7 +3673,7 @@
             <field name="act_window_id" ref="action_deserted_woman_certificate_view"/>
         </record>
 
-        <menuitem id="certificate_sub_menu" name="Certificate" sequence="4" parent="forms_main_menu"/>
+        <menuitem id="certificate_sub_menu" name="Certificate" sequence="5" parent="forms_main_menu"/>
         <menuitem id="income_certificate_menu" name="Income Certificate" sequence="1" action="action_income_certificate_view" parent="certificate_sub_menu"/>
         <menuitem id="community_certificate_menu" name="Community Certificate" sequence="2" action="action_community_certificate_view" parent="certificate_sub_menu"/>
         <menuitem id="residence_certificate_menu" name="Residence Certificate" sequence="3" action="action_residence_certificate_view" parent="certificate_sub_menu"/>
@@ -3709,7 +3824,7 @@
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[('pan_type','=','ignops')]</field>
-            <field name="context">{'pan_type':'ignops','work_type':'certificates'}</field>
+            <field name="context">{'pan_type':'ignops','work_type':'oapandpension'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a Indira Gandhi National Old Age Pension Scheme (IGNOPS) Certificate
@@ -3854,7 +3969,7 @@
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[('pan_type','=','destitute_deserted_pension_scheme')]</field>
-            <field name="context">{'pan_type':'destitute_deserted_pension_scheme','work_type':'certificates'}</field>
+            <field name="context">{'pan_type':'destitute_deserted_pension_scheme','work_type':'oapandpension'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a Destitute Widow Pension Scheme (DWP) or
@@ -3992,7 +4107,7 @@
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[('pan_type','=','unmarried_women_pension_scheme')]</field>
-            <field name="context">{'pan_type':'unmarried_women_pension_scheme','work_type':'certificates'}</field>
+            <field name="context">{'pan_type':'unmarried_women_pension_scheme','work_type':'oapandpension'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a Unmarried Women Pension Scheme (UWPS)
@@ -4137,7 +4252,7 @@
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[('pan_type','=','differently_abled_pension_scheme')]</field>
-            <field name="context">{'pan_type':'differently_abled_pension_scheme','work_type':'certificates'}</field>
+            <field name="context">{'pan_type':'differently_abled_pension_scheme','work_type':'oapandpension'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a Differently Abled Pension Scheme (DAPS)
@@ -4283,7 +4398,7 @@
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[('pan_type','=','uzhavar_pathukapu_thittam')]</field>
-            <field name="context">{'pan_type':'uzhavar_pathukapu_thittam','work_type':'certificates'}</field>
+            <field name="context">{'pan_type':'uzhavar_pathukapu_thittam','work_type':'oapandpension'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a Minister Uzhavar Pathukapu Thittam(CMUPT)
@@ -4305,7 +4420,7 @@
             <field name="act_window_id" ref="action_uzhavar_pathukapu_thittam_view"/>
         </record>
 
-        <menuitem id="pension_scheme_sub_menu" name="OAP &amp; Pension" sequence="5" parent="forms_main_menu"/>
+        <menuitem id="pension_scheme_sub_menu" name="OAP &amp; Pension" sequence="6" parent="forms_main_menu"/>
         <menuitem id="ignops_certificate_menu" name="Indira Gandhi National Old Age Pension Scheme" sequence="1" action="action_ignops_certificate_view" parent="pension_scheme_sub_menu"/>
         <menuitem id="destitute_deserted_pension_scheme_menu" name="Destitute Deserted Woman Pension Scheme" sequence="2" action="action_destitute_deserted_pension_scheme_view" parent="pension_scheme_sub_menu"/>
         <menuitem id="unmarried_women_pension_scheme_menu" name="Unmarried Women Pension Scheme (UWPS)" sequence="3" action="action_unmarried_women_pension_scheme_view" parent="pension_scheme_sub_menu"/>
@@ -4316,7 +4431,6 @@
         <!-- ************************************* Birth and Death Certificate ************************************* -->
 
         <!-- Birth Certificate -->
-
 
         <record id="birth_and_death_certificate_tree_view" model="ir.ui.view">
            <field name="name">pan.form.tree</field>
@@ -4401,7 +4515,7 @@
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[('pan_type','=','birth_certificate')]</field>
-            <field name="context">{'pan_type':'birth_certificate','work_type':'certificates'}</field>
+            <field name="context">{'pan_type':'birth_certificate','work_type':'birth_and_death_certificate'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a Birth Certificates
@@ -4491,7 +4605,7 @@
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
             <field name="domain">[('pan_type','=','death_certificate')]</field>
-            <field name="context">{'pan_type':'death_certificate','work_type':'certificates'}</field>
+            <field name="context">{'pan_type':'death_certificate','work_type':'birth_and_death_certificate'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
                     Create a Death Certificates
@@ -4513,7 +4627,7 @@
             <field name="act_window_id" ref="action_death_certificate_view"/>
         </record>
 
-        <menuitem id="birth_and_death_sub_menu" name="Birth &amp; Death Certificate" sequence="6" parent="forms_main_menu"/>
+        <menuitem id="birth_and_death_sub_menu" name="Birth &amp; Death Certificate" sequence="7" parent="forms_main_menu"/>
         <menuitem id="birth_certificate_menu" name="Birth Certificate" sequence="1" action="action_birth_certificate_view" parent="birth_and_death_sub_menu"/>
         <menuitem id="death_certificate_menu" name="Death Certificate" sequence="2" action="action_death_certificate_view" parent="birth_and_death_sub_menu"/>
 
