@@ -717,7 +717,6 @@
         <menuitem id="trust_pan_form_menu" name="Trust Pan" sequence="6" action="action_trust_pan_form_view" parent="forms_sub_menu"/>
         <menuitem id="kazhu_pan_form_menu" name="Kazhu Pan" sequence="7" action="action_kazhu_pan_form_view" parent="forms_sub_menu"/>
 
-
         <!-- ************************ Aadhar card ******************************* -->
 
         <!-- Aadhar Card Address Correction -->
@@ -738,7 +737,6 @@
 				</tree>
             </field>
         </record>
-
 
         <record id="aadhar_address_correction_form_view" model="ir.ui.view">
             <field name="name">pan.form</field>
@@ -828,8 +826,281 @@
             <field name="act_window_id" ref="action_aadhar_address_correction_form_view"/>
         </record>
 
+        <!-- DOB Correction -->
+
+        <record id="aadhar_dob_correction_form_view" model="ir.ui.view">
+            <field name="name">pan.form</field>
+            <field name="model">pan.form</field>
+            <field name="arch" type="xml">
+              <form string="DOB Correction">
+                <header>
+                    <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+				</header>
+				<sheet>
+                    <div class="oe_title">
+						<h1>
+							<field name="seq_no" readonly="1"/>
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name="district_id" invisible="1"/>
+							<field name="village_id" invisible="1"/>
+							<field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]" />
+							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+						</group>
+						<group>
+							<field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+						</group>
+					</group>
+                    <group string="Birth Proof">
+                        <group>
+                            <field name="birth_certificate_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="birth_certificate_back"  widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Writtern Form Details">
+                        <group>
+                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="user_logo" widget='image' class="oe_avatar" invisible="1"/>
+                        </group>
+                    </group>
+				</sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_aadhar_dob_correction_form_view" model="ir.actions.act_window">
+            <field name="name">DOB Correction</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pan.form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('pan_type','=','dob_correction')]</field>
+            <field name="context">{'pan_type':'dob_correction','work_type':'aadharcard'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Aadhar DOB Correction
+                </p>
+            </field>
+        </record>
+
+        <record id="action_connect_aadhar_dob_correction_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="aadhar_tree_view"/>
+            <field name="act_window_id" ref="action_aadhar_dob_correction_form_view"/>
+        </record>
+
+        <record id="action_connect_aadhar_dob_correction_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="aadhar_dob_correction_form_view"/>
+            <field name="act_window_id" ref="action_aadhar_dob_correction_form_view"/>
+        </record>
+
+        <!-- DOB Correction -->
+
+        <record id="aadhar_gender_correction_form_view" model="ir.ui.view">
+            <field name="name">pan.form</field>
+            <field name="model">pan.form</field>
+            <field name="arch" type="xml">
+              <form string="Gender Correction">
+                <header>
+                    <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+				</header>
+				<sheet>
+                    <div class="oe_title">
+						<h1>
+							<field name="seq_no" readonly="1"/>
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name="district_id" invisible="1"/>
+							<field name="village_id" invisible="1"/>
+							<field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]" />
+							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+						</group>
+						<group>
+							<field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+						</group>
+					</group>
+                    <group string="Gender Proof">
+                        <group>
+                            <field name="birth_certificate_front" string="Gender Proof Front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="birth_certificate_back" string="Gender Proof Back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Writtern Form Details">
+                        <group>
+                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="user_logo" widget='image' class="oe_avatar" invisible="1"/>
+                        </group>
+                    </group>
+				</sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_aadhar_gender_correction_form_view" model="ir.actions.act_window">
+            <field name="name">Gender Correction</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pan.form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('pan_type','=','gender_correction')]</field>
+            <field name="context">{'pan_type':'gender_correction','work_type':'aadharcard'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Aadhar Gender Correction
+                </p>
+            </field>
+        </record>
+
+        <record id="action_connect_aadhar_gender_correction_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="aadhar_tree_view"/>
+            <field name="act_window_id" ref="action_aadhar_gender_correction_form_view"/>
+        </record>
+
+        <record id="action_connect_aadhar_gender_correction_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="aadhar_gender_correction_form_view"/>
+            <field name="act_window_id" ref="action_aadhar_gender_correction_form_view"/>
+        </record>
+
+        <!-- Name Correction -->
+
+        <record id="aadhar_Name_correction_form_view" model="ir.ui.view">
+            <field name="name">pan.form</field>
+            <field name="model">pan.form</field>
+            <field name="arch" type="xml">
+              <form string="Name Correction">
+                <header>
+                    <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+				</header>
+				<sheet>
+                    <div class="oe_title">
+						<h1>
+							<field name="seq_no" readonly="1"/>
+						</h1>
+					</div>
+					<group>
+						<group>
+							<field name="district_id" invisible="1"/>
+							<field name="village_id" invisible="1"/>
+							<field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]" />
+							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+						</group>
+						<group>
+							<field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+							<field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+						</group>
+					</group>
+                    <group string="Name Correction Proof">
+                        <group>
+                            <field name="identity_proof_front" string="Name Proof Front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="identity_proof_back" string="Name Proof Back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Writtern Form Details">
+                        <group>
+                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="user_logo" widget='image' class="oe_avatar" invisible="1"/>
+                        </group>
+                    </group>
+				</sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_aadhar_Name_correction_form_view" model="ir.actions.act_window">
+            <field name="name">Name Correction</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pan.form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('pan_type','=','name_correction')]</field>
+            <field name="context">{'pan_type':'name_correction','work_type':'aadharcard'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Aadhar Name Correction
+                </p>
+            </field>
+        </record>
+
+        <record id="action_connect_aadhar_name_correction_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="aadhar_tree_view"/>
+            <field name="act_window_id" ref="action_aadhar_Name_correction_form_view"/>
+        </record>
+
+        <record id="action_connect_aadhar_name_correction_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="aadhar_Name_correction_form_view"/>
+            <field name="act_window_id" ref="action_aadhar_Name_correction_form_view"/>
+        </record>
+
         <menuitem id="aadhar_card_sub_menu" name="Aadhar Card" sequence="3" parent="forms_main_menu"/>
         <menuitem id="aadhar_address_correction_menu" name="Address Correction" sequence="1" action="action_aadhar_address_correction_form_view" parent="aadhar_card_sub_menu"/>
+        <menuitem id="aadhar_dob_correction_menu" name="DOB Correction" sequence="2" action="action_aadhar_dob_correction_form_view" parent="aadhar_card_sub_menu"/>
+        <menuitem id="aadhar_gender_correction_menu" name="Gender Correction" sequence="3" action="action_aadhar_gender_correction_form_view" parent="aadhar_card_sub_menu"/>
+        <menuitem id="aadhar_name_correction_menu" name="Name Correction" sequence="4" action="action_aadhar_Name_correction_form_view" parent="aadhar_card_sub_menu"/>
 
 
         <record id="base.view_users_form" model="ir.ui.view">
@@ -3845,7 +4116,6 @@
             <field name="view_id" ref="ignops_form_view"/>
             <field name="act_window_id" ref="action_ignops_certificate_view"/>
         </record>
-
 
         <!-- Destitute Widow Pension Scheme (DWP) or Destitute Deserted Woman Pension Scheme (DDWPS) -->
 

@@ -133,7 +133,8 @@ class PanForm(models.Model):
                                  ('destitute_deserted_pension_scheme', 'Destitute Deserted Woman Pension Scheme'),('unmarried_women_pension_scheme', 'Unmarried Women Pension Scheme (UWPS)'),
                                  ('differently_abled_pension_scheme', 'Differently Abled Pension Scheme (DAPS)'),('uzhavar_pathukapu_thittam', 'Minister Uzhavar Pathukapu Thittam(CMUPT)'),
                                  ('birth_certificate', 'Birth Certificate'),('death_certificate', 'Death Certificate'),
-                                 ('aadhar_address_correction', 'Aadhar Address Correction')
+                                 ('aadhar_address_correction', 'Aadhar Address Correction'),('dob_correction', 'DOB Correction'),('gender_correction', 'Gender Correction'),
+                                 ('name_correction', 'Name Correction')
                                  ], string='Pan Type', readonly=True, default=_default_pan_type)
     work_type = fields.Selection([('pan', 'Pan'), ('rationcard', 'Ration Card'), ('aadharcard', 'Aadhar Card'), ('certificates', 'Certificates'), ('oapandpension', 'OAP and Pension'), ('welfare_of_differently_abled_ersons', 'Welfare of Differently Abled Persons'), ('project_work', 'Project Work'), ('multiple_xerox', 'Multiple Xerox'), ('marriage_registration', 'Marriage  Registration'), ('pmfby', 'PMFBY'), ('employment', 'Employment'), ('birth_and_death_certificate', 'Birth and Death Certificate')], string='Pan Type', readonly=True, default=_default_work_type)
 
