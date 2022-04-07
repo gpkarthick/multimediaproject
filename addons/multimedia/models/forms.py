@@ -135,8 +135,8 @@ class PanForm(models.Model):
                                  ('birth_certificate', 'Birth Certificate'),('death_certificate', 'Death Certificate'),
                                  ('aadhar_address_correction', 'Aadhar Address Correction'),('dob_correction', 'DOB Correction'),('gender_correction', 'Gender Correction'),
                                  ('name_correction', 'Name Correction')
-                                 ], string='Pan Type', readonly=True, default=_default_pan_type)
-    work_type = fields.Selection([('pan', 'Pan'), ('rationcard', 'Ration Card'), ('aadharcard', 'Aadhar Card'), ('certificates', 'Certificates'), ('oapandpension', 'OAP and Pension'), ('welfare_of_differently_abled_ersons', 'Welfare of Differently Abled Persons'), ('project_work', 'Project Work'), ('multiple_xerox', 'Multiple Xerox'), ('marriage_registration', 'Marriage  Registration'), ('pmfby', 'PMFBY'), ('employment', 'Employment'), ('birth_and_death_certificate', 'Birth and Death Certificate')], string='Pan Type', readonly=True, default=_default_work_type)
+                                 ], string='Type', readonly=True, default=_default_pan_type)
+    work_type = fields.Selection([('pan', 'Pan'), ('rationcard', 'Ration Card'), ('aadharcard', 'Aadhar Card'), ('certificates', 'Certificates'), ('oapandpension', 'OAP and Pension'), ('welfare_of_differently_abled_ersons', 'Welfare of Differently Abled Persons'), ('project_work', 'Project Work'), ('multiple_xerox', 'Multiple Xerox'), ('marriage_registration', 'Marriage  Registration'), ('pmfby', 'PMFBY'), ('employment', 'Employment'), ('birth_and_death_certificate', 'Birth and Death Certificate')], string='Work Type', readonly=True, default=_default_work_type)
 
     state = fields.Selection([('draft', 'Draft'), ('processing', 'Processing'), ('done', 'Done'), ('verified', 'Verified')], string='Status', readonly=True, default='draft')
 
@@ -174,7 +174,7 @@ class PanForm(models.Model):
             raise UserError(_('Please enter the mobile Number.'))
         if len(self.mobile_no) != 10:
             raise UserError(_('Please enter the 10 Digit mobile Number.'))
-        if not self.name:
+        if not self.name and self.work_type == 'pan':
             raise UserError(_('Please enter the PAN Number.'))
         self.write({'state': 'done'})
 
