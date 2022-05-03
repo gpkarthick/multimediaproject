@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<template id="report_account_verification">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="web.basic_layout">
+					<link rel="stylesheet" href="/multimedia/static/src/css/style1.css"/>
+					<div class="page">
+						<table class="header-receipt">
+							<tr>
+								<td width="53%">
+								</td>
+								<td width="47%">
+									<p class="valign-data" style="text-align:left;">Transaction Receipt</p>
+								</td>
+							</tr>
+						</table>
+						<table class="header-receipt-sub">
+							<tr>
+								<td width="40%">
+									<img src='/multimedia/static/src/img/pay1.png' style="max-height: 100px; text-align: right;"/>
+								</td>
+								<td width="60%">
+									<p style="text-align:right;"><strong>Prime Multimedia Solution</strong></p>
+								</td>
+							</tr>
+						</table>
+
+						<table class="terms-table1">
+							<tr>
+								<td>
+
+								</td>
+							</tr>
+						</table>
+
+						<table class="header-receipt-head">
+							<tr>
+								<td>
+									<p style="text-align:center;">Receipt</p>
+								</td>
+							</tr>
+						</table>
+
+						<table class="data-table">
+							<tr>
+								<td style="width:25%;border-right: none;">
+									<span class="company-details-span" t-if="o.transaction_date">Transaction Date</span>
+								</td>
+								<td style="width:25%;border-left: none;">
+									<span class="company-details-span" t-if="o.transaction_date">: <span t-field="o.transaction_date"
+									t-options="{'format': 'd-MMMM-yyyy HH:mm:ss'}"/></span>
+								</td>
+								<td style="width:27%;border-right: none;">
+									<span class="company-details-span" t-if="o.transaction_mode">Transaction Mode</span>
+								</td>
+								<td style="width:23%;border-left: none;">
+									<span class="company-details-span" t-if="o.transaction_mode">: <span t-field="o.transaction_mode"/></span>
+								</td>
+							</tr>
+						</table>
+
+						<table class="data-table">
+							<tr>
+								<td style="width:25%;border-right: none;">
+									<span class="company-details-span" t-if="o.name">Bank Reference Number</span>
+								</td>
+								<td style="width:25%;border-left: none;">
+									<span class="company-details-span" t-if="o.name">: <span t-field="o.name"/></span>
+								</td>
+								<td style="width:27%;border-right: none;">
+									<span class="company-details-span" t-if="o.order_id">Order ID</span>
+								</td>
+								<td style="width:23%;border-left: none;">
+									<span class="company-details-span" t-if="o.order_id">: <span t-field="o.order_id"/></span>
+								</td>
+							</tr>
+						</table>
+
+						<table class="data-table">
+							<tr>
+								<td style="width:25%;border-right: none;">
+									<span class="company-details-span" t-if="o.sender_name">Sender Name</span>
+								</td>
+								<td style="width:25%;border-left: none;">
+									<span class="company-details-span" t-if="o.sender_name">: <span t-field="o.sender_name"/></span>
+								</td>
+								<td style="width:27%;border-right: none;">
+									<span class="company-details-span" t-if="o.mobile_no">Sender Mobile Number</span>
+								</td>
+								<td style="width:23%;border-left: none;">
+									<span class="company-details-span" t-if="o.mobile_no">: <span t-field="o.mobile_no"/></span>
+								</td>
+							</tr>
+						</table>
+
+						<table class="data-table">
+							<tr>
+								<td style="width:25%;border-right: none;">
+									<span class="company-details-span" t-if="o.benificiary_name">Benificiary Name</span>
+								</td>
+								<td style="width:25%;border-left: none;">
+									<span class="company-details-span" t-if="o.benificiary_name">: <span t-field="o.benificiary_name"/></span>
+								</td>
+								<td style="width:27%;border-right: none;">
+									<span class="company-details-span" t-if="o.bank_account_no">Benificiary Account Number</span>
+								</td>
+								<td style="width:23%;border-left: none;">
+									<span class="company-details-span" t-if="o.bank_account_no">: <span t-field="o.bank_account_no"/></span>
+								</td>
+							</tr>
+						</table>
+
+						<table class="data-table">
+							<tr>
+								<td style="width:25%;border-right: none;">
+									<span class="company-details-span" t-if="o.bank_name">Bank Name</span>
+								</td>
+								<td style="width:25%;border-left: none;">
+									<span class="company-details-span" t-if="o.bank_name">: <span t-field="o.bank_name"/></span>
+								</td>
+								<td style="width:27%;border-right: none;">
+									<span class="company-details-span" t-if="o.ifsc_code">IFSC Code</span>
+								</td>
+								<td style="width:23%;border-left: none;">
+									<span class="company-details-span" t-if="o.ifsc_code">: <span t-field="o.ifsc_code"/></span>
+								</td>
+							</tr>
+						</table>
+
+						<table class="data-table">
+							<tr>
+								<td style="width:50%;">
+									<span class="company-details-span" t-if="o.transation_amt">Transaction Amount</span>
+								</td>
+								<td style="width:50%;">
+									<span class="company-details-span" t-if="o.transation_amt">: <span t-field="o.transation_amt"/></span>
+								</td>
+
+							</tr>
+						</table>
+
+						<table class="terms-table">
+							<tr>
+								<td>
+									<p style="text-align:center;">Note: Pay1 is not liable if the money is transferred in wrong bank account or wrong account number.</p>
+								</td>
+							</tr>
+						</table>
+
+
+
+
+					</div>
+				</t>
+			</t>
+		</t>
+    </template>
+</odoo>
+
+

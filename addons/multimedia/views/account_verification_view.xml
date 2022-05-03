@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="account_verification_tree_view" model="ir.ui.view">
+            <field name="name">account.verification.tree</field>
+            <field name="model">account.verification</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Account Verification">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="account_verification_form_view" model="ir.ui.view">
+            <field name="name">account.verification.form</field>
+            <field name="model">account.verification</field>
+            <field name="arch" type="xml">
+                <form string="Account Verification">
+                    <sheet>
+                        <div class="oe_title">
+                            <h1>
+                                <field name="name" readonly="1"/>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="order_id"/>
+                                <field name="benificiary_name"/>
+                                <field name="mobile_no"/>
+                                <field name="bank_account_no"/>
+                                <field name="ifsc_code"/>
+                                <field name="bank_name"/>
+                                <field name="branch_name"/>
+                            </group>
+                            <group>
+                                <field name="transaction_date"/>
+                                <field name="sender_name"/>
+                                <field name="transaction_mode"/>
+                                <field name="transation_amt"/>
+                                <field name="write_uid"/>
+                                <field name="write_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="account_verification_search_view" model="ir.ui.view">
+            <field name="name">account.verification.search</field>
+            <field name="model">account.verification</field>
+            <field name="arch" type="xml">
+                <search string="Account Verification">
+                    <field name="name" string="Bank Ref" filter_domain="['|',('name','ilike',self)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_account_verification" model="ir.actions.act_window">
+            <field name="name">Account Verification</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">account.verification</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="account_verification_search_view"/>
+            <field name="domain"></field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create Account Verification Process
+                </p><p>
+                    account Verification Process
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="multimedia_account_verify_sub_menu" name="Account Verification" sequence="2" parent="multimedia.multimedia_main_menu"/>
+        <menuitem id="multimedia_account_verification_menu" name="Account Verification" sequence="1" action="action_account_verification" parent="multimedia_account_verify_sub_menu"/>
+
+
+
+    </data>
+</odoo>
+

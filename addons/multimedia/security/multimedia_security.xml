@@ -17,6 +17,11 @@
       <field name="category_id" ref="multimedia.multimedia_management"/>
     </record>
     
+    <record id="media_account_verification_user" model="res.groups">
+      <field name="name">Account verification</field>
+      <field name="category_id" ref="multimedia.multimedia_management"/>
+    </record>
+    
     <record id="media_purchase_user" model="res.groups">
       <field name="name">Purchase User</field>
       <field name="category_id" ref="multimedia.multimedia_management"/>
