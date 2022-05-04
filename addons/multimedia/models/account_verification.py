@@ -17,7 +17,7 @@ class AccountVerification(models.Model):
     bank_account_no = fields.Char('Account Number', size=32, track_visibility='always', required=True)
     branch_name = fields.Char('Branch Name', size=60, required=True)
     bank_name = fields.Char('Bank Name', size=60, required=True)
-    mobile_no = fields.Char(string='Mobile No', required=True)
+    mobile_no = fields.Char(string='Mobile No', required=True, default='8220792902')
     transation_amt = fields.Float(string='Transation Amount', required=True, default=1)
     create_date = fields.Datetime(string='Created Date', readonly=True)
     write_date = fields.Datetime(string='Last Updated Date', readonly=True)
