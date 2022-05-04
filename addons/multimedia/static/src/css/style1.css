@@ -10,7 +10,7 @@
 
 .header-receipt-sub{
     width: 100%;
-    font-size: 24px;
+    font-size: 27px;
     font-family: "Liberation Sans";
     text-decoration : underline;
     color: #484848;
@@ -19,7 +19,7 @@
 .header-receipt-head{
     width: 100%;
     font-size: 17px;
-    font-family: "Liberation Sans";
+    font-family:  Arial;
     padding-top: 20px;
 }
 
@@ -30,7 +30,8 @@
 .data-table {
     width: 100%;
     font-size: 17px;
-    font-family: "Liberation Sans";
+    font-family:  Arial;
+    font-weight: 500;
 }
 .data-table td {
     vertical-align: top;
@@ -45,9 +46,9 @@
 
 .terms-table {
     width: 100%;
-    font-size: 18px;
-    font-weight: bold;
-    font-family: "Liberation Sans";
+    font-size: 19px;
+    font-weight: 600;
+    font-family: Arial;
 }
 .terms-table td {
     padding-top: 20px;
@@ -66,5 +67,5 @@
 .terms-table1 td {
     padding-top: 20px;
     line-height: 20px;
-    border-bottom: 1px solid black;
+    border-bottom: 2px solid black;
 }

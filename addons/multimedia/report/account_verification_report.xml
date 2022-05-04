@@ -6,19 +6,19 @@
 				<t t-call="web.basic_layout">
 					<link rel="stylesheet" href="/multimedia/static/src/css/style1.css"/>
 					<div class="page">
-						<table class="header-receipt">
-							<tr>
-								<td width="53%">
-								</td>
-								<td width="47%">
-									<p class="valign-data" style="text-align:left;">Transaction Receipt</p>
-								</td>
-							</tr>
-						</table>
+<!--						<table class="header-receipt">-->
+<!--							<tr>-->
+<!--								<td width="53%">-->
+<!--								</td>-->
+<!--								<td width="47%">-->
+<!--									<p class="valign-data" style="text-align:left;">Transaction Receipt</p>-->
+<!--								</td>-->
+<!--							</tr>-->
+<!--						</table>-->
 						<table class="header-receipt-sub">
 							<tr>
 								<td width="40%">
-<!--									<img src='/multimedia/static/src/img/pay1.png' style="max-height: 100px; text-align: right;"/>-->
+									<img src='/multimedia/static/src/img/pay1.png' style="max-height: 100px; text-align: right;"/>
 								</td>
 								<td width="60%">
 									<p style="text-align:right;"><strong>Prime Multimedia Solution</strong></p>
@@ -135,7 +135,9 @@
 									<span class="company-details-span" t-if="o.transation_amt">Transaction Amount</span>
 								</td>
 								<td style="width:50%;">
-									<span class="company-details-span" t-if="o.transation_amt">: <span t-field="o.transation_amt"/></span>
+									<span class="company-details-span" t-if="o.transation_amt"><span t-esc="'%.2f'% o.transation_amt"/></span>
+
+
 								</td>
 
 							</tr>
