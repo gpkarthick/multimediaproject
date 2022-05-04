@@ -18,7 +18,7 @@
 						<table class="header-receipt-sub">
 							<tr>
 								<td width="40%">
-									<img src='/multimedia/static/src/img/pay1.png' style="max-height: 100px; text-align: right;"/>
+<!--									<img src='/multimedia/static/src/img/pay1.png' style="max-height: 100px; text-align: right;"/>-->
 								</td>
 								<td width="60%">
 									<p style="text-align:right;"><strong>Prime Multimedia Solution</strong></p>
@@ -44,12 +44,13 @@
 
 						<table class="data-table">
 							<tr>
-								<td style="width:25%;border-right: none;">
+								<td style="width:23%;border-right: none;">
 									<span class="company-details-span" t-if="o.transaction_date">Transaction Date</span>
 								</td>
-								<td style="width:25%;border-left: none;">
-									<span class="company-details-span" t-if="o.transaction_date">: <span t-field="o.transaction_date"
-									t-options="{'format': 'd-MMMM-yyyy HH:mm:ss'}"/></span>
+								<td style="width:27%;border-left: none;">
+									<span class="company-details-span" t-if="o.transaction_date">:
+										<span t-esc="context_timestamp(datetime.datetime.strptime(str(o.transaction_date), '%Y-%m-%d %H:%M:%S')).strftime('%d-%b-%Y %I:%M:%S %p')"/>
+									</span>
 								</td>
 								<td style="width:27%;border-right: none;">
 									<span class="company-details-span" t-if="o.transaction_mode">Transaction Mode</span>
@@ -62,10 +63,10 @@
 
 						<table class="data-table">
 							<tr>
-								<td style="width:25%;border-right: none;">
+								<td style="width:23%;border-right: none;">
 									<span class="company-details-span" t-if="o.name">Bank Reference Number</span>
 								</td>
-								<td style="width:25%;border-left: none;">
+								<td style="width:27%;border-left: none;">
 									<span class="company-details-span" t-if="o.name">: <span t-field="o.name"/></span>
 								</td>
 								<td style="width:27%;border-right: none;">
@@ -79,10 +80,10 @@
 
 						<table class="data-table">
 							<tr>
-								<td style="width:25%;border-right: none;">
+								<td style="width:23%;border-right: none;">
 									<span class="company-details-span" t-if="o.sender_name">Sender Name</span>
 								</td>
-								<td style="width:25%;border-left: none;">
+								<td style="width:27%;border-left: none;">
 									<span class="company-details-span" t-if="o.sender_name">: <span t-field="o.sender_name"/></span>
 								</td>
 								<td style="width:27%;border-right: none;">
@@ -96,10 +97,10 @@
 
 						<table class="data-table">
 							<tr>
-								<td style="width:25%;border-right: none;">
+								<td style="width:23%;border-right: none;">
 									<span class="company-details-span" t-if="o.benificiary_name">Benificiary Name</span>
 								</td>
-								<td style="width:25%;border-left: none;">
+								<td style="width:27%;border-left: none;">
 									<span class="company-details-span" t-if="o.benificiary_name">: <span t-field="o.benificiary_name"/></span>
 								</td>
 								<td style="width:27%;border-right: none;">
@@ -113,10 +114,10 @@
 
 						<table class="data-table">
 							<tr>
-								<td style="width:25%;border-right: none;">
+								<td style="width:23%;border-right: none;">
 									<span class="company-details-span" t-if="o.bank_name">Bank Name</span>
 								</td>
-								<td style="width:25%;border-left: none;">
+								<td style="width:27%;border-left: none;">
 									<span class="company-details-span" t-if="o.bank_name">: <span t-field="o.bank_name"/></span>
 								</td>
 								<td style="width:27%;border-right: none;">
@@ -147,9 +148,6 @@
 								</td>
 							</tr>
 						</table>
-
-
-
 
 					</div>
 				</t>
