@@ -42,20 +42,24 @@
         <record id="seq_account_verification_ref" model="ir.sequence">
             <field name="name">Account Verification Ref</field>
             <field name="code">account.verification.ref</field>
-            <field name="prefix">23322215</field>
+            <field name="prefix">21221291</field>
             <field name="padding">4</field>
             <field name="suffix"></field>
             <field name="company_id" eval="False"/>
         </record>
 
+<!--        0219-->
+
         <record id="seq_account_verification_order_id" model="ir.sequence">
             <field name="name">Account Verification Order ID</field>
             <field name="code">account.verification.order</field>
-            <field name="prefix">GP34227</field>
+            <field name="prefix">GP3567</field>
             <field name="padding">4</field>
             <field name="suffix"></field>
             <field name="company_id" eval="False"/>
         </record>
+
+<!--        6935-->
 
         <record id="seq_multimedia_purchase_bill" model="ir.sequence">
             <field name="name">Purchase Bill</field>
