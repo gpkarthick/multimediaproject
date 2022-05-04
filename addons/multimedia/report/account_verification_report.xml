@@ -44,87 +44,87 @@
 
 						<table class="data-table">
 							<tr>
-								<td style="width:23%;border-right: none;">
+								<td style="width:24%;">
 									<span class="company-details-span" t-if="o.transaction_date">Transaction Date</span>
 								</td>
-								<td style="width:27%;border-left: none;">
-									<span class="company-details-span" t-if="o.transaction_date">:
+								<td style="width:26%;">
+									<span class="company-details-span" t-if="o.transaction_date">
 										<span t-esc="context_timestamp(datetime.datetime.strptime(str(o.transaction_date), '%Y-%m-%d %H:%M:%S')).strftime('%d-%b-%Y %I:%M:%S %p')"/>
 									</span>
 								</td>
-								<td style="width:27%;border-right: none;">
+								<td style="width:27%;">
 									<span class="company-details-span" t-if="o.transaction_mode">Transaction Mode</span>
 								</td>
-								<td style="width:23%;border-left: none;">
-									<span class="company-details-span" t-if="o.transaction_mode">: <span t-field="o.transaction_mode"/></span>
+								<td style="width:23%;">
+									<span class="company-details-span" t-if="o.transaction_mode"> <span t-field="o.transaction_mode"/></span>
 								</td>
 							</tr>
 						</table>
 
 						<table class="data-table">
 							<tr>
-								<td style="width:23%;border-right: none;">
+								<td style="width:24%;">
 									<span class="company-details-span" t-if="o.name">Bank Reference Number</span>
 								</td>
-								<td style="width:27%;border-left: none;">
-									<span class="company-details-span" t-if="o.name">: <span t-field="o.name"/></span>
+								<td style="width:26%;">
+									<span class="company-details-span" t-if="o.name"> <span t-field="o.name"/></span>
 								</td>
-								<td style="width:27%;border-right: none;">
+								<td style="width:27%;">
 									<span class="company-details-span" t-if="o.order_id">Order ID</span>
 								</td>
-								<td style="width:23%;border-left: none;">
-									<span class="company-details-span" t-if="o.order_id">: <span t-field="o.order_id"/></span>
+								<td style="width:23%;">
+									<span class="company-details-span" t-if="o.order_id"> <span t-field="o.order_id"/></span>
 								</td>
 							</tr>
 						</table>
 
 						<table class="data-table">
 							<tr>
-								<td style="width:23%;border-right: none;">
+								<td style="width:24%;">
 									<span class="company-details-span" t-if="o.sender_name">Sender Name</span>
 								</td>
-								<td style="width:27%;border-left: none;">
-									<span class="company-details-span" t-if="o.sender_name">: <span t-field="o.sender_name"/></span>
+								<td style="width:26%;">
+									<span class="company-details-span" t-if="o.sender_name"> <span t-field="o.sender_name"/></span>
 								</td>
-								<td style="width:27%;border-right: none;">
+								<td style="width:27%;">
 									<span class="company-details-span" t-if="o.mobile_no">Sender Mobile Number</span>
 								</td>
-								<td style="width:23%;border-left: none;">
-									<span class="company-details-span" t-if="o.mobile_no">: <span t-field="o.mobile_no"/></span>
+								<td style="width:23%;">
+									<span class="company-details-span" t-if="o.mobile_no"> <span t-field="o.mobile_no"/></span>
 								</td>
 							</tr>
 						</table>
 
 						<table class="data-table">
 							<tr>
-								<td style="width:23%;border-right: none;">
+								<td style="width:24%;">
 									<span class="company-details-span" t-if="o.benificiary_name">Benificiary Name</span>
 								</td>
-								<td style="width:27%;border-left: none;">
-									<span class="company-details-span" t-if="o.benificiary_name">: <span t-field="o.benificiary_name"/></span>
+								<td style="width:26%;">
+									<span class="company-details-span" t-if="o.benificiary_name"> <span t-field="o.benificiary_name"/></span>
 								</td>
-								<td style="width:27%;border-right: none;">
+								<td style="width:27%;">
 									<span class="company-details-span" t-if="o.bank_account_no">Benificiary Account Number</span>
 								</td>
-								<td style="width:23%;border-left: none;">
-									<span class="company-details-span" t-if="o.bank_account_no">: <span t-field="o.bank_account_no"/></span>
+								<td style="width:23%;">
+									<span class="company-details-span" t-if="o.bank_account_no"> <span t-field="o.bank_account_no"/></span>
 								</td>
 							</tr>
 						</table>
 
 						<table class="data-table">
 							<tr>
-								<td style="width:23%;border-right: none;">
+								<td style="width:24%;">
 									<span class="company-details-span" t-if="o.bank_name">Bank Name</span>
 								</td>
-								<td style="width:27%;border-left: none;">
-									<span class="company-details-span" t-if="o.bank_name">: <span t-field="o.bank_name"/></span>
+								<td style="width:26%;">
+									<span class="company-details-span" t-if="o.bank_name"> <span t-field="o.bank_name"/></span>
 								</td>
-								<td style="width:27%;border-right: none;">
+								<td style="width:27%;">
 									<span class="company-details-span" t-if="o.ifsc_code">IFSC Code</span>
 								</td>
-								<td style="width:23%;border-left: none;">
-									<span class="company-details-span" t-if="o.ifsc_code">: <span t-field="o.ifsc_code"/></span>
+								<td style="width:23%;">
+									<span class="company-details-span" t-if="o.ifsc_code"> <span t-field="o.ifsc_code"/></span>
 								</td>
 							</tr>
 						</table>
