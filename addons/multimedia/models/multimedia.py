@@ -33,7 +33,7 @@ class MultimediaEBBill(models.Model):
         changed_format_time_value = ''  
         current_date = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
         addtime =  datetime.strptime(current_date, "%Y-%m-%d %H:%M:%S")+ timedelta(hours=5,minutes=30)
-        changed_format_time_value = datetime.strptime(str(addtime), "%Y-%m-%d %H:%M:%S").strftime("%d-%m-%Y %H:%M:%S")
+        changed_format_time_value = datetime.strptime(str(addtime), "%Y-%m-%d %H:%M:%S").strftime("%d-%b-%Y %I:%M:%S %p")
         return str(changed_format_time_value)
                 
     def action_pay_bill(self):

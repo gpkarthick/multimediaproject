@@ -1,8 +1,0 @@
-
-body > #wrapwrap,
-body > #wrapwrap > main {
-	height: 100%;
-	background-image: url('/web/static/src/img/background_login_image.jpg');
-    background-repeat: no-repeat;
-    background-size: cover;
-}

@@ -24,114 +24,113 @@
 						<table class="invoicename">
 							<tr>
 								<td width="60%">
-									<p class="invoicenamestyle">E-Receipt</p>
+									<span><strong>E-Receipt</strong></span>
 								</td>
 							</tr>
-						</table>					
-						
+						</table>
 						
 						<table class="company-details">				        		
 							<tr>
-								<td style="width:14%;border-right: none;">			        			
+								<td style="width:17%;">
 									<span class="company-details-span" t-if="o.bill_name"><strong>Customer Name</strong></span>
 								</td>
-								<td style="width:36%;border-left: none;">			        				
-									<span class="company-details-span" t-if="o.bill_name">: <span t-field="o.bill_name"/></span>
+								<td style="width:34%;;">
+									<span class="company-details-span" t-if="o.bill_name"> <span t-field="o.bill_name"/></span>
 								</td>    
-								<td style="width:14%;border-right: none;">			        			
+								<td style="width:16%;;">
 									<span class="company-details-span" t-if="o.auto_no"><strong>Bill No</strong></span>
 								</td>
-								<td style="width:36%;border-left: none;">			        				
-									<span class="company-details-span" t-if="o.auto_no">: <span t-field="o.auto_no"/></span>
-								</td>       			
-							</tr>			        		
+								<td style="width:33%;;">
+									<span class="company-details-span" t-if="o.auto_no"> <span t-field="o.auto_no"/></span>
+								</td>
+							</tr>
 						</table>
-				        	
-					
-						<table class="company-details">				        		
+
+
+						<table class="company-details">
 							<tr>
-								<td style="width:14%;border-right: none;">			        			
+								<td style="width:17%;">
 									<span class="company-details-span" t-if="o.name"><strong>Consumer No</strong></span>
 								</td>
-								<td style="width:36%;border-left: none;">			        				
-									<span class="company-details-span" t-if="o.bill_name">: <span t-field="o.name"/></span>
-								</td>    
-								<td style="width:14%;border-right: none;">			        			
+								<td style="width:34%;">
+									<span class="company-details-span" t-if="o.bill_name"> <span t-field="o.name"/></span>
+								</td>
+								<td style="width:16%;">
 									<span class="company-details-span"><strong>Coverage</strong></span>
 								</td>
-								<td style="width:36%;border-left: none;">			        				
-									<span class="company-details-span">: -</span>
-								</td>       			
-							</tr>			        		
+								<td style="width:33%;">
+									<span class="company-details-span"> -</span>
+								</td>
+							</tr>
 						</table>
-						
-						<table class="company-details">				        		
+
+						<table class="company-details">
 							<tr>
-								<td style="width:14%;border-right: none;">			        			
+								<td style="width:17%;">
 									<span class="company-details-span" t-if="o.name"><strong>Service Provider</strong></span>
 								</td>
-								<td style="width:36%;border-left: none;">			        				
-									<span class="company-details-span" t-if="o.bill_name">: Tamil Nadu Electricity Board(TNEB)</span>
-								</td>    
-								<td style="width:14%;border-right: none;">			        			
+								<td style="width:34%;">
+									<span class="company-details-span" t-if="o.bill_name"> Tamil Nadu Electricity Board(TNEB)</span>
+								</td>
+								<td style="width:16%;">
 									<span class="company-details-span" t-if="o.name"><strong>Shop Name</strong></span>
 								</td>
-								<td style="width:36%;border-left: none;">			        				
-									<span class="company-details-span" t-if="o.bill_name">: Prime Multimedia Solution</span>
-								</td>       			
-							</tr>			        		
+								<td style="width:33%;">
+									<span class="company-details-span" t-if="o.bill_name"> Prime Multimedia Solution</span>
+								</td>
+							</tr>
 						</table>
-						
-						<table class="company-details">				        		
+
+						<table class="company-details">
 							<tr>
-								<td style="width:14%;border-right: none;">			        			
+								<td style="width:17%;">
 									<span class="company-details-span"><strong>Mobile Number</strong></span>
 								</td>
-								<td style="width:36%;border-left: none;">			        				
-									<span class="company-details-span" t-if="o.mobile_no">: <span t-field="o.mobile_no"/></span>
-								</td>    
-								<td style="width:14%;border-right: none;">			        			
+								<td style="width:34%;">
+									<span class="company-details-span" t-if="o.mobile_no"> <span t-field="o.mobile_no"/></span>
+								</td>
+								<td style="width:16%;">
 									<span class="company-details-span"><strong>Bill Period</strong></span>
 								</td>
-								<td style="width:36%;border-left: none;">			        				
-									<span class="company-details-span">: Monthly</span>
-								</td>       			
-							</tr>			        		
+								<td style="width:33%;">
+									<span class="company-details-span"> Monthly</span>
+								</td>
+							</tr>
 						</table>
-						
-						<table class="company-details">				        		
+
+						<table class="company-details">
 							<tr>
-								<td style="width:14%;border-right: none;">			        			
+								<td style="width:17%;">
 									<span class="company-details-span"><strong>Due Date</strong></span>
 								</td>
-								<td style="width:36%;border-left: none;">			        				
-									<span class="company-details-span" t-if="o.due_date">: <span t-field="o.due_date"/></span>
-								</td>    
-								<td style="width:14%;border-right: none;">			        			
+								<td style="width:34%;">
+									<span class="company-details-span" t-if="o.due_date"> <span t-field="o.due_date" t-options='{"format": "dd-MM-yyyy"}'/></span>
+								</td>
+								<td style="width:16%;">
 									<span class="company-details-span"><strong>Bill Date</strong></span>
 								</td>
-								<td style="width:36%;border-left: none;">			        				
+								<td style="width:33%;">
 <!--
 									<span class="company-details-span">: <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S')"/></span>
 -->
-									<span class="company-details-span">: <span t-esc="o.get_invoice_date_time(context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S'))"/></span>
+									<span class="company-details-span"> <span t-esc="o.get_invoice_date_time(context_timestamp(datetime.datetime.now()).strftime('%Y-%m-%d %H:%M:%S'))"/></span>
 								</td>       			
 							</tr>			        		
 						</table>
 						
 						<table class="company-details">				        		
 							<tr>
-								<td style="width:14%;border-right: none;">			        			
+								<td style="width:17%;">
 									<span class="company-details-span"><strong>Bill Amount</strong></span>
 								</td>
-								<td style="width:36%;border-left: none;">			        				
-									<span class="company-details-span" t-if="o.due_amount">: <span t-field="o.due_amount"/></span>
+								<td style="width:34%;">
+									<span class="company-details-span" t-if="o.due_amount"><span t-esc="'%.2f'% o.due_amount"/></span>
 								</td>    
-								<td style="width:14%;border-right: none;">			        			
+								<td style="width:16%;">
 									<span class="company-details-span"><strong>Paid Amount</strong></span>
 								</td>
-								<td style="width:36%;border-left: none;">			        				
-									<span class="company-details-span" t-if="o.paid_amount">: <span t-field="o.paid_amount"/></span>
+								<td style="width:33%;">
+									<span class="company-details-span" t-if="o.paid_amount"><span t-esc="'%.2f'% o.paid_amount"/></span>
 								</td>       			
 							</tr>			        		
 						</table>
@@ -142,7 +141,7 @@
 						
 						</p>
 						
-						<p style="text-align: justify; font-size:18px;padding:0px 25px 0px 25px;line-height: 30px;">
+						<p class="terms-table">
 								&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;
 								Please Note: Dear Consumer, the bill payment will reflect in next 72
 working hours or in the next billing cycle, at your service provider’s end.
