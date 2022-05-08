@@ -9,6 +9,17 @@
             <field name="arch" type="xml">
                 <tree string="Account Verification">
                     <field name="name"/>
+                    <field name="order_id"/>
+                    <field name="benificiary_name"/>
+                    <field name="mobile_no"/>
+                    <field name="bank_account_no"/>
+                    <field name="ifsc_code"/>
+                    <field name="bank_name"/>
+                    <field name="transaction_date"/>
+                    <field name="sender_name"/>
+                    <field name="transaction_mode"/>
+                    <field name="write_uid"/>
+                    <field name="write_date"/>
                 </tree>
             </field>
         </record>
@@ -76,7 +87,7 @@
         </record>
 
 
-        <menuitem id="multimedia_account_verify_sub_menu" name="Account Verification" sequence="2" parent="multimedia.multimedia_main_menu"/>
+        <menuitem id="multimedia_account_verify_sub_menu" name="IDFC Kuzhu" sequence="2" parent="multimedia.multimedia_main_menu"/>
         <menuitem id="multimedia_account_verification_menu" name="Account Verification" sequence="1" action="action_account_verification" parent="multimedia_account_verify_sub_menu"/>
 
 

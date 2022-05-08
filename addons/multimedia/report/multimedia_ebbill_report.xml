@@ -1,101 +1,30 @@
 <odoo>
     <data>
 		<template id="report_multimedia">
-			<t t-call="web.html_container">
-				<t t-foreach="docs" t-as="o">
-					<div class="header">
-						<style>
-							.headertable {
-                                    vertical-align: middle;
-				                    border-collapse: collapse;
-				                    border: none; 
-				                    width:100%;
-				                    }   
-			                    .headertable td {
-		                    		 vertical-align: middle;
-			                   		}
-			                   		
-								.invoicenamestyle {                    
-				                    text-align:center; 
-				                    font-size:22px;                    
-				                    font-weight: bold;
-				                }
-						</style>
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="web.basic_layout">
+					<link rel="stylesheet" href="/multimedia/static/src/css/ebbill.css"/>
+					<div class="page">
+
 						<table class="headertable">
 							<tr>
 								<td width="15%">
-									<img src='/multimedia/static/src/img/pay1.png' style="max-height: 100px; text-align: right;"/> 
+									<img src='/multimedia/static/src/img/pay1.png' style="max-height: 100px; text-align: right;"/>
 								</td>
 								<td width="70%">
 									<p class="invoicenamestyle">Tamilnadu Generation and Distribution Corporation Limited</p>
 								</td>
 								<td width="15%">
-									<img src='/multimedia/static/src/img/bharat.png' style="max-height: 100px; text-align: center;"/> 
+									<img src='/multimedia/static/src/img/bharat.png' style="max-height: 100px; text-align: center;"/>
 								</td>
 							</tr>
 						</table>
-					</div>
-					<div class="page">  
-						<style>
-							.invoicename {
-				                    border-collapse: collapse;
-				                    border: 1px solid black;				                    
-				                    width:100%;
-				                    height: 60px;
-				                    } 
-				                .invoicenamestyle {                    
-				                    text-align:center; 
-				                    font-size:19px;                    
-				                    font-weight: bold;
-				                }
-							
-							.company-details {
-								vertical-align: middle;
-								border-collapse: collapse;
-								border: 1px solid black;
-								border-top: none;
-								text-align:left;
-								font-size: 16px;
-								width:100%;
-							}
-							.company-details td {
-								border: 1px solid black;
-								border-top: none;								
-								text-align:left;
-								}
-							.company-details-span {   
-								margin-left:15PX;
-								line-height: 40px;
-							}
-							.amt-to-text-table {
-	                                vertical-align: middle;
-	                                border-collapse: collapse;
-	                                border-left: 1px solid black;
-	                                border-right: 1px solid black;
-	                                width: 100%;
-	                                font-size: 17.5px;
-							}
-							.amt-to-text-table td {
-								border: none;	
-							}
-							.spanfooter {                           	
-							 	 	margin-left:50PX;
-                                    line-height: 30px;
-							 	 	font-size: 17.5px;
-								}
-						
-						</style>					
-						
 						
 						<table class="invoicename">
 							<tr>
-								<td width="20%">
-								</td>
 								<td width="60%">
 									<p class="invoicenamestyle">E-Receipt</p>
-								</td>
-								<td width="20%">
-									<span><t t-esc="p"/></span>					        		
 								</td>
 							</tr>
 						</table>					
@@ -229,6 +158,7 @@ signature.)
 					</div>
 
                     </t>
+				</t>
                 </t>
 				        	
 				        	</template>

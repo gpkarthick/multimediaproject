@@ -222,8 +222,8 @@
             </field>
         </record>
 		
-        <menuitem id="multimedia_main_menu" name="Multi Media" sequence="1"/>
-        <menuitem id="multimedia_sub_menu" name="Multi Media" sequence="2" parent="multimedia_main_menu"/>
+        <menuitem id="multimedia_main_menu" name="Prime Multi Media" sequence="1"/>
+        <menuitem id="multimedia_sub_menu" name="TNEB" sequence="2" parent="multimedia_main_menu"/>
         <menuitem id="multimedia_ebbill_menu" name="EB Bill" sequence="1" action="action_eb_bill_action_view" parent="multimedia_sub_menu"/>
         <menuitem id="multimedia_bank_payment_menu" name="Bank Payment" sequence="2" action="action_invoice_payment_action_view" parent="multimedia_sub_menu"/>
         <menuitem id="multimedia_payment_mode_menu" name="Payment Mode" sequence="2" action="action_payment_mode_view" parent="multimedia_sub_menu"/>
