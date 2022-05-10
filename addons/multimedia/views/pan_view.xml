@@ -269,10 +269,10 @@
                             <field name="old_pan_front" string="Minor Old Pan Card Front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                         <group>
-                            <field name="old_pan_back" string="Minor Old Pan Card Back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+
                         </group>
                     </group>
-                    <group string="Pan Form 49A Details">
+                    <group string="Correction Pan Form Details">
                         <group>
                             <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
@@ -366,10 +366,10 @@
                             <field name="old_pan_front" string="Old Pan Card Front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                         <group>
-                            <field name="old_pan_back" string="Old Pan Card Back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+
                         </group>
                     </group>
-                    <group string="Pan Form 49A Details">
+                    <group string="Correction Pan Form Details">
                         <group>
                             <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
