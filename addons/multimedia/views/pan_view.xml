@@ -90,9 +90,9 @@
                             <field name="aadhar_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                     </group>
-                    <group string="Pan Form Details">
+                    <group string="Pan Form 49A Details">
                         <group>
-                            <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}" string="ஆதார் முதல் பக்கம்"/>
+                            <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}" />
                         </group>
                         <group>
                             <field name="pan_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
@@ -167,7 +167,7 @@
                             <field name="aadhar_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                     </group>
-                    <group string="Candidate Mother or Father Aadhar">
+                    <group string="Candidate Mother or Father Aadhar or Guardian">
                         <group>
                             <field name="parent_aadhar_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
@@ -175,7 +175,7 @@
                             <field name="parent_aadhar_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                     </group>
-                    <group string="Pan Form Details">
+                    <group string="Pan Form 49A Details">
                         <group>
                             <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
@@ -264,15 +264,15 @@
                             <field name="aadhar_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                     </group>
-                    <group string="Old Pan Details">
+                    <group string="Minor Old Pan Card Details">
                         <group>
-                            <field name="old_pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="old_pan_front" string="Minor Old Pan Card Front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                         <group>
-
+                            <field name="old_pan_back" string="Minor Old Pan Card Back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                     </group>
-                    <group string="Pan Form Details">
+                    <group string="Pan Form 49A Details">
                         <group>
                             <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
@@ -361,15 +361,15 @@
                             <field name="aadhar_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                     </group>
-                    <group string="Old Pan Details">
+                    <group string="Old Pan Card Details">
                         <group>
-                            <field name="old_pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                            <field name="old_pan_front" string="Old Pan Card Front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                         <group>
-
+                            <field name="old_pan_back" string="Old Pan Card Back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                     </group>
-                    <group string="Pan Form Details">
+                    <group string="Pan Form 49A Details">
                         <group>
                             <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
@@ -450,7 +450,7 @@
                             <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                         </group>
 					</group>
-                    <group string="Pan Form Details">
+                    <group string="Pan Form 49A Details">
                         <group>
                             <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
@@ -546,7 +546,7 @@
                             <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                         </group>
 					</group>
-                    <group string="Pan Form Details">
+                    <group string="Pan Form 49A Details">
                         <group>
                             <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
@@ -629,7 +629,7 @@
                             <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                         </group>
 					</group>
-                    <group string="Pan Form Details">
+                    <group string="Pan Form 49A Details">
                         <group>
                             <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
