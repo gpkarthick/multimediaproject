@@ -44,66 +44,66 @@ class PanForm(models.Model):
 
 
     # Ration Card
-    family_head_aadhar_front = fields.Binary(string="Family Head Aadhar Front", attachment=True, required=True)
-    family_head_aadhar_back = fields.Binary(string="Family Head Aadhar Back", attachment=True, required=True)
-    candidate_ration_remove_proof_first = fields.Binary(string="Candidate Remove Proof First Page", attachment=True, required=True)
-    candidate_ration_remove_proof_second = fields.Binary(string="Candidate Remove Proof First Page", attachment=True, required=True)
-    ration_card_front = fields.Binary(string="Ration Card Xerox Front", attachment=True, required=True)
-    ration_card_back = fields.Binary(string="Ration Card Xerox Back", attachment=True, required=True)
-    old_ration_card_front = fields.Binary(string="Old Ration Card Xerox Front", attachment=True, required=True)
-    old_ration_card_back = fields.Binary(string="Old Ration Card Xerox Back", attachment=True, required=True)
+    family_head_aadhar_front = fields.Binary(string="Family Head Aadhar Front", attachment=True)
+    family_head_aadhar_back = fields.Binary(string="Family Head Aadhar Back", attachment=True)
+    candidate_ration_remove_proof_first = fields.Binary(string="Candidate Remove Proof First Page", attachment=True)
+    candidate_ration_remove_proof_second = fields.Binary(string="Candidate Remove Proof First Page", attachment=True)
+    ration_card_front = fields.Binary(string="Ration Card Xerox Front", attachment=True)
+    ration_card_back = fields.Binary(string="Ration Card Xerox Back", attachment=True)
+    old_ration_card_front = fields.Binary(string="Old Ration Card Xerox Front", attachment=True)
+    old_ration_card_back = fields.Binary(string="Old Ration Card Xerox Back", attachment=True)
 
-    payslip_front = fields.Binary(string="Payslip Front", attachment=True, required=True)
-    payslip_back = fields.Binary(string="payslip Back", attachment=True, required=True)
+    payslip_front = fields.Binary(string="Payslip Front", attachment=True)
+    payslip_back = fields.Binary(string="payslip Back", attachment=True)
 
-    form_front = fields.Binary(string="Form Front", attachment=True, required=True)
-    form_back = fields.Binary(string="Form Back", attachment=True, required=True)
+    form_front = fields.Binary(string="Form Front", attachment=True)
+    form_back = fields.Binary(string="Form Back", attachment=True)
 
-    community_front = fields.Binary(string="Community Proof Front", attachment=True, required=True)
-    community_back = fields.Binary(string="Community Proof Back", attachment=True, required=True)
+    community_front = fields.Binary(string="Community Proof Front", attachment=True)
+    community_back = fields.Binary(string="Community Proof Back", attachment=True)
 
-    birth_certificate_front = fields.Binary(string="Birth Certificate Front", attachment=True, required=True)
-    birth_certificate_back = fields.Binary(string="Birth Certificate Back", attachment=True, required=True)
+    birth_certificate_front = fields.Binary(string="Birth Certificate Front", attachment=True)
+    birth_certificate_back = fields.Binary(string="Birth Certificate Back", attachment=True)
 
-    income_certificate = fields.Binary(string="Income Certificate", attachment=True, required=True)
+    income_certificate = fields.Binary(string="Income Certificate", attachment=True)
 
     # certificate
-    candidate_photo = fields.Binary(string="Photo", attachment=True, required=True)
+    candidate_photo = fields.Binary(string="Photo", attachment=True)
 
-    residency_certificate = fields.Binary(string="Residency Certificate", attachment=True, required=True)
+    residency_certificate = fields.Binary(string="Residency Certificate", attachment=True)
 
-    previous_residence_address_certificate_front = fields.Binary(string="Previous Residence Address Front", attachment=True, required=True)
-    previous_residence_address_certificate_back = fields.Binary(string="Previous Residence Address Back", attachment=True, required=True)
+    previous_residence_address_certificate_front = fields.Binary(string="Previous Residence Address Front", attachment=True)
+    previous_residence_address_certificate_back = fields.Binary(string="Previous Residence Address Back", attachment=True)
 
-    marriage_invitation_front = fields.Binary(string="Marriage Certificate Front", attachment=True, required=True)
-    marriage_invitation_back = fields.Binary(string="Marriage Certificate Back", attachment=True, required=True)
+    marriage_invitation_front = fields.Binary(string="Marriage Certificate Front", attachment=True)
+    marriage_invitation_back = fields.Binary(string="Marriage Certificate Back", attachment=True)
 
-    certificate_loss_disaster_front = fields.Binary(string="Damage Certificate Front", attachment=True, required=True)
-    certificate_loss_disaster_back = fields.Binary(string="Damage Certificate Back", attachment=True, required=True)
+    certificate_loss_disaster_front = fields.Binary(string="Damage Certificate Front", attachment=True)
+    certificate_loss_disaster_back = fields.Binary(string="Damage Certificate Back", attachment=True)
 
-    sterilization_certificate = fields.Binary(string="Sterilization Certificate", attachment=True, required=True)
+    sterilization_certificate = fields.Binary(string="Sterilization Certificate", attachment=True)
 
-    birth_certificate_child1 = fields.Binary(string="Birth certificate of First Children", attachment=True, required=True)
+    birth_certificate_child1 = fields.Binary(string="Birth certificate of First Children", attachment=True)
     birth_certificate_child2 = fields.Binary(string="Birth certificate of Second Children", attachment=True)
 
-    age_proof_certificate_front = fields.Binary(string="Age Proof Front", attachment=True, required=True)
-    age_proof_certificate_back = fields.Binary(string="Age Proof Back", attachment=True, required=True)
+    age_proof_certificate_front = fields.Binary(string="Age Proof Front", attachment=True)
+    age_proof_certificate_back = fields.Binary(string="Age Proof Back", attachment=True)
 
-    solvency_proof_certificate_front = fields.Binary(string="Solvency Proof Front", attachment=True, required=True)
-    solvency_proof_certificate_back = fields.Binary(string="Solvency Proof Back", attachment=True, required=True)
+    solvency_proof_certificate_front = fields.Binary(string="Solvency Proof Front", attachment=True)
+    solvency_proof_certificate_back = fields.Binary(string="Solvency Proof Back", attachment=True)
 
-    bank_pass_book_front = fields.Binary(string="Bank Passbook Front", attachment=True, required=True)
-    bank_pass_book_back = fields.Binary(string="Bank Passbook Back", attachment=True, required=True)
+    bank_pass_book_front = fields.Binary(string="Bank Passbook Front", attachment=True)
+    bank_pass_book_back = fields.Binary(string="Bank Passbook Back", attachment=True)
 
-    identity_proof_front = fields.Binary(string="Identity Proof Front", attachment=True, required=True)
-    identity_proof_back = fields.Binary(string="Identity Proof Back", attachment=True, required=True)
+    identity_proof_front = fields.Binary(string="Identity Proof Front", attachment=True)
+    identity_proof_back = fields.Binary(string="Identity Proof Back", attachment=True)
 
-    national_disability_idcard_front = fields.Binary(string="National Disability ID Card Front", attachment=True, required=True)
-    national_disability_idcard_back = fields.Binary(string="National Disability ID Card Back", attachment=True, required=True)
+    national_disability_idcard_front = fields.Binary(string="National Disability ID Card Front", attachment=True)
+    national_disability_idcard_back = fields.Binary(string="National Disability ID Card Back", attachment=True)
 
-    aadhar_consent_form = fields.Binary(string="Aadhar Consent Form", attachment=True, required=True)
+    aadhar_consent_form = fields.Binary(string="Aadhar Consent Form", attachment=True)
 
-    encumbrance_certificate = fields.Binary(string="Encumbrance Certificate", attachment=True, required=True)
+    encumbrance_certificate = fields.Binary(string="Encumbrance Certificate", attachment=True)
 
     qualification_proof_certificate = fields.Binary(string="Educational Qualification Proof", attachment=True)
     transfer_certificate_front = fields.Binary(string="Transfer Certificate Front", attachment=True)
