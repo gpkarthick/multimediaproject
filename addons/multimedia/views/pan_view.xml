@@ -53,6 +53,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
+                    <button name="open_image_preview" string="Image Preview" type="object" icon="fa-picture-o" class="oe_highlight" style="bg-color:green;"/>
                     <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
 				</header>
 				<sheet>
@@ -1799,12 +1800,13 @@
             </field>
         </record>
 
+        <!--  Common People-->
 
-        <record id="income_certificate_form_view" model="ir.ui.view">
+        <record id="common_people_income_certificate_form_view" model="ir.ui.view">
             <field name="name">pan.form</field>
             <field name="model">pan.form</field>
             <field name="arch" type="xml">
-              <form string="Income Certificate">
+              <form string="Common People Income Certificate">
                 <header>
                     <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
@@ -1819,27 +1821,258 @@
 							<field name="seq_no" readonly="1"/>
 						</h1>
 					</div>
-					<group>
-						<group>
-							<field name="district_id" invisible="1"/>
-							<field name="village_id" invisible="1"/>
-							<field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]" />
-							<field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-							<field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-							<field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-							<field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-							<field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-							<field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-						</group>
-						<group>
-							<field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-							<field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-							<field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-							<field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-						</group>
-					</group>
-                    <group string="Photo">
+                    <group string="Writtern Form Details">
+                        <group>
+                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="district_id" invisible="1"/>
+                            <field name="village_id" invisible="1"/>
+                            <field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]" />
+                            <field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}" />
+                            <field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                        </group>
+                    </group>
+                    <group string="Family Head Photo">
+                        <group>
+                            <field name="candidate_photo" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                    <group string="Family head Aadhar Details">
+                        <group>
+                            <field name="family_head_aadhar_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="family_head_aadhar_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Ration Card Details">
+                        <group>
+                            <field name="ration_card_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="ration_card_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Form Details">
+                        <group>
+                            <field name="form_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="form_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+				</sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_common_people_income_certificate_view" model="ir.actions.act_window">
+            <field name="name">Common People Income Certificate</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pan.form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('pan_type','=','commonincomecertificate')]</field>
+            <field name="context">{'pan_type':'commonincomecertificate','work_type':'certificates'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Common People income certificates
+                </p>
+            </field>
+        </record>
+
+        <record id="action_connect_common_income_certificate_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="certificates_tree_view"/>
+            <field name="act_window_id" ref="action_common_people_income_certificate_view"/>
+        </record>
+
+        <record id="action_connect_common_income_certificate_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="common_people_income_certificate_form_view"/>
+            <field name="act_window_id" ref="action_common_people_income_certificate_view"/>
+        </record>
+
+        <!--        Bussiness People income certificate-->
+
+        <record id="income_bussiness_certificate_form_view" model="ir.ui.view">
+            <field name="name">pan.form</field>
+            <field name="model">pan.form</field>
+            <field name="arch" type="xml">
+              <form string="Bussiness People Income Certificate">
+                <header>
+                    <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+				</header>
+				<sheet>
+                    <div class="oe_title">
+						<h1>
+							<field name="seq_no" readonly="1"/>
+						</h1>
+					</div>
+					<group string="Writtern Form Details">
+                        <group>
+                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="district_id" invisible="1"/>
+                            <field name="village_id" invisible="1"/>
+                            <field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]" />
+                            <field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}" />
+                            <field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                        </group>
+                    </group>
+                    <group string="Family Head Photo">
+                        <group>
+                            <field name="candidate_photo" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                    <group string="Family head Aadhar Details">
+                        <group>
+                            <field name="family_head_aadhar_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="family_head_aadhar_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Ration Card Details">
+                        <group>
+                            <field name="ration_card_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="ration_card_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Form Details">
+                        <group>
+                            <field name="form_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="form_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Income Proof IT Returned Details">
+                        <group>
+                            <field name="payslip_front" string="income Proof Front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="payslip_back" string="income Proof Back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Pan Details">
+                        <group>
+                            <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="pan_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+				</sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_bussiness_income_certificate_view" model="ir.actions.act_window">
+            <field name="name">Bussiness People Income Certificate</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pan.form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('pan_type','=','bussinessincomecertificate')]</field>
+            <field name="context">{'pan_type':'bussinessincomecertificate','work_type':'certificates'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Bussiness People income certificates
+                </p>
+            </field>
+        </record>
+
+        <record id="action_connect_bussiness_income_certificate_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="certificates_tree_view"/>
+            <field name="act_window_id" ref="action_bussiness_income_certificate_view"/>
+        </record>
+
+        <record id="action_connect_bussiness_income_certificate_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="income_bussiness_certificate_form_view"/>
+            <field name="act_window_id" ref="action_bussiness_income_certificate_view"/>
+        </record>
+
+        <!--  Government Employee Income certificate-->
+
+        <record id="income_certificate_form_view" model="ir.ui.view">
+            <field name="name">pan.form</field>
+            <field name="model">pan.form</field>
+            <field name="arch" type="xml">
+              <form string="Employee Income Certificate">
+                <header>
+                    <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+				</header>
+				<sheet>
+                    <div class="oe_title">
+						<h1>
+							<field name="seq_no" readonly="1"/>
+						</h1>
+					</div>
+					<group string="Writtern Form Details">
+                        <group>
+                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="district_id" invisible="1"/>
+                            <field name="village_id" invisible="1"/>
+                            <field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]" />
+                            <field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}" />
+                            <field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                        </group>
+                    </group>
+                    <group string="Family Head Photo">
                         <group>
                             <field name="candidate_photo" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
@@ -1887,29 +2120,21 @@
                             <field name="pan_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                     </group>
-                    <group string="Writtern Form Details">
-                        <group>
-                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
-                        </group>
-                        <group>
-                            <field name="user_logo" widget='image' class="oe_avatar" invisible="1"/>
-                        </group>
-                    </group>
 				</sheet>
               </form>
             </field>
         </record>
 
         <record id="action_income_certificate_view" model="ir.actions.act_window">
-            <field name="name">Income Certificate</field>
+            <field name="name">Employee Income Certificate</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[('pan_type','=','incomecertificate')]</field>
-            <field name="context">{'pan_type':'incomecertificate','work_type':'certificates'}</field>
+            <field name="domain">[('pan_type','=','employeeincomecertificate')]</field>
+            <field name="context">{'pan_type':'employeeincomecertificate','work_type':'certificates'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Create a income certificates
+                    Create a Employee income certificates
                 </p>
             </field>
         </record>
@@ -3963,7 +4188,10 @@
         </record>
 
         <menuitem id="certificate_sub_menu" name="Certificate" sequence="5" parent="forms_main_menu"/>
-        <menuitem id="income_certificate_menu" name="Income Certificate" sequence="1" action="action_income_certificate_view" parent="certificate_sub_menu"/>
+            <menuitem id="income_certificate_sub_menu" name="Income Certificate" sequence="1" parent="certificate_sub_menu"/>
+                <menuitem id="income_certificate_common_people_menu" name="Income Certificate Common People" sequence="1" action="action_common_people_income_certificate_view" parent="income_certificate_sub_menu"/>
+                <menuitem id="income_certificate_bussiness_menu" name="Income Certificate Bussiness People" sequence="2" action="action_bussiness_income_certificate_view" parent="income_certificate_sub_menu"/>
+                <menuitem id="income_certificate_employee_menu" name="Income Certificate Employee" sequence="3" action="action_income_certificate_view" parent="income_certificate_sub_menu"/>
         <menuitem id="community_certificate_menu" name="Community Certificate" sequence="2" action="action_community_certificate_view" parent="certificate_sub_menu"/>
         <menuitem id="residence_certificate_menu" name="Residence Certificate" sequence="3" action="action_residence_certificate_view" parent="certificate_sub_menu"/>
         <menuitem id="nativity_certificate_menu" name="Nativity Certificate" sequence="4" action="action_nativity_certificate_view" parent="certificate_sub_menu"/>

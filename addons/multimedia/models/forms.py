@@ -27,8 +27,8 @@ class PanForm(models.Model):
     write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
     create_uid = fields.Many2one('res.users', string='Created by', readonly=True)
     attachment = fields.Binary(string="Image", attachment=True)
-    aadhar_front = fields.Binary(string="Aadhar Front", attachment=True, required=True)
-    aadhar_back = fields.Binary(string="Aadhar Back", attachment=True, required=True)
+    aadhar_front = fields.Binary(string="Aadhar Front", attachment=False, required=True)
+    aadhar_back = fields.Binary(string="Aadhar Back", attachment=False, required=True)
     pan_front = fields.Binary(string="Pan Form Front", attachment=True, required=True)
     pan_back = fields.Binary(string="Pan Form Back", attachment=True, required=True)
     parent_aadhar_front = fields.Binary(string="Aadhar Front", attachment=True, required=True)
@@ -123,7 +123,10 @@ class PanForm(models.Model):
                                  ('correction', 'correction'), ('company', 'company'), ('trust', 'trust'), ('kuzhu', 'kuzhu'),
                                  ('newrationcard', 'New Ration Card'), ('rationnameadd', 'Ration Name Add'), ('rationnameremove', 'Ration Name Remove'),
                                  ('rationheadchange', 'Ration Head Change'), ('rationduplicate', 'Ration Duplicate Apply'),
-                                 ('incomecertificate', 'Income Certificate'),('residencecertificate', 'Residence Certificate'),
+                                 ('commonincomecertificate', 'Income Certificate'),
+                                 ('bussinessincomecertificate', 'Common Income Certificate'),
+                                 ('employeeincomecertificate', 'Bussiness Income Certificate'),
+                                 ('residencecertificate', 'Employee Residence Certificate'),
                                  ('nativitycertificate', 'Nativity Certificate'),('legalheircertificate', 'Legal Heir Certificate'),
                                  ('nomalechildcertificate', 'Irupen kualanthai (or) No Male child Certificate'),('obccertificate', 'OBC Certificate'),
                                  ('certificate', 'First Graduate Certificate'),('unemploymentCertificate', 'Unemployment Certificate'),
@@ -144,6 +147,19 @@ class PanForm(models.Model):
     user_logo = fields.Binary("Company Image", related='create_uid.image_1920')
     district_id = fields.Many2one('district.master', string='District', readonly=True, default=lambda self: self.env.user.district_id)
     village_id = fields.Many2one('village.master', string='Village', readonly=True, default=lambda self: self.env.user.village_id)
+
+    def open_image_preview(self):
+        att_obj = self.env['ir.attachment']
+        # for panatt in self:
+        #     attachment_ids1 = att_obj.sudo().search_read([('res_model', '=', 'pan.form')])
+        #     attachment_ids = att_obj.sudo().search([('res_id', '=', panatt.id)])
+        #     print (attachment_ids1,"SSSSSSSSSSS")
+        #     print (attachment_ids,"__________")
+        #     if not attachment_ids:
+        #         raise UserWarning(_("No attachment files for preview"))
+        return {'type': 'ir.actions.act_url',
+                'url': '/marine/image_preview?id=' + str(self.id) + '&db=' + str(
+                    self.env.cr.dbname) + '&uid=' + str(self.env.uid), 'nodestroy': True, 'target': 'new'}
 
     @api.constrains('attachment')
     def _check_user_image(self):
