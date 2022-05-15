@@ -21,11 +21,19 @@ class PanForm(models.Model):
     mail_id = fields.Char(string='Mail ID')
     dob = fields.Date(string='DOB')
     assigned_to_uid = fields.Many2one('res.users', string='Assigned to')
+    assigned_date = fields.Datetime(string='Assigned Date', readonly=True)
     seq_no = fields.Char(string='Sequence No', size=18, readonly=True, default=lambda self: _('New'))
     create_date = fields.Datetime(string='Created Date', readonly=True)
     write_date = fields.Datetime(string='Last Updated Date', readonly=True)
     write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
     create_uid = fields.Many2one('res.users', string='Created by', readonly=True)
+
+    pan_application_no = fields.Char(string='Pan Application No')
+    application_mail_id = fields.Char(string='Application Mail ID')
+    mail_id_password = fields.Char(string='Mail ID Password')
+    amount = fields.Float(string='Amount')
+    profit_amount = fields.Float(string='Profit Amount')
+
     attachment = fields.Binary(string="Image", attachment=True)
     aadhar_front = fields.Binary(string="Aadhar Front", attachment=False)
     aadhar_back = fields.Binary(string="Aadhar Back", attachment=False)
@@ -142,11 +150,54 @@ class PanForm(models.Model):
                                  ], string='Type', readonly=True, default=_default_pan_type)
     work_type = fields.Selection([('pan', 'Pan'), ('rationcard', 'Ration Card'), ('aadharcard', 'Aadhar Card'), ('certificates', 'Certificates'), ('oapandpension', 'OAP and Pension'), ('welfare_of_differently_abled_ersons', 'Welfare of Differently Abled Persons'), ('project_work', 'Project Work'), ('multiple_xerox', 'Multiple Xerox'), ('marriage_registration', 'Marriage  Registration'), ('pmfby', 'PMFBY'), ('employment', 'Employment'), ('birth_and_death_certificate', 'Birth and Death Certificate')], string='Work Type', readonly=True, default=_default_work_type)
 
-    state = fields.Selection([('draft', 'Draft'), ('processing', 'Processing'), ('done', 'Done'), ('verified', 'Verified')], string='Status', readonly=True, default='draft')
+    state = fields.Selection([('draft', 'Draft'), ('reverted', 'Reverted'), ('revert_resent', 'Revert Resent'), ('processing', 'Processing'), ('done', 'Done'), ('verified', 'Verified')], string='Status', readonly=True, default='draft')
 
     user_logo = fields.Binary("Company Image", related='create_uid.image_1920')
     district_id = fields.Many2one('district.master', string='District', readonly=True, default=lambda self: self.env.user.district_id)
     village_id = fields.Many2one('village.master', string='Village', readonly=True, default=lambda self: self.env.user.village_id)
+
+
+    def action_redirect(self):
+        print (self.id)
+        active_ids = self.env.context.get('active_ids')
+        context = self.env.context.copy()
+        print (active_ids,context)
+        print ("xxxxxxxx")
+        res_id = self.env['pan.form'].search([('id', '=', self.id)])
+        print (res_id)
+
+        if res_id:
+            if res_id.pan_type == 'major':
+                name = 'Major Pan Form'
+                view_id = 'major_pan_form_view'
+            if res_id.pan_type == 'minor':
+                name = 'Minor Pan Form'
+                view_id = 'minor_pan_card_form_view'
+            if res_id.pan_type == 'minor_to_major':
+                name = 'Major to Minor Pan Form'
+                view_id = 'minor_to_major_pan_form_view'
+            if res_id.pan_type == 'correction':
+                name = 'Correction Pan Form'
+                view_id = 'correction_pan_form_view'
+            if res_id.pan_type == 'company':
+                name = 'Company Pan Form'
+                view_id = 'company_pan_form_view'
+            if res_id.pan_type == 'trust':
+                name = 'Trust Pan Form'
+                view_id = 'trust_pan_form_view'
+            if res_id.pan_type == 'kuzhu':
+                name = 'Kuzhu Pan Form'
+                view_id = 'kazhu_pan_form_view'
+
+            return {
+                'name': name,
+                'view_mode': 'form',
+                'view_id': self.env.ref('multimedia.'+view_id).id,
+                'res_model': 'pan.form',
+                'type': 'ir.actions.act_window',
+                'target': 'current',
+                'res_id': res_id[0].id
+            }
 
     def open_image_preview(self):
         att_obj = self.env['ir.attachment']

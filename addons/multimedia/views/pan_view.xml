@@ -8,17 +8,20 @@
            <field name="name">dashboard.pan.form.tree</field>
             <field name="model">pan.form</field>
             <field name="arch" type="xml">
-                <tree string="Dashboard View" decoration-danger="state in ('verified')" decoration-success="state in ('draft')" decoration-primary="state in ('processing')">
-                    <field name="name"/>
-                    <field name="seq_no"/>
+                <tree delete="false" create="false" string="Dashboard View" decoration-danger="state in ('verified')" decoration-success="state in ('draft')" decoration-primary="state in ('processing')">
+                    <field name="create_uid" string="Shop Name"/>
                     <field name="work_type"/>
                     <field name="pan_type"/>
+                    <field name="seq_no"/>
                     <field name="party_name"/>
                     <field name="mobile_no"/>
                     <field name="assigned_to_uid" groups="multimedia.media_forms_management"/>
-					<field name="create_uid"/>
+                    <field name="assigned_date" groups="multimedia.media_forms_management"/>
+                    <field name="amount" groups="multimedia.media_forms_management"/>
+                    <field name="profit_amount" groups="multimedia.media_forms_management"/>
 					<field name="create_date"/>
 					<field name="state"/>
+                    <button name="action_redirect" string="Open" type="object" class="oe_highlight o_expense_submit"/>
 				</tree>
             </field>
         </record>
@@ -54,7 +57,7 @@
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
                     <button name="open_image_preview" string="Image Preview" type="object" icon="fa-picture-o" class="oe_highlight" style="bg-color:green;"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -81,6 +84,17 @@
                             <field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                        </group>
+                    </group>
+                    <group string="Processing Details" groups="multimedia.media_forms_employee,multimedia.media_forms_management">
+                        <group>
+                            <field name="pan_application_no"/>
+                            <field name="amount"/>
+                            <field name="profit_amount"/>
+                        </group>
+                        <group>
+                            <field name="application_mail_id"/>
+                            <field name="mail_id_password"/>
                         </group>
                     </group>
                     <group string="Candidate Aadhar Details">
@@ -118,6 +132,20 @@
             </field>
         </record>
 
+        <record id="action_connect_major_pan_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="pan_form_tree_view"/>
+            <field name="act_window_id" ref="action_major_pan_form_view"/>
+        </record>
+
+        <record id="action_connect_major_pan_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="major_pan_form_view"/>
+            <field name="act_window_id" ref="action_major_pan_form_view"/>
+        </record>
+
         <!-- Minor Pan-->
 
         <record id="minor_pan_card_form_view" model="ir.ui.view">
@@ -131,7 +159,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -228,7 +256,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -325,7 +353,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -422,7 +450,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -518,7 +546,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -601,7 +629,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -689,6 +717,8 @@
                     <group expand="1" string="Group By...">
                         <filter string="State" name="group_state" icon="terp-personal" domain="[]"
                                 context="{'group_by':'state'}"/>
+                        <filter string="Shop Name" name="group_created_uid" icon="terp-personal" domain="[]"
+                                context="{'group_by':'create_uid'}"/>
                         <filter string="Work Type" name="group_work_type" icon="terp-personal" domain="[]"
                                 context="{'group_by':'work_type'}"/>
                         <filter string="Type" name="group_pan_type" icon="terp-personal" domain="[]"
@@ -769,7 +799,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -859,7 +889,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -949,7 +979,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -1039,7 +1069,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -1116,7 +1146,7 @@
             <field name="act_window_id" ref="action_aadhar_Name_correction_form_view"/>
         </record>
 
-        <menuitem id="aadhar_card_sub_menu" name="Aadhar Card" sequence="3" parent="forms_main_menu"/>
+        <menuitem id="aadhar_card_sub_menu" name="Aadhar Card" sequence="6" parent="forms_main_menu"/>
         <menuitem id="aadhar_address_correction_menu" name="Address Correction" sequence="1" action="action_aadhar_address_correction_form_view" parent="aadhar_card_sub_menu"/>
         <menuitem id="aadhar_dob_correction_menu" name="DOB Correction" sequence="2" action="action_aadhar_dob_correction_form_view" parent="aadhar_card_sub_menu"/>
         <menuitem id="aadhar_gender_correction_menu" name="Gender Correction" sequence="3" action="action_aadhar_gender_correction_form_view" parent="aadhar_card_sub_menu"/>
@@ -1333,7 +1363,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -1423,7 +1453,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -1514,7 +1544,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -1605,7 +1635,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -1695,7 +1725,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -1772,7 +1802,7 @@
             <field name="act_window_id" ref="action_ration_card_duplicate_apply_form_view"/>
         </record>
 
-        <menuitem id="ration_card_sub_menu" name="Ration Card" sequence="4" parent="forms_main_menu"/>
+        <menuitem id="ration_card_sub_menu" name="Ration Card" sequence="5" parent="forms_main_menu"/>
         <menuitem id="new_ration_card_form_menu" name="New Ration" sequence="1" action="action_new_ration_card_form_view" parent="ration_card_sub_menu"/>
         <menuitem id="ration_card_name_add_form_menu" name="Ration Name add" sequence="2" action="action_ration_card_name_add_form_view" parent="ration_card_sub_menu"/>
         <menuitem id="ration_card_name_remove_form_menu" name="Ration Name Remove" sequence="3" action="action_ration_card_name_remove_form_view" parent="ration_card_sub_menu"/>
@@ -1813,7 +1843,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -1920,7 +1950,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -2043,7 +2073,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -2183,7 +2213,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -2323,7 +2353,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -2454,7 +2484,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -2576,7 +2606,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -2674,7 +2704,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -2796,7 +2826,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -2925,7 +2955,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -3039,7 +3069,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -3177,7 +3207,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -3317,7 +3347,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -3439,7 +3469,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -3570,7 +3600,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -3691,7 +3721,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -3804,7 +3834,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -3933,7 +3963,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -4063,7 +4093,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -4187,7 +4217,7 @@
             <field name="act_window_id" ref="action_deserted_woman_certificate_view"/>
         </record>
 
-        <menuitem id="certificate_sub_menu" name="Certificate" sequence="5" parent="forms_main_menu"/>
+        <menuitem id="certificate_sub_menu" name="Certificate" sequence="3" parent="forms_main_menu"/>
             <menuitem id="income_certificate_sub_menu" name="Income Certificate" sequence="1" parent="certificate_sub_menu"/>
                 <menuitem id="income_certificate_common_people_menu" name="Income Certificate Common People" sequence="1" action="action_common_people_income_certificate_view" parent="income_certificate_sub_menu"/>
                 <menuitem id="income_certificate_bussiness_menu" name="Income Certificate Bussiness People" sequence="2" action="action_bussiness_income_certificate_view" parent="income_certificate_sub_menu"/>
@@ -4239,7 +4269,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -4376,7 +4406,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -4521,7 +4551,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -4658,7 +4688,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -4804,7 +4834,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -4936,7 +4966,7 @@
             <field name="act_window_id" ref="action_uzhavar_pathukapu_thittam_view"/>
         </record>
 
-        <menuitem id="pension_scheme_sub_menu" name="OAP &amp; Pension" sequence="6" parent="forms_main_menu"/>
+        <menuitem id="pension_scheme_sub_menu" name="OAP &amp; Pension" sequence="4" parent="forms_main_menu"/>
         <menuitem id="ignops_certificate_menu" name="Indira Gandhi National Old Age Pension Scheme" sequence="1" action="action_ignops_certificate_view" parent="pension_scheme_sub_menu"/>
         <menuitem id="destitute_deserted_pension_scheme_menu" name="Destitute Deserted Woman Pension Scheme" sequence="2" action="action_destitute_deserted_pension_scheme_view" parent="pension_scheme_sub_menu"/>
         <menuitem id="unmarried_women_pension_scheme_menu" name="Unmarried Women Pension Scheme (UWPS)" sequence="3" action="action_unmarried_women_pension_scheme_view" parent="pension_scheme_sub_menu"/>
@@ -4976,7 +5006,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
@@ -5066,7 +5096,7 @@
                     <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
                     <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
-                    <field name="state" widget="statusbar" statusbar_visible="draft,processing,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
 				</header>
 				<sheet>
                     <div class="oe_title">
