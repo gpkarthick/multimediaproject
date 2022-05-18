@@ -16,6 +16,8 @@ class PanForm(models.Model):
     name = fields.Char(string='Pan Card No')
     party_name = fields.Char(string='Name')
     father_name = fields.Char(string='Father Name')
+    mother_name = fields.Char(string='Mother Name')
+    village_revenue = fields.Char(string='Village Revenue')
     mobile_no = fields.Char(string='Mobile No')
     address = fields.Text(string='Address')
     mail_id = fields.Char(string='Mail ID')
@@ -56,8 +58,8 @@ class PanForm(models.Model):
     family_head_aadhar_back = fields.Binary(string="Family Head Aadhar Back", attachment=True)
     candidate_ration_remove_proof_first = fields.Binary(string="Candidate Remove Proof First Page", attachment=True)
     candidate_ration_remove_proof_second = fields.Binary(string="Candidate Remove Proof First Page", attachment=True)
-    ration_card_front = fields.Binary(string="Ration Card Xerox Front", attachment=True)
-    ration_card_back = fields.Binary(string="Ration Card Xerox Back", attachment=True)
+    ration_card_front = fields.Binary(string="Ration Card Front", attachment=True)
+    ration_card_back = fields.Binary(string="Ration Card Back", attachment=True)
     old_ration_card_front = fields.Binary(string="Old Ration Card Xerox Front", attachment=True)
     old_ration_card_back = fields.Binary(string="Old Ration Card Xerox Back", attachment=True)
 
@@ -133,7 +135,10 @@ class PanForm(models.Model):
                                  ('rationheadchange', 'Ration Head Change'), ('rationduplicate', 'Ration Duplicate Apply'),
                                  ('commonincomecertificate', 'Income Certificate'),
                                  ('bussinessincomecertificate', 'Common Income Certificate'),
+                                 ('bussinessincomecertificatetype2', 'Common Income Certificate Type2'),
                                  ('employeeincomecertificate', 'Bussiness Income Certificate'),
+                                 ('employeeincomecertificatetype2', 'Bussiness Income Certificate Type2'),
+                                 ('communitycertificate', 'Community Certificate'),
                                  ('residencecertificate', 'Employee Residence Certificate'),
                                  ('nativitycertificate', 'Nativity Certificate'),('legalheircertificate', 'Legal Heir Certificate'),
                                  ('nomalechildcertificate', 'Irupen kualanthai (or) No Male child Certificate'),('obccertificate', 'OBC Certificate'),
