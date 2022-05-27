@@ -23,6 +23,7 @@ class AccountVerification(models.Model):
     write_date = fields.Datetime(string='Last Updated Date', readonly=True)
     write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
     create_uid = fields.Many2one('res.users', string='Created by', readonly=True)
+    state = fields.Selection([('draft', 'Draft'), ('verified', 'Verified')], string='Status', readonly=True, default='draft')
 
     @api.model
     def create(self, vals):
@@ -58,3 +59,6 @@ class AccountVerification(models.Model):
                     'bank_name': result['BANK'].replace('┬á', ''),
                 })
         return {'value': datas}
+
+    def action_verified(self):
+        self.write({'state':'verified'})

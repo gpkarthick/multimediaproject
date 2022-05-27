@@ -7,7 +7,7 @@
             <field name="model">account.verification</field>
             <field name="priority">2</field>
             <field name="arch" type="xml">
-                <tree string="Account Verification">
+                <tree string="Account Verification" decoration-danger="state in ('verified')" decoration-success="state in ('draft')">
                     <field name="name"/>
                     <field name="order_id"/>
                     <field name="benificiary_name"/>
@@ -18,8 +18,11 @@
                     <field name="transaction_date"/>
                     <field name="sender_name"/>
                     <field name="transaction_mode"/>
+                    <field name="create_date"/>
+                    <field name="create_uid"/>
                     <field name="write_uid"/>
-                    <field name="write_date"/>
+                    <field name="transation_amt" string="Amount"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
@@ -29,6 +32,10 @@
             <field name="model">account.verification</field>
             <field name="arch" type="xml">
                 <form string="Account Verification">
+                    <header>
+                        <button name="action_verified" type="object" string="Verified" class="oe_highlight" attrs="{'invisible': [('state', '=', 'verified')]}"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,verified"/>
+				    </header>
                     <sheet>
                         <div class="oe_title">
                             <h1>
@@ -50,8 +57,9 @@
                                 <field name="sender_name"/>
                                 <field name="transaction_mode"/>
                                 <field name="transation_amt"/>
+                                <field name="create_date"/>
+                                <field name="create_uid"/>
                                 <field name="write_uid"/>
-                                <field name="write_date"/>
                             </group>
                         </group>
                     </sheet>
@@ -65,6 +73,16 @@
             <field name="arch" type="xml">
                 <search string="Account Verification">
                     <field name="name" string="Bank Ref" filter_domain="['|',('name','ilike',self)]"/>
+					<field name="benificiary_name" string="Benificiary Name" filter_domain="[('benificiary_name','ilike',self)]"/>
+					<field name="create_uid" string="Created By" filter_domain="[('create_uid','ilike',self)]"/>
+					<field name="state" string="State" filter_domain="[('state','ilike',self)]"/>
+					<separator/>
+						<filter string="Verified" name="verified" domain="[('state','=','verified')]"/>
+						<filter string="Draft" name="draft" domain="[('state','=','draft')]"/>
+					<group expand="1" string="Group By">
+						<filter string="Month" name="creation_month" context="{'group_by':'create_date:month'}" help="Date"/>
+						<filter string="Bank" name="bank_name" context="{'group_by':'bank_name'}" help="Bank"/>
+				   </group>
                 </search>
             </field>
         </record>
