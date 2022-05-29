@@ -49,7 +49,7 @@
             <field name="name">pan.form</field>
             <field name="model">pan.form</field>
             <field name="arch" type="xml">
-              <form string="Pan Form">
+              <form string="Married Female Pan Form">
                 <header>
                     <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
@@ -122,7 +122,7 @@
         </record>
 
         <record id="action_major_uf_pan_form_view" model="ir.actions.act_window">
-            <field name="name">Major Unmarried Female Pan</field>
+            <field name="name">Major married Female Pan</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
@@ -130,7 +130,7 @@
             <field name="context">{'pan_type':'major_mf','work_type':'pan'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Create a Major Pan Unmarried Female Form
+                    Create a Major Pan married Female Form
                 </p>
             </field>
         </record>
@@ -455,13 +455,13 @@
             <field name="act_window_id" ref="action_minor_to_major_pan_form_view"/>
         </record>
 
-        <!--  Correction Pan Unmarried Female Pan form-->
+        <!--  Correction Pan married Female Pan form-->
 
         <record id="correction_uf_pan_form_view" model="ir.ui.view">
             <field name="name">pan.form</field>
             <field name="model">pan.form</field>
             <field name="arch" type="xml">
-              <form string="Correction Unmarried Female Pan Form">
+              <form string="married Female Correction Pan Form">
                 <header>
                     <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
@@ -531,7 +531,7 @@
         </record>
 
         <record id="action_correction_uf_pan_form_view" model="ir.actions.act_window">
-            <field name="name">Correction Unmarried Female Pan</field>
+            <field name="name">Correction married Female Pan</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
@@ -539,7 +539,7 @@
             <field name="context">{'pan_type':'correction_mf','work_type':'pan'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Create a Correction Unmarried Female Pan Form
+                    Create a Correction married Female Pan Form
                 </p>
             </field>
         </record>
@@ -988,12 +988,12 @@
         <menuitem id="dashboard_certificate_menu" name="Dashboard" sequence="1" action="action_dashboard_view" parent="dashboard_sub_menu"/>
         <menuitem id="forms_sub_menu" name="Pan Card" sequence="2" parent="forms_main_menu"/>
         <menuitem id="major_pan_form_menu" name="Major Pan" sequence="1" parent="forms_sub_menu"/>
-        <menuitem id="major_uf_pan_form_menu" name="Major Unmarried Female Pan" sequence="1" action="action_major_uf_pan_form_view" parent="major_pan_form_menu"/>
+        <menuitem id="major_uf_pan_form_menu" name="Married Female Pan" sequence="1" action="action_major_uf_pan_form_view" parent="major_pan_form_menu"/>
         <menuitem id="major_um_mm_uf_pan_form_menu" name="Unmarried Male &amp; Female &amp; Married Male Pan" sequence="2" action="action_major_um_mm_uf_pan_form_view" parent="major_pan_form_menu"/>
         <menuitem id="minor_pan_form_menu" name="Minor Pan" sequence="2" action="action_minor_pan_form_view" parent="forms_sub_menu"/>
         <menuitem id="minor_to_major_pan_form_menu" name="Minor to major Pan" sequence="3" action="action_minor_to_major_pan_form_view" parent="forms_sub_menu"/>
         <menuitem id="correction_pan_form_menu" name="Correction Pan" sequence="4" parent="forms_sub_menu"/>
-        <menuitem id="correction_uf_pan_form_menu" name="Unmarried Female Pan" sequence="1" action="action_correction_uf_pan_form_view" parent="correction_pan_form_menu"/>
+        <menuitem id="correction_uf_pan_form_menu" name="Married Female Pan" sequence="1" action="action_correction_uf_pan_form_view" parent="correction_pan_form_menu"/>
         <menuitem id="correction_um_mm_uf_pan_form_menu" name="Unmarried Male &amp; Female &amp; Married Male Pan" sequence="2" action="action_correction_um_mm_uf_pan_form_view" parent="correction_pan_form_menu"/>
         <menuitem id="company_pan_form_menu" name="Company Pan" sequence="5" action="action_company_pan_form_view" parent="forms_sub_menu"/>
         <menuitem id="trust_pan_form_menu" name="Trust Pan" sequence="6" action="action_trust_pan_form_view" parent="forms_sub_menu"/>
