@@ -14,10 +14,14 @@ class PanForm(models.Model):
         return self.env.context.get('work_type')
 
     name = fields.Char(string='Pan Card No')
+    old_pan_no = fields.Char(string='Old Pan No')
     party_name = fields.Char(string='Name')
     father_name = fields.Char(string='Father Name')
     mother_name = fields.Char(string='Mother Name')
+    husband_name = fields.Char(string='Husband Name')
     village_revenue = fields.Char(string='Village Revenue')
+    taluk_id = fields.Many2one('taluk.master', string='Taluk')
+    revenue_village_id = fields.Many2one('village.master', string='Village ')
     mobile_no = fields.Char(string='Mobile No')
     address = fields.Text(string='Address')
     mail_id = fields.Char(string='Mail ID')
@@ -29,6 +33,7 @@ class PanForm(models.Model):
     write_date = fields.Datetime(string='Last Updated Date', readonly=True)
     write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
     create_uid = fields.Many2one('res.users', string='Created by', readonly=True)
+    correction_type_ids = fields.Many2many('correction.type', 'pan_correction_type_rel', 'pan_id', 'correction_id', string='Correction Types')
 
     pan_application_no = fields.Char(string='Pan Application No')
     application_mail_id = fields.Char(string='Application Mail ID')
@@ -129,8 +134,8 @@ class PanForm(models.Model):
     deserted_proof_page2 = fields.Binary(string="Deserted Proof Page2", attachment=True)
     deserted_proof_page3 = fields.Binary(string="Deserted Proof Page3", attachment=True)
 
-    pan_type = fields.Selection([('major', 'major'), ('minor', 'minor'), ('minor_to_major', 'minor_to_major'),
-                                 ('correction', 'correction'), ('company', 'company'), ('trust', 'trust'), ('kuzhu', 'kuzhu'),
+    pan_type = fields.Selection([('major', 'major'),('major_mf', 'major_mf'),('major_um_mm_uf', 'major_um_mm_uf'), ('minor', 'minor'), ('minor_to_major', 'minor_to_major'),
+                                 ('correction', 'correction'), ('correction_mf', 'correction MF'), ('correction_um_mm_uf', 'correction_um_mm_uf'), ('company', 'company'), ('trust', 'trust'), ('kuzhu', 'kuzhu'),
                                  ('newrationcard', 'New Ration Card'), ('rationnameadd', 'Ration Name Add'), ('rationnameremove', 'Ration Name Remove'),
                                  ('rationheadchange', 'Ration Head Change'), ('rationduplicate', 'Ration Duplicate Apply'),
                                  ('commonincomecertificate', 'Income Certificate'),
@@ -268,6 +273,14 @@ class DistrictMaster(models.Model):
     name = fields.Char('District Name', required=True)
     district_code = fields.Char('District Code')
 
+class TalukMaster(models.Model):
+    _name = 'taluk.master'
+    _description = 'Taluk Master'
+    _order = "name asc"
+
+    name = fields.Char('Taluk Name', required=True)
+    taluk_code = fields.Char('Taluk Code')
+
 class VillageMaster(models.Model):
     _name = 'village.master'
     _description = 'Village Master'
@@ -275,6 +288,7 @@ class VillageMaster(models.Model):
 
     name = fields.Char('Village Name', required=True)
     village_code = fields.Char('Village Code')
+    taluk_id = fields.Many2one('taluk.master', string='Taluk')
 
 class AcknowledgementSlip(models.Model):
     _name = "acknowledgement.slip"
@@ -299,3 +313,11 @@ class AcknowledgementSlip(models.Model):
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code('acknowledgement.slip') or _('New')
         return super(AcknowledgementSlip, self).create(vals)
+
+
+class CorrectionType(models.Model):
+    _name = 'correction.type'
+    _description = 'Correcction Type'
+    _order = "name asc"
+
+    name = fields.Char('Name', required=True)

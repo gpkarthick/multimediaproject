@@ -43,9 +43,9 @@
             </field>
         </record>
 
-        <!--  Major Pan card-->
+        <!--  Major Pan Unmarried Female card-->
 
-        <record id="major_pan_form_view" model="ir.ui.view">
+        <record id="major_uf_pan_form_view" model="ir.ui.view">
             <field name="name">pan.form</field>
             <field name="model">pan.form</field>
             <field name="arch" type="xml">
@@ -76,6 +76,7 @@
                             <field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}" />
                             <field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                             <field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="husband_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                             <field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                             <field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                             <field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
@@ -83,7 +84,9 @@
                             <field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+<!--                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />-->
+                            <field name="revenue_village_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="taluk_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                         </group>
                     </group>
                     <group string="Processing Details" groups="multimedia.media_forms_employee,multimedia.media_forms_management">
@@ -118,16 +121,121 @@
             </field>
         </record>
 
-        <record id="action_major_pan_form_view" model="ir.actions.act_window">
-            <field name="name">Major Pan</field>
+        <record id="action_major_uf_pan_form_view" model="ir.actions.act_window">
+            <field name="name">Major Unmarried Female Pan</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[('pan_type','=','major')]</field>
-            <field name="context">{'pan_type':'major','work_type':'pan'}</field>
+            <field name="domain">[('pan_type','=','major_mf')]</field>
+            <field name="context">{'pan_type':'major_mf','work_type':'pan'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Create a Major Pan Form
+                    Create a Major Pan Unmarried Female Form
+                </p>
+            </field>
+        </record>
+
+        <record id="action_connect_major_uf_pan_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="pan_form_tree_view"/>
+            <field name="act_window_id" ref="action_major_uf_pan_form_view"/>
+        </record>
+
+        <record id="action_connect_major_uf_pan_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="major_uf_pan_form_view"/>
+            <field name="act_window_id" ref="action_major_uf_pan_form_view"/>
+        </record>
+
+        <!--        Unmarried Male and Married Male and unmarried Female-->
+
+        <record id="major_um_mm_uf_pan_form_view" model="ir.ui.view">
+            <field name="name">pan.form</field>
+            <field name="model">pan.form</field>
+            <field name="arch" type="xml">
+              <form string="Unmarried Male &amp; Female and married Male">
+                <header>
+                    <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
+                    <button name="open_image_preview" string="Image Preview" type="object" icon="fa-picture-o" class="oe_highlight" style="bg-color:green;"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
+				</header>
+				<sheet>
+                    <div class="oe_title">
+						<h1>
+							<field name="seq_no" readonly="1"/>
+						</h1>
+					</div>
+                    <group string="Writtern Form Details">
+                        <group>
+                            <field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="district_id" invisible="1"/>
+                            <field name="village_id" invisible="1"/>
+                            <field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]" />
+                            <field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}" />
+                            <field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+<!--                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />-->
+                            <field name="revenue_village_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="taluk_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                        </group>
+                    </group>
+                    <group string="Processing Details" groups="multimedia.media_forms_employee,multimedia.media_forms_management">
+                        <group>
+                            <field name="pan_application_no"/>
+                            <field name="amount"/>
+                            <field name="profit_amount"/>
+                        </group>
+                        <group>
+                            <field name="application_mail_id"/>
+                            <field name="mail_id_password"/>
+                        </group>
+                    </group>
+                    <group string="Candidate Aadhar Details">
+                        <group>
+                            <field name="aadhar_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="aadhar_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Pan Form 49A Details">
+                        <group>
+                            <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}" />
+                        </group>
+                        <group>
+                            <field name="pan_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+				</sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_major_um_mm_uf_pan_form_view" model="ir.actions.act_window">
+            <field name="name">Major Unmarried Male &amp; Felmale and Married Male Pan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pan.form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('pan_type','=','major_um_mm_uf')]</field>
+            <field name="context">{'pan_type':'major_um_mm_uf','work_type':'pan'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Major Pan Unmarried Male &amp; Female and Married Male Pan Form
                 </p>
             </field>
         </record>
@@ -136,14 +244,14 @@
             <field eval="1" name="sequence"/>
             <field name="view_mode">tree</field>
             <field name="view_id" ref="pan_form_tree_view"/>
-            <field name="act_window_id" ref="action_major_pan_form_view"/>
+            <field name="act_window_id" ref="action_major_um_mm_uf_pan_form_view"/>
         </record>
 
         <record id="action_connect_major_pan_form_view" model="ir.actions.act_window.view">
             <field eval="2" name="sequence"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="major_pan_form_view"/>
-            <field name="act_window_id" ref="action_major_pan_form_view"/>
+            <field name="view_id" ref="major_um_mm_uf_pan_form_view"/>
+            <field name="act_window_id" ref="action_major_um_mm_uf_pan_form_view"/>
         </record>
 
         <!-- Minor Pan-->
@@ -185,7 +293,9 @@
                             <field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+<!--                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />-->
+                            <field name="revenue_village_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="taluk_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                         </group>
 					</group>
                     <group string="Candidate Aadhar Details">
@@ -282,7 +392,10 @@
                             <field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+<!--                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />-->
+                            <field name="revenue_village_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="taluk_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field string="Correction Type" name="correction_type_ids" widget="many2many_tags" />
                         </group>
 					</group>
                     <group string="Candidate Aadhar Details">
@@ -306,7 +419,7 @@
                             <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
                         </group>
                         <group>
-                            <field name="pan_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+
                         </group>
                     </group>
 				</sheet>
@@ -342,11 +455,13 @@
             <field name="act_window_id" ref="action_minor_to_major_pan_form_view"/>
         </record>
 
-        <record id="correction_pan_form_view" model="ir.ui.view">
+        <!--  Correction Pan Unmarried Female Pan form-->
+
+        <record id="correction_uf_pan_form_view" model="ir.ui.view">
             <field name="name">pan.form</field>
             <field name="model">pan.form</field>
             <field name="arch" type="xml">
-              <form string="Correction Pan Form">
+              <form string="Correction Unmarried Female Pan Form">
                 <header>
                     <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                     <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
@@ -370,6 +485,7 @@
                             <field name="village_id" invisible="1"/>
                             <field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]" />
                             <field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}" />
+                            <field name="old_pan_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                             <field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                             <field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                             <field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
@@ -379,7 +495,10 @@
                             <field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+<!--                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />-->
+                            <field name="revenue_village_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="taluk_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field string="Correction Type" name="correction_type_ids" widget="many2many_tags" />
                         </group>
 					</group>
                     <group string="Candidate Aadhar Details">
@@ -411,16 +530,119 @@
             </field>
         </record>
 
-        <record id="action_correction_pan_form_view" model="ir.actions.act_window">
-            <field name="name">Correction Pan</field>
+        <record id="action_correction_uf_pan_form_view" model="ir.actions.act_window">
+            <field name="name">Correction Unmarried Female Pan</field>
             <field name="type">ir.actions.act_window</field>
             <field name="res_model">pan.form</field>
             <field name="view_mode">tree,form</field>
-            <field name="domain">[('pan_type','=','correction')]</field>
-            <field name="context">{'pan_type':'correction','work_type':'pan'}</field>
+            <field name="domain">[('pan_type','=','correction_mf')]</field>
+            <field name="context">{'pan_type':'correction_mf','work_type':'pan'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Create a Correction Pan Form
+                    Create a Correction Unmarried Female Pan Form
+                </p>
+            </field>
+        </record>
+
+        <record id="action_connect_correction_uf_pan_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="pan_form_tree_view"/>
+            <field name="act_window_id" ref="action_correction_uf_pan_form_view"/>
+        </record>
+
+        <record id="action_connect_correction_uf_pan_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="correction_uf_pan_form_view"/>
+            <field name="act_window_id" ref="action_correction_uf_pan_form_view"/>
+        </record>
+
+         <!--  Correction Pan Unmarried Male and Female and married Male Pan form-->
+
+        <record id="correction_um_mm_uf_pan_form_view" model="ir.ui.view">
+            <field name="name">pan.form</field>
+            <field name="model">pan.form</field>
+            <field name="arch" type="xml">
+              <form string="Correction Unmarried Male &amp; Female &amp; Married Male Pan Form">
+                <header>
+                    <button name="action_process" type="object" states="draft" string="Process" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_reset" type="object" states="processing" string="Reset" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_done" type="object" states="processing" string="Done" class="oe_highlight" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                    <button name="action_verify" type="object" states="done" string="Verify" class="oe_highlight" groups="multimedia.media_forms_management"/>
+                    <button name="action_view" type="object" attrs="{'invisible':[('state','!=','draft')]}" icon="fa-mail-forward" class="btn btn-success" string="View" invisible="1"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,reverted,revert_resent,processing,done"/>
+				</header>
+				<sheet>
+                    <div class="oe_title">
+						<h1>
+							<field name="seq_no" readonly="1"/>
+						</h1>
+					</div>
+					<group>
+						<group string="Writtern Form Details">
+							<field name="writtern_form" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+						</group>
+						<group string="Details">
+                            <field name="district_id" invisible="1"/>
+                            <field name="village_id" invisible="1"/>
+                            <field name="assigned_to_uid" groups="multimedia.media_forms_management" domain="[('user_type', '=', 'employee')]" />
+                            <field name="name" attrs="{'readonly': [('state', '=', 'done')],'invisible': [('state', '=', 'draft')]}" />
+                            <field name="old_pan_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="party_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="father_name" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="dob" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="mail_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="mobile_no" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="create_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+                            <field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
+<!--                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />-->
+                            <field name="revenue_village_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="taluk_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field string="Correction Type" name="correction_type_ids" widget="many2many_tags" />
+                        </group>
+					</group>
+                    <group string="Candidate Aadhar Details">
+                        <group>
+                            <field name="aadhar_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="aadhar_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+                    <group string="Old Pan Card Details">
+                        <group>
+                            <field name="old_pan_front" string="Old Pan Card Front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+
+                        </group>
+                    </group>
+                    <group string="Correction Pan Form Details">
+                        <group>
+                            <field name="pan_front" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                        <group>
+                            <field name="pan_back" widget='image' attrs="{'readonly': [('state', '!=', 'draft')]}"/>
+                        </group>
+                    </group>
+				</sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_correction_um_mm_uf_pan_form_view" model="ir.actions.act_window">
+            <field name="name">Correction Unmarried Male &amp; Female &amp; Married Male Pan</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pan.form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain">[('pan_type','=','correction_um_mm_uf')]</field>
+            <field name="context">{'pan_type':'correction_um_mm_uf','work_type':'pan'}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Correction Unmarried Male &amp; Female &amp; Married Male Pan Form
                 </p>
             </field>
         </record>
@@ -429,14 +651,14 @@
             <field eval="1" name="sequence"/>
             <field name="view_mode">tree</field>
             <field name="view_id" ref="pan_form_tree_view"/>
-            <field name="act_window_id" ref="action_correction_pan_form_view"/>
+            <field name="act_window_id" ref="action_correction_um_mm_uf_pan_form_view"/>
         </record>
 
         <record id="action_connect_correction_pan_form_view" model="ir.actions.act_window.view">
             <field eval="2" name="sequence"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="correction_pan_form_view"/>
-            <field name="act_window_id" ref="action_correction_pan_form_view"/>
+            <field name="view_id" ref="correction_um_mm_uf_pan_form_view"/>
+            <field name="act_window_id" ref="action_correction_um_mm_uf_pan_form_view"/>
         </record>
 
         <record id="company_pan_form_view" model="ir.ui.view">
@@ -476,7 +698,9 @@
                             <field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+<!--                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />-->
+                            <field name="revenue_village_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="taluk_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                         </group>
 					</group>
                     <group string="Pan Form 49A Details">
@@ -516,7 +740,7 @@
             <field name="context">{'pan_type':'company','work_type':'pan'}</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Create a Correction Pan Form
+                    Create a Company Pan Form
                 </p>
             </field>
         </record>
@@ -572,7 +796,9 @@
                             <field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+<!--                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />-->
+                            <field name="revenue_village_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="taluk_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                         </group>
 					</group>
                     <group string="Pan Form 49A Details">
@@ -655,7 +881,9 @@
                             <field name="write_uid" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="create_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
                             <field name="write_date" attrs="{'invisible': [('state', '=', 'draft')]}" groups="multimedia.media_forms_employee,multimedia.media_forms_management"/>
-                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+<!--                            <field name="address" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />-->
+                            <field name="revenue_village_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
+                            <field name="taluk_id" attrs="{'readonly': [('state', '=', 'done')],'required': [('state', '=', 'processing')]}" />
                         </group>
 					</group>
                     <group string="Pan Form 49A Details">
@@ -752,17 +980,21 @@
             <field name="act_window_id" ref="action_dashboard_view"/>
         </record>
 
+<!--        <menuitem id="pan_form_menu" name="Pan" sequence="0" action="action_pan_form_view" parent="forms_sub_menu"/>-->
+
         <menuitem id="forms_main_menu" name="Online" sequence="1"/>
 
         <menuitem id="dashboard_sub_menu" name="Dashboard" sequence="1" parent="forms_main_menu"/>
         <menuitem id="dashboard_certificate_menu" name="Dashboard" sequence="1" action="action_dashboard_view" parent="dashboard_sub_menu"/>
-
         <menuitem id="forms_sub_menu" name="Pan Card" sequence="2" parent="forms_main_menu"/>
-<!--        <menuitem id="pan_form_menu" name="Pan" sequence="0" action="action_pan_form_view" parent="forms_sub_menu"/>-->
-        <menuitem id="major_pan_form_menu" name="Major Pan" sequence="1" action="action_major_pan_form_view" parent="forms_sub_menu"/>
+        <menuitem id="major_pan_form_menu" name="Major Pan" sequence="1" parent="forms_sub_menu"/>
+        <menuitem id="major_uf_pan_form_menu" name="Major Unmarried Female Pan" sequence="1" action="action_major_uf_pan_form_view" parent="major_pan_form_menu"/>
+        <menuitem id="major_um_mm_uf_pan_form_menu" name="Unmarried Male &amp; Female &amp; Married Male Pan" sequence="2" action="action_major_um_mm_uf_pan_form_view" parent="major_pan_form_menu"/>
         <menuitem id="minor_pan_form_menu" name="Minor Pan" sequence="2" action="action_minor_pan_form_view" parent="forms_sub_menu"/>
         <menuitem id="minor_to_major_pan_form_menu" name="Minor to major Pan" sequence="3" action="action_minor_to_major_pan_form_view" parent="forms_sub_menu"/>
-        <menuitem id="correction_pan_form_menu" name="Correction Pan" sequence="4" action="action_correction_pan_form_view" parent="forms_sub_menu"/>
+        <menuitem id="correction_pan_form_menu" name="Correction Pan" sequence="4" parent="forms_sub_menu"/>
+        <menuitem id="correction_uf_pan_form_menu" name="Unmarried Female Pan" sequence="1" action="action_correction_uf_pan_form_view" parent="correction_pan_form_menu"/>
+        <menuitem id="correction_um_mm_uf_pan_form_menu" name="Unmarried Male &amp; Female &amp; Married Male Pan" sequence="2" action="action_correction_um_mm_uf_pan_form_view" parent="correction_pan_form_menu"/>
         <menuitem id="company_pan_form_menu" name="Company Pan" sequence="5" action="action_company_pan_form_view" parent="forms_sub_menu"/>
         <menuitem id="trust_pan_form_menu" name="Trust Pan" sequence="6" action="action_trust_pan_form_view" parent="forms_sub_menu"/>
         <menuitem id="kazhu_pan_form_menu" name="Kazhu Pan" sequence="7" action="action_kazhu_pan_form_view" parent="forms_sub_menu"/>

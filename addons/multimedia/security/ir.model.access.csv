@@ -40,3 +40,7 @@ access_acknowledgement_slip_employee,access.acknowledgement.slip.employee,model_
 access_acknowledgement_slip_management,access.acknowledgement.slip.management,model_acknowledgement_slip,multimedia.media_forms_management,1,1,1,0
 ,,,,,,,
 access_account_verification_user,access.account.verification.user,model_account_verification,multimedia.media_account_verification_user,1,1,1,1
+,,,,,,,
+access_acknowledgement_slip_user,access.correction.type.user,model_correction_type,multimedia.media_forms_users,1,1,1,0
+access_correction_type_employee,access.correction.type.employee,model_correction_type,multimedia.media_forms_employee,1,1,1,0
+access_correction_type_management,access.correction.type.management,model_correction_type,multimedia.media_forms_management,1,1,1,0
