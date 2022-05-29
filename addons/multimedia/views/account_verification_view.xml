@@ -21,7 +21,7 @@
                     <field name="create_date"/>
                     <field name="create_uid"/>
                     <field name="write_uid"/>
-                    <field name="transation_amt" string="Amount"/>
+                    <field name="transation_amt" string="Amount" sum="transation_amt"/>
                     <field name="state"/>
                 </tree>
             </field>
