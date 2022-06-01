@@ -1,121 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <data>
 
-        <template id="report_pan_form_receipt">
-                <t t-call="web.html_container">
-                    <t t-foreach="docs" t-as="o">
-                        <t t-call="web.external_layout">
-                            <link rel="stylesheet" href="/multimedia/static/src/css/style.css"/>
-                            <div class="page">
-                                <t t-foreach="['OFFICE COPY','BUYER COPY']" t-as="p">
-                                <table class="header-table">
-                                    <tr>
-                                        <td style="width:100%;border-bottom: none;">
-                                            <p class="header-company"> </p>
-                                            <p class="header-company">
-                                                <span t-if="o.create_uid.name">
-                                                    <span t-field="o.create_uid.name"/>
-                                                    <br/>
-                                                </span>
-                                            </p>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <table class="invoice-name-table1">
-                                    <tr>
-                                        <td>
-                                            <p class="invoice-name-para">ACKNOWLEDGEMENT RECEIPT</p>
-                                        </td>
-                                        <td>
-                                            <span class="invoice-copy"><t t-esc="p"/></span>
-                                        </td>
-                                    </tr>
-                                </table>
-                                <table class="customer-address" style="height: 130px;">
-                                    <tr>
-                                        <td style="width:15%;border-right:none;border-left:none">
-                                            <span class="company-details-span" t-if="o.name">
-                                                <strong>Ref No</strong>
-                                                <br/>
-                                            </span>
-                                            <span class="company-details-span" t-if="o.party_name">
-                                                <strong>Name</strong>
-                                                <br/>
-                                            </span>
-                                            <span class="company-details-span" t-if="o.father_name">
-                                                <strong>Father Name</strong>
-                                                <br/>
-                                            </span>
-                                            <span class="company-details-span" t-if="o.dob">
-                                                <strong>Date Of Birth</strong>
-                                                <br/>
-                                            </span>
-                                        </td>
-                                        <td style="width:35%;border-left:none">
-                                            <span class="company-details-span2" t-if="o.name"><span>: </span>
-                                                <span t-esc="o.name"/>
-                                                <br/>
-                                            </span>
-                                            <span class="company-details-span2" t-if="o.party_name"><span>: </span>
-                                                <span t-esc="o.party_name"/>
-                                                <br/>
-                                            </span>
-                                            <span class="company-details-span2" t-if="o.father_name"><span>: </span>
-                                                <span t-esc="o.father_name"/>
-                                                <br/>
-                                            </span>
-                                            <span class="company-details-span2" t-if="o.dob"><span>: </span>
-                                                <span t-esc="o.dob.strftime('%d/%m/%Y')"/>
-                                                <br/>
-                                            </span>
-                                        </td>
-                                        <td style="width:12%; border: none;">
-                                            <span class="company-details-span" t-if="o.create_date">
-                                                <strong>Date</strong>
-                                                <br/>
-                                            </span>
-                                            <span class="company-details-span" t-if="o.mail_id">
-                                                <strong>Mail ID</strong>
-                                                <br/>
-                                            </span>
-                                            <span class="company-details-span" t-if="o.mobile_no">
-                                                <strong>Mobile No</strong>
-                                                <br/>
-                                            </span>
-                                        </td>
-                                        <td style="width:38%; border: none;padding:5px;">
-                                            <span class="company-details-span2" t-if="o.create_date"><span>: </span>
-                                                <span t-field="o.create_date" t-options='{"format": "d MMMM, yyyy"}'/>
-                                                <br/>
-                                            </span>
-                                            <span class="company-details-span2" t-if="o.mail_id"><span>: </span>
-                                                <span t-esc="o.mail_id"/>
-                                                <br/>
-                                            </span>
-                                            <span class="company-details-span2" t-if="o.mobile_no"><span>: </span>
-                                                <span t-esc="o.mobile_no"/>
-                                                <br/>
-                                            </span>
-                                        </td>
-                                    </tr>
-                                </table>
-                                    <table class="total_value">
+	<template id="report_pan_form_receipt">
+		<t t-call="web.html_container">
+			<t t-foreach="docs" t-as="o">
+				<t t-call="web.basic_layout">
+					<link rel="stylesheet" href="/multimedia/static/src/css/panreceipt.css"/>
+					<div class="page">
+                        <table class="header-table">
+                            <tr>
+                                <td style="width:100%;">
+                                    <p class="header-company"> Tax Invoice cum Acknowledgement receipt of PAN Application (Form 49A)</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="padding: 5px;">
+                                    <table class="invoice-name-table" style="border-top: 1px solid black;">
                                         <tr>
-                                            <td class="text-center">
-                                            <span>
-                                            &#160;&#160;&#160;
-                                            </span>
+                                            <td style="width:24%;">
+                                                <span class="company-details-span2" t-if="o.name">Acknowledgement No</span>
+                                            </td>
+                                            <td style="width:16%;">
+                                                <span class="company-details-span3"> <span t-field="o.name"/> </span>
+                                            </td>
+                                            <td style="width:40%;">
+                                                <span class="company-details-span2"> <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('Code128', o.name, 400, 33)" alt="Barcode" align="left"/> </span>
+                                            </td>
+                                            <td style="width:20%;">
+                                                <span class="company-details-span3"> Date-<span t-field="o.create_date" t-options='{"format": "d MMMM yyyy"}'/> </span>
                                             </td>
                                         </tr>
+                                    </table>
+                                    <table class="invoice-name-table">
+                                        <tr>
+                                            <td style="width:22%;">
+                                                <span class="company-details-span2">Category</span>
+                                            </td>
+                                            <td style="width:34%;">
+                                                <span class="company-details-span3">INDIVIDUAL</span>
+                                            </td>
+                                            <td style="width:24%;">
+                                                <span class="company-details-span3">GSTIN of Applicant</span>
+                                            </td>
+                                            <td style="width:20%;">
+                                               <span class="company-details-span3">NA</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table class="invoice-name-table1" >
+                                        <tr>
+                                            <td style="width:22%;border-bottom: 1px solid black;">
+                                                <span class="company-details-span2" t-if="o.applicant_name">Applicant's Name</span>
+                                            </td>
+                                            <td style="width:78%;border-bottom: 1px solid black;">
+                                                <span class="company-details-span3" t-if="o.applicant_name"> <span t-field="o.applicant_name"/></span>
+                                            </td>
+                                        </tr>
+                                    </table>
 
-			        	            </table>
-                                </t>
-                            </div>
-                        </t>
-                    </t>
-                </t>
+                                    <table class="invoice-name-table" >
+                                        <tr>
+                                            <td style="width:22%;">
+                                                <span class="company-details-span2">Name on Card</span>
+                                            </td>
+                                            <td style="width:78%;">
+                                                <span class="company-details-span3"> <span t-field="o.name_on_card"/></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table class="invoice-name-table">
+                                        <tr>
+                                            <td style="width:22%;">
+                                                <span class="company-details-span2">Father’s Name</span>
+                                            </td>
+                                            <td style="width:78%;">
+                                                <span class="company-details-span3"> <span t-field="o.father_name"/></span>
+                                            </td>
 
-        </template>
+                                        </tr>
+                                    </table>
+                                    <table class="invoice-name-table">
+                                        <tr>
+                                            <td style="width:22%;">
+                                                <span class="company-details-span2">Mother’s Name</span>
+                                            </td>
+                                            <td style="width:78%;">
+                                                <span class="company-details-span3"> <span t-field="o.mother_name"/></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table class="invoice-name-table">
+                                        <tr>
+                                            <td style="width:22%;">
+                                                <span class="company-details-span2" >Date of Birth/</span>
+                                            </td>
+                                            <td style="width:28%;">
+                                                <span class="company-details-span3" > <span t-field="o.dob"/></span>
+                                            </td>
+                                            <td style="width:25%;">
+                                                <span class="company-details-span3" >Communication Address State</span>
+                                            </td>
+                                            <td style="width:25%;">
+                                               <span class="company-details-span3" >TAMILNADU (33)</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table class="invoice-name-table">
+                                        <tr>
+                                            <td style="width:22%;">
+                                                <span class="company-details-span2" >Telephone/ Mobile</span>
+                                            </td>
+                                            <td style="width:28%;">
+                                                <span class="company-details-span3" > <span t-field="o.mobile_no"/></span>
+                                            </td>
+                                            <td style="width:10%;">
+                                                <span class="company-details-span2">E-mail ID</span>
+                                            </td>
+                                            <td style="width:45%;">
+                                               <span class="company-details-span3"> <span t-field="o.create_uid.mail_id"/></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table class="invoice-name-table">
+                                        <tr>
+                                            <td style="width:22%;">
+                                                <span class="company-details-span2" >Proof of Identity</span>
+                                            </td>
+                                            <td style="width:78%;">
+                                                <span class="company-details-span3">AADHAAR Card issued by the Unique Identification Authority of India</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table class="invoice-name-table">
+                                        <tr>
+                                            <td style="width:22%;">
+                                                <span class="company-details-span2" >Proof of Address</span>
+                                            </td>
+                                            <td style="width:78%;">
+                                                <span class="company-details-span3">AADHAAR Card issued by the Unique Identification Authority of India</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table class="invoice-name-table">
+                                        <tr>
+                                            <td style="width:22%;">
+                                                <span class="company-details-span2" >Proof of DOB</span>
+                                            </td>
+                                            <td style="width:78%;">
+                                                <span class="company-details-span3">AADHAAR Card issued by the Unique Identification Authority of India</span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <table class="invoice-name-table">
+                                        <tr>
+                                            <td rowspan="6" style="width:60%;line-height: 22px;vertical-align:top;">
+                                                <span class="company-details-span3" t-if="o.create_uid.address"> <span t-field="o.create_uid.address"/></span>
+                                            </td>
+                                            <td style="width:20%;">
+                                                <span class="company-details-span3">PAN application fee</span>
+                                            </td>
+                                            <td style="width:20%;text-align:right;">
+                                                <span class="company-details-span3-right" t-if="o.pan_amount"> <span t-field="o.pan_amount" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'precision': 2}"/></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:20%;">
+                                                <span class="company-details-span3">SGST 9%</span>
+                                            </td>
+                                            <td style="width:20%;text-align:right;">
+                                                <span class="company-details-span3-right"> <span t-field="o.sgst" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'precision': 2}"/></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:20%;">
+                                                <span class="company-details-span3">CGST 9%</span>
+                                            </td>
+                                            <td style="width:20%;text-align:right;">
+                                                <span class="company-details-span3-right" ><span t-field="o.cgst" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'precision': 2}"/></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:20%;">
+                                                <span class="company-details-span3">IGST 18%</span>
+                                            </td>
+                                            <td style="width:20%;text-align:right;">
+                                                <span class="company-details-span3-right" t-if="o.igst"><span t-field="o.igst" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'precision': 2}"/></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:20%;">
+                                                <span class="company-details-span3">Service Charge</span>
+                                            </td>
+                                            <td style="width:20%;text-align:right;">
+                                                <span class="company-details-span3-right" t-if="o.service_charge"> <span t-field="o.service_charge" t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'precision': 2}"/></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td style="width:20%;">
+                                                <span class="company-details-span3">Total(Rounded Off)</span>
+                                            </td>
+                                            <td style="width:20%;text-align:right;">
+                                                <span class="company-details-span3-right-bold" t-if="o.total_round_off"> <span t-field="o.total_round_off"  t-options="{'widget': 'monetary', 'display_currency': o.currency_id, 'precision': 2}"/></span>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width:100%;line-height: 45px;" align="center">
+                                    <span class="company-details-span3" >This is a computer generated receipt and does not require signature.</span>
+                                </td>
+                            </tr>
+                        </table>
 
-    </data>
+					</div>
+				</t>
+			</t>
+		</t>
+    </template>
 </odoo>
+
+

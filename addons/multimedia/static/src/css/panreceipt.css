@@ -1,0 +1,88 @@
+.header-table{
+    border-collapse: collapse;
+    font-family: "Liberation Sans";
+    width:100%;
+    border: 1px solid black;
+}
+
+.header-company{
+    font-size: 1.6rem;
+    text-align:center;
+    font-weight: bold;
+    font-size: 18px;
+    font-family: "Liberation Sans";
+    margin-top: 3px;
+    line-height: 25px;
+}
+
+.invoice-name-table {
+    width:100%;
+}
+.invoice-name-table td {
+    text-align:left;
+    vertical-align:middle;
+    font-size:13px;
+    border-collapse: collapse;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-bottom: 1px solid black;
+    line-height: 28px;
+    font-family: "Liberation Sans";
+}
+.invoice-name-table1 {
+    width:100%;
+}
+.invoice-name-table1 td {
+    text-align:left;
+    vertical-align:middle;
+    border-collapse: collapse;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    line-height: 28px;
+    font-family: "Liberation Sans";
+}
+.company-details-span{
+    margin-left: 5PX;
+    line-height: 45px;
+    font-size:13px;
+    text-align:left;
+    font-family: "Liberation Sans";
+    font-weight: bold;
+    vertical-align:middle;
+}
+.company-details-span1{
+    margin-left: 5PX;
+    font-size:13px;
+    text-align:left;
+    font-family: "Liberation Sans";
+    font-weight: normal;
+    vertical-align:middle;
+}
+.company-details-span2{
+    margin-left: 5PX;
+    font-size:13px;
+    font-weight: bold;
+}
+.company-details-span3{
+    margin-left: 5PX;
+    font-size:12px;
+    font-weight: normal;
+}
+.company-details-span3-right{
+    margin-right: 7PX;
+    font-size:13px;
+    font-weight: normal;
+}
+.company-details-span3-right-bold{
+    margin-right: 7PX;
+    font-size:15px;
+    font-weight: bold;
+}
+.company-details-address{
+    margin-left: 5PX;
+    font-size:12px;
+    font-weight: normal;
+    line-height: 2px;
+}
+
+

@@ -263,6 +263,7 @@ class ResUsers(models.Model):
     mobile_no = fields.Char(string='Mobile No', required=True)
     district_id = fields.Many2one('district.master', string='District')
     village_id = fields.Many2one('village.master', string='Village')
+    address = fields.Text(string='Address')
     user_type = fields.Selection(string='User type', selection=[('shop', 'shop'), ('employee', 'employee'), ('management', 'management')], required=True)
 
 class DistrictMaster(models.Model):
@@ -295,24 +296,53 @@ class AcknowledgementSlip(models.Model):
     _description = "Acknowledgement Slip"
     _order = 'id desc'
 
+    def _get_default_currency_id(self):
+        return self.env.company.currency_id.id
+
     name = fields.Char(string='Sequence No', size=18, readonly=True, default=lambda self: _('New'))
-    party_name = fields.Char(string='Name')
+    applicant_name = fields.Char(string='Applicant Name')
+    name_on_card = fields.Char(string='Name on Card')
+    applicant_gstin = fields.Char(string='GSTIN of Applicant')
     father_name = fields.Char(string='Father Name')
-    mobile_no = fields.Char(string='Mobile No')
+    mother_name = fields.Char(string='Mother Name')
+    mobile_no = fields.Char(string='Telephone/Mobile')
     address = fields.Text(string='Address')
     mail_id = fields.Char(string='Mail ID')
-    dob = fields.Date(string='DOB')
+    dob = fields.Date(string='Date of Birth')
+    pan_amount = fields.Float(string='PAN application fee', default=91)
+    sgst = fields.Float(string='SGST')
+    cgst = fields.Float(string='CGST')
+    igst = fields.Float(string='IGST')
+    service_charge = fields.Float(string='Service Charge')
+    total_round_off = fields.Float(string='Total(Rounded Off)')
     create_date = fields.Datetime(string='Created Date', readonly=True)
     write_date = fields.Datetime(string='Last Updated Date', readonly=True)
     write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
     create_uid = fields.Many2one('res.users', string='Created by', readonly=True)
     state = fields.Selection([('draft', 'Draft'), ('done', 'Done')], string='Status', readonly=True, default='draft')
+    currency_id = fields.Many2one("res.currency", string='Currency', readonly=True, default=_get_default_currency_id)
 
     @api.model
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code('acknowledgement.slip') or _('New')
         return super(AcknowledgementSlip, self).create(vals)
+
+    def action_reset(self):
+        self.write({'state':'draft'})
+
+    def action_confirm(self):
+        igst = total_round_off = 0
+        igst = self.pan_amount * 0.18
+        total_round_off = igst + self.service_charge + self.pan_amount
+        total_round_off = round(total_round_off)
+        self.write({'state':'done','igst':igst,'total_round_off':total_round_off})
+
+    def bill_print(self):
+        if self.state == 'done':
+            return self.env.ref('multimedia.report_pan_receipt').report_action(self)
+        else:
+            raise UserError(_('Please confirm before take print'))
 
 
 class CorrectionType(models.Model):
