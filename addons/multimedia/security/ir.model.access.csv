@@ -50,3 +50,14 @@ access_site_access_management,access.site.access.managment,model_site_access_url
 ,,,,,,,
 access_site_category_user,access.site.category.user,model_site_category,multimedia.media_site_users,1,0,0,0
 access_site_category_management,access.site.category.managment,model_site_category,multimedia.media_site_management,1,1,1,1
+,,,,,,,
+access_media_farmer_insurance_manager,access.media.farmer.insurance.manager,model_farmer_insurance,multimedia.multimedia_insurance_access,1,1,1,1
+access_media_crop_data_line_manager,access.media.crop.data.line.manager,model_crop_data_line,multimedia.multimedia_insurance_access,1,1,1,1
+access_media_state_master,access.media.state.master,model_state_master,multimedia.multimedia_insurance_access,1,1,1,0
+access_media_district_master,access.media.district.master,model_district_master,multimedia.multimedia_insurance_access,1,1,1,0
+access_media_subdistrict_master,access.media.subdistrict.master,model_subdistrict_master,multimedia.multimedia_insurance_access,1,1,1,0
+access_media_block_master,access.media.block.master,model_block_master,multimedia.multimedia_insurance_access,1,1,1,0
+access_media_firka_master,access.media.firka.master,model_firka_master,multimedia.multimedia_insurance_access,1,1,1,0
+access_media_taluk_master,access.media.taluk.master,model_taluk_master,multimedia.multimedia_insurance_access,1,1,1,0
+access_media_village_master,access.media.village.master,model_village_master,multimedia.multimedia_insurance_access,1,1,1,0
+access_media_import_master,access.media.import.master,model_import_master,multimedia.multimedia_insurance_access,1,1,1,0

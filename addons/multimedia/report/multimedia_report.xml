@@ -27,5 +27,15 @@
                 report_type="qweb-pdf"
                 name="multimedia.report_pan_form_receipt"
                 file="multimedia.report_pan_form_receipt"/>
+                
+		<report 
+            id="action_report_insurance"
+            string="Insurance Print"
+            model="farmer.insurance" 
+            report_type="qweb-html"
+            file="multimedia.farmer_insurance_report_multimedia" 
+            name="multimedia.farmer_insurance_report_multimedia"
+            print_report_name="'%s' % (object.name)"
+        />
     </data>
 </odoo>

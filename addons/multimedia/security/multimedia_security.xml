@@ -56,6 +56,11 @@
       <field name="name">Site Access User</field>
       <field name="category_id" ref="multimedia.multimedia_management"/>
     </record>
+    
+    <record id="multimedia_insurance_access" model="res.groups">
+      <field name="name">Farmer Insurance</field>
+      <field name="category_id" ref="multimedia.multimedia_management"/>
+    </record>
 
     <record model="res.groups" id="group_hidden">
         <field name="name">Hidden</field>
