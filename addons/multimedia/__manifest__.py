@@ -17,6 +17,7 @@
         'views/pan_view.xml',
         'views/account_verification_view.xml',
         'views/website_templates.xml',
+        'views/site_access_view.xml',
         'report/multimedia_report.xml',    
         'report/multimedia_ebbill_report.xml',    
         'report/account_verification_report.xml',

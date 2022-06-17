@@ -46,6 +46,16 @@
       <field name="name">Forms Management</field>
       <field name="category_id" ref="multimedia.multimedia_management"/>
     </record>
+    
+    <record id="media_site_management" model="res.groups">
+      <field name="name">Site Access Management</field>
+      <field name="category_id" ref="multimedia.multimedia_management"/>
+    </record>
+    
+    <record id="media_site_users" model="res.groups">
+      <field name="name">Site Access User</field>
+      <field name="category_id" ref="multimedia.multimedia_management"/>
+    </record>
 
     <record model="res.groups" id="group_hidden">
         <field name="name">Hidden</field>

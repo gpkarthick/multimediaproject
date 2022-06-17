@@ -44,3 +44,9 @@ access_account_verification_user,access.account.verification.user,model_account_
 access_acknowledgement_slip_user,access.correction.type.user,model_correction_type,multimedia.media_forms_users,1,1,1,0
 access_correction_type_employee,access.correction.type.employee,model_correction_type,multimedia.media_forms_employee,1,1,1,0
 access_correction_type_management,access.correction.type.management,model_correction_type,multimedia.media_forms_management,1,1,1,0
+,,,,,,,
+access_site_access_user,access.site.access.user,model_site_access_url,multimedia.media_site_users,1,0,0,0
+access_site_access_management,access.site.access.managment,model_site_access_url,multimedia.media_site_management,1,1,1,1
+,,,,,,,
+access_site_category_user,access.site.category.user,model_site_category,multimedia.media_site_users,1,0,0,0
+access_site_category_management,access.site.category.managment,model_site_category,multimedia.media_site_management,1,1,1,1
