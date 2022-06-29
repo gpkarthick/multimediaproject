@@ -45,10 +45,8 @@
                     <templates>
                         <t t-name="kanban-box">
                             <div class="oe_kanban_global_click o_kanban_record_has_image_fill">
-                                <div class="o_kanban_image d-none d-md-block"
-                                    t-attf-style="background-image:url('#{kanban_image('site.access.url', 'site_image', record.id.raw_value, placeholder)})">
-
-<!--                                    <img t-att-src="kanban_image('site.access.url', 'site_image', record.id.raw_value)" class="oe_kanban_image"/>-->
+                                <div class="o_kanban_image">
+                                    <img alt="Avatar"  t-att-src="kanban_image('site.access.url', 'site_image', record.id.raw_value)" class="oe_kanban_image"/>
                                 </div>
                                 <div class="oe_kanban_details d-flex flex-column">
                                     <strong>
@@ -178,6 +176,131 @@
         <menuitem id="sites_config_menu" name="Configuration" sequence="20" parent="sites_main_menu" groups="multimedia.media_forms_management"/>
         <menuitem id="site_access_url_config_menu" name="Site Configuration" sequence="1" action="action_site_access_url_config_view" parent="sites_config_menu" groups="multimedia.media_forms_management"/>
         <menuitem id="site_category_menu" name="Site Category" sequence="2" action="action_site_category_view" parent="sites_config_menu" groups="multimedia.media_forms_management"/>
+
+
+        <record id="banner_image_tree_view" model="ir.ui.view">
+            <field name="name">banner.image.tree</field>
+            <field name="model">banner.image</field>
+            <field name="arch" type="xml">
+                <tree string="Banner Image">
+                    <field name="name"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="banner_image_form_view" model="ir.ui.view">
+            <field name="name">banner.image.form</field>
+            <field name="model">banner.image</field>
+            <field name="arch" type="xml">
+                <form string="Banner Image">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="site_category_id"/>
+                            </group>
+                            <group>
+                                <field name="site_image"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="banner_image_kanban_view" model="ir.ui.view">
+            <field name="name">banner.image.kanban.view</field>
+            <field name="model">banner.image</field>
+            <field name="arch" type="xml">
+                <kanban>
+                    <field name="id"/>
+                    <field name="name"/>
+                    <field name="site_category_id"/>
+                    <field name="site_image"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div t-attf-class="oe_kanban_global_click">
+                                <div class="oe_kanban_details" style="text-align: center;font-size: 15px;">
+                                    <t class="o_kanban_record_title" >
+                                        <strong t-esc="record.name.value"/>
+                                    </t>
+                                </div>
+                                <div class="o_kanban_image" style="width: 300px;">
+                                    <img alt="Avatar" t-att-src="kanban_image('banner.image', 'site_image',record.id.raw_value)"/>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="banner_image_filter_view" model="ir.ui.view">
+            <field name="name">Banner Search</field>
+            <field name="model">banner.image</field>
+            <field name="arch" type="xml">
+                <search string="Search">
+                    <field name="name" string="Party Name" filter_domain="[('name','ilike',self)]"/>
+                    <field name="site_category_id" string="Category" filter_domain="[('site_category_id', 'child_ofk', self)]"/>
+                    <group expand="1" string="Group By...">
+                        <filter string="Category" name="group_site_category_id" icon="terp-personal" domain="[]"
+                                context="{'group_by':'site_category_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_banner_image_view" model="ir.actions.act_window">
+            <field name="name">Banner</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">banner.image</field>
+            <field name="view_mode">kanban</field>
+            <field name="search_view_id" ref="banner_image_filter_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Banner Image
+                </p>
+            </field>
+        </record>
+
+        <record id="action_banner_config_view" model="ir.actions.act_window">
+            <field name="name">Banner configuration</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">banner.image</field>
+            <field name="view_mode">kanban,form</field>
+            <field name="search_view_id" ref="banner_image_filter_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Banner Config
+                </p>
+            </field>
+        </record>
+
+        <record id="action_banner_kanban_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="banner_image_kanban_view"/>
+            <field name="act_window_id" ref="action_banner_image_view"/>
+        </record>
+
+        <record id="action_banner_config_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="banner_image_form_view"/>
+            <field name="act_window_id" ref="action_banner_config_view"/>
+        </record>
+
+        <record id="action_banner_config_kanban_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="banner_image_kanban_view"/>
+            <field name="act_window_id" ref="action_banner_config_view"/>
+        </record>
+
+        <menuitem id="banner_sub_menu" name="Banner" sequence="11" parent="sites_main_menu"/>
+        <menuitem id="banner_menu" name="Banner" sequence="1" action="action_banner_image_view" parent="banner_sub_menu"/>
+
+        <menuitem id="banner_config_menu" name="Banner Configuration" sequence="1" action="action_banner_config_view" parent="sites_config_menu" groups="multimedia.media_forms_management"/>
 
     </data>
 </odoo>

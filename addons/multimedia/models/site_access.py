@@ -27,3 +27,11 @@ class SiteCategory(models.Model):
 
     name = fields.Char('Name', required=True)
 
+class BannerImages(models.Model):
+    _name = 'banner.image'
+    _description = 'Banner Images'
+    _order = "name asc"
+
+    name = fields.Char('Name', required=True)
+    site_image = fields.Image('Image', attachment=True)
+    site_category_id = fields.Many2one('site.category', help='Site Category', string="Site Category", required=True)

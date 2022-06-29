@@ -48,6 +48,9 @@ access_correction_type_management,access.correction.type.management,model_correc
 access_site_access_user,access.site.access.user,model_site_access_url,multimedia.media_site_users,1,0,0,0
 access_site_access_management,access.site.access.managment,model_site_access_url,multimedia.media_site_management,1,1,1,1
 ,,,,,,,
+banner_access_user,banner.access.user,model_banner_image,multimedia.media_site_users,1,0,0,0
+banner_access_management,banner.access.managment,model_banner_image,multimedia.media_site_management,1,1,1,1
+,,,,,,,
 access_site_category_user,access.site.category.user,model_site_category,multimedia.media_site_users,1,0,0,0
 access_site_category_management,access.site.category.managment,model_site_category,multimedia.media_site_management,1,1,1,1
 ,,,,,,,
