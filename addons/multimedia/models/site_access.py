@@ -16,7 +16,7 @@ class SiteAccessURL(models.Model):
         return {
             'name': _("Visit Webpage"),
             'type': 'ir.actions.act_url',
-            'url': '%s+' % (self.site_url),
+            'url': '%s' % (self.site_url),
             'target': 'new',
         }
 
