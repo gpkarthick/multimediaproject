@@ -26,6 +26,19 @@ class SiteCategory(models.Model):
     _order = "name asc"
 
     name = fields.Char('Name', required=True)
+    parent_categ_id = fields.Many2one('site.category', help='Parent Category', string="Parent Category")
+
+    @api.depends('name', 'parent_categ_id')
+    def name_get(self):
+        result = []
+        name = ''
+        for categ in self:
+            if categ.name:
+                name = '%s' % categ.name
+            if categ.parent_categ_id:
+                name = name + ' / %s' % categ.parent_categ_id.name
+            result.append((categ.id, name))
+        return result
 
 class BannerImages(models.Model):
     _name = 'banner.image'
