@@ -10,7 +10,7 @@ class SiteAccessURL(models.Model):
     name = fields.Char('Name', required=True)
     site_url = fields.Char('URL', required=True)
     site_image = fields.Image('Image', attachment=True)
-    site_category_id = fields.Many2one('site.category', help='Category', string="Site Category", required=True)
+    site_category_id = fields.Many2one('site.category', help='Category', string="Category", required=True)
     site_sub_category_id = fields.Many2one('site.sub.category', help='Sub Category', string="Sub Category", required=True)
 
     def action_redirect_url(self):
