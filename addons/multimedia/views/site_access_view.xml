@@ -21,6 +21,7 @@
                         <group>
                             <group>
                                 <field name="name"/>
+                                <field name="site_sub_category_id"/>
                                 <field name="site_category_id"/>
                                 <field name="site_url"/>
                             </group>
@@ -53,6 +54,7 @@
                                         <field name="name"/>
                                     </strong>
                                     <ul>
+                                        <li><field name="site_sub_category_id"/></li>
                                         <li><field name="site_category_id"/></li>
                                     </ul>
                                     <div class="o_kanban_button">
@@ -86,6 +88,7 @@
                                         <field name="name"/>
                                     </strong>
                                     <ul>
+                                        <li><field name="site_sub_category_id"/></li>
                                         <li><field name="site_category_id"/></li>
                                     </ul>
                                     <div class="o_kanban_button">
@@ -167,7 +170,6 @@
             <field name="arch" type="xml">
                 <tree string="Site Category">
                     <field name="name"/>
-                    <field name="parent_categ_id"/>
                 </tree>
             </field>
         </record>
@@ -183,7 +185,7 @@
                                 <field name="name"/>
                             </group>
                             <group>
-                                <field name="parent_categ_id"/>
+
                             </group>
                         </group>
                     </sheet>
@@ -203,14 +205,51 @@
             </field>
         </record>
 
-        <menuitem id="sites_main_menu" name="Sites" sequence="1"/>
+        <record id="site_sub_category_tree_view" model="ir.ui.view">
+            <field name="name">site.sub.category.tree</field>
+            <field name="model">site.sub.category</field>
+            <field name="arch" type="xml">
+                <tree string="Sub Category">
+                    <field name="name"/>
+                    <field name="parent_categ_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="site_category_form_view" model="ir.ui.view">
+            <field name="name">site.sub.category.form</field>
+            <field name="model">site.sub.category</field>
+            <field name="arch" type="xml">
+                <form string="Sub Category">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <field name="parent_categ_id"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_site_sub_category_view" model="ir.actions.act_window">
+            <field name="name">Site Sub Category</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">site.sub.category</field>
+            <field name="view_mode">tree,form</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Sub category
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="sites_main_menu" name="Sites" sequence="2"/>
         <menuitem id="sites_sub_menu" name="Site Access" sequence="10" parent="sites_main_menu"/>
         <menuitem id="site_access_url_menu" name="Site Access" sequence="1" action="action_site_access_url_view" parent="sites_sub_menu"/>
-
-        <menuitem id="sites_config_menu" name="Configuration" sequence="20" parent="sites_main_menu" groups="multimedia.media_forms_management"/>
-        <menuitem id="site_access_url_config_menu" name="Site Configuration" sequence="1" action="action_site_access_url_config_view" parent="sites_config_menu" groups="multimedia.media_forms_management"/>
-        <menuitem id="site_category_menu" name="Site Category" sequence="2" action="action_site_category_view" parent="sites_config_menu" groups="multimedia.media_forms_management"/>
-
 
         <record id="banner_image_tree_view" model="ir.ui.view">
             <field name="name">banner.image.tree</field>
@@ -231,6 +270,7 @@
                         <group>
                             <group>
                                 <field name="name"/>
+                                <field name="site_sub_category_id"/>
                                 <field name="site_category_id"/>
                             </group>
                             <group>
@@ -250,6 +290,7 @@
                     <field name="id"/>
                     <field name="name"/>
                     <field name="site_category_id"/>
+                    <field name="site_sub_category_id"/>
                     <field name="site_image"/>
                     <templates>
                         <t t-name="kanban-box">
@@ -261,7 +302,7 @@
                                 </div>
                                 <div class="oe_kanban_details" style="text-align: center;font-size: 10px;">
                                     <t class="o_kanban_record_title" >
-                                        <strong t-esc="record.site_category_id.value"/>
+                                        <strong t-esc="record.site_sub_category_id.value"/> / <strong t-esc="record.site_category_id.value"/>
                                     </t>
                                 </div>
                                 <div class="o_kanban_image" style="width: 300px;">
@@ -282,6 +323,7 @@
                     <field name="id"/>
                     <field name="name"/>
                     <field name="site_category_id"/>
+                    <field name="site_sub_category_id"/>
                     <field name="site_image"/>
                     <templates>
                         <t t-name="kanban-box">
@@ -293,9 +335,10 @@
                                 </div>
                                 <div class="oe_kanban_details" style="text-align: center;font-size: 10px;">
                                     <t class="o_kanban_record_title" >
-                                        <strong t-esc="record.site_category_id.value"/>
+                                        <strong t-esc="record.site_sub_category_id.value"/> / <strong t-esc="record.site_category_id.value"/>
                                     </t>
                                 </div>
+
                                 <div class="o_kanban_image" style="width: 300px;">
                                     <img alt="Avatar" t-att-src="kanban_image('banner.image', 'site_image',record.id.raw_value)"/>
                                 </div>
@@ -312,10 +355,13 @@
             <field name="arch" type="xml">
                 <search string="Search">
                     <field name="name" string="Party Name" filter_domain="[('name','ilike',self)]"/>
-                    <field name="site_category_id" string="Category" filter_domain="[('site_category_id', 'child_ofk', self)]"/>
+                    <field name="site_category_id" string="Category" filter_domain="[('site_category_id', 'child_of', self)]"/>
+                    <field name="site_sub_category_id" string="Sub Category" filter_domain="[('site_sub_category_id', 'child_of', self)]"/>
                     <group expand="1" string="Group By...">
                         <filter string="Category" name="group_site_category_id" icon="terp-personal" domain="[]"
                                 context="{'group_by':'site_category_id'}"/>
+                        <filter string="Sub Category" name="group_site_sub_category_id" icon="terp-personal" domain="[]"
+                                context="{'group_by':'site_sub_category_id'}"/>
                     </group>
                 </search>
             </field>
@@ -347,8 +393,6 @@
             </field>
         </record>
 
-
-
         <record id="action_banner_kanban_view" model="ir.actions.act_window.view">
             <field eval="1" name="sequence"/>
             <field name="view_mode">kanban</field>
@@ -371,9 +415,194 @@
         </record>
 
         <menuitem id="banner_sub_menu" name="Banner" sequence="11" parent="sites_main_menu"/>
-        <menuitem id="banner_menu" name="Banner" sequence="1" action="action_banner_image_view" parent="banner_sub_menu"/>
+        <menuitem id="banner_menu" name="Banner" sequence="4" action="action_banner_image_view" parent="banner_sub_menu"/>
 
-        <menuitem id="banner_config_menu" name="Banner Configuration" sequence="1" action="action_banner_config_view" parent="sites_config_menu" groups="multimedia.media_forms_management"/>
+        <!-- ir Attachment -->
+
+        <record id="view_attachment_form_image_tree" model="ir.ui.view">
+            <field name="model">ir.attachment</field>
+            <field name="arch" type="xml">
+                <tree string="Attachments">
+                    <field name="name"/>
+                    <field name="create_uid"/>
+                    <field name="create_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_attachment_form_image" model="ir.ui.view">
+            <field name="model">ir.attachment</field>
+            <field name="arch" type="xml">
+                <form string="Attachments">
+                   <sheet>
+                    <h1>
+                        <field name="form_name"/>
+                    </h1>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="type"/>
+                            <field name="site_sub_category_id"/>
+                            <field name="site_category_id"/>
+                            <field name="datas" filename="name" attrs="{'invisible':[('type','=','url')]}"/>
+                            <field name="url" widget="url" attrs="{'invisible':[('type','=','binary')]}"/>
+                        </group>
+                        <group string="History" attrs="{'invisible':[('create_date','=',False)]}">
+                            <label for="create_uid" string="Creation"/>
+                            <div name="creation_div">
+                                <field name="create_uid" readonly="1" class="oe_inline"/> on
+                                <field name="create_date" readonly="1" class="oe_inline"/>
+                            </div>
+                        </group>
+                        <group name="description_group" string="Description" colspan="4">
+                            <field name="description" nolabel="1"/>
+                        </group>
+                    </group>
+                  </sheet>
+                </form>
+            </field>
+        </record>
+
+
+        <record model="ir.ui.view" id="view_attachment_document_form_image_kanban">
+            <field name="name">ir.attachment kanban</field>
+            <field name="model">ir.attachment</field>
+            <field name="arch" type="xml">
+                <kanban edit="false" import="false">
+                    <field name="id"/>
+                    <field name="mimetype"/>
+                    <field name="type"/>
+                    <field name="create_uid"/>
+                    <field name="url"/>
+                    <field name="type"/>
+                    <field name="create_date"/>
+                    <field name="name"/>
+                    <field name="form_name"/>
+                    <field name="datas"/>
+                    <templates>
+                        <t t-name="kanban-box">
+                            <div class="oe_kanban_global_area oe_kanban_global_click o_kanban_attachment">
+<!--                                <div class="row">-->
+<!--                                    <div class="offset-10">-->
+<!--                                        <div class="o_dropdown_kanban dropdown" groups="base.group_user">-->
+<!--                                            <a role="button" class="dropdown-toggle o-no-caret btn" data-toggle="dropdown" href="#" aria-label="Dropdown menu" title="Dropdown menu">-->
+<!--                                                <span class="fa fa-ellipsis-v"/>-->
+<!--                                            </a>-->
+<!--                                            <div class="dropdown-menu" role="menu">-->
+<!--                                                <a t-if="widget.deletable" role="menuitem" type="delete" class="dropdown-item">Delete</a>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+                                <div class="o_kanban_image">
+                                    <div class="o_kanban_image_wrapper">
+                                        <t t-set="webimage" t-value="new RegExp('image.*(gif|jpeg|jpg|png)').test(record.mimetype.value)"/>
+                                        <div t-if="record.type.raw_value == 'url'" class="o_url_image fa fa-link fa-3x text-muted"/>
+                                        <img t-elif="webimage" t-attf-src="/web/image/#{record.id.raw_value}" width="100" height="100" alt="Document" class="o_attachment_image"/>
+                                        <div t-else="!webimage" class="o_image o_image_thumbnail" t-att-data-mimetype="record.mimetype.value"/>
+                                    </div>
+                                </div>
+                                <div class="o_kanban_details">
+                                    <div class="o_kanban_details_wrapper">
+                                        <div t-att-title="record.name.raw_value" class="o_kanban_record_title">
+                                            <field name="name" class="o_text_overflow"/>
+                                        </div>
+                                        <div t-att-title="record.form_name.raw_value" class="o_kanban_record_title">
+                                            <field name="form_name" class="o_text_overflow"/>
+                                        </div>
+                                        <div class="o_kanban_record_body">
+                                            <t t-if="record.type.raw_value == 'url'">
+                                                <span class="o_document_url"><i class="fa fa-globe"/> <field name="url" widget="url"/></span>
+                                            </t>
+
+                                                <li><field name="site_sub_category_id"/></li>
+                                                <li><field name="site_category_id"/></li>
+
+
+<!--                                            <samp t-else="" class="text-muted"> </samp>-->
+                                            <button name="action_download" type="object" class="btn btn-primary pull-right btn-sm" style="height: 22px;width: 55px;text-align: center;padding: 2px 2px;">Download</button>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </t>
+                    </templates>
+                </kanban>
+            </field>
+        </record>
+
+        <record id="action_attachment_form_image_view" model="ir.actions.act_window">
+            <field name="name">Form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ir.attachment</field>
+            <field name="view_id" eval="False"/>
+            <field name="view_mode">kanban</field>
+            <field name="domain">[('form_image_attachment', '=', True)]</field>
+            <field name="context">{'form_image_attachment':True}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new document
+                </p>
+            </field>
+        </record>
+
+        <record id="action_form_image_kanban_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="view_attachment_document_form_image_kanban"/>
+            <field name="act_window_id" ref="action_attachment_form_image_view"/>
+        </record>
+
+<!--        <record id="action_form_image_form_view" model="ir.actions.act_window.view">-->
+<!--            <field eval="2" name="sequence"/>-->
+<!--            <field name="view_mode">form</field>-->
+<!--            <field name="view_id" ref="view_attachment_form_image"/>-->
+<!--            <field name="act_window_id" ref="action_form_image_view"/>-->
+<!--        </record>-->
+
+
+        <record id="action_att_form_image_config_view" model="ir.actions.act_window">
+            <field name="name">Form config</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">ir.attachment</field>
+            <field name="view_id" eval="False"/>
+            <field name="view_mode">kanban,form</field>
+            <field name="domain">[('form_image_attachment', '=', True)]</field>
+            <field name="context">{'form_image_attachment':True}</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new document
+                </p>
+            </field>
+        </record>
+
+        <record id="action_att_form_image_kanban_config_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">kanban</field>
+            <field name="view_id" ref="view_attachment_document_form_image_kanban"/>
+            <field name="act_window_id" ref="action_att_form_image_config_view"/>
+        </record>
+
+        <record id="action_form_image_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="view_attachment_form_image"/>
+            <field name="act_window_id" ref="action_att_form_image_config_view"/>
+        </record>
+
+        <menuitem id="form_sub_menu" name="Form" sequence="15" parent="sites_main_menu"/>
+        <menuitem id="form_menu" name="Form" sequence="1" action="action_attachment_form_image_view" parent="form_sub_menu"/>
+
+        <menuitem id="sites_config_menu" name="Configuration" sequence="20" parent="sites_main_menu" groups="multimedia.media_forms_management"/>
+        <menuitem id="site_access_url_config_menu" name="Site Configuration" sequence="1" action="action_site_access_url_config_view" parent="sites_config_menu" groups="multimedia.media_forms_management"/>
+        <menuitem id="banner_config_menu" name="Banner Configuration" sequence="2" action="action_banner_config_view" parent="sites_config_menu" groups="multimedia.media_forms_management"/>
+
+        <menuitem id="form_config_menu" name="Form Configuration" sequence="3" action="action_att_form_image_config_view" parent="sites_config_menu" groups="multimedia.media_forms_management"/>
+
+        <menuitem id="site_category_menu" name="Category" sequence="4" action="action_site_category_view" parent="sites_config_menu" groups="multimedia.media_forms_management"/>
+        <menuitem id="site_sub_category_menu" name="Sub Category" sequence="5" action="action_site_sub_category_view" parent="sites_config_menu" groups="multimedia.media_forms_management"/>
+
 
     </data>
 </odoo>
