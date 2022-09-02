@@ -58,6 +58,7 @@ access_sites_sub_category_user,access.sites.sub.category.user,model_site_sub_cat
 access_sites_sub_category_management,access.sites.sub.category.managment,model_site_sub_category,multimedia.media_site_management,1,1,1,1
 ,,,,,,,
 access_media_farmer_insurance_manager,access.media.farmer.insurance.manager,model_farmer_insurance,multimedia.multimedia_insurance_access,1,1,1,1
+access_pmfby_calculator_insurance_access,access.pmfby.calculator.insurance.access,model_prime_pmfby_calculator,multimedia.multimedia_insurance_access,1,1,1,0
 access_media_crop_data_line_manager,access.media.crop.data.line.manager,model_crop_data_line,multimedia.multimedia_insurance_access,1,1,1,1
 access_media_state_master,access.media.state.master,model_state_master,multimedia.multimedia_insurance_access,1,1,1,0
 access_media_district_master,access.media.district.master,model_district_master,multimedia.multimedia_insurance_access,1,1,1,0

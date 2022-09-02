@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="prime_pmfby_calculator_tree_view" model="ir.ui.view">
+           <field name="name">prime.pmfby.calculator.tree</field>
+            <field name="model">prime.pmfby.calculator</field>
+            <field name="arch" type="xml">
+                <tree string="PMFBY Calculator">
+                    <field name="name"/>
+				</tree>
+            </field>
+        </record>
+
+        <record id="prime_pmfby_calculator_form_view" model="ir.ui.view">
+            <field name="name">prime.pmfby.calculator.form</field>
+            <field name="model">prime.pmfby.calculator</field>
+            <field name="arch" type="xml">
+              <form string="PMFBY Calculator" edit="false" import="false" editable="false" create="false" delete="false">
+                <header>
+				</header>
+				<sheet>
+                    <templates id="template" xml:space="preserve">
+                            <t>
+                                <div style="color:#1391f1;font-size:22px;text-align:center;font-family:Arial;">
+                                    <b style="text-align:left;">
+                                        PMFBY Calculator
+                                    </b>
+                                </div>
+                            </t>
+                        </templates>
+                        <templates id="template" xml:space="preserve">
+                            <t>
+                                <div>
+                                    <hr style="border-width: 1px 1px 0;
+                                           border-style: solid;
+                                           border-color: #596268;
+                                           width: 100%;
+                                           margin-left: auto;
+                                           margin-right: auto;"/>
+                                </div>
+                            </t>
+                        </templates>
+					<group>
+						<group>
+							<field name="name"/>
+							<field name="year"/>
+                            <field name="crop"/>
+						</group>
+						<group>
+                            <field name="scheme"/>
+							<field name="state"/>
+						</group>
+					</group>
+                    <group>
+						<group colspan="1" col="1">
+							<field name="area"/>
+                            <field name="premium_amount"/>
+                            <field name="service_charge"/>
+                            <field name="total_amount"/>
+						</group>
+						<group colspan="1" col="1">
+
+						</group>
+					</group>
+				</sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="action_prime_pmfby_calculator_view" model="ir.actions.act_window">
+            <field name="name">PMFBY Calculator</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">prime.pmfby.calculator</field>
+            <field name="view_mode">form</field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a PMFBY Calculator
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="multimedia_pmfby_calculator_menu" name="PMFBY Calculator" sequence="2" action="action_prime_pmfby_calculator_view" parent="multimedia.multimedia_insurance_sub_menu"/>
+
+    </data>
+</odoo>
