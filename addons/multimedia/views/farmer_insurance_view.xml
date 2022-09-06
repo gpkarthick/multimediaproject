@@ -72,13 +72,28 @@
                             <field name="gender_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>                              
                         </group>
                         <group>                                 
-                            <field name="ifsc_code" attrs="{'readonly': [('state', '=', 'paid')]}"/>                                
-                            <field name="bank_account_no" attrs="{'readonly': [('state', '=', 'paid')]}"/>                              
-                            <field name="bank_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>                                
-                            <field name="branch_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>                              
-                            <field name="account_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>                             
+                            <field name="farmer_tamil_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="relative_tamil_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="relative_tamil_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="farmer_tamil_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="gender_tamil_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                         </group>
-                    </group> 
+                    </group>
+                    <group>
+                        <group>
+                            <field name="ifsc_code" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="bank_account_no" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="bank_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="branch_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="account_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                        </group>
+                        <group>
+                            <field name="bank_tamil_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="branch_tamil_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            <field name="account_tamil_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+
+                        </group>
+                    </group>
                     
                     <group>
                         <group>
@@ -275,6 +290,7 @@
         <field name="arch" type="xml">
             <tree string="District Master">
                 <field name="name"/>
+                <field name="district_tamil_name"/>
                 <field name="district_code"/>
                 <field name="state_id"/>
                 <field name="write_uid"/>
@@ -292,6 +308,7 @@
                     <group>
                         <group>
                             <field name="name"/>
+                            <field name="district_tamil_name"/>
                             <field name="district_code"/>
                             <field name="state_id" options="{'no_create': True, 'no_open': True}"/>
                         </group>
@@ -728,6 +745,7 @@
         <field name="arch" type="xml">
             <tree string="village Master">
                 <field name="name"/>
+                <field name="village_tamil_name"/>
                 <field name="village_code"/>
                 <field name="firka_id"/>
                 <field name="block_id"/>
@@ -748,6 +766,7 @@
                     <group>
                         <group>
                             <field name="name"/>
+                            <field name="village_tamil_name"/>
                             <field name="village_code"/>
                             <field name="firka_id" options="{'no_create': True, 'no_open': True}"/>
                             <field name="block_id" options="{'no_create': True, 'no_open': True}"/>

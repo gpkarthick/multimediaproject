@@ -78,10 +78,23 @@ class FarmerInsurance(models.Model):
     district_id = fields.Many2one('district.master', string='District', required=True)
     state2_id = fields.Many2one('state.master', string='State', required=True)
 
+    # Tamil
+
     application_tamil_type = fields.Char(string='Application Type', required=True, default='கடன் பெறாதவர்')
     season_tamil_name = fields.Char(string='Season', required=True, default='ராபி')
-        
-    def action_reset(self): 
+
+    farmer_tamil_name = fields.Char(string='Farmer Name', required=True)
+    relative_tamil_name = fields.Char(string='Relative Name', required=True)
+    relative_tamil_type = fields.Selection([('son_of', 'மகன்'), ('daughter_of', 'மகள்'), ('wife_of', 'மனைவி')],
+                                     string='Relation Type', required=True)
+    farmer_tamil_type = fields.Char(string='Farmer Type', default='குறு', required=True)
+    gender_tamil_type = fields.Selection([('Male', 'ஆண்'), ('Female', 'பெண்')], string='Gender', required=True)
+
+    branch_tamil_name = fields.Char('Branch Name', size=60, required=True)
+    bank_tamil_name = fields.Char('Bank Name', size=60, required=True)
+    account_tamil_type = fields.Char(string='Account Type', required=True, default='சேமிப்பு')
+
+    def action_reset(self):
         self.write({'state':'draft'}) 
         
     def action_pending(self): 
@@ -89,6 +102,13 @@ class FarmerInsurance(models.Model):
         
     def action_complete(self): 
         self.write({'state':'paid'})
+
+    @api.onchange('gender_type')
+    def onchange_gender(self):
+        if self.gender_type == 'Male':
+            self.gender_tamil_type = 'Male'
+        if self.gender_type == 'Female':
+            self.gender_tamil_type = 'Female'
         
         
     
@@ -258,6 +278,7 @@ class DistrictMaster(models.Model):
     _order = "name asc"
 
     name = fields.Char('District Name', required=True)
+    district_tamil_name = fields.Char('District Tamil Name', required=True)
     district_code = fields.Char('District Code')
     state_id = fields.Many2one('state.master', string='State', required=True)
     create_date = fields.Datetime(string='Created Date', readonly=True)
@@ -414,6 +435,7 @@ class VillageMaster(models.Model):
     _order = "name asc"
 
     name = fields.Char('Village Name', required=True)
+    village_tamil_name = fields.Char('Village Tamil Name', required=True)
     village_code = fields.Char('Village Code', readonly =True, default = lambda self: _('New'))
     firka_id = fields.Many2one('firka.master', string='Firka', required=True)
     block_id = fields.Many2one('block.master', string='Block', required=True)
