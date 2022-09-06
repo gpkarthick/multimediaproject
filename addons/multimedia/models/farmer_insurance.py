@@ -93,10 +93,10 @@ class FarmerInsurance(models.Model):
     def generate_qr_code(self):
         from io import BytesIO
         qr = qrcode.QRCode(
-            version=13,
-            error_correction=qrcode.constants.ERROR_CORRECT_L,
+            version=16,
+            error_correction=qrcode.constants.ERROR_CORRECT_M,
             box_size=10,
-            border=4,
+            border=3,
         )
         data = ''
         receipt_no = state_name = farmer_name = season_name = year_val = line_details = tsi = tai = tpp = ''

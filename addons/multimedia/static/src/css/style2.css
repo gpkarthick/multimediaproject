@@ -1,0 +1,408 @@
+.invoicename {
+				                    border-collapse: collapse;
+				                    border: 1px solid black;
+				                    width:100%;
+				                    height: 60px;
+				                    }
+				                .invoicenamestyle {
+				                    text-align:center;
+				                    font-size:19px;
+				                    font-weight: bold;
+				                }
+
+							.company-details {
+								vertical-align: middle;
+								border-collapse: collapse;
+								border: 1px solid black;
+								border-top: none;
+								text-align:left;
+								font-size: 16px;
+								width:100%;
+							}
+							.company-details td {
+								border: 1px solid black;
+								border-top: none;
+								text-align:left;
+								}
+							.company-details-span {
+								margin-left:15PX;
+								line-height: 40px;
+							}
+							.amt-to-text-table {
+	                                vertical-align: middle;
+	                                border-collapse: collapse;
+	                                border-left: 1px solid black;
+	                                border-right: 1px solid black;
+	                                width: 100%;
+	                                font-size: 17.5px;
+							}
+							.amt-to-text-table td {
+								border: none;
+							}
+							.spanfooter {
+							 	 	margin-left:50PX;
+                                    line-height: 30px;
+							 	 	font-size: 17.5px;
+								}
+
+							cls_003 {
+								font-family: Arial,serif;
+								font-size: 16.8078px;
+								color: rgb(65,83,100);
+								font-weight: normal;
+								font-style: normal;
+								text-decoration: none;
+							}
+
+							.cls_003 td {
+		                    		 vertical-align: middle;
+		                    		 text-align:center;
+			                   		}
+
+							cls_004 {
+								font-family: Arial,serif;
+								font-size: 16.8078px;
+								color: rgb(0,0,0);
+								font-weight: bold;
+								font-style: normal;
+								text-decoration: none;
+								text-align:right;
+							}
+							.cls_004 .leftposition {
+								float: left;
+							  }
+							.cls_004 .rightposition {
+								float: right;
+							  }
+							cls_005 {
+								font-family: Arial,serif;
+								font-size: 16.8078px;
+								color: rgb(0,0,0);
+								font-weight: normal;
+								font-style: normal;
+								text-decoration: none;
+								line-height: 30px;
+							}
+							div.cls_006 {
+								font-family: Arial,serif;
+								font-size: 10.6px;
+								color: rgb(0,0,0);
+								font-weight: normal;
+								font-style: normal;
+								text-decoration: none;
+							}
+							div.cls_007 {
+								font-family: Arial,serif;
+								font-size: 9.1px;
+								color: rgb(0,0,0);
+								font-weight: bold;
+								font-style: normal;
+								text-decoration: none;
+							}
+
+							.invoicename {
+				                    border-collapse: collapse;
+				                    border: 1px solid black;
+				                    border-top: none;
+				                    width:100%;
+				                    }
+				                .invoicenamestyle {
+				                    text-align:center;
+				                    font-size:19px;
+				                    font-weight: bold;
+				                }
+
+							.mcls_001 {
+								font-family: Arial,serif;
+								font-size: 16.8078px;
+								color: rgb(65,83,100);
+								font-weight: normal;
+								font-style: normal;
+								width:100%;
+								text-decoration: none;
+							}
+							.mcls_sub_001 {
+				                    text-align:center;
+				                    font-family: Roboto;
+				                }
+
+                            .mcls_002 {
+								font-family: sans-serif;
+								font-size: 17.8px;
+								letter-spacing: 0.8px;
+								color: rgb(0,0,0);
+								font-weight: bold;
+								font-style: normal;
+								text-decoration: none;
+								width:100%;
+							}
+
+							.mcls_003 {
+
+								line-height: 25px;
+								width:100%;
+							}
+
+							.mcls_003-span {
+								font-family: sans-serif;
+								vertical-align: text-top;
+								font-size: 16.0px;
+								font-weight: 100;
+								color: #585858;
+								letter-spacing: 0.8px;
+
+							}
+
+							.mcls_003-span-bold {
+								font-family: sans-serif;
+								font-size: 16.0px;
+								font-weight: bold;
+								font-weight: 700;
+								color: black;
+								letter-spacing: 0.8px;
+							}
+
+							hr {
+								display: block;
+								height: 1px;
+								border: 0;
+								border-top: 1px solid #efefef;
+								margin: 1em 0;
+								padding: 0;
+							}
+
+							.mcls_004_table {
+								font-family: sans-serif;
+								width:100%;
+							}
+
+							.mcls_004 {
+								font-family: sans-serif;
+								font-size: 16.5px;
+								color: rgb(0,0,0);
+								font-weight: bold;
+								font-style: normal;
+								text-decoration: none;
+								width:100%;
+								letter-spacing: 0.8px;
+								line-height: 35px;
+							}
+
+							.mcls_005 {
+								font-family: sans-serif;
+								font-size: 16.0px;
+								color: rgb(0,0,0);
+								font-weight: bold;
+								font-style: normal;
+								text-decoration: none;
+								width:100%;
+								line-height: 22.5px;
+								letter-spacing: 0.8px;
+							}
+
+							.mcls_006 {
+								font-family: sans-serif;
+								font-size: 16.8px;
+								color: rgb(0,0,0);
+								font-weight: bold;
+								font-style: normal;
+								text-decoration: none;
+								line-height: 40px;
+								letter-spacing: 0.8px;
+							}
+
+							.mcls_007 {
+								vertical-align: middle;
+                                width: 100%;
+							}
+
+							.mcls_007 thead th {
+							    font-family: Roboto;
+							    font-weight: 900;
+                                vertical-align: middle;
+                                text-align:left;
+                                border-collapse: collapse;
+                                border-style: solid;
+                                border-width: thin;
+                                border-color: #425364;
+                                border-left: none;
+                                border-right: none;
+                                height: 80px;
+                                font-size: 15.0px;
+                                color: #384756;
+                            }
+
+                            .mcls_007 tbody {
+							    font-family: Roboto;
+                                vertical-align: middle;
+                                text-align:left;
+                                font-size: 15.0px;
+                                color: #384756;
+                            }
+
+                            .mcls_007 td {
+							    font-family: Roboto;
+							    font-weight: 500;
+                                vertical-align: middle;
+                                text-align:left;
+                                border-collapse: collapse;
+                                border-style: solid;
+                                border-width: thin;
+                                border-bottom-color: #425364;
+                                border-above: none;
+                                border-left: none;
+                                border-right: none;
+                                line-height: 40px;
+                                font-size: 15.0px;
+                                color: #384756;
+                            }
+
+							.mcls_008_duplicate {
+								font-family: Roboto;
+								font-size: 15.4067px;
+								color: rgb(65,83,100);
+								font-weight: normal;
+								font-style: normal;
+								text-decoration: none;
+								border-collapse: collapse;
+								border-bottom: 1px solid black;
+								border-top: 1px solid black;
+								text-align:left;
+								line-height: 47px;
+								letter-spacing: 0.7px;
+							}
+
+
+
+							.mcls_007_duplicate {
+								font-family: Roboto;
+								font-size: 15.4067px;
+								color: rgb(65,83,100);
+								font-weight: normal;
+								font-style: normal;
+								text-decoration: none;
+								border-collapse: collapse;
+								border-bottom: 1px solid black;
+								border-top: 1px solid black;
+								text-align:left;
+								letter-spacing: 0.8px;
+								line-height: 40px;
+							}
+
+							.mcls_008_duplicate {
+								font-family: Roboto;
+								font-size: 15.4067px;
+								color: rgb(65,83,100);
+								font-weight: normal;
+								font-style: normal;
+								text-decoration: none;
+								border-collapse: collapse;
+								border-bottom: 1px solid black;
+								border-top: 1px solid black;
+								text-align:left;
+								line-height: 47px;
+								letter-spacing: 0.7px;
+							}
+
+							.mcls_009 {
+								font-family: Roboto;
+								font-size: 19.2089px;
+								color: rgb(0,0,0);
+								font-weight: 500;
+								text-decoration: none;
+								text-align:left;
+								letter-spacing: 0.8px;
+								line-height: 22px;
+							}
+
+							.mcls_0010 {
+								font-family: Roboto;
+								font-size: 16.8078px;
+								color: rgb(0,0,0);
+								font-weight: 300;
+								text-align:left;
+								line-height: 27px;
+								width:100%;
+								letter-spacing: 0.7px;
+							}
+
+							.mcls_0011 {
+								font-family:Roboto;
+								font-size: 15.0067px;
+								color: rgb(0,0,0);
+								font-weight: 400;
+								font-style: normal;
+								text-decoration: none;
+								width:100%;
+								line-height: 24px;
+								letter-spacing: 0.7px;
+							}
+
+							.mcls_0012 {
+								font-family: Roboto;
+								font-size: 15.4067px;
+								color: rgb(0,0,0);
+								font-weight: 500;
+								width:100%;
+								letter-spacing: 0.8px;
+								line-height: 22px;
+							}
+
+							.mcls_0013 {
+								font-family: Roboto;
+								font-size: 16.8078px;
+								font-style: italic;
+								color: rgb(0,0,0);
+								font-weight: 400;
+								text-align:left;
+								line-height: 27px;
+								width:100%;
+								letter-spacing: 0.7px;
+							}
+
+
+							.detailsheader {
+                                    vertical-align: middle;
+                                    border-collapse: collapse;
+                                    text-align:center;
+                                    height: 50px;
+                                    font-size: 16px;
+                                }
+                                .detailsheader th {
+                                    vertical-align: middle;
+                                    border-collapse: collapse;
+                                    border-bottom: 1px solid black;
+                                    text-align:center;
+                                    height: 42px;
+                                    font-size: 16px;
+                                }
+                                .detailsline {
+                                    width: 100%;
+                                    vertical-align: middle;
+	                                border-collapse: collapse;
+	                                border: none;
+	                                height: 37px;
+	                                font-size: 16px;
+                                }
+                                .detailsline td {
+                                    border: none;
+                                    height: 37px;
+                                }
+                                .detailsline-span-left {
+							 	 	margin-left:10PX;
+                                    height: 37px;
+								}
+                                .detailsline-span-right {
+							 	 	margin-right:10PX;
+                                    height: 37px;
+								}
+                                .height-set {
+                                    height: 242px;
+                                    border-collapse: collapse;
+                                    border-left: 1px solid black;
+                                    border-right: 1px solid black;
+                                    width: 100%;
+                                }
+
+
+
