@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="farmer_insurance_tamil_report_multimedia">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <link rel="stylesheet" href="/multimedia/static/src/css/style2.css"/>
+                    <div class="page">
+                         <table class="mcls_001">
+							<tr>
+								<td>
+									<p class="mcls_sub_001">CSC Application</p>
+								</td>
+							</tr>
+						</table>
+
+						<hr/>
+
+						<table>
+							<tr>
+								<td width="100%" height="20%">
+									<img src="/multimedia/static/src/img/farmerlogo.png" style="max-height: 110px;" alt="Happy face"/>
+								</td>
+							</tr>
+						</table>
+
+						<table class="mcls_002">
+							<tr>
+								<td style="text-align:left;width:50%">
+									<span t-if="o.name"><strong>ரசீது எண்: <span t-field="o.name"/></strong><br/></span>
+								</td>
+								<td style="text-align:right;width:50%">
+									<span><strong>விண்ணப்ப நிலை : பணம்</strong></span>
+								</td>
+							</tr>
+						</table>
+						<hr/>
+
+						<table class="mcls_003">
+							<tr>
+								<td style="text-align:left;width:37%;border-right: 1px solid #efefef;">
+									<span class="mcls_003-span" t-if="o.state_id">மாநிலம் : <span class="mcls_003-span-bold" t-field="o.state_id.tamil_name"/><br/></span>
+									<span class="mcls_003-span" t-if="o.scheme_name">திட்டம் : <strong><span class="mcls_003-span-bold" t-field="o.scheme_name"/></strong><br/></span>
+									<span class="mcls_003-span" t-if="o.year_val">ஆண்டு : <strong><span class="mcls_003-span-bold" t-field="o.year_val"/></strong><br/></span>
+									<span class="mcls_003-span" t-if="o.application_type">விண்ணப்ப வகை : <strong><span class="mcls_003-span-bold" t-field="o.application_tamil_type"/></strong><br/></span>
+									<span class="mcls_003-span" t-if="o.season_name">பருவம் : <strong><span class="mcls_003-span-bold" t-field="o.season_tamil_name"/></strong><br/></span>
+									<span class="mcls_003-span" t-if="o.created_by">உருவாக்கியது : <strong><span class="mcls_003-span-bold" t-field="o.created_by"/></strong><br/></span>
+								</td>
+								<td style="text-align:left;width:19%">
+								</td>
+								<td style="width:43%;vertical-align: middle;">
+									<img t-att-src="'data:image/png;base64,%s' % to_text(o.qr_code)" style="max-height: 175px; "/>
+								</td>
+							</tr>
+						</table>
+						<hr/>
+
+
+                    </div>
+                </t>
+            </t>
+        </t>
+    </template>
+</odoo>

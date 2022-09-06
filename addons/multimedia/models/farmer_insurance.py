@@ -77,6 +77,9 @@ class FarmerInsurance(models.Model):
     subdistrict_id = fields.Many2one('subdistrict.master', string='Sub District', required=True)
     district_id = fields.Many2one('district.master', string='District', required=True)
     state2_id = fields.Many2one('state.master', string='State', required=True)
+
+    application_tamil_type = fields.Char(string='Application Type', required=True, default='கடன் பெறாதவர்')
+    season_tamil_name = fields.Char(string='Season', required=True, default='ராபி')
         
     def action_reset(self): 
         self.write({'state':'draft'}) 
@@ -186,7 +189,10 @@ class FarmerInsurance(models.Model):
             self.state2_id = self.village_id.state_id.id
     
     def insurance_bill_print(self):
-        return self.env.ref('multimedia.action_report_insurance').report_action(self)     
+        return self.env.ref('multimedia.action_report_insurance').report_action(self)
+
+    def insurance_tamil_bill_print(self):
+        return self.env.ref('multimedia.action_report_tamil_insurance').report_action(self)
         
 class CropDataLine(models.Model):
     _name = 'crop.data.line'
@@ -218,6 +224,7 @@ class StateMaster(models.Model):
     
     name = fields.Char('State Name', required=True)
     state_code = fields.Char('State Code', required=True)
+    tamil_name = fields.Char('State Tamil', required=True)
     create_date = fields.Datetime(string='Created Date', readonly=True)
     write_date = fields.Datetime(string='Last Updated Date', readonly=True)
     write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
