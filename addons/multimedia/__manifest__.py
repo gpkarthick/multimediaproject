@@ -11,6 +11,7 @@
 		'security/multimedia_security.xml',
         'security/ir.model.access.csv',
         'data/ir_sequence_data.xml',
+        'views/import_master_view.xml',
         # ~ 'views/corporate_master_view.xml',
         'views/multimedia_view.xml',
         'views/purchase_view.xml',

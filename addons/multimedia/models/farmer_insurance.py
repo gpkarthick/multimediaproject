@@ -78,6 +78,13 @@ class FarmerInsurance(models.Model):
     district_id = fields.Many2one('district.master', string='District', required=True)
     state2_id = fields.Many2one('state.master', string='State', required=True)
 
+    village_tamil_name = fields.Char(string='Village Tamil Name', required=True)
+    firka_tamil_name = fields.Char(string='Firka Tamil Name', required=True)
+    block_tamil_name = fields.Char(string='Block Tamil Name', required=True)
+    subdistrict_tamil_name = fields.Char(string='Subdistrict Tamil Name', required=True)
+    district_tamil_name = fields.Char(string='District Tamil Name', required=True)
+    state_tamil_name = fields.Char(string='State Tamil Name', required=True)
+
     # Tamil
 
     application_tamil_type = fields.Char(string='Application Type', required=True, default='கடன் பெறாதவர்')
@@ -201,12 +208,27 @@ class FarmerInsurance(models.Model):
             self.subdistrict_id = False
             self.district_id = False
             self.state_id = False
+
+            self.village_tamil_name = False
+            self.firka_tamil_name = False
+            self.block_tamil_name = False
+            self.subdistrict_tamil_name = False
+            self.district_tamil_name = False
+            self.state_tamil_name = False
+
         if self.village_id:
             self.firka_id = self.village_id.firka_id.id
             self.block_id = self.village_id.block_id.id
             self.subdistrict_id = self.village_id.subdistrict_id.id
             self.district_id = self.village_id.district_id.id
             self.state2_id = self.village_id.state_id.id
+
+            self.village_tamil_name = self.village_id.village_tamil_name
+            self.firka_tamil_name = self.village_id.firka_id.firka_tamil_name
+            self.block_tamil_name = self.village_id.block_id.block_tamil_name
+            self.subdistrict_tamil_name = self.village_id.subdistrict_id.subdistrict_tamil_name
+            self.district_tamil_name = self.village_id.district_id.district_tamil_name
+            self.state_tamil_name = self.village_id.state_id.tamil_name
     
     def insurance_bill_print(self):
         return self.env.ref('multimedia.action_report_insurance').report_action(self)
@@ -317,6 +339,7 @@ class SubDistrictMaster(models.Model):
     _order = "name asc"
 
     name = fields.Char('Sub District Name', required=True)
+    subdistrict_tamil_name = fields.Char('Sub District Tamil Name', required=True)
     subdistrict_code = fields.Char('Sub District Code')
     state_id = fields.Many2one('state.master', string='State', required=True) 
     district_id = fields.Many2one('district.master', string='District', required=True)
@@ -355,6 +378,7 @@ class BlockMaster(models.Model):
     _order = "name asc"
 
     name = fields.Char('block Name', required=True)
+    block_tamil_name = fields.Char('Block Tamil Name', required=True)
     block_code = fields.Char('block Code')
     subdistrict_id = fields.Many2one('subdistrict.master', string='Sub District', required=True)
     district_id = fields.Many2one('district.master', string='District', required=True)
@@ -394,6 +418,7 @@ class FirkaMaster(models.Model):
     _order = "name asc"
 
     name = fields.Char('Firka Name', required=True)
+    firka_tamil_name = fields.Char('Firka Tamil Name', required=True)
     firka_code = fields.Char('Firka Code')
     block_id = fields.Many2one('block.master', string='Block', required=True)
     subdistrict_id = fields.Many2one('subdistrict.master', string='Sub District', required=True)
@@ -520,9 +545,70 @@ class ImportMaster(models.Model):
     _description = 'import Master'
 
     import_file = fields.Binary('Import CSV File')
-    name = fields.Char('District Name', required=True)
+    name = fields.Char('Name', required=True)
 
     def action_import(self):
+        for order in self:
+            from odoo import api, fields, models, _
+            from datetime import datetime
+            from odoo.exceptions import AccessError, UserError, ValidationError
+            import base64
+
+            import csv
+            import io
+            count = 0
+            count = name_count = 0
+            district_id = 0
+            taluk_id = 0
+            village_count = 0
+
+            decrypted = base64.b64decode(order.import_file).decode('utf-8')
+            with io.StringIO(decrypted) as fp:
+                reader = csv.reader(fp, delimiter=",", quotechar='"')
+                for row in reader:
+                    if not row:
+                        break
+                    count += 1
+                    if count > 1 and len(row) > 2:
+                        # print(row)
+                        district_english = row[0]
+                        district_tamil = row[1]
+                        subdistrict_english = row[2]
+                        subdistrict_tamil = row[3]
+                        block_english = row[4]
+                        block_tamil = row[5]
+                        firka_english = row[6]
+                        firka_tamil = row[7]
+                        village_english = row[8]
+                        village_tamil = row[9]
+                        if district_english and district_tamil:
+                            district = self.env['district.master'].create(
+                                {'name': district_english, 'district_tamil_name': district_tamil, 'state_id': 1})
+                            district_id = district.id
+                        if subdistrict_english and subdistrict_english:
+                            subdistrict = self.env['subdistrict.master'].create(
+                                {'name': subdistrict_english, 'subdistrict_tamil_name': subdistrict_tamil, 'district_id': district_id, 'state_id': 1})
+                            subdistrict_id = subdistrict.id
+                        if block_english and block_tamil:
+                            block = self.env['block.master'].create(
+                                {'name': block_english, 'block_tamil_name': block_tamil, 'subdistrict_id': subdistrict_id, 'district_id': district_id, 'state_id': 1})
+                            block_id = block.id
+                        if firka_english and firka_tamil:
+                            firka = self.env['firka.master'].create(
+                                {'name': firka_english, 'firka_tamil_name': firka_tamil, 'block_id': block_id, 'subdistrict_id': subdistrict_id, 'district_id': district_id, 'state_id': 1})
+                            firka_id = firka.id
+                        if village_english and village_tamil:
+                            village_count += 1
+                            self.env['village.master'].create(
+                                {'name': village_english, 'village_tamil_name': village_tamil, 'village_code': village_count,
+                                 'state_id': 1,
+                                 'district_id': district_id,
+                                 'subdistrict_id': subdistrict_id,
+                                 'block_id': block_id,
+                                 'firka_id': firka_id
+                                 })
+
+    def action_import232323(self):
         for order in self:
             count = 0
             import_file = str(base64.decodestring(order.import_file), 'windows-1252', 'strict').split('\n')

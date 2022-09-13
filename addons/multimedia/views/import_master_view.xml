@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="import_master_tree_view" model="ir.ui.view">
+            <field name="name">import.master.tree</field>
+            <field name="model">import.master</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="import Master">
+                    <field name="name"/>
+                    <field name="import_file"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="import_master_form_view" model="ir.ui.view">
+            <field name="name">import.master.form</field>
+            <field name="model">import.master</field>
+            <field name="arch" type="xml">
+                <form string="import Master">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="import_file"/>
+                                <field name="name"/>
+                            </group>
+                            <group>
+                                <button name="action_import" class="btn btn-danger" string="Imports" type="object"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_import_master" model="ir.actions.act_window">
+            <field name="name">Import Records</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">import.master</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain"></field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Import Here
+                </p><p>
+                    You can import records  here
+                </p>
+            </field>
+        </record>
+
+        <menuitem id="import_master_menu" name="Import Master" sequence="6"
+                    action="multimedia.action_import_master" parent="multimedia.multimedia_insurance_sub_child_menu"
+                    />
+
+    </data>
+</odoo>
