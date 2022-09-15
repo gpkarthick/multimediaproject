@@ -889,9 +889,8 @@
         <menuitem id="multimedia_farmer_insurance_menu" name="Farmer Insurance" sequence="1"
                   action="action_farmer_insurance_view" parent="multimedia.multimedia_insurance_sub_menu"/>
 
-
-        <menuitem id="multimedia_insurance_sub_child_menu" name="Insurance Configuration" sequence="3"
-                  parent="multimedia_insurance_sub_menu"/>
+        <menuitem id="multimedia_insurance_sub_child_menu" name="Insurance Configuration" sequence="5"
+                  parent="multimedia_main_menu"/>
         <menuitem id="multimedia_state_master_menu" name="State Master" sequence="1" action="action_state_master"
                   parent="multimedia_insurance_sub_child_menu"/>
         <menuitem id="multimedia_district_master_menu" name="district Master" sequence="2"
