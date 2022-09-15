@@ -4,6 +4,8 @@ from odoo.exceptions import AccessError, UserError, ValidationError
 import qrcode
 import base64
 import io
+from googletrans import Translator, constants
+from pprint import pprint
 
 class FarmerInsurance(models.Model):
     _name = "farmer.insurance"
@@ -29,11 +31,14 @@ class FarmerInsurance(models.Model):
     seq_no = fields.Char(string='Seq No', default=lambda self: self.env['ir.sequence'].next_by_code('farmer.insurance.seq'))    
     insurance_date = fields.Date(string='Date', required=True)    
     
-    state_id = fields.Many2one('state.master', string='State', required=True)
+    state_id = fields.Many2one('state.master', string='State', required=True, default=lambda self: self.env['state.master'].search([('id','=',1)]))
+    state_id_tamil = fields.Char(string='State in Tamil', required=True)
     scheme_name = fields.Char(string='Scheme', required=True, default='PMFBY')
     year_val = fields.Char(string='Year', required=True, default='2021')
     application_type = fields.Char(string='Application Type', required=True, default='NON LOANEE')
+    application_type_tamil = fields.Char(string='Application Type Tamil', required=True, default='கடன் பெறாதவர்')
     season_name = fields.Char(string='Season', required=True, default='RABI')
+    season_name_tamil = fields.Char(string='Season in Tamil', required=True, default='ராபி')
     created_by = fields.Char(string='Created By', required=True, default='CSC')
     create_at = fields.Date(string='Created At', default=fields.Datetime.now, required=True)
     
@@ -116,9 +121,36 @@ class FarmerInsurance(models.Model):
             self.gender_tamil_type = 'Male'
         if self.gender_type == 'Female':
             self.gender_tamil_type = 'Female'
-        
-        
-    
+
+    @api.onchange('relative_type')
+    def onchange_relative_type(self):
+        if self.relative_type:
+            self.relative_tamil_type = self.relative_type
+
+    @api.onchange('state_id')
+    def onchange_state_id(self):
+        if self.state_id:
+            self.state_id_tamil = self.state_id.tamil_name
+
+    @api.onchange('farmer_name', 'relative_name','branch_name')
+    def onchange_tamil_translate(self):
+        if not self.farmer_name:
+            self.farmer_name = ''
+        if not self.relative_name:
+            self.relative_name = ''
+        if not self.branch_name:
+            self.branch_name = ''
+        translator = Translator()
+        if self.farmer_name:
+            translation_farmer = translator.translate(self.farmer_name, dest="ta")
+            self.farmer_tamil_name = translation_farmer.text
+        if self.relative_name:
+            translation_relation = translator.translate(self.relative_name, dest="ta")
+            self.relative_tamil_name = translation_relation.text
+        if self.branch_name:
+            translation_branch_name = translator.translate(self.branch_name, dest="ta")
+            self.branch_tamil_name = translation_branch_name.text
+
     @api.onchange('name','farmer_name','relative_name','crop_line_ids','district_id','total_area_insured','total_premium_paid','total_sum_insured')
     def generate_qr_code(self):
         from io import BytesIO
@@ -172,7 +204,7 @@ class FarmerInsurance(models.Model):
         img.save(temp, format="PNG")
         qr_image = base64.b64encode(temp.getvalue())
         self.qr_code = qr_image
-    
+
     @api.onchange('ifsc_code')
     def onchange_ifsc_code(self):
         import requests
@@ -207,7 +239,7 @@ class FarmerInsurance(models.Model):
             self.block_id = False
             self.subdistrict_id = False
             self.district_id = False
-            self.state_id = False
+            # self.state_id = False
 
             self.village_tamil_name = False
             self.firka_tamil_name = False
