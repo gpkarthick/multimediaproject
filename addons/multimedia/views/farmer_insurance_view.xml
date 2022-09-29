@@ -128,10 +128,11 @@
             <field name="arch" type="xml">
                 <form string="Insurance Form">
                     <header>
-                        <button name="insurance_bill_print" string="Print" type="object" class="oe_highlight"
+                        <button name="insurance_bill_print" string="English Print" type="object" class="oe_highlight"
                                 attrs="{'invisible': [('state', '=', 'draft')]}"/>
                         <button name="insurance_tamil_bill_print" string="Tamil Print" type="object"
                                 class="oe_highlight" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                        <button name="insurance_preview_column" string="Preview" type="object" class="oe_highlight" />
                         <button name="action_reset" type="object" string="Reset" class="oe_highlight"
                                 attrs="{'invisible': [('state', 'in', 'draft')]}"/>
                         <button name="action_pending" type="object" string="Pending" class="oe_highlight"
