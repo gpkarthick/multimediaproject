@@ -2,6 +2,108 @@
 <odoo>
     <data>
 
+        <record id="multimedia_farmer_details_form_view" model="ir.ui.view">
+            <field name="name">farmer.insurance.form</field>
+            <field name="model">farmer.insurance</field>
+            <field name="arch" type="xml">
+                <form string="Farmer Details Form">
+                    <header>
+
+                    </header>
+                    <sheet>
+                        <div style="color:#873260;font-size:12px;text-align:center">
+                            <h1>
+                                <b>
+                                    Farmer Details Form
+                                </b>
+                            </h1>
+                        </div>
+                        <group>
+                            <group>
+                                <field name="form_serial_no" readonly="1"/>
+                                <field name="form_application_no" required="1"/>
+                            </group>
+                            <group>
+
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="farmer_name"/>
+                                <field name="mobile_no"/>
+                            </group>
+                            <group>
+                                <field name="community_type" required="1"/>
+                                <field name="farmer_category_type" required="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="area"/>
+                                <field name="premium_amount"/>
+                                <field name="service_charge"/>
+                                <field name="total_amount"/>
+                            </group>
+                            <group>
+                                <field name="received_amount" required="1"/>
+                                <field name="balance_amount" required="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="village_id" />
+                                <field name="firka_id" />
+                                <field name="block_id" />
+                                <field name="subdistrict_id" />
+                                <field name="district_id" />
+                                <field name="state2_id" />
+                            </group>
+                            <group>
+                                <field name="village_tamil_name" />
+                                <field name="firka_tamil_name" />
+                                <field name="block_tamil_name" />
+                                <field name="subdistrict_tamil_name" />
+                                <field name="district_tamil_name" />
+                                <field name="state_tamil_name" />
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_farmer_details_form_insurance_view" model="ir.actions.act_window">
+            <field name="name">Insurance</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">farmer.insurance</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="search_view_id" ref="view_multimedia_farmer_insurance_search"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a Farmer Details Here
+                </p>
+                <p>
+                    We can track the Farmer Details here
+                </p>
+            </field>
+        </record>
+
+        <record id="action_connect_farmer_details_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="multimedia_farmer_insurance_tree_view"/>
+            <field name="act_window_id" ref="action_farmer_details_form_insurance_view"/>
+        </record>
+
+        <record id="action_connect_farmer_details_form_view" model="ir.actions.act_window.view">
+            <field eval="2" name="sequence"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="multimedia_farmer_details_form_view"/>
+            <field name="act_window_id" ref="action_farmer_details_form_insurance_view"/>
+        </record>
+
         <record id="multimedia_farmer_insurance_tree_view" model="ir.ui.view">
             <field name="name">farmer.insurance.tree</field>
             <field name="model">farmer.insurance</field>
@@ -46,6 +148,14 @@
                         </div>
                         <group>
                             <group>
+                                <field name="form_serial_no" readonly="1"/>
+                            </group>
+                            <group>
+                                <field name="form_application_no" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
                                 <div style="color:#873260;font-size:12px;text-align:center">
                                     <h1>
                                         <b>
@@ -64,93 +174,104 @@
                                 </div>
                             </group>
                         </group>
-                        <group>
+                        <group string="General Info">
                             <group>
                                 <field name="name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                                 <field name="original_receipt_no" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="insurance_date" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="mobile_no" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="insurance_date" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="mobile_no" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                             </group>
                             <group>
                                 <field name="name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                                 <field name="original_receipt_no" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="insurance_date" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="mobile_no" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="insurance_date" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="mobile_no" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                             </group>
                         </group>
-                        <group>
+                        <group string="PMFBY Info">
                             <group>
-                                <field name="state_id" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="scheme_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="year_val" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="application_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="season_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="created_by" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="create_at" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="state_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="scheme_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="year_val" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="application_type" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="season_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="created_by" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="create_at" required="1"  attrs="{'readonly': [('state', '=', 'paid')]}"/>
                             </group>
                             <group>
-                                <field name="state_id_tamil" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="scheme_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="year_val" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="application_type_tamil" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="season_name_tamil" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="created_by" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="create_at" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="state_id_tamil" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="scheme_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="year_val" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="application_type_tamil" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="season_name_tamil" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="created_by" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="create_at" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                             </group>
                         </group>
-                        <group>
+                        <group string="Farmer Details">
                             <group>
-                                <field name="farmer_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="relative_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="relative_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="farmer_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="relative_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="relative_type" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                                 <field name="mobile_no" invisible="1"/>
-                                <field name="farmer_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="gender_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="farmer_type" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="gender_type" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="community_type" />
+                                <field name="farmer_category_type" />
                             </group>
                             <group>
-                                <field name="farmer_tamil_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="relative_tamil_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="relative_tamil_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="farmer_tamil_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="gender_tamil_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="farmer_tamil_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="relative_tamil_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="relative_tamil_type" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="farmer_tamil_type" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="gender_tamil_type" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                             </group>
                         </group>
-                        <group>
+                        <group string="Bank Details">
                             <group>
-                                <field name="ifsc_code" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="bank_account_no" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="bank_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="branch_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="account_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="ifsc_code" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="bank_account_no" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="bank_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="branch_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="account_type" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                             </group>
                             <group>
-                                <field name="ifsc_code" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="bank_account_no" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="bank_tamil_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="branch_tamil_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="account_tamil_type" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-
+                                <field name="ifsc_code" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="bank_account_no" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="bank_tamil_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="branch_tamil_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="account_tamil_type" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                             </group>
                         </group>
-
-                        <group>
+                        <group string="Crop Details">
                             <group>
-                                <field name="village_id" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="firka_id" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="block_id" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="subdistrict_id" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="district_id" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="state2_id" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="village_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="firka_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="block_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="subdistrict_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="district_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="state2_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                             </group>
                             <group>
-                                <field name="village_tamil_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="firka_tamil_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="block_tamil_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="subdistrict_tamil_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="district_tamil_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="state_tamil_name" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="village_tamil_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="firka_tamil_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="block_tamil_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="subdistrict_tamil_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="district_tamil_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="state_tamil_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                             </group>
 
+                        </group>
+
+                        <group string="Resident Details">
+                            <group>
+                                <field name="farmer_village_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="farmer_taluk_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="farmer_district_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="farmer_state_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                            </group>
+                            <group>
+                            </group>
                         </group>
 
                         <group>
@@ -898,6 +1019,82 @@
             </field>
         </record>
 
+        <record id="view_farmer_master_form" model="ir.ui.view">
+            <field name="name">farmer.master.form</field>
+            <field name="type">form</field>
+            <field name="model">farmer.master</field>
+            <field name="arch" type="xml">
+                <form string="Farmer Master Form">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="village_id"/>
+                                <field name="firka_id" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="block_id" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="subdistrict_id" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="district_id" options="{'no_create': True, 'no_open': True}"/>
+                                <field name="state_id" options="{'no_create': True, 'no_open': True}"/>
+                            </group>
+                            <group>
+                                <field name="mobile_no"/>
+                                <field name="write_date"/>
+                                <field name="write_uid"/>
+                            </group>
+                            <group>
+                                <field name="area"/>
+                                <field name="premium_amount"/>
+                                <field name="service_charge"/>
+                                <field name="total_amount"/>
+                            </group>
+                            <group>
+                                <field name="total_amount"/>
+                                <field name="received_amount"/>
+                                <field name="balance_amount"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_farmer_master_filter" model="ir.ui.view">
+            <field name="name">farmer.master.search</field>
+            <field name="model">farmer.master</field>
+            <field name="arch" type="xml">
+                <search string="Search Group">
+                    <field name="name" string="Name"/>
+                    <field name="firka_id" string="Firka"/>
+                    <field name="block_id" string="Block"/>
+                    <field name="subdistrict_id" string="Sub District"/>
+                    <field name="district_id" string="District"/>
+                    <field name="state_id" string="State"/>
+                    <separator/>
+                    <group expand="0" string="Group By">
+                        <filter string="Firka" name="firka_id" domain="[]" context="{'group_by':'firka_id'}"/>
+                        <filter string="Block" name="block_id" domain="[]" context="{'group_by':'block_id'}"/>
+                        <filter string="Sub District" name="subdistrict_id" domain="[]"
+                                context="{'group_by':'subdistrict_id'}"/>
+                        <filter string="District" name="district_id" domain="[]" context="{'group_by':'district_id'}"/>
+                        <filter string="State" name="state_id" domain="[]" context="{'group_by':'state_id'}"/>
+                    </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_farmer_master" model="ir.actions.act_window">
+            <field name="name">Farmer Details</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">farmer.master</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create a Farmer Details Here.
+                </p>
+            </field>
+        </record>
+
 <!--        village Information-->
         <record id="multimedia_village_information_form_view" model="ir.ui.view">
             <field name="name">farmer.insurance.form</field>
@@ -994,6 +1191,8 @@
 
         <menuitem id="multimedia_insurance_sub_child_menu" name="Insurance Configuration" sequence="6"
                   parent="multimedia_main_menu"/>
+<!--        <menuitem id="multimedia_action_farmer_master_menu" name="Farmer Master" sequence="-1" action="action_farmer_master"-->
+<!--                  parent="multimedia_insurance_sub_child_menu"/>-->
         <menuitem id="multimedia_state_master_menu" name="State Master" sequence="1" action="action_state_master"
                   parent="multimedia_insurance_sub_child_menu"/>
         <menuitem id="multimedia_district_master_menu" name="district Master" sequence="2"

@@ -2,9 +2,23 @@
 <odoo>
     <data>
 
-        <record id="view_state_master_form" model="ir.ui.view">
-            <field name="name">state.master.form</field>
-            <field name="model">state.master</field>
+        <record id="view_farmer_state_master_tree" model="ir.ui.view">
+            <field name="name">farmer.state.master.tree</field>
+            <field name="model">farmer.state.master</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="State Master">
+                    <field name="name"/>
+                    <field name="state_code"/>
+                    <field name="write_uid"/>
+                    <field name="write_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_farmer_state_master_form" model="ir.ui.view">
+            <field name="name">farmer.state.master.form</field>
+            <field name="model">farmer.state.master</field>
             <field name="arch" type="xml">
                 <form string="State Master">
                     <sheet>
@@ -34,9 +48,9 @@
             </field>
         </record>
 
-        <record id="view_state_master_filter" model="ir.ui.view">
-            <field name="name">state.master.search</field>
-            <field name="model">state.master</field>
+        <record id="view_farmer_state_master_filter" model="ir.ui.view">
+            <field name="name">farmer.state.master.search</field>
+            <field name="model">farmer.state.master</field>
             <field name="arch" type="xml">
                 <search string="Search State">
                     <field name="name" string="State" filter_domain="['|',('name','ilike',self),('state_code','ilike',self)]"/>
@@ -44,12 +58,12 @@
             </field>
         </record>
 
-        <record id="action_state_master" model="ir.actions.act_window">
+        <record id="action_farmer_state_master" model="ir.actions.act_window">
             <field name="name">State</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">state.master</field>
+            <field name="res_model">farmer.state.master</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_state_master_filter"/>
+            <field name="search_view_id" ref="view_farmer_state_master_filter"/>
             <field name="domain"></field>
             <field name="context">{}</field>
             <field name="help" type="html">
@@ -61,9 +75,9 @@
             </field>
         </record>
 
-        <record id="view_district_master_tree" model="ir.ui.view">
-            <field name="name">district.master.tree</field>
-            <field name="model">district.master</field>
+        <record id="view_farmer_district_master_tree" model="ir.ui.view">
+            <field name="name">farmer.district.master.tree</field>
+            <field name="model">farmer.district.master</field>
             <field name="priority">2</field>
             <field name="arch" type="xml">
                 <tree string="District Master">
@@ -76,9 +90,9 @@
             </field>
         </record>
 
-        <record id="view_district_master_form" model="ir.ui.view">
-            <field name="name">district.master.form</field>
-            <field name="model">district.master</field>
+        <record id="view_farmer_district_master_form" model="ir.ui.view">
+            <field name="name">farmer.district.master.form</field>
+            <field name="model">farmer.district.master</field>
             <field name="arch" type="xml">
                 <form string="District Master">
                     <sheet>
@@ -94,11 +108,12 @@
                             </group>
                         </group>
                         <notebook>
-                            <page string="Village">
-                                <field string="Village" name="village_ids">
+                            <page string="Taluk">
+                                <field string="Taluk" name="taluk_ids">
                                     <tree create="false" delete="false" editable="false">
                                         <field name="name"/>
-                                        <field name="village_code"/>
+                                        <field name="taluk_code"/>
+                                        <field name="district_id"/>
                                         <field name="state_id"/>
                                     </tree>
                                 </field>
@@ -109,9 +124,9 @@
             </field>
         </record>
 
-        <record id="view_district_master_filter" model="ir.ui.view">
-            <field name="name">district.master.search</field>
-            <field name="model">district.master</field>
+        <record id="view_farmer_district_master_filter" model="ir.ui.view">
+            <field name="name">farmer.district.master.search</field>
+            <field name="model">farmer.district.master</field>
             <field name="arch" type="xml">
                 <search string="Search District">
                     <field name="state_id"/>
@@ -123,12 +138,12 @@
             </field>
         </record>
 
-        <record id="action_district_master" model="ir.actions.act_window">
+        <record id="action_farmer_district_master" model="ir.actions.act_window">
             <field name="name">District</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">district.master</field>
+            <field name="res_model">farmer.district.master</field>
             <field name="view_mode">tree,form</field>
-            <field name="search_view_id" ref="view_district_master_filter"/>
+            <field name="search_view_id" ref="view_farmer_district_master_filter"/>
             <field name="domain"></field>
             <field name="context">{}</field>
             <field name="help" type="html">
@@ -140,24 +155,109 @@
             </field>
         </record>
 
-        <record id="view_village_master_tree" model="ir.ui.view">
-        <field name="name">village.master.tree</field>
-        <field name="model">village.master</field>
+
+        <record id="view_farmer_taluk_master_tree" model="ir.ui.view">
+            <field name="name">farmer.taluk.master.tree</field>
+            <field name="model">farmer.taluk.master</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Taluk Master">
+                    <field name="name"/>
+                    <field name="taluk_code"/>
+                    <field name="district_id"/>
+                    <field name="state_id"/>
+                    <field name="write_uid"/>
+                    <field name="write_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_farmer_taluk_master_form" model="ir.ui.view">
+            <field name="name">farmer.taluk.master.form</field>
+            <field name="model">farmer.taluk.master</field>
+            <field name="arch" type="xml">
+                <form string="Taluk Master">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="taluk_code"/>
+                                <field name="district_id"  options="{'no_create': True, 'no_open': True}"/>
+                                <field name="state_id" options="{'no_create': True, 'no_open': True}"/>
+                            </group>
+                            <group>
+                                <field name="write_uid"/>
+                                <field name="write_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Village">
+                                <field string="Village" name="village_ids">
+                                    <tree create="false" delete="false" editable="false">
+                                        <field name="name"/>
+                                        <field name="village_code"/>
+                                        <field name="district_id"/>
+                                        <field name="state_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_farmer_taluk_master_filter" model="ir.ui.view">
+            <field name="name">farmer.taluk.master.search</field>
+            <field name="model">farmer.taluk.master</field>
+            <field name="arch" type="xml">
+                <search string="Search Taluk">
+                    <field name="state_id"/>
+                    <field name="district_id"/>
+                    <field name="name" string="taluk" filter_domain="['|',('name','ilike',self),('taluk_code','ilike',self)]"/>
+                    <group expand="0" string="Group By">
+                        <filter string="State" name="state" domain="[]" context="{'group_by':'state_id'}"/>
+                   </group>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_farmer_taluk_master" model="ir.actions.act_window">
+            <field name="name">Taluk</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">farmer.taluk.master</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_farmer_taluk_master_filter"/>
+            <field name="domain"></field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create Taluk Name
+                </p><p>
+                    You can manage Taluk here.
+                </p>
+            </field>
+        </record>
+
+        <record id="view_farmer_village_master_tree" model="ir.ui.view">
+        <field name="name">farmer.village.master.tree</field>
+        <field name="model">farmer.village.master</field>
         <field name="priority">4</field>
         <field name="arch" type="xml">
             <tree string="village Master">
                 <field name="name"/>
                 <field name="village_code"/>
+                <field name="taluk_id"/>
                 <field name="district_id"/>
                 <field name="state_id"/>
             </tree>
         </field>
     </record>
 
-    <record id="view_village_master_form" model="ir.ui.view">
-        <field name="name">village.master.form</field>
+    <record id="view_farmer_village_master_form" model="ir.ui.view">
+        <field name="name">farmer.village.master.form</field>
         <field name="type">form</field>
-        <field name="model">village.master</field>
+        <field name="model">farmer.village.master</field>
         <field name="arch" type="xml">
             <form string="village Master Form">
                 <sheet>
@@ -165,6 +265,7 @@
                         <group>
                             <field name="name"/>
                             <field name="village_code"/>
+                            <field name="taluk_id" options="{'no_create': True, 'no_open': True}"/>
                             <field name="district_id" options="{'no_create': True, 'no_open': True}"/>
                             <field name="state_id" options="{'no_create': True, 'no_open': True}"/>
                         </group>
@@ -178,12 +279,13 @@
         </field>
     </record>
 
-    <record id="view_village_master_filter" model="ir.ui.view">
-        <field name="name">village.master.search</field>
-        <field name="model">village.master</field>
+    <record id="view_farmer_village_master_filter" model="ir.ui.view">
+        <field name="name">farmer.village.master.search</field>
+        <field name="model">farmer.village.master</field>
         <field name="arch" type="xml">
             <search string="Search Group">
                 <field name="name" string="Name"/>
+                <field name="taluk_id" string="Taluk"/>
                 <field name="district_id" string="District"/>
                 <field name="state_id" string="State"/>
                 <separator/>
@@ -195,10 +297,10 @@
         </field>
     </record>
 
-    <record id="action_village_master" model="ir.actions.act_window">
+    <record id="action_farmer_village_master" model="ir.actions.act_window">
         <field name="name">Village</field>
         <field name="type">ir.actions.act_window</field>
-        <field name="res_model">village.master</field>
+        <field name="res_model">farmer.village.master</field>
         <field name="view_mode">tree,form</field>
         <field name="context">{}</field>
         <field name="help" type="html">
@@ -208,12 +310,13 @@
         </field>
     </record>
 
-        <menuitem id="corporate_main_menu" name="Corporate" sequence="1" groups="media_forms_management"/>
-        <menuitem id="corporate_sub_menu" name="Corporate" sequence="2" parent="corporate_main_menu" groups="media_forms_management"/>
+<!--        <menuitem id="corporate_main_menu" name="Corporate" sequence="1" groups="media_forms_management"/>-->
+        <menuitem id="corporate_sub_menu" name="Farmer Addr Details" sequence="7" parent="multimedia.multimedia_main_menu" groups="media_forms_management"/>
 
-        <menuitem id="multimedia_state_master_menu" name="State Master" sequence="1" action="action_state_master" parent="corporate_sub_menu"/>
-        <menuitem id="multimedia_district_master_menu" name="District Master" sequence="2" action="action_district_master" parent="corporate_sub_menu"/>
-        <menuitem id="multimedia_village_master_menu" name="Village Master" sequence="7" action="action_village_master" parent="corporate_sub_menu"/>
+        <menuitem id="multimedia_farmer_state_master_menu" name="State Master" sequence="1" action="action_farmer_state_master" parent="corporate_sub_menu"/>
+        <menuitem id="multimedia_farmer_district_master_menu" name="District Master" sequence="2" action="action_farmer_district_master" parent="corporate_sub_menu"/>
+        <menuitem id="multimedia_farmer_taluk_master_menu" name="Taluk Master" sequence="3" action="action_farmer_taluk_master" parent="corporate_sub_menu"/>
+        <menuitem id="multimedia_farmer_village_master_menu" name="Village Master" sequence="4" action="action_farmer_village_master" parent="corporate_sub_menu"/>
 
 
 

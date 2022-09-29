@@ -3,8 +3,8 @@ from datetime import datetime
 from odoo.exceptions import AccessError, UserError, ValidationError
 
 
-class StateMaster(models.Model):
-    _name = 'state.master'
+class FarmerStateMaster(models.Model):
+    _name = 'farmer.state.master'
     _description = 'State Master'
     _order = "name asc"
 
@@ -15,7 +15,7 @@ class StateMaster(models.Model):
     write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
     create_uid = fields.Many2one('res.users', string='Created by', readonly=True)
     active = fields.Boolean('Active', default=True)
-    district_ids = fields.One2many('district.master', 'state_id', "District Records")
+    district_ids = fields.One2many('farmer.district.master', 'state_id', "District Records")
 
     @api.constrains('name')
     def _state_name_unique(self):
@@ -37,19 +37,19 @@ class StateMaster(models.Model):
             result.append((record.id, name))
         return result
 
-class DistrictMaster(models.Model):
-    _name = 'district.master'
-    _description = 'District Master'
+class FarmerDistrictMaster(models.Model):
+    _name = 'farmer.district.master'
+    _description = 'Farmer District Master'
     _order = "name asc"
 
     name = fields.Char('District Name', required=True)
     district_code = fields.Char('District Code')
-    state_id = fields.Many2one('state.master', string='State', required=True)
+    state_id = fields.Many2one('farmer.state.master', string='State', required=True)
     create_date = fields.Datetime(string='Created Date', readonly=True)
     write_date = fields.Datetime(string='Last Updated Date', readonly=True)
     write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
     create_uid = fields.Many2one('res.users', string='Created by', readonly=True)
-    village_ids = fields.One2many('village.master', 'district_id', "District Records")
+    taluk_ids = fields.One2many('farmer.taluk.master', 'district_id', "Taluk Records")
     active = fields.Boolean('Active', default=True)
 
     @api.constrains('name', 'state_id')
@@ -59,15 +59,39 @@ class DistrictMaster(models.Model):
         if self.name.lower().replace(" ", "") in lst:
             raise ValidationError(_('The Same District Name is already available'))
 
-class VillageMaster(models.Model):
-    _name = 'village.master'
-    _description = 'Village Master'
+class FarmerTalukMaster(models.Model):
+    _name = 'farmer.taluk.master'
+    _description = 'Farmer Taluk Master'
+    _order = "name asc"
+
+    name = fields.Char('Taluk Name', required=True)
+    taluk_code = fields.Char('Taluk Code')
+    state_id = fields.Many2one('farmer.state.master', string='State', required=True)
+    district_id = fields.Many2one('farmer.district.master', string='District', required=True)
+    create_date = fields.Datetime(string='Created Date', readonly=True)
+    write_date = fields.Datetime(string='Last Updated Date', readonly=True)
+    write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
+    create_uid = fields.Many2one('res.users', string='Created by', readonly=True)
+    village_ids = fields.One2many('farmer.village.master', 'taluk_id', "Village Records")
+    active = fields.Boolean('Active', default=True)
+
+    # @api.constrains('name', 'state_id')
+    # def _taluk_name_unique(self):
+    #     lst = [x.name.lower().replace(" ", "") for x in
+    #            self.search([('id', '!=', self.id), ('state_id', '=', self.state_id.id)])]
+    #     if self.name.lower().replace(" ", "") in lst:
+    #         raise ValidationError(_('The Same District Name is already available'))
+
+class FarmerVillageMaster(models.Model):
+    _name = 'farmer.village.master'
+    _description = 'Farmer Village Master'
     _order = "name asc"
 
     name = fields.Char('Village Name', required=True)
     village_code = fields.Char('Village Code')
-    district_id = fields.Many2one('district.master', string='District', required=True)
-    state_id = fields.Many2one('state.master', string='State', required=True)
+    taluk_id = fields.Many2one('farmer.taluk.master', string='Taluk', required=True)
+    district_id = fields.Many2one('farmer.district.master', string='District', required=True)
+    state_id = fields.Many2one('farmer.state.master', string='State', required=True)
     create_date = fields.Datetime(string='Created Date', readonly=True)
     write_date = fields.Datetime(string='Last Updated Date', readonly=True)
     write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)

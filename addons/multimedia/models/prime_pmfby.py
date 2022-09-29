@@ -19,7 +19,8 @@ class PrimePMFBYCalculator(models.Model):
 
     @api.onchange('area')
     def onchange_area_insured(self):
-        base_insured_amt = 803.99000
+        # ~ base_insured_amt = 803.99000
+        base_insured_amt = 844.74000
         service_charge = 250
         if self.area * 100 > 0:
             area_insured = self.area * 100

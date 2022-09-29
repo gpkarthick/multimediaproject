@@ -29,6 +29,9 @@ access_pan_form_management,access.pan.form.management,model_pan_form,multimedia.
 access_state_master_user,access.state.master.user,model_state_master,multimedia.media_forms_users,1,1,1,0
 access_state_master_management,access.state.master.management,model_state_master,multimedia.media_forms_management,1,1,1,0
 ,,,,,,,
+access_farmer_master_user,access.farmer.master.user,model_farmer_master,multimedia.media_forms_users,1,1,1,0
+access_farmer_master_management,access.farmer.master.management,model_farmer_master,multimedia.media_forms_management,1,1,1,0
+,,,,,,,
 access_district_master_user,access.district.master.user,model_district_master,multimedia.media_forms_users,1,1,1,0
 access_district_master_management,access.district.master.management,model_district_master,multimedia.media_forms_management,1,1,1,0
 ,,,,,,,
@@ -71,3 +74,15 @@ access_media_import_master,access.media.import.master,model_import_master,multim
 ,,,,,,,
 access_ir_attachment_form_user,access.ir.attachment.form.user,base.model_ir_attachment,multimedia.media_site_users,1,0,0,0
 access_ir_attachment_form_management,access.ir.attachment.form.managment,base.model_ir_attachment,multimedia.media_site_management,1,1,1,1
+,,,,,,,
+access_farmer_state_master_user,access.farmer.state.master.user,model_farmer_state_master,multimedia.media_forms_users,1,1,1,0
+access_farmer_state_master_management,access.farmer.state.master.management,model_farmer_state_master,multimedia.media_forms_management,1,1,1,0
+,,,,,,,
+access_farmer_district_master_user,access.farmer.district.master.user,model_farmer_district_master,multimedia.media_forms_users,1,1,1,0
+access_farmer_district_master_management,access.farmer.district.master.management,model_farmer_district_master,multimedia.media_forms_management,1,1,1,0
+,,,,,,,
+access_farmer_taluk_master_user,access.farmer.taluk.master.user,model_farmer_taluk_master,multimedia.media_forms_users,1,1,1,0
+access_farmer_taluk_master_management,access.farmer.taluk.master.management,model_farmer_taluk_master,multimedia.media_forms_management,1,1,1,0
+,,,,,,,
+access_farmer_village_master_user,access.farmer.village.master.user,model_farmer_village_master,multimedia.media_forms_users,1,1,1,0
+access_farmer_village_master_management,access.farmer.village.master.management,model_farmer_village_master,multimedia.media_forms_management,1,1,1,0
