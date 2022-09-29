@@ -260,7 +260,18 @@
                                 <field name="district_tamil_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                                 <field name="state_tamil_name" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                             </group>
-
+                        </group>
+                        <group string="PMFBY Area Calculation">
+                            <group>
+                                <field name="area"/>
+                                <field name="premium_amount"/>
+                                <field name="service_charge"/>
+                                <field name="total_amount"/>
+                            </group>
+                            <group>
+                                <field name="received_amount" required="1"/>
+                                <field name="balance_amount" required="1"/>
+                            </group>
                         </group>
 
                         <group string="Resident Details">
