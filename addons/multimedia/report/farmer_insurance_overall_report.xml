@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="farmer_insurance_all_report_multimedia">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <link rel="stylesheet" href="/multimedia/static/src/css/style2.css"/>
+                    <div class="page">
+                         <table class="mcls_001">
+							<tr>
+								<td>
+									<p class="mcls_sub_001">CSC Application</p>
+								</td>
+							</tr>
+						</table>
+
+						<hr/>
+
+						<table>
+							<tr>
+								<td width="100%" height="20%">
+
+									<img src="/multimedia/static/src/img/farmerlogo.png" style="max-height: 110px;" alt="Happy face"/>
+
+<!--									<img t-if="res_company.logo"-->
+<!--                                             t-att-src="'data:image/png;base64,%s' % to_text(res_company.logo)"-->
+<!--                                             style="max-height: 110px;"/>-->
+
+
+								</td>
+							</tr>
+						</table>
+
+						<table class="mcls_002">
+							<tr>
+								<td style="text-align:left;width:50%">
+									<span t-if="o.name"><strong>Reciept No: <span t-field="o.name"/></strong><br/></span>
+								</td>
+								<td style="text-align:right;width:50%">
+									<span><strong>Application Status : PAID APPROVED</strong></span>
+								</td>
+							</tr>
+						</table>
+						<hr/>
+
+<!--
+						<table class="mcls_002">
+							<tr>
+								<td style="text-align:left;width:50%">
+									<span><br/></span>
+								</td>
+								<td style="text-align:right;width:50%">
+								</td>
+							</tr>
+						</table>
+-->
+
+						<table class="mcls_003">
+							<tr>
+								<td style="text-align:left;width:37%;border-right: 1px solid #efefef;">
+									<span class="mcls_003-span" t-if="o.state_id">State : <span class="mcls_003-span-bold" t-field="o.state_id.name"/><br/></span>
+									<span class="mcls_003-span" t-if="o.scheme_name">Scheme : <strong><span class="mcls_003-span-bold" t-field="o.scheme_name"/></strong><br/></span>
+									<span class="mcls_003-span" t-if="o.year_val">Year : <strong><span class="mcls_003-span-bold" t-field="o.year_val"/></strong><br/></span>
+									<span class="mcls_003-span" t-if="o.application_type">Application Type : <strong><span class="mcls_003-span-bold" t-field="o.application_type"/></strong><br/></span>
+									<span class="mcls_003-span" t-if="o.season_name">Season : <strong><span class="mcls_003-span-bold" t-field="o.season_name"/></strong><br/></span>
+									<span class="mcls_003-span" t-if="o.created_by">Created By : <strong><span class="mcls_003-span-bold" t-field="o.created_by"/></strong><br/></span>
+								</td>
+								<td style="text-align:left;width:19%">
+								</td>
+								<td style="width:43%;vertical-align: middle;">
+									<img t-att-src="'data:image/png;base64,%s' % to_text(o.qr_code)" style="max-height: 175px; "/>
+								</td>
+							</tr>
+						</table>
+						<hr/>
+
+						<table class="mcls_004_table">
+							<tr>
+								<td style="text-align:left;width:50%;border-right: 1px solid #efefef;">
+									<span class="mcls_004"><strong>Farmer Details</strong><br/></span>
+									<span class="mcls_005" t-if="o.farmer_name"><strong>Farmer Name : <span t-field="o.farmer_name"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.relative_name"><strong>Relative Name : <span t-field="o.relative_name"/>(<span t-field="o.relative_type"/>) </strong><br/></span>
+									<span class="mcls_005" t-if="o.mobile_no"><strong>Mobile No. : <span t-field="o.mobile_no"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.farmer_type"><strong>Farmer Type : <span t-field="o.farmer_type"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.gender_type"><strong>Gender : <span t-field="o.gender_type"/></strong><br/></span>
+								</td>
+								<td style="text-align:left;width:6%">
+								</td>
+								<td style="text-align:left;width:48%;border-right: none">
+									<span class="mcls_004"><strong>Bank Details</strong><br/></span>
+									<span class="mcls_005" t-if="o.bank_account_no"><strong>Account Number : <span t-field="o.bank_account_no"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.ifsc_code"><strong>IFSC : <span t-field="o.ifsc_code"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.bank_name"><strong>Bank Name : <span t-field="o.bank_name"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.branch_name"><strong>Branch Name : <span t-field="o.branch_name"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.account_type"><strong>Account Type : <span t-field="o.account_type"/></strong><br/></span>
+								</td>
+							</tr>
+						</table>
+						<hr/>
+
+						<table class="mcls_006">
+							<tr>
+								<td style="text-align:left;width:50%">
+									<span class="mcls_006"><strong>Crop Details</strong><br/></span>
+								</td>
+								<td style="text-align:right;width:50%">
+								</td>
+							</tr>
+						</table>
+
+						<div>
+							<table class="mcls_007" style="width:100%">
+								<thead>
+									<tr>
+										<th style="width:13%;border-left-color: #425364;border-style: solid;border-width: thin;border-right: none;">District</th>
+										<th style="width:13%">Village</th>
+										<th style="width:15.0%">IU Level</th>
+										<th style="width:9.0%">Crop</th>
+										<th style="width:11.0%">Survey
+No.</th>
+										<th style="width:11%">Sum <br/>
+															Insured  <br/>
+															(₹)</th>
+										<th style="width:11%">Area Insured
+(Hect./Plants)</th>
+										<th style="width:11%">Gov. <br/> Share (₹)</th>
+										<th style="width:11%;border-right-color: #425364;border-style: solid;border-width: thin;border-left: none;">Farmer<br/> Share <br/> (₹)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr t-foreach="o.crop_line_ids" t-as="l">
+										<td class="text-left" style="border-left-color: #425364;border-style: solid;border-width: thin;border-right: none;">
+											<span t-field="l.crop_id.district_id.name"/>
+										</td>
+										<td class="text-left">
+											<span t-field="l.crop_id.village_id.name"/>
+										</td>
+										<td class="text-left">
+											<span t-field="l.crop_id.village_id.name"/>(Village)
+										</td>
+										<td class="text-left">
+											<span t-field="l.crop_data"/>
+										</td>
+										<td class="text-left">
+											<span t-field="l.survey_no"/>
+										</td>
+										<td class="text-left">
+											<span t-field="l.sum_insured" />
+										</td>
+										<td class="text-left">
+											<span t-field="l.area_insured" />
+										</td>
+										<td class="text-left">
+											<span t-field="l.gov_share" />
+										</td>
+										<td class="text-left" style="border-right-color: #425364;border-style: solid;border-width: thin;border-left: none;">
+											<span t-field="l.farmer_share" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<hr/>
+
+						<table class="mcls_005">
+							<tr>
+								<td style="text-align:left;width:33%">
+									<span class="mcls_0012">Total Area Insured :<br/></span>
+									<span class="mcls_009" t-if="o.total_area_insured"><span t-field="o.total_area_insured"/> Hect.<br/></span>
+								</td>
+								<td style="text-align:left;width:33%">
+									<span class="mcls_0012">Total Premium Paid :<br/></span>
+									<span class="mcls_009" t-if="o.total_premium_paid">₹ <span t-field="o.total_premium_paid"/><br/></span>
+								</td>
+								<td style="text-align:left;width:34%">
+									<span class="mcls_0012">Total Sum Insured:<br/></span>
+									<span class="mcls_009" t-if="o.total_sum_insured">₹ <span t-field="o.total_sum_insured"/><br/></span>
+								</td>
+							</tr>
+						</table>
+
+						<hr/>
+
+						<table class="mcls_0010">
+							<tr>
+								<td style="text-align:left;width:23%">
+									<span class="mcls_0010">Insurance Company<br/></span>
+									<span class="mcls_0010">HelpLine / Email<br/></span>
+									<span class="mcls_0010">Address<br/></span>
+									<span class="mcls_0010"><br/></span>
+								</td>
+								<td style="text-align:left;width:77%">
+									<span class="mcls_0013">: AGRICULTURE INSURANCE COMPANY<br/></span>
+									<span class="mcls_0013">: 1800116515 / fasalbima@aicofindia.com<br/></span>
+									<span class="mcls_0013">: Office Block-1, 5th Floor, Plate-B &amp; C, East Kidwai Nagar, Ring Road, New<br/></span>
+									<span class="mcls_0013">: Delhi-110023<br/></span>
+								</td>
+							</tr>
+						</table>
+
+						<hr/>
+
+						<table class="mcls_0011">
+							<tr>
+								<td>
+									<span class="mcls_0011"><strong>Disclaimer </strong>:This document is only a farmer's Premium acknowledgement receipt, coverage under crop insurance
+will be subject to scrutiny of necessary documents and applicability of relavent provisions as per the operational
+Guidelines of respective schemes.<br/></span>
+								</td>
+							</tr>
+						</table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+
+		<t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <link rel="stylesheet" href="/multimedia/static/src/css/style2.css"/>
+                    <div class="page">
+                         <table class="mcls_001">
+							<tr>
+								<td>
+									<p class="mcls_sub_001">CSC Application</p>
+								</td>
+							</tr>
+						</table>
+
+						<hr/>
+
+						<table>
+							<tr>
+								<td width="100%" height="20%">
+									<img src="/multimedia/static/src/img/farmerlogo.png" style="max-height: 110px;" alt="Happy face"/>
+								</td>
+							</tr>
+						</table>
+
+						<table class="mcls_002">
+							<tr>
+								<td style="text-align:left;width:50%">
+									<span t-if="o.name"><strong>ரசீது எண்: <span t-field="o.name"/></strong><br/></span>
+								</td>
+								<td style="text-align:right;width:50%">
+									<span><strong>விண்ணப்ப நிலை : பணம்</strong></span>
+								</td>
+							</tr>
+						</table>
+						<hr/>
+
+						<table class="mcls_003">
+							<tr>
+								<td style="text-align:left;width:37%;border-right: 1px solid #efefef;">
+									<span class="mcls_003-span" t-if="o.state_id">மாநிலம் : <span class="mcls_003-span-bold" t-field="o.state_id.tamil_name"/><br/></span>
+									<span class="mcls_003-span" t-if="o.scheme_name">திட்டம் : <strong><span class="mcls_003-span-bold" t-field="o.scheme_name"/></strong><br/></span>
+									<span class="mcls_003-span" t-if="o.year_val">ஆண்டு : <strong><span class="mcls_003-span-bold" t-field="o.year_val"/></strong><br/></span>
+									<span class="mcls_003-span" t-if="o.application_type">விண்ணப்ப வகை : <strong><span class="mcls_003-span-bold" t-field="o.application_tamil_type"/></strong><br/></span>
+									<span class="mcls_003-span" t-if="o.season_name">பருவம் : <strong><span class="mcls_003-span-bold" t-field="o.season_tamil_name"/></strong><br/></span>
+									<span class="mcls_003-span" t-if="o.created_by">உருவாக்கியது : <strong><span class="mcls_003-span-bold" t-field="o.created_by"/></strong><br/></span>
+								</td>
+								<td style="text-align:left;width:19%">
+								</td>
+								<td style="width:43%;vertical-align: middle;">
+									<img t-att-src="'data:image/png;base64,%s' % to_text(o.qr_code)" style="max-height: 175px; "/>
+								</td>
+							</tr>
+						</table>
+						<hr/>
+
+						<table class="mcls_004_table">
+							<tr>
+								<td style="text-align:left;width:50%;border-right: 1px solid #efefef;">
+									<span class="mcls_004"><strong>விவசாயி விவரங்கள்</strong><br/></span>
+									<span class="mcls_005" t-if="o.farmer_name"><strong>பண்ணையார் பெயர்  : <span t-field="o.farmer_tamil_name"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.relative_name"><strong>பெயர் : <span t-field="o.relative_tamil_name"/>(<span t-field="o.relative_tamil_type"/>) </strong><br/></span>
+									<span class="mcls_005" t-if="o.mobile_no"><strong>அலைபேசி எண் : <span t-field="o.mobile_no"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.farmer_type"><strong>விவசாயி வகை : <span t-field="o.farmer_tamil_type"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.gender_type"><strong>பாலினம் : <span t-field="o.gender_tamil_type"/></strong><br/></span>
+								</td>
+								<td style="text-align:left;width:6%">
+								</td>
+								<td style="text-align:left;width:48%;border-right: none">
+									<span class="mcls_004"><strong>வங்கி விவரங்கள்</strong><br/></span>
+									<span class="mcls_005" t-if="o.bank_account_no"><strong>கணக்கு எண் : <span t-field="o.bank_account_no"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.ifsc_code"><strong>IFSC : <span t-field="o.ifsc_code"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.bank_tamil_name"><strong>வங்கி பெயர் : <span t-field="o.bank_tamil_name"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.branch_tamil_name"><strong>கிளை பெயர் : <span t-field="o.branch_tamil_name"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.account_tamil_type"><strong>கணக்கு வகை : <span t-field="o.account_tamil_type"/></strong><br/></span>
+								</td>
+							</tr>
+						</table>
+						<hr/>
+						<table class="mcls_006">
+							<tr>
+								<td style="text-align:left;width:50%">
+									<span class="mcls_006"><strong>பயிர் விவரங்கள்</strong><br/></span>
+								</td>
+								<td style="text-align:right;width:50%">
+								</td>
+							</tr>
+						</table>
+						<div>
+							<table class="mcls_007" style="width:100%">
+								<thead>
+									<tr>
+										<th style="width:13%;border-left-color: #425364;border-style: solid;border-width: thin;border-right: none;">மாவட்டம்</th>
+										<th style="width:13%">கிராமம்</th>
+										<th style="width:15.0%">IU நிலை</th>
+										<th style="width:9.0%">பயிர்</th>
+										<th style="width:11.0%">சர்வே
+எண்.</th>
+										<th style="width:11%">தொகை <br/>
+															காப்பீடு  <br/>
+															செய்யப்பட்ட(₹)</th>
+										<th style="width:11%">காப்பீடு செய்யப்பட்ட பகுதி
+(Hect./Plants)</th>
+										<th style="width:11%">அரசு. <br/> பங்கு (₹)</th>
+										<th style="width:11%;border-right-color: #425364;border-style: solid;border-width: thin;border-left: none;">விவசாயி<br/> பங்கு <br/> (₹)</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr t-foreach="o.crop_line_ids" t-as="l">
+										<td class="text-left" style="border-left-color: #425364;border-style: solid;border-width: thin;border-right: none;">
+											<span t-field="l.crop_id.district_id.district_tamil_name"/>
+										</td>
+										<td class="text-left">
+											<span t-field="l.crop_id.village_id.village_tamil_name"/>
+										</td>
+										<td class="text-left">
+											<span t-field="l.crop_id.village_id.village_tamil_name"/>(கிராமம்)
+										</td>
+										<td class="text-left">
+											<span>நெல்- II</span>
+										</td>
+										<td class="text-left">
+											<span t-field="l.survey_no"/>
+										</td>
+										<td class="text-left">
+											<span t-field="l.sum_insured" />
+										</td>
+										<td class="text-left">
+											<span t-field="l.area_insured" />
+										</td>
+										<td class="text-left">
+											<span t-field="l.gov_share" />
+										</td>
+										<td class="text-left" style="border-right-color: #425364;border-style: solid;border-width: thin;border-left: none;">
+											<span t-field="l.farmer_share" />
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<hr/>
+						<table class="mcls_005">
+							<tr>
+								<td style="text-align:left;width:33%">
+									<span class="mcls_0012">காப்பீடு செய்யப்பட்ட மொத்த பகுதி :<br/></span>
+									<span class="mcls_009" t-if="o.total_area_insured"><span t-field="o.total_area_insured"/> Hect.<br/></span>
+								</td>
+								<td style="text-align:left;width:33%">
+									<span class="mcls_0012">செலுத்தப்பட்ட மொத்த பிரீமியம் :<br/></span>
+									<span class="mcls_009" t-if="o.total_premium_paid">₹ <span t-field="o.total_premium_paid"/><br/></span>
+								</td>
+								<td style="text-align:left;width:34%">
+									<span class="mcls_0012">மொத்த காப்பீடுத் தொகை:<br/></span>
+									<span class="mcls_009" t-if="o.total_sum_insured">₹ <span t-field="o.total_sum_insured"/><br/></span>
+								</td>
+							</tr>
+						</table>
+
+						<hr/>
+
+						<table class="mcls_0010">
+							<tr>
+								<td style="text-align:left;width:23%">
+									<span class="mcls_0010">காப்பீட்டுத் நிறுவனம்<br/></span>
+									<span class="mcls_0010">ஹெல்ப்லைன் / மின்னஞ்சல் <br/></span>
+									<span class="mcls_0010">முகவரி<br/></span>
+									<span class="mcls_0010"><br/></span>
+								</td>
+								<td style="text-align:left;width:77%">
+									<span class="mcls_0013">: விவசாய காப்பீட்டுத நிறுவனம்<br/></span>
+									<span class="mcls_0013">: 1800116515 / fasalbima@aicofindia.com<br/></span>
+									<span class="mcls_0013">: அலுவலக பிளாக்-1, 5வது தளம், தட்டு-பி &amp; சி, கிழக்கு கித்வாய் நகர், ரிங் ரோடு, புது<br/></span>
+									<span class="mcls_0013">: டெல்லி-110023<br/></span>
+								</td>
+							</tr>
+						</table>
+
+						<hr/>
+
+
+                    </div>
+                </t>
+            </t>
+        </t>
+
+    </template>
+</odoo>

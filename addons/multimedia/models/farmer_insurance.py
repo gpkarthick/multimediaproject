@@ -132,6 +132,7 @@ class FarmerInsurance(models.Model):
     total_amount = fields.Float(string='Total Amount', required=True)
     received_amount = fields.Float(string='Farmer Paid Amount')
     balance_amount = fields.Float(string='Balance Amount')
+    farmer_addr = fields.Text(string='Address')
 
     @api.onchange('area','received_amount')
     def onchange_area_insured(self):
@@ -323,6 +324,9 @@ class FarmerInsurance(models.Model):
 
     def insurance_tamil_bill_print(self):
         return self.env.ref('multimedia.action_report_tamil_insurance').report_action(self)
+
+    def insurance_overall_print(self):
+        return self.env.ref('multimedia.action_report_overall_insurance').report_action(self)
 
 
 class CropDataLine(models.Model):

@@ -23,6 +23,7 @@
         'views/prime_pmfby_view.xml',
         'report/multimedia_report.xml',
         'report/farmer_insurance_report.xml',   
+        'report/farmer_insurance_overall_report.xml',
         'report/farmer_insurance_tamil_report.xml',
         'report/multimedia_ebbill_report.xml',
         'report/account_verification_report.xml',

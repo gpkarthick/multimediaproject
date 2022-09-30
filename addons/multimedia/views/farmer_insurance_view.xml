@@ -132,6 +132,8 @@
                                 attrs="{'invisible': [('state', '=', 'draft')]}"/>
                         <button name="insurance_tamil_bill_print" string="Tamil Print" type="object"
                                 class="oe_highlight" attrs="{'invisible': [('state', '=', 'draft')]}"/>
+                        <button name="insurance_overall_print" string="All Print" type="object"
+                                class="oe_highlight" attrs="{'invisible': [('state', '=', 'draft')]}"/>
                         <button name="insurance_preview_column" string="Preview" type="object" class="oe_highlight" />
                         <button name="action_reset" type="object" string="Reset" class="oe_highlight"
                                 attrs="{'invisible': [('state', 'in', 'draft')]}"/>
@@ -277,10 +279,11 @@
 
                         <group string="Resident Details">
                             <group>
-                                <field name="farmer_village_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="farmer_taluk_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="farmer_district_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
-                                <field name="farmer_state_id" required="1" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="farmer_addr" required="0" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="farmer_village_id" required="0" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="farmer_taluk_id" required="0" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="farmer_district_id" required="0" attrs="{'readonly': [('state', '=', 'paid')]}"/>
+                                <field name="farmer_state_id" required="0" attrs="{'readonly': [('state', '=', 'paid')]}"/>
                             </group>
                             <group>
                             </group>
