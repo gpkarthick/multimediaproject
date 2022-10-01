@@ -1440,6 +1440,7 @@
                                 <field name="mail_id"/>
                                 <field name="mobile_no"/>
                                 <field name="address"/>
+                                <field name="form_seqno"/>
                             </group>
                             <group>
                                 <field name="district_id" options="{'no_open': True, 'no_create': True}"/>

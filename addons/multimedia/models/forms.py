@@ -264,6 +264,7 @@ class ResUsers(models.Model):
     district_id = fields.Many2one('district.master', string='District')
     village_id = fields.Many2one('village.master', string='Village')
     address = fields.Text(string='Address')
+    form_seqno = fields.Char(string='Form Suffix')
     user_type = fields.Selection(string='User type', selection=[('shop', 'shop'), ('employee', 'employee'), ('management', 'management')], required=True)
 
 class DistrictMaster(models.Model):

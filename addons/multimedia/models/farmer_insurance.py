@@ -27,6 +27,16 @@ class FarmerInsurance(models.Model):
                 'total_premium_paid': total_premium_paid
             })
 
+    def _default_service_charge(self):
+        amount = 0
+        if self.env.user.user_type == 'shop':
+            amount = 150
+        else:
+            amount = 250
+        return amount
+
+
+
     name = fields.Char(string='Receipt No', size=18, readonly=True,  default=lambda self: _('New'))
     original_receipt_no = fields.Char(string='Original Receipt No')
     seq_no = fields.Char(string='Seq No',
@@ -121,6 +131,7 @@ class FarmerInsurance(models.Model):
 
     form_serial_no = fields.Char(string='Serial Number', default='PMFBY2022FY1432')
     form_application_no = fields.Integer(string='Form Number')
+    sheet_no = fields.Char(string='Form No')
 
     branch_tamil_name = fields.Char('Branch Name', size=60)
     bank_tamil_name = fields.Char('Bank Name', size=60)
@@ -128,18 +139,20 @@ class FarmerInsurance(models.Model):
 
     area = fields.Float(string='Area(Hectare)', required=True)
     premium_amount = fields.Float(string='Premium Amt (Rs)', required=True)
-    service_charge = fields.Float(string='Service Amount')
+    service_charge = fields.Float(string='Service Amount', default=_default_service_charge)
     total_amount = fields.Float(string='Total Amount', required=True)
     received_amount = fields.Float(string='Farmer Paid Amount')
     balance_amount = fields.Float(string='Balance Amount')
     farmer_addr = fields.Text(string='Address')
 
-
-
     @api.model
     def create(self, vals):
+        print (self.env.user.form_seqno)
+        print (vals,"aaaaaaaaaaaa")
+        print ('PMFBY2022FY1432-'+self.env.user.form_seqno+'-'+str(vals['form_application_no']))
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code('farmer.insurance') or _('New')
+            vals['sheet_no'] = 'PMFBY2022FY1432'+'-'+str(self.env.user.form_seqno)+'-'+str(vals['form_application_no'])
         return super(FarmerInsurance, self).create(vals)
 
     @api.constrains('form_application_no', 'original_receipt_no')
@@ -151,19 +164,19 @@ class FarmerInsurance(models.Model):
         if original_receipt_ids.ids:
             raise ValidationError(_('Already Used this Original Receipt No, please check it'))
 
-    @api.onchange('area','received_amount')
+    @api.onchange('area','received_amount', 'service_charge')
     def onchange_area_insured(self):
         # ~ base_insured_amt = 803.99000
         base_insured_amt = 844.74000
-        service_charge = 250
+        # service_charge = 250
         if self.area * 100 > 0:
             area_insured = self.area * 100
             premium_amt = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
             self.premium_amount = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
-            self.service_charge = service_charge
-            self.total_amount = premium_amt + service_charge
-            tot = premium_amt + service_charge
-            self.balance_amount = (premium_amt + service_charge) - self.received_amount
+            # self.service_charge = service_charge
+            self.total_amount = premium_amt + self.service_charge
+            tot = premium_amt + self.service_charge
+            self.balance_amount = (premium_amt + self.service_charge) - self.received_amount
 
     def action_confirm(self):
         self.write({'state': 'confirmed'})
