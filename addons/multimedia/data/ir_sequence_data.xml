@@ -93,6 +93,15 @@
             <field name="suffix">/%(y)s</field>
             <field name="company_id" eval="False"/>
         </record>
+        
+        <record id="seq_farmer_insurance" model="ir.sequence">
+            <field name="name">Farmer Insurance</field>
+            <field name="code">farmer.insurance</field>
+            <field name="prefix">0402332000701</field>
+            <field name="padding">5</field>
+            <field name="suffix"></field>
+            <field name="company_id" eval="False"/>
+        </record>
 
     </data>
 </odoo>

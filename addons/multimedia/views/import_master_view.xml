@@ -28,6 +28,7 @@
                             <group>
                                 <button name="action_import" class="btn btn-danger" string="Imports" type="object"/>
                                 <button name="action_farmer_addr_import" class="btn btn-danger" string="Farmer Addr Imports" type="object"/>
+                                <button name="action_import_land_details" class="btn btn-danger" string="Imports Land Details" type="object"/>
                             </group>
                         </group>
                     </sheet>

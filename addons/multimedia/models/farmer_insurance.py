@@ -11,7 +11,7 @@ from pprint import pprint
 class FarmerInsurance(models.Model):
     _name = "farmer.insurance"
     _description = "Farmer Insurance Bussiness Operation"
-    _order = 'name desc'
+    _order = 'id desc'
 
     @api.depends('crop_line_ids')
     def _amount_all(self):
@@ -27,7 +27,7 @@ class FarmerInsurance(models.Model):
                 'total_premium_paid': total_premium_paid
             })
 
-    name = fields.Char(string='Receipt No')
+    name = fields.Char(string='Receipt No', size=18, readonly=True,  default=lambda self: _('New'))
     original_receipt_no = fields.Char(string='Original Receipt No')
     seq_no = fields.Char(string='Seq No',
                          default=lambda self: self.env['ir.sequence'].next_by_code('farmer.insurance.seq'))
@@ -63,7 +63,7 @@ class FarmerInsurance(models.Model):
     write_date = fields.Datetime(string='Last Updated Date', readonly=True)
     write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
     create_uid = fields.Many2one('res.users', string='Created by', readonly=True)
-    state = fields.Selection([('draft', 'Draft'), ('pending', 'Pending'), ('paid', 'Paid')], string='Status',
+    state = fields.Selection([('draft', 'Draft'),('confirmed', 'Confirmed'),('verified', 'Verified'), ('printtaken', 'bill Taken'), ('done', 'Done')], string='Status',
                              readonly=True, default='draft')
 
     crop_data = fields.Char('Crop', size=60, default='Paddy - II')
@@ -120,7 +120,7 @@ class FarmerInsurance(models.Model):
     farmer_category_type = fields.Selection([('OWNER', 'OWNER'), ('TENANT', 'TENANT'),('SHARECROPPER', 'SHARECROPPER')], string='Farmer Category')
 
     form_serial_no = fields.Char(string='Serial Number', default='PMFBY2022FY1432')
-    form_application_no = fields.Char(string='Form Number')
+    form_application_no = fields.Integer(string='Form Number')
 
     branch_tamil_name = fields.Char('Branch Name', size=60)
     bank_tamil_name = fields.Char('Bank Name', size=60)
@@ -133,6 +133,23 @@ class FarmerInsurance(models.Model):
     received_amount = fields.Float(string='Farmer Paid Amount')
     balance_amount = fields.Float(string='Balance Amount')
     farmer_addr = fields.Text(string='Address')
+
+
+
+    @api.model
+    def create(self, vals):
+        if vals.get('name', _('New')) == _('New'):
+            vals['name'] = self.env['ir.sequence'].next_by_code('farmer.insurance') or _('New')
+        return super(FarmerInsurance, self).create(vals)
+
+    @api.constrains('form_application_no', 'original_receipt_no')
+    def _check_insurance_formno_receiptno(self):
+        form_application_ids = self.env['farmer.insurance'].search([('id', '!=', self.id),('form_application_no', '=', self.form_application_no)])
+        original_receipt_ids = self.env['farmer.insurance'].search([('id', '!=', self.id),('original_receipt_no', '=', self.original_receipt_no),('original_receipt_no', '!=', '')])
+        if form_application_ids.ids:
+            raise ValidationError(_('Already Used this Form No, please check it'))
+        if original_receipt_ids.ids:
+            raise ValidationError(_('Already Used this Original Receipt No, please check it'))
 
     @api.onchange('area','received_amount')
     def onchange_area_insured(self):
@@ -148,14 +165,22 @@ class FarmerInsurance(models.Model):
             tot = premium_amt + service_charge
             self.balance_amount = (premium_amt + service_charge) - self.received_amount
 
+    def action_confirm(self):
+        self.write({'state': 'confirmed'})
+
+    def action_verified(self):
+        self.write({'state': 'verified'})
+
     def action_reset(self):
         self.write({'state': 'draft'})
 
     def action_pending(self):
         self.write({'state': 'pending'})
 
-    def action_complete(self):
-        self.write({'state': 'paid'})
+    def action_done(self):
+        if not self.original_receipt_no:
+            raise ValidationError(_('Please Enter the Original Receipt No'))
+        self.write({'state': 'done'})
 
     @api.onchange('gender_type')
     def onchange_gender(self):
@@ -320,12 +345,15 @@ class FarmerInsurance(models.Model):
             self.farmer_state_id = self.farmer_village_id.state_id.id
 
     def insurance_bill_print(self):
+        self.write({'state': 'printtaken'})
         return self.env.ref('multimedia.action_report_insurance').report_action(self)
 
     def insurance_tamil_bill_print(self):
+        self.write({'state': 'printtaken'})
         return self.env.ref('multimedia.action_report_tamil_insurance').report_action(self)
 
     def insurance_overall_print(self):
+        self.write({'state': 'printtaken'})
         return self.env.ref('multimedia.action_report_overall_insurance').report_action(self)
 
 
@@ -341,6 +369,7 @@ class CropDataLine(models.Model):
     farmer_share = fields.Float(string='Farmer Share', required=True)
     crop_data = fields.Char('Crop', required=True, default='Paddy- II')
     crop_id = fields.Many2one('farmer.insurance', string='Insurance')
+    doc_html = fields.Html('HTML Report')
 
     @api.onchange('area_insured')
     def onchange_area_insured(self):
@@ -351,6 +380,72 @@ class CropDataLine(models.Model):
             self.farmer_share = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
             self.gov_share = round(((0.80399 * 335) * area_insured), 2)
             self.sum_insured = round(base_insured_amt * area_insured, 2)
+
+    @api.onchange('survey_no','khasra_no')
+    def onchange_survey_no_details(self):
+        html = ''
+        html = """
+                <html>
+                    <body>
+                """
+        html += """
+                <p style="font-size:145%;text-align:center;color: #1c3652;">Land Details</p>
+                    <table style="border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;tr:nth-child(even) {background-color: #f2f2f2;">
+                        <tr style="border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">
+                            <th width="100"  style="background-color: #d4e6f1;border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">Survey No Wise S.No</th>
+                            <th width="100" style="background-color: #d4e6f1;border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">Name Wise S.No</th>
+                            <th width="100" style="background-color: #d4e6f1;border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">Farmer Name</th>
+                            <th width="200" style="background-color: #d4e6f1;border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">Relative type</th>
+                            <th width="250"  style="background-color: #d4e6f1;border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">Reltive Name</th>
+                            <th width="100"  style="background-color: #d4e6f1;border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">Survey No</th>
+                            <th width="100"  style="background-color: #d4e6f1;border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">Sub div No</th>
+                            <th width="100"  style="background-color: #d4e6f1;border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">Hec</th>
+                            <th width="100"  style="background-color: #d4e6f1;border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">Patta No</th>
+                            <th width="400"  style="background-color: #d4e6f1;border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">Land Type</th>
+                        </tr>
+                """
+        if self.survey_no and self.khasra_no:
+            count = 0
+            land_data_ids = self.env['surveyno.wise.land.details'].search([('survey_no', '=', self.survey_no),('sub_div_no', '=', self.khasra_no)])
+            if land_data_ids:
+                for xx in land_data_ids:
+                    print (xx.relative_name)
+                    count += 1
+                    bgc = ''
+                    if (count % 2) == 0:
+                        bgc = '#f2f4f2'
+                    else:
+                        bgc = '#F0FFF0'
+                    html += """<tr style="background-color: """ + bgc + """">
+                                        <td align='left' style="border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">""" + \
+                            xx.surveyno_wise_serial_no + """</td>
+                                        <td align='left' style="border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">""" + \
+                            xx.name_wise_serial_no + """</td>
+                                        <td align='left' style="border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">""" + \
+                            xx.name + """</td>
+                                        <td align='left' style="border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">""" + \
+                            xx.relation_type + """</td>
+                                        <td align='left' style="border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">""" + \
+                            xx.relative_name + """</td>
+                                        <td align='left' style="border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">""" + \
+                            xx.survey_no + """</td>
+                                        <td align='left' style="border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">""" + \
+                            xx.sub_div_no + """</td>
+                                        <td align='left' style="border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">""" + \
+                            xx.area_in_hec + """</td>
+                                        <td align='left' style="border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">""" + \
+                            xx.patta_no + """</td>
+                                        <td align='left' style="border-width:1px;border-color:#D3D3D3;border-style:solid;border-collapse: collapse;">""" + \
+                            xx.land_type + """</td>
+                                            </tr>
+                                        """
+            html += """
+                           </table>
+                           </body>
+                          </html>
+                               """
+        self.doc_html =  html
+
 
 
 class StateMaster(models.Model):
@@ -646,6 +741,44 @@ class ImportMaster(models.Model):
     import_file = fields.Binary('Import CSV File')
     name = fields.Char('Name', required=True)
 
+    def action_import_land_details(self):
+        import base64
+        import csv
+        import io
+        for order in self:
+            count = 0
+            decrypted = base64.b64decode(order.import_file).decode('utf-8')
+            with io.StringIO(decrypted) as fp:
+                reader = csv.reader(fp, delimiter=",", quotechar='"')
+                for row in reader:
+                    if not row:
+                        break
+                    count += 1
+                    if count > 1 and len(row) > 2:
+                        print(row)
+                        surveyno_wise_serial_no = row[0]
+                        name_wise_serial_no = row[1]
+                        farmer_name = row[2]
+                        relation_type = row[3]
+                        relative_name = row[4]
+                        survey_no = row[5]
+                        sub_div_no = row[6]
+                        area_in_hec = row[7]
+                        patta_no = row[8]
+                        land_type = row[9]
+                        self.env['surveyno.wise.land.details'].create(
+                            {'name': farmer_name,
+                             'surveyno_wise_serial_no': surveyno_wise_serial_no,
+                             'name_wise_serial_no': name_wise_serial_no,
+                             'relation_type': relation_type,
+                             'relative_name': relative_name,
+                             'survey_no': survey_no,
+                             'sub_div_no': sub_div_no,
+                             'area_in_hec': area_in_hec,
+                             'patta_no': patta_no,
+                             'land_type': land_type,
+                             })
+
     def action_farmer_addr_import(self):
         import base64
 
@@ -883,3 +1016,17 @@ class FarmerMaster(models.Model):
         self.total_amount = self.premium_amount + self.service_charge
 
 
+class SurveynoWiseLandDetails(models.Model):
+    _name = 'surveyno.wise.land.details'
+    _description = 'Surveyno Wise Land Details'
+
+    name = fields.Char('Farmer Name')
+    surveyno_wise_serial_no = fields.Char('Survey No Wise Serial No')
+    name_wise_serial_no = fields.Char('Name Wise Serial No')
+    relation_type = fields.Char('Relation Type')
+    relative_name = fields.Char('Relative Name')
+    survey_no = fields.Char('Survey No')
+    sub_div_no = fields.Char('Sub Div No')
+    area_in_hec = fields.Char('Hec')
+    patta_no = fields.Char('Patta No')
+    land_type = fields.Char('Land Type')

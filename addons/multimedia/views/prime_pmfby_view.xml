@@ -82,11 +82,10 @@
             </field>
         </record>
 
-        <menuitem id="multimedia_insurance_calculator_menu" name="Calculator" sequence="4"
+        <menuitem id="multimedia_insurance_calculator_menu" name="PMFBY Calculator" sequence="4"
                   parent="multimedia.multimedia_main_menu"/>
-
-        <menuitem id="multimedia_farmer_details_menu" name="Farmer Details" sequence="2" action="multimedia.action_farmer_details_form_insurance_view" parent="multimedia.multimedia_insurance_calculator_menu"/>
-        <menuitem id="multimedia_pmfby_calculator_menu" name="PMFBY Calculator" sequence="2" action="action_prime_pmfby_calculator_view" parent="multimedia.multimedia_insurance_calculator_menu"/>
+        <menuitem id="multimedia_pmfby_calculator_menu" name="PMFBY Calculator" sequence="2" action="action_prime_pmfby_calculator_view"
+                  parent="multimedia.multimedia_insurance_calculator_menu"/>
 
     </data>
 </odoo>
