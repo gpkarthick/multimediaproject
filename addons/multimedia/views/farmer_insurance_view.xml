@@ -300,10 +300,10 @@
                         </group>
                         <group string="PMFBY Area Calculation">
                             <group>
-                                <field name="area"/>
-                                <field name="premium_amount"/>
-                                <field name="service_charge"/>
-                                <field name="total_amount"/>
+                                <field name="area" readonly="1"/>
+                                <field name="premium_amount" readonly="1"/>
+                                <field name="service_charge" readonly="1"/>
+                                <field name="total_amount" readonly="1"/>
                             </group>
                             <group>
                                 <field name="received_amount" required="1"/>
@@ -1030,6 +1030,23 @@
                                 <field name="write_uid"/>
                             </group>
                         </group>
+                        <notebook>
+                            <page string="Land Details">
+                                <field string="Villge" name="land_ids">
+                                    <tree>
+                                        <field name="name"/>
+                                        <field name="surveyno_wise_serial_no"/>
+                                        <field name="name_wise_serial_no"/>
+                                        <field name="relation_type"/>
+                                        <field name="survey_no"/>
+                                        <field name="sub_div_no"/>
+                                        <field name="area_in_hec"/>
+                                        <field name="patta_no"/>
+                                        <field name="land_type"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
                     </sheet>
                 </form>
             </field>

@@ -7,7 +7,6 @@ import io
 from googletrans import Translator, constants
 from pprint import pprint
 
-
 class FarmerInsurance(models.Model):
     _name = "farmer.insurance"
     _description = "Farmer Insurance Bussiness Operation"
@@ -148,21 +147,23 @@ class FarmerInsurance(models.Model):
     @api.model
     def create(self, vals):
         print (self.env.user.form_seqno)
-        print (vals,"aaaaaaaaaaaa")
         print ('PMFBY2022FY1432-'+self.env.user.form_seqno+'-'+str(vals['form_application_no']))
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code('farmer.insurance') or _('New')
             vals['sheet_no'] = 'PMFBY2022FY1432'+'-'+str(self.env.user.form_seqno)+'-'+str(vals['form_application_no'])
         return super(FarmerInsurance, self).create(vals)
 
-    @api.constrains('form_application_no', 'original_receipt_no')
+    @api.constrains('form_application_no', 'original_receipt_no', 'sheet_no')
     def _check_insurance_formno_receiptno(self):
         form_application_ids = self.env['farmer.insurance'].search([('id', '!=', self.id),('form_application_no', '=', self.form_application_no)])
         original_receipt_ids = self.env['farmer.insurance'].search([('id', '!=', self.id),('original_receipt_no', '=', self.original_receipt_no),('original_receipt_no', '!=', '')])
-        if form_application_ids.ids:
-            raise ValidationError(_('Already Used this Form No, please check it'))
+        sheet_no_ids = self.env['farmer.insurance'].search([('id', '!=', self.id),('sheet_no', '=', self.sheet_no)])
+        # if form_application_ids.ids:
+        #     raise ValidationError(_('Already Used this Form No, please check it'))
         if original_receipt_ids.ids:
             raise ValidationError(_('Already Used this Original Receipt No, please check it'))
+        if sheet_no_ids.ids:
+            raise ValidationError(_('Already Used this Form No, please check it'))
 
     @api.onchange('area','received_amount', 'service_charge')
     def onchange_area_insured(self):
@@ -678,6 +679,7 @@ class VillageMaster(models.Model):
     write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
     create_uid = fields.Many2one('res.users', string='Created by', readonly=True)
     active = fields.Boolean('Active', default=True)
+    land_ids = fields.One2many('surveyno.wise.land.details', 'land_id', "Land Details Records")
 
     @api.model
     def create(self, vals):
@@ -768,7 +770,11 @@ class ImportMaster(models.Model):
                         break
                     count += 1
                     if count > 1 and len(row) > 2:
-                        print(row)
+                        print(row[10])
+                        village_id = self.env['village.master'].search([('name', 'ilike', row[10])]).id
+                        if not village_id:
+                            raise ValidationError(_('Please check the village'))
+                        print (village_id,"aaaaaaaaaaa")
                         surveyno_wise_serial_no = row[0]
                         name_wise_serial_no = row[1]
                         farmer_name = row[2]
@@ -790,7 +796,46 @@ class ImportMaster(models.Model):
                              'area_in_hec': area_in_hec,
                              'patta_no': patta_no,
                              'land_type': land_type,
+                             'land_id': village_id,
                              })
+
+    # def action_import_land_details(self):
+    #     import base64
+    #     import csv
+    #     import io
+    #     for order in self:
+    #         count = 0
+    #         decrypted = base64.b64decode(order.import_file).decode('utf-8')
+    #         with io.StringIO(decrypted) as fp:
+    #             reader = csv.reader(fp, delimiter=",", quotechar='"')
+    #             for row in reader:
+    #                 if not row:
+    #                     break
+    #                 count += 1
+    #                 if count > 1 and len(row) > 2:
+    #                     print(row)
+    #                     surveyno_wise_serial_no = row[0]
+    #                     name_wise_serial_no = row[1]
+    #                     farmer_name = row[2]
+    #                     relation_type = row[3]
+    #                     relative_name = row[4]
+    #                     survey_no = row[5]
+    #                     sub_div_no = row[6]
+    #                     area_in_hec = row[7]
+    #                     patta_no = row[8]
+    #                     land_type = row[9]
+    #                     self.env['surveyno.wise.land.details'].create(
+    #                         {'name': farmer_name,
+    #                          'surveyno_wise_serial_no': surveyno_wise_serial_no,
+    #                          'name_wise_serial_no': name_wise_serial_no,
+    #                          'relation_type': relation_type,
+    #                          'relative_name': relative_name,
+    #                          'survey_no': survey_no,
+    #                          'sub_div_no': sub_div_no,
+    #                          'area_in_hec': area_in_hec,
+    #                          'patta_no': patta_no,
+    #                          'land_type': land_type,
+    #                          })
 
     def action_farmer_addr_import(self):
         import base64
@@ -1043,3 +1088,4 @@ class SurveynoWiseLandDetails(models.Model):
     area_in_hec = fields.Char('Hec')
     patta_no = fields.Char('Patta No')
     land_type = fields.Char('Land Type')
+    land_id = fields.Many2one('village.master', string='Village', required=True)
