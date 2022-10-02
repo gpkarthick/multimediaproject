@@ -6,13 +6,13 @@
                 <t t-call="web.basic_layout">
                     <link rel="stylesheet" href="/multimedia/static/src/css/style2.css"/>
                     <div class="page">
-                         <table class="mcls_001">
-							<tr>
-								<td>
-									<p class="mcls_sub_001">CSC Application</p>
-								</td>
-							</tr>
-						</table>
+<!--                         <table class="mcls_001">-->
+<!--							<tr>-->
+<!--								<td>-->
+<!--									<p class="mcls_sub_001">CSC Application</p>-->
+<!--								</td>-->
+<!--							</tr>-->
+<!--						</table>-->
 
 						<hr/>
 

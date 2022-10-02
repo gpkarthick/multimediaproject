@@ -6,13 +6,13 @@
                 <t t-call="web.basic_layout">
                     <link rel="stylesheet" href="/multimedia/static/src/css/style2.css"/>
                     <div class="page">
-                         <table class="mcls_001">
-							<tr>
-								<td>
-									<p class="mcls_sub_001">CSC Application</p>
-								</td>
-							</tr>
-						</table>
+<!--                         <table class="mcls_001">-->
+<!--							<tr>-->
+<!--								<td>-->
+<!--									<p class="mcls_sub_001">CSC Application</p>-->
+<!--								</td>-->
+<!--							</tr>-->
+<!--						</table>-->
 
 						<hr/>
 
@@ -30,7 +30,7 @@
 									<span t-if="o.name"><strong>ரசீது எண்: <span t-field="o.name"/></strong><br/></span>
 								</td>
 								<td style="text-align:right;width:50%">
-									<span><strong>விண்ணப்ப நிலை : பணம்</strong></span>
+									<span><strong>விண்ணப்ப நிலை : செலுத்தப்பட்டது</strong></span>
 								</td>
 							</tr>
 						</table>
@@ -59,9 +59,9 @@
 							<tr>
 								<td style="text-align:left;width:50%;border-right: 1px solid #efefef;">
 									<span class="mcls_004"><strong>விவசாயி விவரங்கள்</strong><br/></span>
-									<span class="mcls_005" t-if="o.farmer_name"><strong>பண்ணையார் பெயர்  : <span t-field="o.farmer_tamil_name"/></strong><br/></span>
-									<span class="mcls_005" t-if="o.relative_name"><strong>பெயர் : <span t-field="o.relative_tamil_name"/>(<span t-field="o.relative_tamil_type"/>) </strong><br/></span>
-									<span class="mcls_005" t-if="o.mobile_no"><strong>அலைபேசி எண் : <span t-field="o.mobile_no"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.farmer_name"><strong>விவசாயி பெயர்  : <span t-field="o.farmer_tamil_name"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.relative_name"><strong>உறவினர் பெயர் : <span t-field="o.relative_tamil_name"/>(<span t-field="o.relative_tamil_type"/>) </strong><br/></span>
+									<span class="mcls_005" t-if="o.mobile_no"><strong>தொலைபேசி எண் : <span t-field="o.mobile_no"/></strong><br/></span>
 									<span class="mcls_005" t-if="o.farmer_type"><strong>விவசாயி வகை : <span t-field="o.farmer_tamil_type"/></strong><br/></span>
 									<span class="mcls_005" t-if="o.gender_type"><strong>பாலினம் : <span t-field="o.gender_tamil_type"/></strong><br/></span>
 								</td>
@@ -93,7 +93,7 @@
 									<tr>
 										<th style="width:13%;border-left-color: #425364;border-style: solid;border-width: thin;border-right: none;">மாவட்டம்</th>
 										<th style="width:13%">கிராமம்</th>
-										<th style="width:15.0%">IU நிலை</th>
+										<th style="width:15.0%">விவசாயம் செய்யும் கிராமம்</th>
 										<th style="width:9.0%">பயிர்</th>
 										<th style="width:11.0%">சர்வே
 எண்.</th>

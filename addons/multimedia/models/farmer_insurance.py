@@ -44,7 +44,7 @@ class FarmerInsurance(models.Model):
 
     state_id = fields.Many2one('state.master', string='State', required=True,
                                default=lambda self: self.env['state.master'].search([('id', '=', 1)]))
-    state_id_tamil = fields.Char(string='State in Tamil' )
+    state_id_tamil = fields.Char(string='State in Tamil' , default='தமிழ்நாடு')
     scheme_name = fields.Char(string='Scheme' , default='PMFBY')
     year_val = fields.Char(string='Year' , default='2021')
     application_type = fields.Char(string='Application Type', default='NON LOANEE')
@@ -105,7 +105,7 @@ class FarmerInsurance(models.Model):
     block_tamil_name = fields.Char(string='Block Tamil Name')
     subdistrict_tamil_name = fields.Char(string='Subdistrict Tamil Name')
     district_tamil_name = fields.Char(string='District Tamil Name')
-    state_tamil_name = fields.Char(string='State Tamil Name')
+    state_tamil_name = fields.Char(string='State Tamil Name', default='தமிழ்நாடு')
 
     # Farmer Addr Detail
     farmer_village_id = fields.Many2one('farmer.village.master', string='Village')
@@ -143,6 +143,15 @@ class FarmerInsurance(models.Model):
     received_amount = fields.Float(string='Farmer Paid Amount')
     balance_amount = fields.Float(string='Balance Amount')
     farmer_addr = fields.Text(string='Address')
+
+    aadhar_name = fields.Char('Aadhar Name', size=60)
+    aadhar_no = fields.Char('Aadhar No', size=60)
+    csc_id = fields.Char('CSC ID', size=60)
+    pincode = fields.Char('Pincode', size=60)
+    farmer_age = fields.Integer('Age')
+    insurance_finished_date = fields.Date(string='Finished Date')
+
+    pmfby_status = fields.Selection([('Paid', 'Paid'), ('Approved', 'Approved'), ('Rejected', 'Rejected'), ('Revert', 'Revert')], string='PMFBY Status')
 
     @api.model
     def create(self, vals):
@@ -208,10 +217,10 @@ class FarmerInsurance(models.Model):
         if self.relative_type:
             self.relative_tamil_type = self.relative_type
 
-    @api.onchange('state_id')
-    def onchange_state_id(self):
-        if self.state_id:
-            self.state_id_tamil = self.state_id.tamil_name
+    # @api.onchange('state_id')
+    # def onchange_state_id(self):
+    #     if self.state_id:
+    #         self.state_id_tamil = self.state_id.tamil_name
 
     @api.onchange('farmer_name', 'relative_name', 'branch_name')
     def onchange_tamil_translate(self):
