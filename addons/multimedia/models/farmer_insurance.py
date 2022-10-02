@@ -515,6 +515,7 @@ class DistrictMaster(models.Model):
     name = fields.Char('District Name', required=True)
     district_tamil_name = fields.Char('District Tamil Name', required=True)
     district_code = fields.Char('District Code')
+    insurance_company = fields.Char('Insurance Company')
     state_id = fields.Many2one('state.master', string='State', required=True)
     create_date = fields.Datetime(string='Created Date', readonly=True)
     write_date = fields.Datetime(string='Last Updated Date', readonly=True)
