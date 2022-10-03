@@ -387,7 +387,7 @@ class CropDataLine(models.Model):
     survey_no = fields.Char('Survey No', required=True)
     khasra_no = fields.Char('Khasra No', required=True)
     sum_insured = fields.Float(string='Sum Insured', required=True)
-    area_insured = fields.Float(string='Area Insured', required=True, digits='Purchase Weight')
+    area_insured = fields.Float(string='Area Insured', required=True, digits='Product Unit of Measure')
     gov_share = fields.Float(string='Gov Share', required=True)
     farmer_share = fields.Float(string='Farmer Share', required=True)
     crop_data = fields.Char('Crop', required=True, default='Paddy- II')
