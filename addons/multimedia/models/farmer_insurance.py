@@ -401,7 +401,8 @@ class CropDataLine(models.Model):
         if self.area_insured * 100 > 0:
             area_insured = self.area_insured * 100
             self.farmer_share = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
-            self.gov_share = round(((0.80399 * 335) * area_insured), 2)
+            self.gov_share = round(((0.84474 * 338.9807383627608) * area_insured), 2)
+            # self.gov_share = round(((0.80399 * 335) * area_insured), 2)
             self.sum_insured = round(base_insured_amt * area_insured, 2)
 
     @api.onchange('survey_no','khasra_no')
