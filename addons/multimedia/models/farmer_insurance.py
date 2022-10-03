@@ -46,7 +46,7 @@ class FarmerInsurance(models.Model):
                                default=lambda self: self.env['state.master'].search([('id', '=', 1)]))
     state_id_tamil = fields.Char(string='State in Tamil' , default='தமிழ்நாடு')
     scheme_name = fields.Char(string='Scheme' , default='PMFBY')
-    year_val = fields.Char(string='Year' , default='2021')
+    year_val = fields.Char(string='Year' , default='2022')
     application_type = fields.Char(string='Application Type', default='NON LOANEE')
     application_type_tamil = fields.Char(string='Application Type Tamil', default='கடன் பெறாதவர்')
     season_name = fields.Char(string='Season', default='RABI')
@@ -59,7 +59,7 @@ class FarmerInsurance(models.Model):
     relative_type = fields.Selection([('son_of', 'son_of'), ('daughter_of', 'daughter_of'), ('wife_of', 'wife_of')],
                                      string='Relation Type')
     mobile_no = fields.Char(string='Mobile No')
-    farmer_type = fields.Selection([('marginal', 'Marginal')], string='Farmer Type', default='marginal')
+    farmer_type = fields.Selection([('marginal', 'Marginal'),('small', 'Small'),('other', 'Other')], string='Farmer Type', default='marginal')
     gender_type = fields.Selection([('Male', 'Male'), ('Female', 'Female')], string='Gender')
     account_type = fields.Char(string='Account Type', default='SAVING')
 
@@ -152,6 +152,15 @@ class FarmerInsurance(models.Model):
     insurance_finished_date = fields.Date(string='Finished Date')
 
     pmfby_status = fields.Selection([('Paid', 'Paid'), ('Approved', 'Approved'), ('Rejected', 'Rejected'), ('Revert', 'Revert')], string='PMFBY Status')
+
+    @api.onchange('farmer_type')
+    def onchange_farmer_type(self):
+        if self.farmer_type == 'marginal':
+            self.farmer_tamil_type = 'சிறு'
+        if self.farmer_type == 'small':
+            self.farmer_tamil_type = 'குறு'
+        if self.farmer_type == 'other':
+            self.farmer_tamil_type = 'மற்ற'
 
     @api.model
     def create(self, vals):
