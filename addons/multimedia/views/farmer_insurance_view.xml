@@ -129,7 +129,7 @@
             <field name="name">farmer.insurance.tree</field>
             <field name="model">farmer.insurance</field>
             <field name="arch" type="xml">
-                <tree string="Insurance" decoration-danger="state in ('done')" decoration-success="state in ('draft')"  decoration-primary="state in ('printtaken')">
+                <tree string="Insurance" create="false" decoration-danger="state in ('done')" decoration-success="state in ('draft')"  decoration-primary="state in ('printtaken')">
                     <field name="sheet_no"/>
                     <field name="original_receipt_no" groups="multimedia.multimedia_insurance_access"/>
                     <field name="name" groups="multimedia.multimedia_insurance_access"/>
@@ -152,7 +152,7 @@
             <field name="name">farmer.insurance.form</field>
             <field name="model">farmer.insurance</field>
             <field name="arch" type="xml">
-                <form string="Insurance Form">
+                <form string="Insurance Form" create="false">
                     <header>
                         <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" states="draft"/>
                         <button name="action_verified" type="object" string="Verified" class="oe_highlight" states="confirmed" groups="multimedia.multimedia_insurance_access"/>
