@@ -36,7 +36,7 @@ class FarmerInsurance(models.Model):
 
 
 
-    name = fields.Char(string='Receipt No', size=18, readonly=True,  default=lambda self: _('New'))
+    name = fields.Char(string='Duplicate Receipt No', size=18, readonly=True,  default=lambda self: _('New'))
     original_receipt_no = fields.Char(string='Original Receipt No')
     seq_no = fields.Char(string='Seq No',
                          default=lambda self: self.env['ir.sequence'].next_by_code('farmer.insurance.seq'))
