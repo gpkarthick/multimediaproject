@@ -1325,7 +1325,7 @@
 
         <menuitem id="multimedia_farmer_details_menu" name="Farmer Enrollment Detail" sequence="1" action="multimedia.action_farmer_details_form_insurance_view" parent="multimedia.multimedia_insurance_sub_menu"/>
         <menuitem id="multimedia_farmer_insurance_menu" name="Farmer Insurance" sequence="2"
-                  action="action_farmer_insurance_view" parent="multimedia.multimedia_insurance_sub_menu"/>
+                  action="action_farmer_insurance_view" parent="multimedia.multimedia_insurance_sub_menu" groups="multimedia.multimedia_insurance_access"/>
 
         <menuitem id="multimedia_village_info_sub_menu" name="PMFBY Village Info" sequence="5"
                   parent="multimedia.multimedia_main_menu"/>
