@@ -109,3 +109,5 @@ access_farmer_taluk_master_management,access.farmer.taluk.master.management,mode
 ,,,,,,,
 access_farmer_village_master_user,access.farmer.village.master.user,model_farmer_village_master,multimedia.media_forms_users,1,1,1,0
 access_farmer_village_master_management,access.farmer.village.master.management,model_farmer_village_master,multimedia.media_forms_management,1,1,1,0
+,,,,,,,
+access_pmfby_calculator_insurance_calculator_user_access,access.pmfby.calculator.insurance.calculator.user_access,model_prime_pmfby_calculator,multimedia.multimedia_farmer_insurance_calculator_user_access,1,1,1,0

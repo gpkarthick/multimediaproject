@@ -67,6 +67,11 @@
       <field name="category_id" ref="multimedia.multimedia_management"/>
     </record>
 
+    <record id="multimedia_farmer_insurance_calculator_user_access" model="res.groups">
+      <field name="name">Farmer Insurance Calculator User Access</field>
+      <field name="category_id" ref="multimedia.multimedia_management"/>
+    </record>
+
     <record model="res.groups" id="group_hidden">
         <field name="name">Hidden</field>
         <field name="category_id" ref="multimedia.multimedia_management"/>

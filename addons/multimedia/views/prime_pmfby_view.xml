@@ -83,7 +83,7 @@
         </record>
 
         <menuitem id="multimedia_insurance_calculator_menu" name="PMFBY Calculator" sequence="4"
-                  parent="multimedia.multimedia_main_menu" groups="multimedia.multimedia_insurance_access"/>
+                  parent="multimedia.multimedia_main_menu" groups="multimedia.multimedia_insurance_access,multimedia.multimedia_farmer_insurance_calculator_user_access"/>
         <menuitem id="multimedia_pmfby_calculator_menu" name="PMFBY Calculator" sequence="2" action="action_prime_pmfby_calculator_view"
                   parent="multimedia.multimedia_insurance_calculator_menu"/>
 
