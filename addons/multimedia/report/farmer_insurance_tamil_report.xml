@@ -73,7 +73,7 @@
 									<span class="mcls_005" t-if="o.bank_account_no"><strong>கணக்கு எண் : <span t-field="o.bank_account_no"/></strong><br/></span>
 									<span class="mcls_005" t-if="o.ifsc_code"><strong>IFSC : <span t-field="o.ifsc_code"/></strong><br/></span>
 									<span class="mcls_005" t-if="o.bank_tamil_name"><strong>வங்கி பெயர் : <span t-field="o.bank_tamil_name"/></strong><br/></span>
-									<span class="mcls_005" t-if="o.branch_tamil_name"><strong>கிளை பெயர் : <span t-field="o.branch_tamil_name"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.bank_tamil_list_id"><strong>கிளை பெயர் : <span t-field="o.bank_tamil_list_id.name"/></strong><br/></span>
 									<span class="mcls_005" t-if="o.account_tamil_type"><strong>கணக்கு வகை : <span t-field="o.account_tamil_type"/></strong><br/></span>
 								</td>
 							</tr>
@@ -94,15 +94,14 @@
 									<tr>
 										<th style="width:13%;border-left-color: #425364;border-style: solid;border-width: thin;border-right: none;">மாவட்டம்</th>
 										<th style="width:13%">கிராமம்</th>
-										<th style="width:15.0%">விவசாயம் செய்யும் கிராமம்</th>
+										<th style="width:15.0%">IU நிலை</th>
 										<th style="width:9.0%">பயிர்</th>
 										<th style="width:11.0%">சர்வே
 எண்.</th>
-										<th style="width:11%">தொகை <br/>
-															காப்பீடு  <br/>
-															செய்யப்பட்ட(₹)</th>
+										<th style="width:11%">காப்பீடு<br/>
+															 தொகை(₹)<br/></th>
 										<th style="width:11%">காப்பீடு செய்யப்பட்ட பகுதி
-(Hect./Plants)</th>
+(ஹெக்டேர்/பயிர்)</th>
 										<th style="width:11%">அரசு. <br/> பங்கு (₹)</th>
 										<th style="width:11%;border-right-color: #425364;border-style: solid;border-width: thin;border-left: none;">விவசாயி<br/> பங்கு <br/> (₹)</th>
 									</tr>
