@@ -97,12 +97,12 @@
 										<th style="width:15.0%">IU நிலை</th>
 										<th style="width:9.0%">பயிர்</th>
 										<th style="width:11.0%">சர்வே
-எண்.</th>
+எண்</th>
 										<th style="width:11%">காப்பீடு<br/>
 															 தொகை(₹)<br/></th>
 										<th style="width:11%">காப்பீடு செய்யப்பட்ட பகுதி
 (ஹெக்டேர்/பயிர்)</th>
-										<th style="width:11%">அரசு. <br/> பங்கு (₹)</th>
+										<th style="width:11%">அரசு <br/> பங்கு (₹)</th>
 										<th style="width:11%;border-right-color: #425364;border-style: solid;border-width: thin;border-left: none;">விவசாயி<br/> பங்கு <br/> (₹)</th>
 									</tr>
 								</thead>
@@ -115,13 +115,13 @@
 											<span t-field="l.crop_id.village_id.village_tamil_name"/>
 										</td>
 										<td class="text-left">
-											<span t-field="l.crop_id.village_id.village_tamil_name"/>(கிராமம்)
+											<span t-field="l.crop_id.village_id.village_tamil_name"/>
 										</td>
 										<td class="text-left">
 											<span>நெல்- II</span>
 										</td>
 										<td class="text-left">
-											<span t-field="l.survey_no"/>
+											<span t-field="l.survey_no"/>/<span t-field="l.khasra_no"/>
 										</td>
 										<td class="text-left">
 											<span t-field="l.sum_insured" />
