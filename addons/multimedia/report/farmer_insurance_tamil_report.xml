@@ -124,16 +124,20 @@
 											<span t-field="l.survey_no"/>/<span t-field="l.khasra_no"/>
 										</td>
 										<td class="text-left">
-											<span t-field="l.sum_insured" />
+<!--											<span t-field="l.sum_insured" />-->
+											<span t-esc="'%.2f'% l.sum_insured" />
 										</td>
 										<td class="text-left">
-											<span t-field="l.area_insured" />
+<!--											<span t-field="l.area_insured" />-->
+											<span t-esc="'%.2f'% l.area_insured" />
 										</td>
 										<td class="text-left">
-											<span t-field="l.gov_share" />
+<!--											<span t-field="l.gov_share" />-->
+											<span t-esc="'%.2f'% l.gov_share" />
 										</td>
 										<td class="text-left" style="border-right-color: #425364;border-style: solid;border-width: thin;border-left: none;">
-											<span t-field="l.farmer_share" />
+<!--											<span t-field="l.farmer_share" />-->
+											<span t-esc="'%.2f'% l.farmer_share" />
 										</td>
 									</tr>
 								</tbody>
@@ -145,15 +149,18 @@
 							<tr>
 								<td style="text-align:left;width:33%">
 									<span class="mcls_0012">காப்பீடு செய்யப்பட்ட மொத்த பகுதி :<br/></span>
-									<span class="mcls_009" t-if="o.total_area_insured"><span t-field="o.total_area_insured"/> Hect.<br/></span>
+<!--									<span class="mcls_009" t-if="o.total_area_insured"><span t-field="o.total_area_insured"/> Hect.<br/></span>-->
+									<span class="mcls_009" t-if="o.total_area_insured"><span t-esc="'%.2f'% o.total_area_insured" /> Hect.<br/></span>
 								</td>
 								<td style="text-align:left;width:33%">
 									<span class="mcls_0012">செலுத்தப்பட்ட மொத்த பிரீமியம் :<br/></span>
-									<span class="mcls_009" t-if="o.total_premium_paid">₹ <span t-field="o.total_premium_paid"/><br/></span>
+<!--									<span class="mcls_009" t-if="o.total_premium_paid">₹ <span t-field="o.total_premium_paid"/><br/></span>-->
+									<span class="mcls_009" t-if="o.total_premium_paid">₹ <span t-esc="'%.2f'% o.total_premium_paid" /><br/></span>
 								</td>
 								<td style="text-align:left;width:34%">
 									<span class="mcls_0012">மொத்த காப்பீடுத் தொகை:<br/></span>
-									<span class="mcls_009" t-if="o.total_sum_insured">₹ <span t-field="o.total_sum_insured"/><br/></span>
+<!--									<span class="mcls_009" t-if="o.total_sum_insured">₹ <span t-field="o.total_sum_insured"/><br/></span>-->
+									<span class="mcls_009" t-if="o.total_sum_insured">₹ <span t-esc="'%.2f'% o.total_sum_insured" /><br/></span>
 								</td>
 							</tr>
 						</table>
