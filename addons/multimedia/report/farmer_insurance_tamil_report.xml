@@ -16,11 +16,14 @@
 						<table class="mcls_002">
 							<tr>
 								<td style="text-align:center;width:50%">
-									<span><strong>பிரதான் மந்திரி ஃபசல் பீமா யோஜனா-பயிர் காப்பீடு I PMFBY-பயிர் காப்பீடு</strong></span>
+									<span><strong>பிரதான் மந்திரி ஃபசல் பீமா யோஜனா-பயிர் காப்பீடு I PMFBY-பயிர் காப்பீடு</strong><br/></span>
+									<span><strong>CSC விண்ணப்பம்</strong></span>
 								</td>
 							</tr>
 						</table>
 
+
+						CSC விண்ணப்பம்
 						<hr/>
 
 						<table>
@@ -176,17 +179,21 @@
 
 						<table class="mcls_0010">
 							<tr>
-								<td style="text-align:left;width:23%">
+								<td style="text-align:left;width:27%">
 									<span class="mcls_0010">காப்பீட்டுத் நிறுவனம்<br/></span>
 									<span class="mcls_0010">ஹெல்ப்லைன் / மின்னஞ்சல் <br/></span>
 									<span class="mcls_0010">முகவரி<br/></span>
 									<span class="mcls_0010"><br/></span>
 								</td>
-								<td style="text-align:left;width:77%">
-									<span class="mcls_0013">: விவசாய காப்பீட்டுத நிறுவனம்<br/></span>
-									<span class="mcls_0013">: 1800116515 / fasalbima@aicofindia.com<br/></span>
-									<span class="mcls_0013">: அலுவலக பிளாக்-1, 5வது தளம், தட்டு-பி &amp; சி, கிழக்கு கித்வாய் நகர், ரிங் ரோடு, புது<br/></span>
-									<span class="mcls_0013">: டெல்லி-110023<br/></span>
+								<td style="text-align:left;width:73%">
+									<span class="mcls_0013">: <span t-field="o.district_id.insurance_company"/><br/></span>
+									<span class="mcls_0013">: <span t-field="o.district_id.insurance_email"/><br/></span>
+									<span class="mcls_0013">: <span t-field="o.district_id.insurance_addr1"/><br/></span>
+									<span class="mcls_0013">  <span t-field="o.district_id.insurance_addr2"/><br/></span>
+<!--									<span class="mcls_0013">: விவசாய காப்பீட்டுத நிறுவனம்<br/></span>-->
+<!--									<span class="mcls_0013">: 1800116515 / fasalbima@aicofindia.com<br/></span>-->
+<!--									<span class="mcls_0013">: அலுவலக பிளாக்-1, 5வது தளம், தட்டு-பி &amp; சி, கிழக்கு கித்வாய் நகர், ரிங் ரோடு, புது<br/></span>-->
+<!--									<span class="mcls_0013">டெல்லி-110023<br/></span>-->
 								</td>
 							</tr>
 						</table>
