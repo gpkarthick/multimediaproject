@@ -541,6 +541,12 @@ class DistrictMaster(models.Model):
     insurance_email = fields.Char('Insurance Email')
     insurance_addr1 = fields.Char('Insurance Addr')
     insurance_addr2 = fields.Char('Insurance street')
+
+    insurance_tamil_company = fields.Char('Insurance Tamil Company')
+    insurance_tamil_email = fields.Char('Insurance Tamil Email')
+    insurance_tamil_addr1 = fields.Char('Insurance Tamil Addr')
+    insurance_tamil_addr2 = fields.Char('Insurance Tamil street')
+
     state_id = fields.Many2one('state.master', string='State', required=True)
     create_date = fields.Datetime(string='Created Date', readonly=True)
     write_date = fields.Datetime(string='Last Updated Date', readonly=True)

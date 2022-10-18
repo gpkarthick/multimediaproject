@@ -23,7 +23,6 @@
 						</table>
 
 
-						CSC விண்ணப்பம்
 						<hr/>
 
 						<table>
@@ -186,10 +185,10 @@
 									<span class="mcls_0010"><br/></span>
 								</td>
 								<td style="text-align:left;width:73%">
-									<span class="mcls_0013">: <span t-field="o.district_id.insurance_company"/><br/></span>
-									<span class="mcls_0013">: <span t-field="o.district_id.insurance_email"/><br/></span>
-									<span class="mcls_0013">: <span t-field="o.district_id.insurance_addr1"/><br/></span>
-									<span class="mcls_0013">  <span t-field="o.district_id.insurance_addr2"/><br/></span>
+									<span class="mcls_0013">: <span t-field="o.district_id.insurance_tamil_company"/><br/></span>
+									<span class="mcls_0013">: <span t-field="o.district_id.insurance_tamil_email"/><br/></span>
+									<span class="mcls_0013">: <span t-field="o.district_id.insurance_tamil_addr1"/><br/></span>
+									<span class="mcls_0013">  <span t-field="o.district_id.insurance_tamil_addr2"/><br/></span>
 <!--									<span class="mcls_0013">: விவசாய காப்பீட்டுத நிறுவனம்<br/></span>-->
 <!--									<span class="mcls_0013">: 1800116515 / fasalbima@aicofindia.com<br/></span>-->
 <!--									<span class="mcls_0013">: அலுவலக பிளாக்-1, 5வது தளம், தட்டு-பி &amp; சி, கிழக்கு கித்வாய் நகர், ரிங் ரோடு, புது<br/></span>-->

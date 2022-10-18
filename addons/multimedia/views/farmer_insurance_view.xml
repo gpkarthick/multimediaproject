@@ -600,6 +600,10 @@
                                 <field name="state_id" options="{'no_create': True, 'no_open': True}"/>
                             </group>
                             <group>
+                                <field name="insurance_tamil_company"/>
+                                <field name="insurance_tamil_email"/>
+                                <field name="insurance_tamil_addr1"/>
+                                <field name="insurance_tamil_addr2"/>
                                 <field name="write_uid"/>
                                 <field name="write_date"/>
                             </group>
