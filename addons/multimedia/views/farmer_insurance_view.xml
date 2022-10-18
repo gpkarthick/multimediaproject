@@ -7,7 +7,7 @@
             <field name="model">farmer.insurance</field>
             <field name="arch" type="xml">
                 <tree string="Farmer Enrollment Details">
-                    <field name="farmer_name"/>
+                    <field name="farmer_name" string="Farmer Name as Per Passbook"/>
                     <field name="mobile_no"/>
                     <field name="village_id" />
                     <field name="area" sum="area"/>
@@ -38,7 +38,7 @@
                                 </b>
                             </h1>
                         </div>
-                        <group>
+                        <group string="Office Details">
                             <group>
                                 <field name="form_serial_no" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
                                 <field name="form_application_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
@@ -48,9 +48,9 @@
                                 <field name="sheet_no" readonly="1"/>
                             </group>
                         </group>
-                        <group>
+                        <group string="Farmer Details">
                             <group>
-                                <field name="farmer_name" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="farmer_name" string="Farmer Name as Per Passbook" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
                                 <field name="mobile_no" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
                             </group>
                             <group>
@@ -58,7 +58,32 @@
                                 <field name="farmer_category_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
                             </group>
                         </group>
-                        <group>
+                        <group string="Bank Details">
+                            <group>
+                                <field name="ifsc_code" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="bank_account_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="bank_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="branch_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="account_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                            </group>
+                            <group>
+                                <field name="ifsc_code"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="bank_account_no"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="bank_tamil_list_id"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
+                                <field name="branch_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="account_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                            </group>
+                        </group>
+
+                        <group string="Aadhar Details">
+                            <group>
+                                <field name="aadhar_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                            </group>
+                            <group>
+                                <field name="aadhar_no"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                            </group>
+                        </group>
+                        <group string="Premium Details">
                             <group>
                                 <field name="area" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
                                 <field name="premium_amount" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>

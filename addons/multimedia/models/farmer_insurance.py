@@ -59,7 +59,7 @@ class FarmerInsurance(models.Model):
     relative_type = fields.Selection([('son_of', 'son_of'), ('daughter_of', 'daughter_of'), ('wife_of', 'wife_of')],
                                      string='Relation Type')
     mobile_no = fields.Char(string='Mobile No')
-    farmer_type = fields.Selection([('marginal', 'Marginal'),('small', 'Small'),('other', 'Other')], string='Farmer Type', default='marginal')
+    farmer_type = fields.Selection([('marginal', 'Marginal (0.01 - 1) Hectare'),('small', 'Small (1.01 - 2) Hectare'),('other', 'Other (above 2.01 Hectare)')], string='Farmer Type', default='marginal')
     gender_type = fields.Selection([('Male', 'Male'), ('Female', 'Female')], string='Gender')
     account_type = fields.Char(string='Account Type', default='SAVING')
 
@@ -232,24 +232,24 @@ class FarmerInsurance(models.Model):
     #     if self.state_id:
     #         self.state_id_tamil = self.state_id.tamil_name
 
-    # @api.onchange('farmer_name', 'relative_name', 'branch_name')
-    # def onchange_tamil_translate(self):
+    @api.onchange('farmer_name', 'relative_name', 'branch_name')
+    def onchange_tamil_translate(self):
     #     # if not self.farmer_name:
     #     #     self.farmer_name = ''
     #     # if not self.relative_name:
     #     #     self.relative_name = ''
-    #     if not self.branch_name:
-    #         self.branch_name = ''
-    #     translator = Translator()
+        if not self.branch_name:
+            self.branch_name = ''
+        translator = Translator()
     #     # if self.farmer_name:
     #     #     translation_farmer = translator.translate(self.farmer_name, dest="ta")
     #     #     self.farmer_tamil_name = translation_farmer.text
     #     # if self.relative_name:
     #     #     translation_relation = translator.translate(self.relative_name, dest="ta")
     #     #     self.relative_tamil_name = translation_relation.text
-    #     if self.branch_name:
-    #         translation_branch_name = translator.translate(self.branch_name, dest="ta")
-    #         self.branch_tamil_name = translation_branch_name.text
+        if self.branch_name:
+            translation_branch_name = translator.translate(self.branch_name, dest="ta")
+            self.branch_tamil_name = translation_branch_name.text
 
     @api.onchange('name', 'farmer_name', 'relative_name', 'crop_line_ids', 'district_id', 'total_area_insured',
                   'total_premium_paid', 'total_sum_insured')
