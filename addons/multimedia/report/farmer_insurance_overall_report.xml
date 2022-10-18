@@ -37,7 +37,7 @@
 									<span t-if="o.name"><strong>Reciept No: <span t-field="o.name"/></strong><br/></span>
 								</td>
 								<td style="text-align:right;width:50%">
-									<span><strong>Application Status : PAID APPROVED</strong></span>
+									<span><strong>Application Status : PAID</strong></span>
 								</td>
 							</tr>
 						</table>
@@ -201,15 +201,15 @@ No.</th>
 
 						<hr/>
 
-						<table class="mcls_0011">
-							<tr>
-								<td>
-									<span class="mcls_0011"><strong>Disclaimer </strong>:This document is only a farmer's Premium acknowledgement receipt, coverage under crop insurance
-will be subject to scrutiny of necessary documents and applicability of relavent provisions as per the operational
-Guidelines of respective schemes.<br/></span>
-								</td>
-							</tr>
-						</table>
+<!--						<table class="mcls_0011">-->
+<!--							<tr>-->
+<!--								<td>-->
+<!--									<span class="mcls_0011"><strong>Disclaimer </strong>:This document is only a farmer's Premium acknowledgement receipt, coverage under crop insurance-->
+<!--will be subject to scrutiny of necessary documents and applicability of relavent provisions as per the operational-->
+<!--Guidelines of respective schemes.<br/></span>-->
+<!--								</td>-->
+<!--							</tr>-->
+<!--						</table>-->
 
                     </div>
                 </t>
@@ -286,8 +286,8 @@ Guidelines of respective schemes.<br/></span>
 									<span class="mcls_004"><strong>வங்கி விவரங்கள்</strong><br/></span>
 									<span class="mcls_005" t-if="o.bank_account_no"><strong>கணக்கு எண் : <span t-field="o.bank_account_no"/></strong><br/></span>
 									<span class="mcls_005" t-if="o.ifsc_code"><strong>IFSC : <span t-field="o.ifsc_code"/></strong><br/></span>
-									<span class="mcls_005" t-if="o.bank_tamil_name"><strong>வங்கி பெயர் : <span t-field="o.bank_tamil_name"/></strong><br/></span>
-									<span class="mcls_005" t-if="o.branch_tamil_name"><strong>கிளை பெயர் : <span t-field="o.branch_tamil_name"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.bank_tamil_name"><strong>வங்கி பெயர் : <span t-field="o.bank_tamil_list_id.name"/></strong><br/></span>
+									<span class="mcls_005" t-if="o.bank_tamil_list_id"><strong>கிளை பெயர் : <span t-field="o.branch_tamil_name"/></strong><br/></span>
 									<span class="mcls_005" t-if="o.account_tamil_type"><strong>கணக்கு வகை : <span t-field="o.account_tamil_type"/></strong><br/></span>
 								</td>
 							</tr>
@@ -378,7 +378,7 @@ Guidelines of respective schemes.<br/></span>
 						<table class="mcls_0010">
 							<tr>
 								<td style="text-align:left;width:23%">
-									<span class="mcls_0010">காப்பீட்டுத் நிறுவனம்<br/></span>
+									<span class="mcls_0010">காப்பீட்டு நிறுவனம்<br/></span>
 									<span class="mcls_0010">ஹெல்ப்லைன் / மின்னஞ்சல் <br/></span>
 									<span class="mcls_0010">முகவரி<br/></span>
 									<span class="mcls_0010"><br/></span>

@@ -39,7 +39,7 @@
 									<span t-if="o.original_receipt_no"><strong>Reciept No: <span t-field="o.original_receipt_no"/></strong><br/></span>
 								</td>
 								<td style="text-align:right;width:50%">
-									<span><strong>Application Status : PAID APPROVED</strong></span>
+									<span><strong>Application Status : PAID</strong></span>
 								</td>
 							</tr>
 						</table>
@@ -208,15 +208,15 @@ No.</th>
 
 						<hr/>
 
-						<table class="mcls_0011">
-							<tr>
-								<td>
-									<span class="mcls_0011"><strong>Disclaimer </strong>:This document is only a farmer's Premium acknowledgement receipt, coverage under crop insurance
-will be subject to scrutiny of necessary documents and applicability of relavent provisions as per the operational
-Guidelines of respective schemes.<br/></span>
-								</td>
-							</tr>
-						</table>
+<!--						<table class="mcls_0011">-->
+<!--							<tr>-->
+<!--								<td>-->
+<!--									<span class="mcls_0011"><strong>Disclaimer </strong>:This document is only a farmer's Premium acknowledgement receipt, coverage under crop insurance-->
+<!--will be subject to scrutiny of necessary documents and applicability of relavent provisions as per the operational-->
+<!--Guidelines of respective schemes.<br/></span>-->
+<!--								</td>-->
+<!--							</tr>-->
+<!--						</table>-->
 
                     </div>
                 </t>
