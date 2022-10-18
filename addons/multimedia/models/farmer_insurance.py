@@ -34,6 +34,15 @@ class FarmerInsurance(models.Model):
             amount = 250
         return amount
 
+    @api.depends('farmer_birth_year')
+    def _age_calculation(self):
+        """
+        Compute the age calculation
+        """
+        get_age = datetime.now().year - self.farmer_birth_year
+        self.update({
+            'farmer_age': get_age
+        })
 
 
     name = fields.Char(string='Duplicate Receipt No', size=18, readonly=True,  default=lambda self: _('New'))
@@ -149,7 +158,8 @@ class FarmerInsurance(models.Model):
     aadhar_no = fields.Char('Aadhar No', size=60)
     csc_id = fields.Char('CSC ID', size=60)
     pincode = fields.Char('Pincode', size=60)
-    farmer_age = fields.Integer('Age')
+    farmer_birth_year = fields.Integer('Birth Year')
+    farmer_age = fields.Integer('Age', store=True, readonly=True, compute='_age_calculation')
     insurance_finished_date = fields.Date(string='Finished Date')
 
     pmfby_status = fields.Selection([('Paid', 'Paid'), ('Approved', 'Approved'), ('Rejected', 'Rejected'), ('Revert', 'Revert')], string='PMFBY Status')
