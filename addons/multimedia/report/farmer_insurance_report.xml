@@ -83,7 +83,10 @@
 									<span class="mcls_005" t-if="o.farmer_name"><strong>Farmer Name : <span t-field="o.farmer_name"/></strong><br/></span>
 									<span class="mcls_005" t-if="o.relative_name"><strong>Relative Name : <span t-field="o.relative_name"/>(<span t-field="o.relative_type"/>) </strong><br/></span>
 									<span class="mcls_005" t-if="o.mobile_no"><strong>Mobile No. : <span t-field="o.mobile_no"/></strong><br/></span>
-									<span class="mcls_005" t-if="o.farmer_type"><strong>Farmer Type : <span t-field="o.farmer_type"/></strong><br/></span>
+									<t t-set="my_name" t-value="o.farmer_type.split('(')"/>
+
+									<span class="mcls_005" t-if="o.farmer_type"><strong>Farmer Type :  <t t-esc="my_name[0].capitalize()"/></strong><br/></span>
+<!--									<span class="mcls_005" t-if="o.farmer_type"><strong>Farmer Type : <span t-field="o.farmer_type"/></strong><br/></span>-->
 									<span class="mcls_005" t-if="o.gender_type"><strong>Gender : <span t-field="o.gender_type"/></strong><br/></span>
 								</td>
 								<td style="text-align:left;width:6%">
