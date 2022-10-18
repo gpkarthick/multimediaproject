@@ -311,7 +311,7 @@
     </record>
 
 <!--        <menuitem id="corporate_main_menu" name="Corporate" sequence="1" groups="media_forms_management"/>-->
-        <menuitem id="corporate_sub_menu" name="Farmer Addr Details" sequence="7" parent="multimedia.multimedia_configuration_menu" groups="media_forms_management" />
+        <menuitem id="corporate_sub_menu" name="Farmer Addr Details" sequence="7" parent="multimedia.multimedia_main_menu" groups="media_forms_management" />
 
         <menuitem id="multimedia_farmer_state_master_menu" name="State Master" sequence="1" action="action_farmer_state_master" parent="corporate_sub_menu"/>
         <menuitem id="multimedia_farmer_district_master_menu" name="District Master" sequence="2" action="action_farmer_district_master" parent="corporate_sub_menu"/>
