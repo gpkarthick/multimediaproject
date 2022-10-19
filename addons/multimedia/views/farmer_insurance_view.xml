@@ -1481,11 +1481,10 @@
 
 
 
-        <menuitem id="menu_surveyno_wise_land_details" name="Land Details" sequence="8" action="action_surveyno_wise_land_details"
-                  parent="multimedia_insurance_sub_child_menu"/>
 
         <menuitem id="multimedia_insurance_sub_menu" name="PMFBY Insurance" sequence="3"
                   parent="multimedia.multimedia_main_menu"/>
+
 
         <menuitem id="multimedia_farmer_details_menu" name="Farmer Enrollment Detail" sequence="1" action="multimedia.action_farmer_details_form_insurance_view" parent="multimedia.multimedia_insurance_sub_menu"/>
         <menuitem id="multimedia_farmer_insurance_menu" name="Farmer Insurance" sequence="2"
@@ -1519,6 +1518,12 @@
         <menuitem id="multimedia_bank_tamil_list_menu" name="Bank Tamil List" sequence="8" action="action_bank_tamil_list"
                   parent="multimedia_insurance_sub_child_menu" groups="multimedia.multimedia_insurance_access"/>
 
+
+        <menuitem id="multimedia_surveyno_menu" name="Survey No Details" sequence="5"
+                  parent="multimedia.multimedia_main_menu" groups="multimedia.multimedia_insurance_access"/>
+
+        <menuitem id="menu_surveyno_wise_land_details" name="Land Details" sequence="8" action="action_surveyno_wise_land_details"
+                  parent="multimedia_surveyno_menu"/>
 
 
 
