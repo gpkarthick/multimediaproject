@@ -175,7 +175,8 @@ class FarmerInsurance(models.Model):
 
     aadhar_name = fields.Char('Aadhar Name', size=60)
     aadhar_no = fields.Char('Aadhar No', size=60)
-    csc_id = fields.Char('CSC ID', size=60)
+    csc_id = fields.Many2one('csc.login', string="CSC Login")
+    # csc_id = fields.Char('CSC ID', size=60)
     pincode = fields.Char('Pincode', size=60)
     farmer_birth_year = fields.Integer('Birth Year')
     farmer_age = fields.Integer('Age', store=True, readonly=True, compute='_age_calculation')
@@ -1164,3 +1165,9 @@ class BankTamilList(models.Model):
     _description = 'Bank Tamil Name List Details'
 
     name = fields.Char('Farmer Name')
+
+class CSCLogin(models.Model):
+    _name = 'csc.login'
+    _description = 'CSC Logins List Details'
+
+    name = fields.Char('Login ID')

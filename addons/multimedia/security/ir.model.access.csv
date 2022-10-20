@@ -77,6 +77,7 @@ access_farmer_taluk_master_full_access,access.farmer.taluk.master.full_access,mo
 access_farmer_village_master_full_access,access.farmer.village.master.full_access,model_farmer_village_master,multimedia.multimedia_insurance_access,1,1,1,0
 access_surveyno_wise_land_details_full_access,access.surveyno.wise.land.details.full_access,model_surveyno_wise_land_details,multimedia.multimedia_insurance_access,1,1,1,0
 access_bank_tamil_list_full_access,access.bank.tamil.list.full_access,model_bank_tamil_list,multimedia.multimedia_insurance_access,1,1,1,0
+access_csc_login_user_full_access,access.csc.login.user_full_access,model_csc_login,multimedia.multimedia_insurance_access,1,1,1,0
 ,,,,,,,
 access_media_farmer_insurance_user_access,access.media.farmer.insurance.user_access,model_farmer_insurance,multimedia.multimedia_farmer_insurance_user_access,1,1,1,1
 access_pmfby_calculator_insurance_user_access,access.pmfby.calculator.insurance.user_access,model_prime_pmfby_calculator,multimedia.multimedia_farmer_insurance_user_access,1,1,1,0
@@ -94,6 +95,9 @@ access_farmer_district_master_user_access,access.farmer.district.master.user_acc
 access_farmer_taluk_master_user_access,access.farmer.taluk.master.user_access,model_farmer_taluk_master,multimedia.multimedia_farmer_insurance_user_access,1,1,1,0
 access_farmer_village_master_user_access,access.farmer.village.master.user_access,model_farmer_village_master,multimedia.multimedia_farmer_insurance_user_access,1,1,1,0
 access_surveyno_wise_land_details_user_access,access.surveyno.wise.land.details.user_access,model_surveyno_wise_land_details,multimedia.multimedia_farmer_insurance_user_access,1,0,0,0
+access_csc_login_user_access,access.csc.login.user_access,model_csc_login,multimedia.multimedia_farmer_insurance_user_access,1,1,1,0
+,,,,,,,
+,,,,,,,
 ,,,,,,,
 access_ir_attachment_form_user,access.ir.attachment.form.user,base.model_ir_attachment,multimedia.media_site_users,1,0,0,0
 access_ir_attachment_form_management,access.ir.attachment.form.managment,base.model_ir_attachment,multimedia.media_site_management,1,1,1,1
