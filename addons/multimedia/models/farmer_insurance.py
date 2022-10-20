@@ -206,7 +206,7 @@ class FarmerInsurance(models.Model):
             vals['sheet_no'] = 'PMFBY2022FY1432'+'-'+str(self.env.user.form_seqno)+'-'+str(vals['form_application_no'])
         return super(FarmerInsurance, self).create(vals)
 
-    @api.constrains('form_application_no', 'original_receipt_no', 'sheet_no')
+    @api.constrains('form_application_no', 'original_receipt_no', 'sheet_no', 'distributor_received_amount')
     def _check_insurance_formno_receiptno(self):
         form_application_ids = self.env['farmer.insurance'].search([('id', '!=', self.id),('form_application_no', '=', self.form_application_no)])
         original_receipt_ids = self.env['farmer.insurance'].search([('id', '!=', self.id),('original_receipt_no', '=', self.original_receipt_no),('original_receipt_no', '!=', '')])
@@ -217,6 +217,8 @@ class FarmerInsurance(models.Model):
             raise ValidationError(_('Already Used this Original Receipt No, please check it'))
         if sheet_no_ids.ids:
             raise ValidationError(_('Already Used this Form No, please check it'))
+        if self.distributor_received_amount > self.distributor_total_amount:
+            raise ValidationError(_('You enter the Received amount greater then total amount, please check it'))
 
     @api.onchange('area','received_amount', 'service_charge')
     def onchange_area_insured(self):
