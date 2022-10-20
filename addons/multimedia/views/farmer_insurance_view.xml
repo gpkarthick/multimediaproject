@@ -229,15 +229,15 @@
                         <group string="General Info">
                             <group>
                                 <field name="name" groups="multimedia.multimedia_insurance_access" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="original_receipt_no" groups="multimedia.multimedia_insurance_access" attrs="{'readonly': [('state', 'in', ('done'))],'required': [('state', 'in', ('printtaken'))]}"/>
+                                <field name="original_receipt_no" groups="multimedia.multimedia_insurance_access" attrs="{'readonly': [('state', 'in', ('done'))]}"/>
                                 <field name="insurance_date" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
                                 <field name="mobile_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="insurance_finished_date" attrs="{'readonly': [('state', 'in', ('done'))],'required': [('state', 'in', ('printtaken'))]}"/>
+                                <field name="insurance_finished_date" attrs="{'readonly': [('state', 'in', ('done'))]}"/>
                                 <field name="pmfby_status" attrs="{'readonly': [('state', 'in', ('done'))]}"/>
                             </group>
                             <group>
                                 <field name="name" groups="multimedia.multimedia_insurance_access" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="original_receipt_no" groups="multimedia.multimedia_insurance_access" attrs="{'readonly': [('state', 'in', ('done'))],'required': [('state', 'in', ('printtaken'))]}"/>
+                                <field name="original_receipt_no" groups="multimedia.multimedia_insurance_access" attrs="{'readonly': [('state', 'in', ('done'))]}"/>
                                 <field name="insurance_date" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
                                 <field name="mobile_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
                                 <field name="csc_id" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
