@@ -26,6 +26,17 @@ class FarmerInsurance(models.Model):
                 'total_premium_paid': total_premium_paid
             })
 
+    @api.depends('distributor_service_charge','distributor_received_amount')
+    def _distributor_tracking(self):
+        for order in self:
+            distributor_total_amount = distributor_balance_amount = 0.000
+            distributor_total_amount = order.premium_amount + order.distributor_service_charge
+            distributor_balance_amount = order.distributor_received_amount - (order.premium_amount + order.distributor_service_charge)
+            order.update({
+                'distributor_total_amount': distributor_total_amount,
+                'distributor_balance_amount': distributor_balance_amount,
+            })
+
     def _default_service_charge(self):
         amount = 0
         if self.env.user.user_type == 'shop':
@@ -50,6 +61,7 @@ class FarmerInsurance(models.Model):
     seq_no = fields.Char(string='Seq No',
                          default=lambda self: self.env['ir.sequence'].next_by_code('farmer.insurance.seq'))
     insurance_date = fields.Date(string='Date')
+    sowing_date = fields.Date(string='Sowing Date')
 
     state_id = fields.Many2one('state.master', string='State', required=True,
                                default=lambda self: self.env['state.master'].search([('id', '=', 1)]))
@@ -154,6 +166,13 @@ class FarmerInsurance(models.Model):
     balance_amount = fields.Float(string='Balance Amount')
     farmer_addr = fields.Text(string='Address')
 
+    distributor_service_charge = fields.Float(string='Distributor Service Amt')
+    distributor_total_amount = fields.Float(string='Distributor Total Amt', compute='_distributor_tracking',
+                                      store=True, readonly=True)
+    distributor_received_amount = fields.Float(string='Distributor Received Amt')
+    distributor_balance_amount = fields.Float(string='Distributor Bal Amt', compute='_distributor_tracking',
+                                      store=True, readonly=True)
+
     aadhar_name = fields.Char('Aadhar Name', size=60)
     aadhar_no = fields.Char('Aadhar No', size=60)
     csc_id = fields.Char('CSC ID', size=60)
@@ -163,6 +182,11 @@ class FarmerInsurance(models.Model):
     insurance_finished_date = fields.Date(string='Finished Date')
 
     pmfby_status = fields.Selection([('Paid', 'Paid'), ('Approved', 'Approved'), ('Rejected', 'Rejected'), ('Revert', 'Revert')], string='PMFBY Status')
+
+    def insurance_preview(self):
+        return {'type': 'ir.actions.act_url',
+                'url': '/multimedia/insurance_preview?id=' + str(self.id) + '&db=' + str(
+                    self.env.cr.dbname) + '&uid=' + str(self.env.uid), 'nodestroy': True, 'target': 'new'}
 
     @api.onchange('farmer_type')
     def onchange_farmer_type(self):
@@ -223,6 +247,8 @@ class FarmerInsurance(models.Model):
     def action_done(self):
         if not self.original_receipt_no:
             raise ValidationError(_('Please Enter the Original Receipt No'))
+        if self.distributor_balance_amount != 0:
+            raise ValidationError(_('Please Complete the Distributer Balance'))
         self.write({'state': 'done'})
 
     @api.onchange('gender_type')
