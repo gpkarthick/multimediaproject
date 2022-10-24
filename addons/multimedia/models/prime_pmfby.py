@@ -25,6 +25,24 @@ class PrimePMFBYCalculator(models.Model):
     service_charge = fields.Float(string='Service Amount', default=_default_service_charge)
     total_amount = fields.Float(string='Total Amount', required=True)
 
+    measurement = fields.Selection([('Kuzhi', 'Kuzhi'), ('Maa', 'Maa'), ('Acre', 'Acre'), ('Hectare', 'Hectare')], string='Measurement')
+    measurement_area = fields.Float(string='Measurement Area')
+    convertion_amount = fields.Float(string='Convertion Amount Ares')
+
+    @api.onchange('measurement_area','measurement')
+    def onchange_measurement(self):
+        if self.measurement == 'Kuzhi':
+            self.convertion_amount = self.measurement_area * 0.137 * 12.67
+        if self.measurement == 'Maa':
+            self.convertion_amount = self.measurement_area * 13.66 * 12.67
+        if self.measurement == 'Acre':
+            self.convertion_amount = self.measurement_area * 40.5 * 12.67
+        if self.measurement == 'Hectare':
+            self.convertion_amount = self.measurement_area * 100 * 12.67
+
+
+
+
     @api.onchange('area','service_charge')
     def onchange_area_insured(self):
         # ~ base_insured_amt = 803.99000

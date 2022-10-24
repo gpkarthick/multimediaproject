@@ -62,6 +62,17 @@
 						<group colspan="1" col="1">
 						</group>
 					</group>
+
+                    <group string="Measurement Convertion Calculation">
+						<group  colspan="1" col="1">
+							<field name="measurement"/>
+                            <field name="measurement_area"/>
+                            <field name="convertion_amount"/>
+						</group>
+						<group>
+						</group>
+					</group>
+
 				</sheet>
               </form>
             </field>
