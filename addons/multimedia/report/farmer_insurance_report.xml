@@ -16,6 +16,18 @@
 
 						<hr/>
 
+						<table class="mcls_002">
+							<tr>
+								<td style="text-align:center;width:50%">
+									<span><strong>Pradhan Mantri Fasal Bima Yojana - Crop Insurance | PMFBY - Crop Insurance</strong><br/></span>
+									<span><strong>CSC Application</strong></span>
+								</td>
+							</tr>
+						</table>
+
+
+						<hr/>
+
 						<table>
 							<tr>
 								<td width="100%" height="20%">
@@ -147,7 +159,8 @@ No.</th>
 											<span t-field="l.crop_data"/>
 										</td>
 										<td class="text-left">
-											<span t-field="l.survey_no"/>
+<!--											<span t-field="l.survey_no"/>-->
+											<span t-field="l.survey_no"/>/<span t-field="l.khasra_no"/>
 										</td>
 										<td class="text-left">
 											<span t-esc="'%.2f'% l.sum_insured" />
