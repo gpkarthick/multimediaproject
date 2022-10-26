@@ -189,8 +189,8 @@ No.</th>
 							<tr>
 								<td style="text-align:left;width:33%">
 									<span class="mcls_0012">Total Area Insured :<br/></span>
-<!--									<span class="mcls_009" t-if="o.total_area_insured"><span t-field="o.total_area_insured"/> Hect.<br/></span>-->
-									<span class="mcls_009" t-if="o.total_area_insured"><span t-esc="'%.2f'% o.total_area_insured" /> Hect.<br/></span>
+									<span class="mcls_009" t-if="o.total_area_insured"><span t-field="o.total_area_insured"/> Hect.<br/></span>
+<!--									<span class="mcls_009" t-if="o.total_area_insured"><span t-esc="'%.2f'% o.total_area_insured" /> Hect.<br/></span>-->
 								</td>
 								<td style="text-align:left;width:33%">
 									<span class="mcls_0012">Total Premium Paid :<br/></span>

@@ -20,8 +20,12 @@ class FarmerInsurance(models.Model):
                 total_area_insured += line.area_insured
                 total_sum_insured += line.sum_insured
                 total_premium_paid += line.farmer_share
+            # print (total_area_insured)
+            # print ( format(total_area_insured, '.3f'))
             order.update({
                 'total_area_insured': total_area_insured,
+                # 'total_area_insured': total_area_insured,
+                # 'total_area_insured': format(total_area_insured, '.3f'),
                 'total_sum_insured': total_sum_insured,
                 'total_premium_paid': total_premium_paid
             })
@@ -54,7 +58,6 @@ class FarmerInsurance(models.Model):
         self.update({
             'farmer_age': get_age
         })
-
 
     name = fields.Char(string='Duplicate Receipt No', size=18, readonly=True,  default=lambda self: _('New'))
     original_receipt_no = fields.Char(string='Original Receipt No')
@@ -100,8 +103,8 @@ class FarmerInsurance(models.Model):
 
     crop_line_ids = fields.One2many('crop.data.line', 'crop_id', "Drop Data")
 
-    total_area_insured = fields.Float(string='Total Area Insured', digits='Purchase Weight', compute='_amount_all',
-                                      store=True, readonly=True)
+    total_area_insured = fields.Float(string='Total Area Insured', compute='_amount_all',
+                                      store=True, readonly=True, digits=(12,3))
     total_premium_paid = fields.Float(string='Total Premium Paid', digits='Product Price', compute='_amount_all',
                                       store=True, readonly=True)
     total_sum_insured = fields.Float(string='Total Sum Insured', digits='Product Price', compute='_amount_all',
