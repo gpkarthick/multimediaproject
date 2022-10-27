@@ -24,6 +24,7 @@
         'report/multimedia_report.xml',
         'report/farmer_insurance_report.xml',   
         'report/farmer_insurance_overall_report.xml',
+        'report/farmer_insurance_fine_report.xml',
         'report/farmer_insurance_tamil_report.xml',
         'report/multimedia_ebbill_report.xml',
         'report/account_verification_report.xml',

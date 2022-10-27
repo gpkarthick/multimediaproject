@@ -1,21 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-    <template id="farmer_insurance_all_report_multimedia">
+    <template id="farmer_insurance_fine_report_multimedia">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.basic_layout">
                     <link rel="stylesheet" href="/multimedia/static/src/css/style2.css"/>
                     <div class="page">
-<!--                         <table class="mcls_001">-->
-<!--							<tr>-->
-<!--								<td>-->
-<!--									<p class="mcls_sub_001">CSC Application</p>-->
-<!--								</td>-->
-<!--							</tr>-->
-<!--						</table>-->
-
 						<hr/>
-
 						<table class="mcls_002">
 							<tr>
 								<td style="text-align:center;width:50%">
@@ -24,29 +15,17 @@
 								</td>
 							</tr>
 						</table>
-
-
 						<hr/>
-
 						<table>
 							<tr>
 								<td width="100%" height="20%">
-
 									<img src="/multimedia/static/src/img/farmerlogo.png" style="max-height: 110px;" alt="Happy face"/>
-
-<!--									<img t-if="res_company.logo"-->
-<!--                                             t-att-src="'data:image/png;base64,%s' % to_text(res_company.logo)"-->
-<!--                                             style="max-height: 110px;"/>-->
-
-
 								</td>
 							</tr>
 						</table>
-
 						<table class="mcls_002">
 							<tr>
 								<td style="text-align:left;width:50%">
-<!--									<span t-if="o.name"><strong>Reciept No: <span t-field="o.name"/></strong><br/></span>-->
 									<span t-if="not o.original_receipt_no"><strong>Reciept No: <span t-field="o.name"/></strong><br/></span>
 									<span t-if="o.original_receipt_no"><strong>Reciept No: <span t-field="o.original_receipt_no"/></strong><br/></span>
 								</td>
@@ -56,19 +35,6 @@
 							</tr>
 						</table>
 						<hr/>
-
-<!--
-						<table class="mcls_002">
-							<tr>
-								<td style="text-align:left;width:50%">
-									<span><br/></span>
-								</td>
-								<td style="text-align:right;width:50%">
-								</td>
-							</tr>
-						</table>
--->
-
 						<table class="mcls_003">
 							<tr>
 								<td style="text-align:left;width:37%;border-right: 1px solid #efefef;">
@@ -87,7 +53,6 @@
 							</tr>
 						</table>
 						<hr/>
-
 						<table class="mcls_004_table">
 							<tr>
 								<td style="text-align:left;width:50%;border-right: 1px solid #efefef;">
@@ -98,7 +63,6 @@
 									<t t-set="my_name" t-value="o.farmer_type.split('(')"/>
 
 									<span class="mcls_005" t-if="o.farmer_type"><strong>Farmer Type :  <t t-esc="my_name[0].capitalize()"/></strong><br/></span>
-<!--									<span class="mcls_005" t-if="o.farmer_type"><strong>Farmer Type : <span t-field="o.farmer_type"/></strong><br/></span>-->
 									<span class="mcls_005" t-if="o.gender_type"><strong>Gender : <span t-field="o.gender_type"/></strong><br/></span>
 								</td>
 								<td style="text-align:left;width:6%">
@@ -114,7 +78,6 @@
 							</tr>
 						</table>
 						<hr/>
-
 						<table class="mcls_006">
 							<tr>
 								<td style="text-align:left;width:50%">
@@ -124,7 +87,6 @@
 								</td>
 							</tr>
 						</table>
-
 						<div>
 							<table class="mcls_007" style="width:100%">
 								<thead>
@@ -241,48 +203,6 @@ No.</th>
 <!--							</tr>-->
 <!--						</table>-->
 
-                    </div>
-                </t>
-            </t>
-        </t>
-
-
-		<t t-call="web.html_container">
-            <t t-foreach="docs" t-as="o">
-                <t t-call="web.basic_layout">
-                    <div class="page">
-						<table>
-							<tr>
-								<td width="100%" style="text-align:center;">
-									<span style="font-weight: bold;font-size:19px;text-align:center;">அலுவலக பயன்பாட்டிற்க்கு மட்டும்</span>
-									<img src="/multimedia/static/src/img/Nibanthanai_Suya_Uruthimozhi.png" style="max-height: 1100px;" alt="Happy face"/>
-								</td>
-							</tr>
-						</table>
-						<table>
-							<tr>
-								<td width="20%">
-								</td>
-								<td width="30%">
-									<img src="/multimedia/static/src/img/Pugaipadam.png" style="max-height: 40px;" alt="Happy face"/>
-								</td>
-								<td width="50%">
-								</td>
-							</tr>
-						</table>
-						<table>
-							<tr>
-								<td width="20%">
-								</td>
-								<td width="30%">
-
-									<img t-att-src="'data:image/png;base64,%s' % to_text(o.farmer_image)" style="max-height: 175px; "/>
-								</td>
-								<td width="50%">
-									<img src="/multimedia/static/src/img/Applicant_And_Licence_Applicant.png" style="max-height: 240px;" alt="Happy face"/>
-								</td>
-							</tr>
-						</table>
                     </div>
                 </t>
             </t>
@@ -476,10 +396,6 @@ No.</th>
 									<span class="mcls_0013">: <span t-field="o.district_id.insurance_tamil_email"/><br/></span>
 									<span class="mcls_0013">: <span t-field="o.district_id.insurance_tamil_addr1"/><br/></span>
 									<span class="mcls_0013">  <span t-field="o.district_id.insurance_tamil_addr2"/><br/></span>
-<!--									<span class="mcls_0013">: விவசாய காப்பீட்டுத நிறுவனம்<br/></span>-->
-<!--									<span class="mcls_0013">: 1800116515 / fasalbima@aicofindia.com<br/></span>-->
-<!--									<span class="mcls_0013">: அலுவலக பிளாக்-1, 5வது தளம், தட்டு-பி &amp; சி, கிழக்கு கித்வாய் நகர், ரிங் ரோடு, புது<br/></span>-->
-<!--									<span class="mcls_0013">டெல்லி-110023<br/></span>-->
 								</td>
 							</tr>
 						</table>
@@ -491,90 +407,6 @@ No.</th>
                 </t>
             </t>
         </t>
-
-
-
-		<t t-call="web.html_container">
-            <t t-foreach="docs" t-as="o">
-                <t t-call="web.basic_layout">
-                    <div class="page">
-						<table>
-							<tr>
-								<td width="100%" style="text-align:center;">
-									<span style="font-weight: bold;font-size:19px;text-align:center;">அலுவலக பயன்பாட்டிற்க்கு மட்டும்</span>
-									<img src="/multimedia/static/src/img/Nibanthanai_Suya_Uruthimozhi.png" style="max-height: 1100px;" alt="Happy face"/>
-								</td>
-							</tr>
-						</table>
-						<table>
-							<tr>
-								<td width="20%">
-								</td>
-								<td width="30%">
-									<img src="/multimedia/static/src/img/Pugaipadam.png" style="max-height: 40px;" alt="Happy face"/>
-								</td>
-								<td width="50%">
-								</td>
-							</tr>
-						</table>
-						<table>
-							<tr>
-								<td width="20%">
-								</td>
-								<td width="30%">
-
-									<img t-att-src="'data:image/png;base64,%s' % to_text(o.farmer_image)" style="max-height: 175px; "/>
-								</td>
-								<td width="50%">
-									<img src="/multimedia/static/src/img/Applicant_And_Licence_Applicant.png" style="max-height: 240px;" alt="Happy face"/>
-								</td>
-							</tr>
-						</table>
-                    </div>
-                </t>
-            </t>
-        </t>
-
-<!--		<t t-call="web.html_container">-->
-<!--            <t t-foreach="docs" t-as="o">-->
-<!--                <t t-call="web.basic_layout">-->
-<!--					<link rel="stylesheet" href="/multimedia/static/src/css/style2.css"/>-->
-<!--                    <div class="page">-->
-<!--						<table>-->
-<!--							<tr>-->
-<!--								<td class="text-center" style="font-weight: bold;font-size:27px;">-->
-<!--									<p>-->
-<!--										நிபந்தனைகள்-->
-<!--									</p>-->
-
-<!--								</td>-->
-<!--							</tr>-->
-<!--							<tr>-->
-<!--								<td>-->
-<!--									<p class="termscondition_justify" >-->
-<!--										சொல்லாகிய முட்கோல் கொண்டு நா தினவெடுத்துப் பேச முற்படுதலை மிகவிரும்பும் இயல்பினர் நூல் நுட்பங்களைக் கற்றறிந்து ஒழுகும் வல்லமையுந் தாம் தெளியார்; தாம் கற்ற சிலவற்றைக் கேட்பவர் உள்ளத்திற் பதியும்படி எடுத்துரைக்கும் முறையையும் அறியார்; தம்சொற்கள் பயன்படுதலின்றி வீணாகி யொழிதலையுங் கருதார்; ஒன்றைப் புலப்படுத்தும் பொருட்டு இவ்வாறு பலசொற்கள் சொல்லி அவமானப் படும் மாந்தர் உலகிற் பலராவர்.-->
-<!--காமுறும் இயல்பினர் தேறார், தெளியார், அறியார், இவ்வாறு பல உரைக்கும் மாந்தர் உலகிற் பலர் என்க, பொருள் வளமில்லாமையின், நயனிலாச் சொற்கள் ‘தாறு' எனப்பட்டன. சில சொல்லல் தேறாது பல சொல்லக் காமுறுதலின், 1‘சுனைத்தெழுதல்' என்றார்; ஆற்றல் ஈண்டு ஒழுகுதலென்னும் பொருட்டு!-->
-<!--சொல்லாகிய முட்கோல் கொண்டு நா தினவெடுத்துப் பேச முற்படுதலை மிகவிரும்பும் இயல்பினர் நூல் நுட்பங்களைக் கற்றறிந்து ஒழுகும் வல்லமையுந் தாம் தெளியார்; தாம் கற்ற சிலவற்றைக் கேட்பவர் உள்ளத்திற் பதியும்படி எடுத்துரைக்கும் முறையையும் அறியார்; தம்சொற்கள் பயன்படுதலின்றி வீணாகி யொழிதலையுங் கருதார்; ஒன்றைப் புலப்படுத்தும் பொருட்டு இவ்வாறு பலசொற்கள் சொல்லி அவமானப் படும் மாந்தர் உலகிற் பலராவர்.-->
-<!--சொல்லாகிய முட்கோல் கொண்டு நா தினவெடுத்துப் பேச முற்படுதலை மிகவிரும்பும் இயல்பினர் நூல் நுட்பங்களைக் கற்றறிந்து ஒழுகும் வல்லமையுந் தாம் தெளியார்; தாம் கற்ற சிலவற்றைக் கேட்பவர் உள்ளத்திற் பதியும்படி எடுத்துரைக்கும் முறையையும் அறியார்; தம்சொற்கள் பயன்படுதலின்றி வீணாகி யொழிதலையுங் கருதார்; ஒன்றைப் புலப்படுத்தும் பொருட்டு இவ்வாறு பலசொற்கள் சொல்லி அவமானப் படும் மாந்தர் உலகிற் பலராவர்.-->
-
-<!--									</p>-->
-
-<!--								</td>-->
-<!--							</tr>-->
-<!--							<tr>-->
-<!--								<td class="text-center" style="font-weight: bold;font-size:22px;">-->
-<!--									<p>-->
-<!--										சுய உறுதிமொழி-->
-<!--									</p>-->
-
-<!--								</td>-->
-<!--							</tr>-->
-<!--						</table>-->
-<!--                    </div>-->
-<!--                </t>-->
-<!--            </t>-->
-<!--        </t>-->
-
 
 
     </template>
