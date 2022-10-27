@@ -266,13 +266,19 @@ class ReportCall(http.Controller):
                 else:
                     color = "#fce4ec"
                 html += """<tr bgcolor='""" + color + """'>
-                       <td align='right'>""" + str(line.survey_no) + """</td>
+                       <td align='right'>""" + str(line.survey_no) + ' / ' + str(line.khasra_no) + """</td>
                        <td align='right'>""" + str(line.area_insured) + """</td>
                        </tr>
                     """
         html += """
                     </table>
+                    
+                     <h2 style="text-align: center;width:40%;color:#2b8088;">Total Area Insured: """ + str(insurance.total_area_insured) +"""</h2>
+                      <h2 style="text-align: center;width:40%;color:#2b8088;">Total Premium Paid : """ +str(insurance.total_premium_paid) +"""</h2>
                     """
+
+
+
 
         html += '''        
                         </body>
