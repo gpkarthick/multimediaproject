@@ -273,8 +273,8 @@ class ReportCall(http.Controller):
         html += """
                     </table>
                     
-                     <h2 style="text-align: center;width:40%;color:#2b8088;">Total Area Insured: """ + str(insurance.total_area_insured) +"""</h2>
-                      <h2 style="text-align: center;width:40%;color:#2b8088;">Total Premium Paid : """ +str(insurance.total_premium_paid) +"""</h2>
+                     <h2 style="text-align: center;width:40%;color:#2b8088;">Total Area Insured: """ + str( '%.3f' % insurance.total_area_insured) +"""</h2>
+                      <h2 style="text-align: center;width:40%;color:#2b8088;">Total Premium Paid : """ +str( '%.2f' % insurance.total_premium_paid) +"""</h2>
                     """
 
 
