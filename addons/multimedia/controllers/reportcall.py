@@ -53,9 +53,36 @@ class ReportCall(http.Controller):
                             tr:nth-child(even) {
                               background-color: #eeedec;
                             }
+                            
+                            .evaluation_head {
+                                width:70%;
+                                border: 1px solid black;
+                                background-color: burlywood;
+                            }
+                            .evaluation_data {
+                                    width:100%;
+                                            }
+                            .evaluation_data td {
+                                border: none;
+                                font-size: 14px;
+                                line-height:100%;
+                                padding-right:4px;
+                                padding-left: 8px;
+                                    }
+                            .evaluation_data p {
+                                font-size:14px;
+                                text-align:left;
+                                font-weight: bold;
+                                color: maroon;
+                                margin-left:2px;
+                            }           html+= """
+                            
+                            
                             </style>
                             </head>
                             <body>
+                            
+                            
                             <h2 style="text-align: center;width:40%;color:#2b8088;">Insurance Datas</h2>
                                 <table>
                                       <tr>
@@ -205,24 +232,46 @@ class ReportCall(http.Controller):
                 <td>""" + 'Village' + """</td>
                 <td>""" + village_id + """</td>
               </tr>
-              
-              <tr>
-                <td>""" + 'Crop' + """</td>
-                <td>""" + 'CROP' + """</td>
-              </tr>
               <tr>
                 <td>""" + 'Sowing Date' + """</td>
                 <td>""" + sowing_date + """</td>
               </tr>
-              <tr>
-                <td>""" + 'Survey No' + """</td>
-                <td>""" + insurance.farmer_name + """</td>
-              </tr>
-              <tr>
-                <td>""" + 'Insured Area' + """</td>
-                <td>""" + '' + """</td>
-              </tr>   
+               
             """
+
+            html += """
+            </table>
+            """
+
+            html+= """
+                <h2 style="text-align: center;width:40%;color:#2b8088;">Crop Details</h2>
+            """
+
+            html+= """
+            <table align="left" width="100%">
+                <tr bgcolor='#CCCCFF'>
+                    <th>Survey No</th>
+                    <th>Area Insured</th>
+                </tr>
+            """
+
+            count = 0
+
+            for line in insurance.crop_line_ids:
+                count += 1
+                if count % 2 == 0:
+                    color = "#C9E2E9"
+                else:
+                    color = "#fce4ec"
+                html += """<tr bgcolor='""" + color + """'>
+                       <td align='right'>""" + str(line.survey_no) + """</td>
+                       <td align='right'>""" + str(line.area_insured) + """</td>
+                       </tr>
+                    """
+        html += """
+                    </table>
+                    """
+
         html += '''        
                         </body>
                     </html>

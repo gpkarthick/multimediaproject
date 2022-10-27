@@ -437,7 +437,6 @@ class FarmerInsurance(models.Model):
         self.write({'state': 'printtaken'})
         return self.env.ref('multimedia.action_report_fine_insurance').report_action(self)
 
-
 class CropDataLine(models.Model):
     _name = 'crop.data.line'
     _description = 'Crop Data Line details'
