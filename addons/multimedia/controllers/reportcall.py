@@ -24,6 +24,7 @@ import base64
 from odoo.http import content_disposition
 import smtplib
 import datetime
+from datetime import datetime, date
 
 class ReportCall(http.Controller):
         
