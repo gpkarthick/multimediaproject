@@ -403,6 +403,13 @@
                                     border-right: 1px solid black;
                                     width: 100%;
                                 }
+                                .termscondition_justify {
+							 	 	margin-left:70PX;
+							 	 	margin-right:70PX;
+                                    text-align: justify;
+                                    text-justify: inter-word;
+							 	 	word-spacing: 30px;
+								}
 
 
 

@@ -246,6 +246,36 @@ No.</th>
             </t>
         </t>
 
+
+		<t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+						<table>
+							<tr>
+								<td width="100%">
+									<img src="/multimedia/static/src/img/Nibanthanai_Suya_Uruthimozhi.png" style="max-height: 1200px;" alt="Happy face"/>
+								</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td width="20%">
+								</td>
+								<td width="30%">
+
+									<img t-att-src="'data:image/png;base64,%s' % to_text(o.farmer_image)" style="max-height: 175px; "/>
+								</td>
+								<td width="50%">
+									<img src="/multimedia/static/src/img/Applicant_And_Licence_Applicant.png" style="max-height: 240px;" alt="Happy face"/>
+								</td>
+							</tr>
+						</table>
+                    </div>
+                </t>
+            </t>
+        </t>
+
 		<t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
                 <t t-call="web.basic_layout">
@@ -458,7 +488,20 @@ No.</th>
 						<table>
 							<tr>
 								<td width="100%">
-									<img src="/multimedia/static/src/img/conditionpage-1.png" style="max-height: 1400px;" alt="Happy face"/>
+									<img src="/multimedia/static/src/img/Nibanthanai_Suya_Uruthimozhi.png" style="max-height: 1200px;" alt="Happy face"/>
+								</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td width="20%">
+								</td>
+								<td width="30%">
+
+									<img t-att-src="'data:image/png;base64,%s' % to_text(o.farmer_image)" style="max-height: 175px; "/>
+								</td>
+								<td width="50%">
+									<img src="/multimedia/static/src/img/Applicant_And_Licence_Applicant.png" style="max-height: 240px;" alt="Happy face"/>
 								</td>
 							</tr>
 						</table>
@@ -466,6 +509,48 @@ No.</th>
                 </t>
             </t>
         </t>
+
+<!--		<t t-call="web.html_container">-->
+<!--            <t t-foreach="docs" t-as="o">-->
+<!--                <t t-call="web.basic_layout">-->
+<!--					<link rel="stylesheet" href="/multimedia/static/src/css/style2.css"/>-->
+<!--                    <div class="page">-->
+<!--						<table>-->
+<!--							<tr>-->
+<!--								<td class="text-center" style="font-weight: bold;font-size:27px;">-->
+<!--									<p>-->
+<!--										நிபந்தனைகள்-->
+<!--									</p>-->
+
+<!--								</td>-->
+<!--							</tr>-->
+<!--							<tr>-->
+<!--								<td>-->
+<!--									<p class="termscondition_justify" >-->
+<!--										சொல்லாகிய முட்கோல் கொண்டு நா தினவெடுத்துப் பேச முற்படுதலை மிகவிரும்பும் இயல்பினர் நூல் நுட்பங்களைக் கற்றறிந்து ஒழுகும் வல்லமையுந் தாம் தெளியார்; தாம் கற்ற சிலவற்றைக் கேட்பவர் உள்ளத்திற் பதியும்படி எடுத்துரைக்கும் முறையையும் அறியார்; தம்சொற்கள் பயன்படுதலின்றி வீணாகி யொழிதலையுங் கருதார்; ஒன்றைப் புலப்படுத்தும் பொருட்டு இவ்வாறு பலசொற்கள் சொல்லி அவமானப் படும் மாந்தர் உலகிற் பலராவர்.-->
+<!--காமுறும் இயல்பினர் தேறார், தெளியார், அறியார், இவ்வாறு பல உரைக்கும் மாந்தர் உலகிற் பலர் என்க, பொருள் வளமில்லாமையின், நயனிலாச் சொற்கள் ‘தாறு' எனப்பட்டன. சில சொல்லல் தேறாது பல சொல்லக் காமுறுதலின், 1‘சுனைத்தெழுதல்' என்றார்; ஆற்றல் ஈண்டு ஒழுகுதலென்னும் பொருட்டு!-->
+<!--சொல்லாகிய முட்கோல் கொண்டு நா தினவெடுத்துப் பேச முற்படுதலை மிகவிரும்பும் இயல்பினர் நூல் நுட்பங்களைக் கற்றறிந்து ஒழுகும் வல்லமையுந் தாம் தெளியார்; தாம் கற்ற சிலவற்றைக் கேட்பவர் உள்ளத்திற் பதியும்படி எடுத்துரைக்கும் முறையையும் அறியார்; தம்சொற்கள் பயன்படுதலின்றி வீணாகி யொழிதலையுங் கருதார்; ஒன்றைப் புலப்படுத்தும் பொருட்டு இவ்வாறு பலசொற்கள் சொல்லி அவமானப் படும் மாந்தர் உலகிற் பலராவர்.-->
+<!--சொல்லாகிய முட்கோல் கொண்டு நா தினவெடுத்துப் பேச முற்படுதலை மிகவிரும்பும் இயல்பினர் நூல் நுட்பங்களைக் கற்றறிந்து ஒழுகும் வல்லமையுந் தாம் தெளியார்; தாம் கற்ற சிலவற்றைக் கேட்பவர் உள்ளத்திற் பதியும்படி எடுத்துரைக்கும் முறையையும் அறியார்; தம்சொற்கள் பயன்படுதலின்றி வீணாகி யொழிதலையுங் கருதார்; ஒன்றைப் புலப்படுத்தும் பொருட்டு இவ்வாறு பலசொற்கள் சொல்லி அவமானப் படும் மாந்தர் உலகிற் பலராவர்.-->
+
+<!--									</p>-->
+
+<!--								</td>-->
+<!--							</tr>-->
+<!--							<tr>-->
+<!--								<td class="text-center" style="font-weight: bold;font-size:22px;">-->
+<!--									<p>-->
+<!--										சுய உறுதிமொழி-->
+<!--									</p>-->
+
+<!--								</td>-->
+<!--							</tr>-->
+<!--						</table>-->
+<!--                    </div>-->
+<!--                </t>-->
+<!--            </t>-->
+<!--        </t>-->
+
+
 
     </template>
 </odoo>

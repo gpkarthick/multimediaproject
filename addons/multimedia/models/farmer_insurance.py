@@ -187,6 +187,8 @@ class FarmerInsurance(models.Model):
 
     pmfby_status = fields.Selection([('Paid', 'Paid'), ('Approved', 'Approved'), ('Rejected', 'Rejected'), ('Revert', 'Revert')], string='PMFBY Status')
 
+    farmer_image = fields.Binary(string="Farmer Image", attachment=True)
+
     def insurance_preview(self):
         return {'type': 'ir.actions.act_url',
                 'url': '/multimedia/insurance_preview?id=' + str(self.id) + '&db=' + str(
