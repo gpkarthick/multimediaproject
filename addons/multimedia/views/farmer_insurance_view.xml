@@ -162,6 +162,7 @@
                     <field name="name" groups="multimedia.multimedia_insurance_access"/>
                     <field name="csc_id"/>
                     <field name="farmer_name"/>
+                    <field name="farmer_image"/>
                     <field name="mobile_no"/>
                     <field name="village_id" />
                     <field name="create_uid"/>
