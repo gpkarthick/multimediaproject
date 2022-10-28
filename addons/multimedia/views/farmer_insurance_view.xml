@@ -187,12 +187,18 @@
                     <header>
                         <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" states="draft"/>
                         <button name="action_verified" type="object" string="Verified" class="oe_highlight" states="confirmed" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_bill_print" string="English Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_tamil_bill_print" string="Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_preview" string="Preview" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="action_reset" type="object" string="Reset" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+
+
+                        <button name="insurance_overall_print" string="1) All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_fine_print" string="2) English &amp; Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_preview" string="3) Preview" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="action_reset" type="object" string="4) Reset" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_bill_print" string="5) English Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_tamil_bill_print" string="6) Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+
+
+
+
                         <button name="action_done" type="object" string="Done" class="oe_highlight" states="printtaken" style="background-color:#DA4C29;" groups="multimedia.multimedia_insurance_access"/>
 <!--                        <button name="action_complete" type="object" string="Done Original Bill" class="oe_highlight" attrs="{'invisible': [('state', '=', ('done'))]}"/>-->
 
