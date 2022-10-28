@@ -376,6 +376,7 @@ class FarmerInsurance(models.Model):
                 datas.update({
                     'branch_name': result['BRANCH'].replace('┬á', ''),
                     'bank_name': result['BANK'].replace('┬á', ''),
+                    'ifsc_code':self.ifsc_code.upper()
                 })
         return {'value': datas}
 
