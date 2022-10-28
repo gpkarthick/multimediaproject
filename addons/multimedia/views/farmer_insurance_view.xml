@@ -31,6 +31,8 @@
             <field name="arch" type="xml">
                 <form string="Farmer Details Form">
                     <header>
+                        <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+                        <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
 
                     </header>
                     <sheet>
@@ -48,6 +50,7 @@
                             </group>
                             <group>
                                 <field name="state" invisible="1"/>
+                                <field name="original_receipt_no" invisible="1"/>
                                 <field name="sheet_no" readonly="1"/>
                             </group>
                         </group>
@@ -191,6 +194,10 @@
                         <button name="action_reset" type="object" string="Reset" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                         <button name="action_done" type="object" string="Done" class="oe_highlight" states="printtaken" style="background-color:#DA4C29;" groups="multimedia.multimedia_insurance_access"/>
 <!--                        <button name="action_complete" type="object" string="Done Original Bill" class="oe_highlight" attrs="{'invisible': [('state', '=', ('done'))]}"/>-->
+
+                        <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+                        <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,verified,printtaken,done"/>
                     </header>
                     <sheet>
