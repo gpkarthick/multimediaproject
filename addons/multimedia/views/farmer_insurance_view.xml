@@ -158,7 +158,7 @@
             <field name="arch" type="xml">
                 <tree string="Insurance" create="false" decoration-danger="state in ('done')" decoration-success="state in ('draft')"  decoration-primary="state in ('printtaken')">
                     <field name="form_application_no"/>
-                    <field name="original_receipt_no" groups="multimedia.multimedia_insurance_access" invisible="1"/>
+                    <field name="original_receipt_no" groups="multimedia.multimedia_insurance_access"/>
                     <field name="name" groups="multimedia.multimedia_insurance_access" invisible="1"/>
                     <field name="csc_id" invisible="1"/>
                     <field name="farmer_name"/>
@@ -170,8 +170,8 @@
                     <field name="insurance_date" invisible="1"/>
                     <field name="insurance_finished_date"/>
                     <field name="distributor_total_amount" sum="distributor_total_amount" groups="multimedia.multimedia_insurance_access"/>
-                    <field name="distributor_received_amount" sum="distributor_received_amount" groups="multimedia.multimedia_insurance_access"/>
-                    <field name="distributor_balance_amount" sum="distributor_balance_amount" groups="multimedia.multimedia_insurance_access"/>
+                    <field name="distributor_received_amount" sum="distributor_received_amount" groups="multimedia.multimedia_insurance_access" invisible="1"/>
+                    <field name="distributor_balance_amount" sum="distributor_balance_amount" groups="multimedia.multimedia_insurance_access" invisible="1"/>
                     <field name="state"/>
                     <field name="pmfby_status"/>
                 </tree>

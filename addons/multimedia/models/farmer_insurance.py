@@ -185,7 +185,7 @@ class FarmerInsurance(models.Model):
     farmer_age = fields.Integer('Age', store=True, readonly=True, compute='_age_calculation')
     insurance_finished_date = fields.Date(string='Finished Date')
 
-    pmfby_status = fields.Selection([('Paid', 'Paid'), ('Approved', 'Approved'), ('Rejected', 'Rejected'), ('Revert', 'Revert')], string='PMFBY Status')
+    pmfby_status = fields.Selection([('pmfbyPaid', 'PMFBY Paid'),('Paid', 'Paid'), ('Approved', 'Approved'), ('Rejected', 'Rejected'), ('Revert', 'Revert')], string='PMFBY Status')
 
     farmer_image = fields.Binary(string="Farmer Image", attachment=True)
 
