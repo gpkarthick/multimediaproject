@@ -157,6 +157,7 @@
             <field name="model">farmer.insurance</field>
             <field name="arch" type="xml">
                 <tree string="Insurance" create="false" decoration-danger="state in ('done')" decoration-success="state in ('draft')"  decoration-primary="state in ('printtaken')">
+                    <field name="auto_serial_no"/>
                     <field name="form_application_no"/>
                     <field name="original_receipt_no" groups="multimedia.multimedia_insurance_access"/>
                     <field name="name" groups="multimedia.multimedia_insurance_access" invisible="1"/>

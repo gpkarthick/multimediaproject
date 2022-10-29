@@ -60,6 +60,7 @@ class FarmerInsurance(models.Model):
         })
 
     name = fields.Char(string='Duplicate Receipt No', size=18, readonly=True,  default=lambda self: _('New'))
+    auto_serial_no = fields.Char(string='Serial No', size=18, readonly=True,  default=lambda self: _('New'))
     original_receipt_no = fields.Char(string='Original Receipt No')
     seq_no = fields.Char(string='Seq No',
                          default=lambda self: self.env['ir.sequence'].next_by_code('farmer.insurance.seq'))
@@ -205,11 +206,11 @@ class FarmerInsurance(models.Model):
 
     @api.model
     def create(self, vals):
-        print (self.env.user.form_seqno)
-        print ('PMFBY2022FY1432-'+self.env.user.form_seqno+'-'+str(vals['form_application_no']))
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code('farmer.insurance') or _('New')
             vals['sheet_no'] = 'PMFBY2022FY1432'+'-'+str(self.env.user.form_seqno)+'-'+str(vals['form_application_no'])
+        if vals.get('auto_serial_no', _('New')) == _('New'):
+            vals['auto_serial_no'] = self.env['ir.sequence'].next_by_code('farmer.insurance.serial') or _('New')
         return super(FarmerInsurance, self).create(vals)
 
     @api.constrains('form_application_no', 'original_receipt_no', 'sheet_no', 'distributor_received_amount')

@@ -103,5 +103,14 @@
             <field name="company_id" eval="False"/>
         </record>
 
+        <record id="seq_farmer_insurance_serial" model="ir.sequence">
+            <field name="name">Farmer Insurance serial</field>
+            <field name="code">farmer.insurance.serial</field>
+            <field name="prefix"></field>
+            <field name="padding">4</field>
+            <field name="suffix"></field>
+            <field name="company_id" eval="False"/>
+        </record>
+
     </data>
 </odoo>
