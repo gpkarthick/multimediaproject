@@ -96,7 +96,7 @@ access_farmer_taluk_master_user_access,access.farmer.taluk.master.user_access,mo
 access_farmer_village_master_user_access,access.farmer.village.master.user_access,model_farmer_village_master,multimedia.multimedia_farmer_insurance_user_access,1,1,1,0
 access_surveyno_wise_land_details_user_access,access.surveyno.wise.land.details.user_access,model_surveyno_wise_land_details,multimedia.multimedia_farmer_insurance_user_access,1,0,0,0
 access_csc_login_user_access,access.csc.login.user_access,model_csc_login,multimedia.multimedia_farmer_insurance_user_access,1,1,1,0
-,,,,,,,
+access_bank_tamil_list_user_access,access.bank.tamil.list.user_access,model_bank_tamil_list,multimedia.multimedia_farmer_insurance_user_access,1,0,0,0
 ,,,,,,,
 ,,,,,,,
 access_ir_attachment_form_user,access.ir.attachment.form.user,base.model_ir_attachment,multimedia.media_site_users,1,0,0,0
