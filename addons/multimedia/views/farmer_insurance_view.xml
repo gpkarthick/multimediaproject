@@ -455,6 +455,8 @@
                 <search string="Insurance">
                     <field name="name" string="Insurance No" filter_domain="[('name','ilike',self)]"/>
                     <field name="mobile_no" string="Mobile No" filter_domain="[('mobile_no','ilike',self)]"/>
+                    <field name="farmer_name" string="Farmer Name" filter_domain="[('farmer_name','ilike',self)]"/>
+                    <field name="form_application_no" string="Form Number" filter_domain="[('form_application_no','ilike',self)]"/>
                     <field name="insurance_date" string="Insurance Date"
                            filter_domain="[('insurance_date','ilike',self)]"/>
                     <field name="state" string="State" filter_domain="[('state','ilike',self)]"/>
