@@ -115,3 +115,7 @@ access_farmer_village_master_user,access.farmer.village.master.user,model_farmer
 access_farmer_village_master_management,access.farmer.village.master.management,model_farmer_village_master,multimedia.media_forms_management,1,1,1,0
 ,,,,,,,
 access_pmfby_calculator_insurance_calculator_user_access,access.pmfby.calculator.insurance.calculator.user_access,model_prime_pmfby_calculator,multimedia.multimedia_farmer_insurance_calculator_user_access,1,1,1,0
+,,,,,,,
+access_pmjay_health_insurance_user,access.pmjay.health.insurance.user,model_pmjay_health_insurance,multimedia.multimedia_pmjay_health_insurance_user_access,1,1,1,0
+access_pmjay_village_user,access.pmjay.village.user,model_pmjay_village,multimedia.multimedia_pmjay_health_insurance_user_access,1,1,1,0
+access_pmjay_health_insurance_update_user,access.pmjay.health.insurance.update.user,model_pmjay_health_insurance_update,multimedia.multimedia_pmjay_health_insurance_user_access,1,1,1,0

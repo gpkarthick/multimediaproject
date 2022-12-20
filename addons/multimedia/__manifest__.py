@@ -21,6 +21,7 @@
         'views/site_access_view.xml',
         'views/farmer_insurance_view.xml',
         'views/prime_pmfby_view.xml',
+        'views/pmjay_health_insurance_view.xml',
         'report/multimedia_report.xml',
         'report/farmer_insurance_report.xml',   
         'report/farmer_insurance_overall_report.xml',

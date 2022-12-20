@@ -6,3 +6,4 @@ from . import account_verification
 from . import site_access
 from . import farmer_insurance
 from . import prime_pmfby
+from . import pmjay_health_insurance
