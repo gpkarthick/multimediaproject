@@ -761,6 +761,15 @@ class VillageMaster(models.Model):
     active = fields.Boolean('Active', default=True)
     land_ids = fields.One2many('surveyno.wise.land.details', 'land_id', "Land Details Records")
 
+    def name_get(self):
+        res = []
+        for order in self:
+            name = order.name
+            if order.firka_id and order.block_id and order.subdistrict_id and order.district_id:
+                name = '%s / %s / %s / %s / %s' % (name, order.firka_id.name, order.block_id.name, order.subdistrict_id.name, order.district_id.name)
+            res.append((order.id, name))
+        return res
+
     @api.model
     def create(self, vals):
         if 'village_code' not in vals or vals['village_code'] == _('New'):
