@@ -71,7 +71,7 @@ class FarmerInsurance(models.Model):
                                default=lambda self: self.env['state.master'].search([('id', '=', 1)]))
     state_id_tamil = fields.Char(string='State in Tamil' , default='தமிழ்நாடு')
     scheme_name = fields.Char(string='Scheme' , default='PMFBY')
-    year_val = fields.Char(string='Year' , default='2022')
+    year_val = fields.Char(string='Year', default='2023')
     application_type = fields.Char(string='Application Type', default='NON LOANEE')
     application_type_tamil = fields.Char(string='Application Type Tamil', default='கடன் பெறாதவர்')
     season_name = fields.Char(string='Season', default='RABI')
