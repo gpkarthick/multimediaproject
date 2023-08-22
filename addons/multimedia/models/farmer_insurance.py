@@ -97,7 +97,7 @@ class FarmerInsurance(models.Model):
     write_date = fields.Datetime(string='Last Updated Date', readonly=True)
     write_uid = fields.Many2one('res.users', string='Last Modified by', readonly=True)
     create_uid = fields.Many2one('res.users', string='Created by', readonly=True)
-    state = fields.Selection([('draft', 'Draft'),('confirmed', 'Confirmed'),('verified', 'Verified'), ('printtaken', 'bill Taken'), ('done', 'Done')], string='Status',
+    state = fields.Selection([('draft', 'Stage1'),('stage2', 'Stage2'),('stage3', 'Stage3'),('confirmed', 'Confirmed'),('verified', 'Verified'), ('printtaken', 'bill Taken'), ('done', 'Done')], string='Status',
                              readonly=True, default='draft')
 
     crop_data = fields.Char('Crop', size=60, default='Paddy - II')
@@ -213,11 +213,15 @@ class FarmerInsurance(models.Model):
             vals['auto_serial_no'] = self.env['ir.sequence'].next_by_code('farmer.insurance.serial') or _('New')
         return super(FarmerInsurance, self).create(vals)
 
-    @api.constrains('form_application_no', 'original_receipt_no', 'sheet_no', 'distributor_received_amount')
+    @api.constrains('form_application_no', 'original_receipt_no', 'sheet_no', 'distributor_received_amount', 'farmer_name','farmer_tamil_name')
     def _check_insurance_formno_receiptno(self):
         form_application_ids = self.env['farmer.insurance'].search([('id', '!=', self.id),('form_application_no', '=', self.form_application_no)])
         original_receipt_ids = self.env['farmer.insurance'].search([('id', '!=', self.id),('original_receipt_no', '=', self.original_receipt_no),('original_receipt_no', '!=', '')])
         sheet_no_ids = self.env['farmer.insurance'].search([('id', '!=', self.id),('sheet_no', '=', self.sheet_no)])
+        if self.farmer_name:
+            self.state = 'stage2'
+        if self.farmer_tamil_name:
+            self.state = 'stage3'
         # if form_application_ids.ids:
         #     raise ValidationError(_('Already Used this Form No, please check it'))
         if original_receipt_ids.ids:
@@ -277,7 +281,8 @@ class FarmerInsurance(models.Model):
     #     if self.state_id:
     #         self.state_id_tamil = self.state_id.tamil_name
 
-    @api.onchange('farmer_name', 'relative_name', 'branch_name')
+    # @api.onchange('farmer_name', 'relative_name', 'branch_name')
+    @api.onchange('branch_name')
     def onchange_tamil_translate(self):
     #     # if not self.farmer_name:
     #     #     self.farmer_name = ''
