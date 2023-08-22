@@ -44,76 +44,76 @@
                         </div>
                         <group string="Office Details">
                             <group>
-                                <field name="form_serial_no" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="form_application_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="form_serial_no" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="form_application_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
 
                             </group>
                             <group>
                                 <field name="state" invisible="1"/>
                                 <field name="original_receipt_no" invisible="1"/>
                                 <field name="sheet_no" readonly="1"/>
-                                <field name="mobile_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="mobile_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
                         <group string="Farmer Details" invisible="1">
                             <group colspan="1" col="1">
-                                <field name="farmer_name" string="Name as Per Passbook" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="mobile_no" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="sowing_date" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="farmer_name" string="Name as Per Passbook" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="mobile_no" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="sowing_date" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
-                                <field name="community_type" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="farmer_category_type" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="community_type" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="farmer_category_type" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
                         <group string="Bank Details" invisible="1">
                             <group>
-                                <field name="ifsc_code" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="bank_account_no" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="ifsc_code" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="bank_account_no" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
-                                <field name="bank_name" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="branch_name" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="account_type" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" invisible="1"/>
+                                <field name="bank_name" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="branch_name" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="account_type" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" invisible="1"/>
                             </group>
                         </group>
 
                         <group string="Aadhar Details" invisible="1">
                             <group>
-                                <field name="aadhar_name" string="Name as per aadhar" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="aadhar_name" string="Name as per aadhar" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
-                                <field name="aadhar_no"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="aadhar_no"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
                         <group string="Premium Details">
                             <group>
-                                <field name="area" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="premium_amount" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="service_charge" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="total_amount" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="area" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="premium_amount" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="service_charge" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="total_amount" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
-                                <field name="received_amount" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="balance_amount" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="received_amount" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="balance_amount" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
                         <group invisible="1">
                             <group>
-                                <field name="village_id" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="firka_id" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                                <field name="block_id" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
-                                <field name="subdistrict_id" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                                <field name="district_id" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                                <field name="state2_id" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                                <field name="village_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="firka_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                                <field name="block_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
+                                <field name="subdistrict_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                                <field name="district_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                                <field name="state2_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                             </group>
                             <group>
-                                <field name="village_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                                <field name="firka_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
-                                <field name="block_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
-                                <field name="subdistrict_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
-                                <field name="district_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
-                                <field name="state_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                                <field name="village_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                                <field name="firka_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
+                                <field name="block_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
+                                <field name="subdistrict_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
+                                <field name="district_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
+                                <field name="state_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                             </group>
                         </group>
                     </sheet>
@@ -188,21 +188,21 @@
             <field name="arch" type="xml">
                 <form string="Insurance Form" create="false">
                     <header>
-                        <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" states="draft"/>
+                        <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" attrs="{'invisible': [('state', 'not in', ('draft','stage2','stage3'))]}"/>
                         <button name="action_verified" type="object" string="Verified" class="oe_highlight" states="confirmed" groups="multimedia.multimedia_insurance_access"/>
 
-                        <button name="insurance_overall_print" string="1) All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_fine_print" string="2) English &amp; Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_overall_print" string="1) All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_fine_print" string="2) English &amp; Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                         <button name="insurance_preview" string="3) Preview" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="action_reset" type="object" string="4) Reset" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_bill_print" string="5) English Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_tamil_bill_print" string="6) Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="action_reset" type="object" string="4) Reset" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_bill_print" string="5) English Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_tamil_bill_print" string="6) Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
 
                         <button name="action_done" type="object" string="Done" class="oe_highlight" states="printtaken" style="background-color:#DA4C29;" groups="multimedia.multimedia_insurance_access"/>
 <!--                        <button name="action_complete" type="object" string="Done Original Bill" class="oe_highlight" attrs="{'invisible': [('state', '=', ('done'))]}"/>-->
 
-                        <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
-                        <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+                        <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+                        <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
 
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,verified,printtaken,done"/>
                     </header>
@@ -242,7 +242,7 @@
                         </group>
                         <group string="General Info">
                             <group>
-                                <field name="name" groups="multimedia.multimedia_insurance_access" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="name" groups="multimedia.multimedia_insurance_access" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
                                 <field name="original_receipt_no" groups="multimedia.multimedia_insurance_access" attrs="{'readonly': [('state', 'in', ('done'))]}"/>
@@ -250,90 +250,90 @@
                         </group>
 <!--                        <group string="PMFBY Info">-->
 <!--                            <group>-->
-<!--                                <field name="state_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="scheme_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="year_val" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="application_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="season_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="created_by" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="create_at" required="1"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
+<!--                                <field name="state_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="scheme_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="year_val" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="application_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="season_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="created_by" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="create_at" required="1"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
 <!--                            </group>-->
 <!--                            <group>-->
-<!--                                <field name="state_id_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="scheme_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="year_val" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="application_type_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="season_name_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="created_by" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="create_at" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
+<!--                                <field name="state_id_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="scheme_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="year_val" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="application_type_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="season_name_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="created_by" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="create_at" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
 <!--                            </group>-->
 <!--                        </group>-->
                         <group string="Farmer Details">
                             <group>
-                                <field name="farmer_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="relative_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="relative_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="farmer_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="relative_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="relative_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="mobile_no" invisible="1"/>
 
-<!--                                <field name="community_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="farmer_category_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="aadhar_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="aadhar_no"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="farmer_birth_year"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
+<!--                                <field name="community_type"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="farmer_category_type"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="aadhar_name"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="aadhar_no"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="farmer_birth_year"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
 <!--                                <field name="farmer_age" />-->
 
                             </group>
                             <group>
-                                    <field name="farmer_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="gender_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-<!--                                <field name="farmer_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="relative_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="relative_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="farmer_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="gender_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
+                                    <field name="farmer_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="gender_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+<!--                                <field name="farmer_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="relative_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="relative_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="farmer_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="gender_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
                             </group>
                         </group>
                         <group string="Bank Details">
                             <group>
-                                <field name="ifsc_code" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="bank_account_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="account_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="ifsc_code" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="bank_account_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="account_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
-                                <field name="branch_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="bank_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-<!--                                <field name="ifsc_code"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="bank_account_no"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="bank_tamil_list_id"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--&lt;!&ndash;                                <field name="bank_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>&ndash;&gt;-->
-<!--                                <field name="branch_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="account_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
+                                <field name="branch_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="bank_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+<!--                                <field name="ifsc_code"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="bank_account_no"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="bank_tamil_list_id"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--&lt;!&ndash;                                <field name="bank_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>&ndash;&gt;-->
+<!--                                <field name="branch_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="account_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
                             </group>
                         </group>
                         <group string="Crop Details">
                             <group>
-                                <field name="village_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"
+                                <field name="village_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"
                                        options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
                                        context="{'tree_view_ref': 'multimedia.view_village_master_tree_ref'}"/>
-                                <field name="firka_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                <field name="firka_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
                                        context="{'tree_view_ref': 'multimedia.view_firka_master_ref_tree'}" widget="selection"/>
-                                <field name="block_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                <field name="block_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
                                         context="{'tree_view_ref': 'multimedia.view_block_master_ref_tree'}"/>
 
                             </group>
                             <group>
-                                    <field name="subdistrict_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                    <field name="subdistrict_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
                                         context="{'tree_view_ref': 'multimedia.view_subdistrict_master_ref_tree'}"/>
-                                <field name="district_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                <field name="district_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
                                         context="{'tree_view_ref': 'multimedia.view_district_master_ref_tree'}"/>
-                                <field name="state2_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                <field name="state2_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
                                         context="{'tree_view_ref': 'multimedia.view_state_master_ref_tree'}"/>
-                                <field name="village_tamil_name"  invisible="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="firka_tamil_name" invisible="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="block_tamil_name"  invisible="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="subdistrict_tamil_name"  invisible="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="district_tamil_name" invisible="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="state_tamil_name" invisible="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="village_tamil_name"  invisible="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="firka_tamil_name" invisible="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="block_tamil_name"  invisible="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="subdistrict_tamil_name"  invisible="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="district_tamil_name" invisible="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="state_tamil_name" invisible="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
 <!--                        <group string="PMFBY Area Calculation">-->
@@ -362,12 +362,12 @@
 
 <!--                        <group string="Resident Details">-->
 <!--                            <group>-->
-<!--                                <field name="farmer_addr" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="pincode"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="farmer_village_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="farmer_taluk_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="farmer_district_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="farmer_state_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
+<!--                                <field name="farmer_addr" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="pincode"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="farmer_village_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="farmer_taluk_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="farmer_district_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="farmer_state_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>-->
 <!--                            </group>-->
 <!--                            <group>-->
 <!--                            </group>-->
@@ -451,21 +451,21 @@
                 <form string="Insurance Form" create="false">
                     <header>
 
-                        <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" states="draft"/>
+                        <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" attrs="{'invisible': [('state', 'not in', ('draft','stage2','stage3'))]}"/>
                         <button name="action_verified" type="object" string="Verified" class="oe_highlight" states="confirmed" groups="multimedia.multimedia_insurance_access"/>
 
-                        <button name="insurance_overall_print" string="1) All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_fine_print" string="2) English &amp; Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_overall_print" string="1) All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_fine_print" string="2) English &amp; Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                         <button name="insurance_preview" string="3) Preview" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="action_reset" type="object" string="4) Reset" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_bill_print" string="5) English Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_tamil_bill_print" string="6) Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="action_reset" type="object" string="4) Reset" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_bill_print" string="5) English Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_tamil_bill_print" string="6) Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
 
                         <button name="action_done" type="object" string="Done" class="oe_highlight" states="printtaken" style="background-color:#DA4C29;" groups="multimedia.multimedia_insurance_access"/>
 <!--                        <button name="action_complete" type="object" string="Done Original Bill" class="oe_highlight" attrs="{'invisible': [('state', '=', ('done'))]}"/>-->
 
-                        <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
-                        <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+                        <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+                        <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
 
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,verified,printtaken,done"/>
                     </header>
@@ -505,106 +505,106 @@
                         </group>
                         <group string="General Info">
                             <group>
-                                <field name="name" groups="multimedia.multimedia_insurance_access" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="name" groups="multimedia.multimedia_insurance_access" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                                 <field name="original_receipt_no" groups="multimedia.multimedia_insurance_access" attrs="{'readonly': [('state', 'in', ('done'))]}"/>
-                                <field name="insurance_date" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="mobile_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="insurance_date" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="mobile_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                                 <field name="insurance_finished_date" attrs="{'readonly': [('state', 'in', ('done'))]}"/>
                                 <field name="pmfby_status" attrs="{'readonly': [('state', 'in', ('done'))]}"/>
                             </group>
                             <group>
-                                <field name="name" groups="multimedia.multimedia_insurance_access" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="name" groups="multimedia.multimedia_insurance_access" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                                 <field name="original_receipt_no" groups="multimedia.multimedia_insurance_access" attrs="{'readonly': [('state', 'in', ('done'))]}"/>
-                                <field name="insurance_date" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="mobile_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="csc_id" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="sowing_date" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="insurance_date" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="mobile_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="csc_id" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="sowing_date" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
                         <group string="PMFBY Info">
                             <group>
-                                <field name="state_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="scheme_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="year_val" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="application_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="season_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="created_by" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="create_at" required="1"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="state_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="scheme_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="year_val" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="application_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="season_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="created_by" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="create_at" required="1"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
-                                <field name="state_id_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="scheme_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="year_val" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="application_type_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="season_name_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="created_by" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="create_at" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="state_id_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="scheme_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="year_val" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="application_type_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="season_name_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="created_by" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="create_at" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
                         <group string="Farmer Details">
                             <group>
-                                <field name="farmer_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="relative_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="relative_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="farmer_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="relative_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="relative_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                                 <field name="mobile_no" invisible="1"/>
-                                <field name="farmer_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="gender_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="community_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="farmer_category_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="aadhar_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="aadhar_no"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="farmer_birth_year"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="farmer_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="gender_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="community_type"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="farmer_category_type"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="aadhar_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="aadhar_no"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="farmer_birth_year"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                                 <field name="farmer_age" />
 
                             </group>
                             <group>
-                                <field name="farmer_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="relative_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="relative_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="farmer_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="gender_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="farmer_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="relative_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="relative_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="farmer_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="gender_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
                         <group string="Bank Details">
                             <group>
-                                <field name="ifsc_code" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="bank_account_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="bank_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="branch_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="account_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="ifsc_code" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="bank_account_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="bank_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="branch_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="account_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
-                                <field name="ifsc_code"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="bank_account_no"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="bank_tamil_list_id"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-<!--                                <field name="bank_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-                                <field name="branch_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="account_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="ifsc_code"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="bank_account_no"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="bank_tamil_list_id"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+<!--                                <field name="bank_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+                                <field name="branch_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="account_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
                         <group string="Crop Details">
                             <group>
-                                <field name="village_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"
+                                <field name="village_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"
                                        options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
                                        context="{'tree_view_ref': 'multimedia.view_village_master_tree_ref'}"/>
-                                <field name="firka_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                <field name="firka_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
                                        context="{'tree_view_ref': 'multimedia.view_firka_master_ref_tree'}" widget="selection"/>
-                                <field name="block_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                <field name="block_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
                                         context="{'tree_view_ref': 'multimedia.view_block_master_ref_tree'}"/>
-                                <field name="subdistrict_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                <field name="subdistrict_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
                                         context="{'tree_view_ref': 'multimedia.view_subdistrict_master_ref_tree'}"/>
-                                <field name="district_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                <field name="district_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
                                         context="{'tree_view_ref': 'multimedia.view_district_master_ref_tree'}"/>
-                                <field name="state2_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                <field name="state2_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
                                         context="{'tree_view_ref': 'multimedia.view_state_master_ref_tree'}"/>
                             </group>
                             <group>
-                                <field name="village_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="firka_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="block_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="subdistrict_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="district_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="state_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="village_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="firka_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="block_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="subdistrict_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="district_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="state_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
                         <group string="PMFBY Area Calculation">
@@ -633,12 +633,12 @@
 
                         <group string="Resident Details">
                             <group>
-                                <field name="farmer_addr" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="pincode"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="farmer_village_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="farmer_taluk_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="farmer_district_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="farmer_state_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="farmer_addr" required="0" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="pincode"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="farmer_village_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="farmer_taluk_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="farmer_district_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="farmer_state_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
                             </group>
@@ -774,20 +774,20 @@
             <field name="arch" type="xml">
                 <form string="Pre Form Tamil" create="false">
                     <header>
-                        <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" states="draft"/>
+                        <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" attrs="{'invisible': [('state', 'not in', ('draft','stage2','stage3'))]}"/>
                         <button name="action_verified" type="object" string="Verified" class="oe_highlight" states="confirmed" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_overall_print" string="1) All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_fine_print" string="2) English &amp; Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_overall_print" string="1) All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_fine_print" string="2) English &amp; Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                         <button name="insurance_preview" string="3) Preview" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="action_reset" type="object" string="4) Reset" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_bill_print" string="5) English Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_tamil_bill_print" string="6) Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="action_reset" type="object" string="4) Reset" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_bill_print" string="5) English Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_tamil_bill_print" string="6) Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
 
                         <button name="action_done" type="object" string="Done" class="oe_highlight" states="printtaken" style="background-color:#DA4C29;" groups="multimedia.multimedia_insurance_access"/>
 <!--                        <button name="action_complete" type="object" string="Done Original Bill" class="oe_highlight" attrs="{'invisible': [('state', '=', ('done'))]}"/>-->
 
-                        <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
-                        <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+                        <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+                        <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
 
                         <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,verified,printtaken,done"/>
                     </header>
@@ -827,7 +827,7 @@
                         </group>
                         <group string="General Info">
                             <group>
-                                <field name="name" groups="multimedia.multimedia_insurance_access" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="name" groups="multimedia.multimedia_insurance_access" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
                                 <field name="original_receipt_no" groups="multimedia.multimedia_insurance_access" attrs="{'readonly': [('state', 'in', ('done'))]}"/>
@@ -835,91 +835,91 @@
                         </group>
 <!--                        <group string="PMFBY Info">-->
 <!--                            <group>-->
-<!--                                <field name="state_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="scheme_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="year_val" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="application_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="season_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="created_by" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="create_at" required="1"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
+<!--                                <field name="state_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="scheme_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="year_val" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="application_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="season_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="created_by" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="create_at" required="1"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
 <!--                            </group>-->
 <!--                            <group>-->
-<!--                                <field name="state_id_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="scheme_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="year_val" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="application_type_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="season_name_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="created_by" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="create_at" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
+<!--                                <field name="state_id_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="scheme_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="year_val" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="application_type_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="season_name_tamil" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="created_by" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="create_at" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
 <!--                            </group>-->
 <!--                        </group>-->
                         <group string="Farmer Details">
                             <group>
-                                    <field name="farmer_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                    <field name="relative_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                    <field name="relative_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                    <field name="farmer_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                    <field name="gender_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                    <field name="farmer_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                    <field name="relative_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                    <field name="relative_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                    <field name="farmer_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                    <field name="gender_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
-                                <field name="farmer_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="relative_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="relative_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="farmer_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="gender_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="farmer_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="relative_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="relative_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="farmer_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="gender_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
                         <group string="Bank Details">
                             <group>
-                                <field name="ifsc_code" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="bank_account_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-<!--                                <field name="account_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-                                <field name="account_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="ifsc_code" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="bank_account_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+<!--                                <field name="account_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+                                <field name="account_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
-<!--                                <field name="branch_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="bank_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="ifsc_code"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="bank_account_no"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="bank_tamil_list_id"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-                                <field name="bank_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="branch_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+<!--                                <field name="branch_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="bank_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="ifsc_code"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="bank_account_no"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="bank_tamil_list_id"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+                                <field name="bank_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="branch_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
 
                             </group>
                         </group>
                         <group string="Crop Details">
                             <group>
-<!--                                <field name="village_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"-->
+<!--                                <field name="village_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"-->
 <!--                                       options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
 <!--                                       context="{'tree_view_ref': 'multimedia.view_village_master_tree_ref'}"/>-->
-<!--                                <field name="firka_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
+<!--                                <field name="firka_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
 <!--                                       context="{'tree_view_ref': 'multimedia.view_firka_master_ref_tree'}" widget="selection"/>-->
-<!--                                <field name="block_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
+<!--                                <field name="block_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
 <!--                                        context="{'tree_view_ref': 'multimedia.view_block_master_ref_tree'}"/>-->
 
-<!--                                <field name="village_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"-->
+<!--                                <field name="village_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"-->
 <!--                                       options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
 <!--                                       context="{'tree_view_ref': 'multimedia.view_village_master_tree_ref'}"/>-->
-<!--                                <field name="firka_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
+<!--                                <field name="firka_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
 <!--                                       context="{'tree_view_ref': 'multimedia.view_firka_master_ref_tree'}" widget="selection"/>-->
-<!--                                <field name="block_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
+<!--                                <field name="block_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
 <!--                                        context="{'tree_view_ref': 'multimedia.view_block_master_ref_tree'}"/>-->
-                                <field name="village_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="firka_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="block_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="village_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="firka_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="block_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
 
                             </group>
                             <group>
-<!--                                    <field name="subdistrict_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
+<!--                                    <field name="subdistrict_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
 <!--                                        context="{'tree_view_ref': 'multimedia.view_subdistrict_master_ref_tree'}"/>-->
-<!--                                <field name="district_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
+<!--                                <field name="district_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
 <!--                                        context="{'tree_view_ref': 'multimedia.view_district_master_ref_tree'}"/>-->
-<!--                                <field name="state2_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
+<!--                                <field name="state2_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"-->
 <!--                                        context="{'tree_view_ref': 'multimedia.view_state_master_ref_tree'}"/>-->
 
-                                <field name="subdistrict_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="district_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
-                                <field name="state_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>
+                                <field name="subdistrict_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="district_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="state_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
 <!--                        <group string="PMFBY Area Calculation">-->
@@ -948,12 +948,12 @@
 
 <!--                        <group string="Resident Details">-->
 <!--                            <group>-->
-<!--                                <field name="farmer_addr" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="pincode"  attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="farmer_village_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="farmer_taluk_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="farmer_district_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
-<!--                                <field name="farmer_state_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','confirmed'))]}"/>-->
+<!--                                <field name="farmer_addr" required="0" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="pincode"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="farmer_village_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="farmer_taluk_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="farmer_district_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="farmer_state_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
 <!--                            </group>-->
 <!--                            <group>-->
 <!--                            </group>-->
