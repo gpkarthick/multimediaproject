@@ -154,7 +154,7 @@ class FarmerInsurance(models.Model):
     community_type = fields.Selection([('ST', 'ST'), ('SC', 'SC'),('OBC', 'OBC'), ('GENERAL', 'GENERAL')], string='Community')
     farmer_category_type = fields.Selection([('OWNER', 'OWNER'), ('TENANT', 'TENANT'),('SHARECROPPER', 'SHARECROPPER')], string='Farmer Category')
 
-    form_serial_no = fields.Char(string='Serial Number', default='PMFBY2022FY1432')
+    form_serial_no = fields.Char(string='Serial Number', default='PMFBY2023FY1433')
     form_application_no = fields.Integer(string='Form Number')
     sheet_no = fields.Char(string='Form No')
 
