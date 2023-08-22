@@ -204,7 +204,7 @@
                         <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
                         <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
 
-                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,verified,printtaken,done"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,stage2,stage3,confirmed,verified,printtaken,done"/>
                     </header>
                     <sheet>
                         <div class="oe_title">
@@ -467,7 +467,7 @@
                         <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
                         <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
 
-                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,verified,printtaken,done"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,stage2,stage3,confirmed,verified,printtaken,done"/>
                     </header>
                     <sheet>
                         <div class="oe_title">
@@ -789,7 +789,7 @@
                         <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
                         <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
 
-                        <field name="state" widget="statusbar" statusbar_visible="draft,confirmed,verified,printtaken,done"/>
+                        <field name="state" widget="statusbar" statusbar_visible="draft,stage2,stage3,confirmed,verified,printtaken,done"/>
                     </header>
                     <sheet>
                         <div class="oe_title">
