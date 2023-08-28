@@ -873,20 +873,37 @@
                             <group>
                                 <field name="ifsc_code" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                                 <field name="bank_account_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
-<!--                                <field name="account_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
-                                <field name="account_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="bank_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="branch_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="account_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
-<!--                                <field name="branch_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
-<!--                                <field name="bank_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
-<!--                                <field name="ifsc_code"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
-<!--                                <field name="bank_account_no"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
-<!--                                <field name="bank_tamil_list_id"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
-                                <field name="bank_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="ifsc_code"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="bank_account_no"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+                                <field name="bank_tamil_list_id"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
+<!--                                <field name="bank_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
                                 <field name="branch_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
-
+                                <field name="account_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
+<!--                        <group string="Bank Details">-->
+<!--                            <group>-->
+<!--                                <field name="ifsc_code" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="bank_account_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--&lt;!&ndash;                                <field name="account_type" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>&ndash;&gt;-->
+<!--                                <field name="account_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                            </group>-->
+<!--                            <group>-->
+<!--&lt;!&ndash;                                <field name="branch_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <field name="bank_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <field name="ifsc_code"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <field name="bank_account_no"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;                                <field name="bank_tamil_list_id"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>&ndash;&gt;-->
+<!--                                <field name="bank_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+<!--                                <field name="branch_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>-->
+
+<!--                            </group>-->
+<!--                        </group>-->
                         <group string="Crop Details">
                             <group>
 <!--                                <field name="village_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"-->
