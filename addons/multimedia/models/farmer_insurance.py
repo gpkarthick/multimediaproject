@@ -190,6 +190,30 @@ class FarmerInsurance(models.Model):
 
     farmer_image = fields.Binary(string="Farmer Image", attachment=True)
 
+    def capture_webcam_image(self):
+        # Open the webcam
+        import cv2
+        import numpy as np
+        from io import BytesIO
+        import base64
+        cap = cv2.VideoCapture(0)
+
+        # Capture a frame from the webcam
+        ret, frame = cap.read()
+
+        if ret:
+            # Encode the image as base64
+            _, buffer = cv2.imencode('.png', frame)
+            image_base64 = base64.b64encode(buffer)
+
+            # Update the field with the captured image
+            self.write({'farmer_image': image_base64})
+        else:
+            raise UserError("Unable to capture image from webcam.")
+
+        # Release the webcam
+        cap.release()
+
     def insurance_preview(self):
         return {'type': 'ir.actions.act_url',
                 'url': '/multimedia/insurance_preview?id=' + str(self.id) + '&db=' + str(
@@ -458,10 +482,22 @@ class CropDataLine(models.Model):
     crop_id = fields.Many2one('farmer.insurance', string='Insurance')
     doc_html = fields.Html('HTML Report')
 
+    # @api.onchange('area_insured')
+    # def onchange_area_insured(self):
+    #     # base_insured_amt = 803.99000
+    #     base_insured_amt = 844.74000
+    #     if self.area_insured * 100 > 0:
+    #         area_insured = self.area_insured * 100
+    #         self.farmer_share = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
+    #         self.gov_share = round((249.2 * area_insured), 2)
+    #         # self.gov_share = round(((0.84474 * 338.9807383627608) * area_insured), 2)
+    #         # self.gov_share = round(((0.80399 * 335) * area_insured), 2)
+    #         self.sum_insured = round(base_insured_amt * area_insured, 2)
+
     @api.onchange('area_insured')
     def onchange_area_insured(self):
         # base_insured_amt = 803.99000
-        base_insured_amt = 844.74000
+        base_insured_amt = 870.68000
         if self.area_insured * 100 > 0:
             area_insured = self.area_insured * 100
             self.farmer_share = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
@@ -850,6 +886,60 @@ class ImportMaster(models.Model):
     import_file = fields.Binary('Import CSV File')
     name = fields.Char('Name', required=True)
 
+    def action_import_pmjay_village(self):
+        import base64
+        import csv
+        import io
+        for order in self:
+            count = 0
+            count = name_count = 0
+            district_id = 0
+            panchayat_id = 0
+            block_id = 0
+            village_count = 0
+
+            decrypted = base64.b64decode(order.import_file).decode('utf-8')
+            with io.StringIO(decrypted) as fp:
+                reader = csv.reader(fp, delimiter=",", quotechar='"')
+                for row in reader:
+                    if not row:
+                        break
+                    count += 1
+                    if count > 1 and len(row) > 2:
+                        district_code = row[0]
+                        district_name = row[1]
+                        block_code = row[2]
+                        block_name = row[3]
+                        panchayat_code = row[4]
+                        panchayat_name = row[5]
+                        village_code = row[6]
+                        village_name = row[7]
+                        if district_code and district_name:
+                            exist_district_ids = self.env['pmjay.district'].search([('name', '=', district_name)])
+                            if not exist_district_ids:
+                                district = self.env['pmjay.district'].create(
+                                    {'name': district_name, 'district_code': district_code})
+                                district_id = district.id
+                        if block_code and block_name:
+                            print (block_code,block_name,district_id)
+                            exist_block_ids = self.env['pmjay.block'].search([('name', '=', block_name)])
+                            if not exist_block_ids:
+                                block = self.env['pmjay.block'].create(
+                                    {'name': block_name, 'block_code': block_code, 'district_id': district_id})
+                                block_id = block.id
+                        if panchayat_code and panchayat_name:
+                            print (panchayat_code,panchayat_code,district_id)
+                            exist_block_ids = self.env['pmjay.panchayat'].search([('name', '=', panchayat_name)])
+                            if not exist_block_ids:
+                                panchayat = self.env['pmjay.panchayat'].create(
+                                    {'name': panchayat_name, 'panchayat_code': panchayat_code, 'district_id': district_id, 'block_id': block_id})
+                                panchayat_id = panchayat.id
+                        if village_code and village_name:
+                            exist_village_ids = self.env['pmjay.village'].search([('name', '=', village_name)])
+                            if not exist_village_ids:
+                                village = self.env['pmjay.village'].create(
+                                    {'name': village_name, 'village_code': village_code, 'panchayat_id': panchayat_id, 'district_id': district_id, 'block_id': block_id})
+
     def action_import_land_details(self):
         import base64
         import csv
@@ -892,6 +982,96 @@ class ImportMaster(models.Model):
                              'land_type': land_type,
                              'land_id': village_id,
                              })
+    def action_import_pmjay(self):
+        import base64
+        import csv
+        import io
+        for order in self:
+            count = 0
+            decrypted = base64.b64decode(order.import_file).decode('utf-8')
+            with io.StringIO(decrypted) as fp:
+                reader = csv.reader(fp, delimiter=",", quotechar='"')
+                parent_list = []
+                child_list = []
+                for row in reader:
+                    # if not row:
+                    #     break
+                    count += 1
+                    # print (count,len(row),"----------------")
+                    if count > 1:
+                        parent_data = {
+                            'name': row[1],
+                            'serial_no': row[0],
+                        }
+                        parent_list.append(parent_data)
+
+                        if row[3] == 'Y':
+                            val = True
+                        if row[3] == 'N':
+                            val = False
+
+                        child_data = {
+                            'name': row[2],
+                            # 'parent_id': parent_record.id,
+                            'kyc_update': val,
+                        }
+                        child_list.append(child_data)
+
+                        if not row[0]:
+                            print (parent_list,"ccccccccccccc")
+                            print (parent_list[:-1][-1],child_list[:-1],"--------------------")
+                            parent_list = parent_list[:-1][-1]
+                            child_list = child_list[:-1]
+                            result = []
+                            print (parent_list,"ffffffffff")
+                            if parent_list:
+                                parent = self.env['pmjay.health.insurance'].create(parent_list)
+                                print (parent,"xxxxxxxxxxxxxxx")
+                                for line in child_list:
+                                    result.append((0, 0, line))
+                                    # line.update({'pmjay_id':parent.id})
+                                parent.write({'pmjay_hi_members_ids':result})
+
+                                    # self.env[self.child_model.model].create(child_data)
+                            # parent_list = list(set(parent_list))
+                            # child_list = list(set(child_list))
+                            parent_list = []
+                            child_list = []
+
+
+
+
+
+                    # if count > 1 and len(row) > 2:
+                    #
+                    #     print(row[10])
+                        # village_id = self.env['village.master'].search([('name', 'ilike', row[10])]).id
+                        # if not village_id:
+                        #     raise ValidationError(_('Please check the village'))
+                        # print (village_id,"aaaaaaaaaaa")
+                        # surveyno_wise_serial_no = row[0]
+                        # name_wise_serial_no = row[1]
+                        # farmer_name = row[2]
+                        # relation_type = row[3]
+                        # relative_name = row[4]
+                        # survey_no = row[5]
+                        # sub_div_no = row[6]
+                        # area_in_hec = row[7]
+                        # patta_no = row[8]
+                        # land_type = row[9]
+                        # self.env['surveyno.wise.land.details'].create(
+                        #     {'name': farmer_name,
+                        #      'surveyno_wise_serial_no': surveyno_wise_serial_no,
+                        #      'name_wise_serial_no': name_wise_serial_no,
+                        #      'relation_type': relation_type,
+                        #      'relative_name': relative_name,
+                        #      'survey_no': survey_no,
+                        #      'sub_div_no': sub_div_no,
+                        #      'area_in_hec': area_in_hec,
+                        #      'patta_no': patta_no,
+                        #      'land_type': land_type,
+                        #      'land_id': village_id,
+                        #      })
 
     # def action_import_land_details(self):
     #     import base64

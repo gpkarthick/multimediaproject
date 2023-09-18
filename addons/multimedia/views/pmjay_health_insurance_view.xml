@@ -9,10 +9,10 @@
                 <tree string="PMJAY Health Insurance" decoration-danger="state in ('done')" decoration-success="state in ('draft')">
                     <field name="name"/>
                     <field name="serial_no"/>
-                    <field name="kyc_update"/>
-					<field name="amount_paid"/>
+<!--                    <field name="kyc_update"/>-->
+<!--					<field name="amount_paid"/>-->
 					<field name="mobile_no"/>
-					<field name="updated_date"/>
+<!--					<field name="updated_date"/>-->
 					<field name="state"/>
 				</tree>
             </field>
@@ -40,16 +40,40 @@
 						<group>
 							<field name="name"/>
                             <field name="pmjay_village_id"/>
-							<field name="member_name"/>
+<!--							<field name="member_name"/>-->
                             <field name="serial_no"/>
-                            <field name="kyc_update"/>
-                            <field name="amount_paid"/>
+<!--                            <field name="kyc_update"/>-->
+<!--                            <field name="amount_paid"/>-->
                             <field name="mobile_no"/>
                             <field name="alternate_mobile_no"/>
 						</group>
 						<group>
 						</group>
 					</group>
+                    <notebook>
+                        <page string="Family Member Details">
+                            <field name="pmjay_hi_members_ids" attrs="{'readonly':[('state','in',['done'])]}">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="gender"/>
+                                    <field name="kyc_update"/>
+                                </tree>
+                                <form string="Members Details">
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="name"/>
+                                                <field name="gender"/>
+                                            </group>
+                                            <group>
+                                                <field name="kyc_update"/>
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </page>
+                    </notebook>
 				</sheet>
               </form>
             </field>
@@ -66,9 +90,9 @@
 					<separator/>
                         <filter string="Paid" name="paid" domain="[('state','=','paid')]"/>
 						<filter string="Draft" name="draft" domain="[('state','=','draft')]"/>
-					<group expand="1" string="Group By">
-						<filter string="Month" name="updated_date" context="{'group_by':'updated_date:month'}" help="Creation Date"/>
-				   </group>
+<!--					<group expand="1" string="Group By">-->
+<!--						<filter string="Month" name="updated_date" context="{'group_by':'updated_date:month'}" help="Creation Date"/>-->
+<!--				   </group>-->
 			   </search>
 			</field>
 		</record>
@@ -91,53 +115,480 @@
         </record>
 
 
-<!--        Update Record-->
-
-        <record id="pmjay_health_insurance_update_tree_view" model="ir.ui.view">
-           <field name="name">pmjay.health.insurance.update.tree</field>
-            <field name="model">pmjay.health.insurance.update</field>
+        <record id="view_pmjay_district_tree" model="ir.ui.view">
+            <field name="name">pmjay.district.tree</field>
+            <field name="model">pmjay.district</field>
+            <field name="priority">2</field>
             <field name="arch" type="xml">
-                <tree string="PMJAY Health Insurance Update" decoration-danger="state in ('done')" decoration-success="state in ('draft')">
-                    <field name="pmjay_village_id"/>
+                <tree string="PMJAY District">
                     <field name="name"/>
-                    <field name="serial_no"/>
-                    <field name="kyc_update"/>
-					<field name="amount_paid"/>
-					<field name="mobile_no"/>
+                    <field name="district_code"/>
+                    <field name="write_uid"/>
+                    <field name="write_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_pmjay_district_form" model="ir.ui.view">
+            <field name="name">pmjay.district.form</field>
+            <field name="model">pmjay.district</field>
+            <field name="arch" type="xml">
+                <form string="PMJAY District">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="district_code"/>
+                            </group>
+                            <group>
+                                <field name="write_uid"/>
+                                <field name="write_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Block">
+                                <field string="Block" name="block_ids">
+                                    <tree create="false" delete="false" editable="false">
+                                        <field name="name"/>
+                                        <field name="block_code"/>
+                                        <field name="district_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_pmjay_district_filter" model="ir.ui.view">
+            <field name="name">pmjay.district.search</field>
+            <field name="model">pmjay.district</field>
+            <field name="arch" type="xml">
+                <search string="Search District">
+                    <field name="name" string="District" filter_domain="['|',('name','ilike',self),('district_code','ilike',self)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_pmjay_district" model="ir.actions.act_window">
+            <field name="name">District</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pmjay.district</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_pmjay_district_filter"/>
+            <field name="domain"></field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create District Name
+                </p><p>
+                    You can manage Districts here.
+                </p>
+            </field>
+        </record>
+
+
+         <record id="view_pmjay_block_tree" model="ir.ui.view">
+            <field name="name">pmjay.block.tree</field>
+            <field name="model">pmjay.block</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="PMJAY Block">
+                    <field name="name"/>
+                    <field name="block_code"/>
+                    <field name="write_uid"/>
+                    <field name="write_date"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_pmjay_block_form" model="ir.ui.view">
+            <field name="name">pmjay.block.form</field>
+            <field name="model">pmjay.block</field>
+            <field name="arch" type="xml">
+                <form string="PMJAY Block">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="block_code"/>
+                            </group>
+                            <group>
+                                <field name="write_uid"/>
+                                <field name="write_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Panchayat">
+                                <field string="Panchayat" name="panchayat_ids">
+                                    <tree create="false" delete="false" editable="false">
+                                        <field name="name"/>
+                                        <field name="block_id"/>
+                                        <field name="district_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_pmjay_block_filter" model="ir.ui.view">
+            <field name="name">pmjay.block.search</field>
+            <field name="model">pmjay.block</field>
+            <field name="arch" type="xml">
+                <search string="Search Block">
+                    <field name="name" string="Block" filter_domain="['|',('name','ilike',self),('block_code','ilike',self)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_pmjay_block" model="ir.actions.act_window">
+            <field name="name">Block</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pmjay.block</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_pmjay_block_filter"/>
+            <field name="domain"></field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create Block Name
+                </p><p>
+                    You can manage Blocks here.
+                </p>
+            </field>
+        </record>
+
+        <record id="view_pmjay_panchayat_tree" model="ir.ui.view">
+            <field name="name">pmjay.panchayat.tree</field>
+            <field name="model">pmjay.panchayat</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="PMJAY Panchayat">
+                    <field name="name"/>
+                    <field name="panchayat_code"/>
+                    <field name="block_id"/>
+                    <field name="district_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_pmjay_panchayat_form" model="ir.ui.view">
+            <field name="name">pmjay.panchayat.form</field>
+            <field name="model">pmjay.panchayat</field>
+            <field name="arch" type="xml">
+                <form string="PMJAY Panchayat">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="panchayat_code"/>
+                            </group>
+                            <group>
+                                <field name="write_uid"/>
+                                <field name="write_date"/>
+                            </group>
+                        </group>
+                        <notebook>
+                            <page string="Village">
+                                <field string="Village" name="village_ids">
+                                    <tree create="false" delete="false" editable="false">
+                                        <field name="name"/>
+                                        <field name="block_id"/>
+                                        <field name="district_id"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_pmjay_panchayat_filter" model="ir.ui.view">
+            <field name="name">pmjay.panchayat.search</field>
+            <field name="model">pmjay.panchayat</field>
+            <field name="arch" type="xml">
+                <search string="Search Panchayat">
+                    <field name="name" string="Panchayat" filter_domain="['|',('name','ilike',self),('panchayat_code','ilike',self)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_pmjay_panchayat" model="ir.actions.act_window">
+            <field name="name">Panchayat</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pmjay.panchayat</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_pmjay_panchayat_filter"/>
+            <field name="domain"></field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create Panchayat Name
+                </p><p>
+                    You can manage Panchayat here.
+                </p>
+            </field>
+        </record>
+
+
+         <record id="view_pmjay_village_tree" model="ir.ui.view">
+            <field name="name">pmjay.village.tree</field>
+            <field name="model">pmjay.village</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="PMJAY Block">
+                    <field name="name"/>
+                    <field name="panchayat_id"/>
+                    <field name="block_id"/>
+                    <field name="district_id"/>
+                </tree>
+            </field>
+        </record>
+
+        <record id="view_pmjay_village_form" model="ir.ui.view">
+            <field name="name">pmjay.village.form</field>
+            <field name="model">pmjay.village</field>
+            <field name="arch" type="xml">
+                <form string="PMJAY Village">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="name"/>
+                                <field name="panchayat_id"/>
+                                <field name="block_id"/>
+								<field name="district_id"/>
+                            </group>
+                            <group>
+                                <field name="write_uid"/>
+                                <field name="write_date"/>
+                            </group>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_pmjay_village_filter" model="ir.ui.view">
+            <field name="name">pmjay.village.search</field>
+            <field name="model">pmjay.village</field>
+            <field name="arch" type="xml">
+                <search string="Search Village">
+                    <field name="name" string="Village" filter_domain="['|',('name','ilike',self)]"/>
+                </search>
+            </field>
+        </record>
+
+        <record id="action_pmjay_village" model="ir.actions.act_window">
+            <field name="name">District</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pmjay.village</field>
+            <field name="view_mode">tree,form</field>
+            <field name="search_view_id" ref="view_pmjay_village_filter"/>
+            <field name="domain"></field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create Block Name
+                </p><p>
+                    You can manage Blocks here.
+                </p>
+            </field>
+        </record>
+
+        <record id="pmjay_report_tree_view" model="ir.ui.view">
+           <field name="name">pmjay.report.tree</field>
+            <field name="model">pmjay.report</field>
+            <field name="arch" type="xml">
+                <tree string="PMJAY Report">
+                    <field name="name"/>
+                    <field name="pmjay_district_id"/>
+					<field name="pmjay_block_id"/>
 					<field name="state"/>
 				</tree>
             </field>
         </record>
 
-        <record id="pmjay_health_insurance_update_form_view" model="ir.ui.view">
-            <field name="name">pmjay.health.insurance.update.form</field>
-            <field name="model">pmjay.health.insurance.update</field>
+        <record id="pmjay_report_form_view" model="ir.ui.view">
+            <field name="name">pmjay.report.form</field>
+            <field name="model">pmjay.report</field>
             <field name="arch" type="xml">
               <form string="PMJAY">
-                <header>
-					<field name="state" widget="statusbar" statusbar_visible="draft,done"/>
-				</header>
+                  <header>
+                      <button name="upload_pmjay_ration_data" string="Upload Ration Card Data" type="object" class="oe_highlight"/>
+                      <button name="pmjay_member_kyc_print" string="PMJAY Member KYC Print" type="object" class="oe_highlight"/>
+
+                      <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
+                    </header>
 				<sheet>
 					<templates id="template" xml:space="preserve">
                         <t>
                             <div style="color:#1391f1;font-size:22px;text-align:left;font-family:Arial;">
                                 <b style="text-align:left;">
-                                    PMJAY HEALTH INSURANCE UPDATE
+                                    PMJAY HEALTH INSURANCE
                                 </b>
                             </div>
                         </t>
                     </templates>
 					<group>
 						<group>
-                            <field name="pmjay_village_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
-							<field name="pmjay_id" domain="[('pmjay_village_id','=',pmjay_village_id)]" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
 							<field name="name"/>
-							<field name="member_name"/>
-                            <field name="serial_no"/>
-                            <field name="kyc_update"/>
-                            <field name="amount_paid"/>
-                            <field name="mobile_no"/>
-                            <field name="alternate_mobile_no"/>
+                            <field name="pmjay_district_id"/>
+                            <field name="pmjay_block_id" domain="[('district_id', '=', pmjay_district_id)]"/>
+                            <field name="pmjay_panchayat_id" domain="[('block_id', '=', pmjay_block_id)]"/>
+                            <field name="pmjay_village_ids" domain="[('panchayat_id', '=', pmjay_panchayat_id)]"/>
+						</group>
+						<group>
+                            <group>
+                                <field name="import_file"/>
+                                <field name="file_name"/>
+                            </group>
+						</group>
+					</group>
+                    <notebook>
+                        <page string="Family Card Details">
+                            <field name="pmjay_health_insurance_ids" attrs="{'readonly':[('state','in',['done'])]}">
+                                <tree editable="bottom">
+                                    <field name="name"/>
+                                    <field name="serial_no"/>
+                                    <field name="mobile_no"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+				</sheet>
+              </form>
+            </field>
+        </record>
+
+        <record id="pmjay_report_search_view" model="ir.ui.view">
+			<field name="name">PMJAY Insurance Search</field>
+			<field name="model">pmjay.report</field>
+			<field name="arch" type="xml">
+				<search string="Search PMJAY">
+					<field name="name" string="Name" filter_domain="[('name','ilike',self)]"/>
+					<field name="pmjay_district_id" string="District name" filter_domain="[('pmjay_district_id','ilike',self)]"/>
+					<field name="pmjay_block_id" string="Block name" filter_domain="[('pmjay_block_id','ilike',self)]"/>
+					<field name="state" string="State" filter_domain="[('state','ilike',self)]"/>
+			   </search>
+			</field>
+		</record>
+
+        <record id="action_pmjay_report_view" model="ir.actions.act_window">
+            <field name="name">PMJAY</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">pmjay.report</field>
+            <field name="view_mode">tree,form</field>
+            <field name="context">{}</field>
+            <field name="domain">[]</field>
+            <field name="search_view_id" ref="pmjay_report_search_view"/>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a PMJAY Insurance
+                </p><p>
+                    PMJAY Health Insurance
+                </p>
+            </field>
+        </record>
+
+
+
+<!--&lt;!&ndash;        Update Record&ndash;&gt;-->
+
+<!--        <record id="pmjay_health_insurance_update_tree_view" model="ir.ui.view">-->
+<!--           <field name="name">pmjay.health.insurance.update.tree</field>-->
+<!--            <field name="model">pmjay.health.insurance.update</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--                <tree string="PMJAY Health Insurance Update" decoration-danger="state in ('done')" decoration-success="state in ('draft')">-->
+<!--                    <field name="pmjay_village_id"/>-->
+<!--                    <field name="name"/>-->
+<!--                    <field name="serial_no"/>-->
+<!--                    <field name="kyc_update"/>-->
+<!--					<field name="amount_paid"/>-->
+<!--					<field name="mobile_no"/>-->
+<!--					<field name="state"/>-->
+<!--				</tree>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="pmjay_health_insurance_update_form_view" model="ir.ui.view">-->
+<!--            <field name="name">pmjay.health.insurance.update.form</field>-->
+<!--            <field name="model">pmjay.health.insurance.update</field>-->
+<!--            <field name="arch" type="xml">-->
+<!--              <form string="PMJAY">-->
+<!--                <header>-->
+<!--					<field name="state" widget="statusbar" statusbar_visible="draft,done"/>-->
+<!--				</header>-->
+<!--				<sheet>-->
+<!--					<templates id="template" xml:space="preserve">-->
+<!--                        <t>-->
+<!--                            <div style="color:#1391f1;font-size:22px;text-align:left;font-family:Arial;">-->
+<!--                                <b style="text-align:left;">-->
+<!--                                    PMJAY HEALTH INSURANCE UPDATE-->
+<!--                                </b>-->
+<!--                            </div>-->
+<!--                        </t>-->
+<!--                    </templates>-->
+<!--					<group>-->
+<!--						<group>-->
+<!--                            <field name="pmjay_village_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>-->
+<!--							<field name="pmjay_id" domain="[('pmjay_village_id','=',pmjay_village_id)]" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>-->
+<!--							<field name="name"/>-->
+<!--							<field name="member_name"/>-->
+<!--                            <field name="serial_no"/>-->
+<!--                            <field name="kyc_update"/>-->
+<!--                            <field name="amount_paid"/>-->
+<!--                            <field name="mobile_no"/>-->
+<!--                            <field name="alternate_mobile_no"/>-->
+<!--						</group>-->
+<!--						<group>-->
+<!--						</group>-->
+<!--					</group>-->
+<!--				</sheet>-->
+<!--              </form>-->
+<!--            </field>-->
+<!--        </record>-->
+
+<!--        <record id="action_pmjay_health_insurance_update_view" model="ir.actions.act_window">-->
+<!--            <field name="name">PMJAY</field>-->
+<!--            <field name="type">ir.actions.act_window</field>-->
+<!--            <field name="res_model">pmjay.health.insurance.update</field>-->
+<!--            <field name="view_mode">tree,form</field>-->
+<!--            <field name="context">{}</field>-->
+<!--            <field name="domain">[]</field>-->
+<!--            <field name="help" type="html">-->
+<!--                <p class="o_view_nocontent_smiling_face">-->
+<!--                    Create a PMJAY Insurance Health Insurance Update-->
+<!--                </p><p>-->
+<!--                    PMJAY Health Insurance Update-->
+<!--                </p>-->
+<!--            </field>-->
+<!--        </record>--> 
+ 
+         <record id="pmjay_ration_search_form_view" model="ir.ui.view">
+            <field name="name">pmjay.ration.search.form</field>
+            <field name="model">pmjay.ration.search</field>
+            <field name="arch" type="xml">
+              <form string="PMJAY">               
+				<sheet>
+					<templates id="template" xml:space="preserve">
+                        <t>
+                            <div style="color:#1391f1;font-size:22px;text-align:left;font-family:Arial;">
+                                <b style="text-align:left;">
+                                    PMJAY HEALTH INSURANCE SEARCH
+                                </b>
+                            </div>
+                        </t>
+                    </templates>
+					<group>
+						<group>
+                            <field name="pmjay_health_insurance_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
+							<field name="doc_html" readonly="1" nolabel="1" col="1" colspan="4" style="width: 1000px;"/>
+                            <!-- <field name="doc_html" /> -->
 						</group>
 						<group>
 						</group>
@@ -146,27 +597,36 @@
               </form>
             </field>
         </record>
-
-        <record id="action_pmjay_health_insurance_update_view" model="ir.actions.act_window">
+        
+        <record id="action_pmjay_ration_search_view" model="ir.actions.act_window">
             <field name="name">PMJAY</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">pmjay.health.insurance.update</field>
-            <field name="view_mode">tree,form</field>
+            <field name="res_model">pmjay.ration.search</field>
+            <field name="view_mode">form</field>
             <field name="context">{}</field>
             <field name="domain">[]</field>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
-                    Create a PMJAY Insurance Health Insurance Update
+                    Create a PMJAY Insurance Health Insurance
                 </p><p>
-                    PMJAY Health Insurance Update
+                    PMJAY Health Insurance
                 </p>
             </field>
-        </record>
+       </record>  
 
         <menuitem id="pmjay_main_menu" name="PMJAY" sequence="1"/>
         <menuitem id="pmjay_sub_menu" name="PMJAY" sequence="2" parent="pmjay_main_menu"/>
-        <menuitem id="pmjay_health_insurance_menu" name="PMJAY Insurance" sequence="1" action="action_pmjay_health_insurance_view" parent="pmjay_sub_menu"/>
-        <menuitem id="pmjay_health_insurance_update_menu" name="PMJAY Insurance Update" sequence="2" action="action_pmjay_health_insurance_update_view" parent="pmjay_sub_menu"/>
+        <menuitem id="pmjay_report_menu" name="PMJAY Report" sequence="1" action="action_pmjay_report_view" parent="pmjay_sub_menu"/>
+        <menuitem id="pmjay_health_insurance_search_menu" name="PMJAY Insurance Search" sequence="2" action="action_pmjay_ration_search_view" parent="pmjay_sub_menu"/>
+
+
+        <menuitem id="pmjay_health_insurance_menu" name="PMJAY Insurance" sequence="3" action="action_pmjay_health_insurance_view" parent="pmjay_sub_menu"/>
+        <menuitem id="pmjay_district_menu" name="PMJAY District" sequence="4" action="action_pmjay_district" parent="pmjay_sub_menu"/>
+        <menuitem id="pmjay_block_menu" name="PMJAY Block" sequence="5" action="action_pmjay_block" parent="pmjay_sub_menu"/>
+        <menuitem id="pmjay_panchayat_menu" name="PMJAY Panchayat" sequence="6" action="action_pmjay_panchayat" parent="pmjay_sub_menu"/>
+        <menuitem id="pmjay_village_menu" name="PMJAY Village" sequence="7" action="action_pmjay_village" parent="pmjay_sub_menu"/>
+
+<!--        <menuitem id="pmjay_health_insurance_update_menu" name="PMJAY Insurance Update" sequence="2" action="action_pmjay_health_insurance_update_view" parent="pmjay_sub_menu"/>-->
 
     </data>
 </odoo>

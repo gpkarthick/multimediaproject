@@ -1,0 +1,543 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="pmjay_member_kyc_print_multimedia">
+    <t t-call="web.html_container">
+      <t t-foreach="docs" t-as="o">
+        <t t-call="web.basic_layout">
+          <link rel="stylesheet" href="/multimedia/static/src/css/style3.css" />
+          <t t-foreach="o.pmjay_health_insurance_ids" t-as="item">
+            <div class="page">
+              <table class="table-grid">
+                <tr>
+                  <td style="text-align:center;width:49%">
+                    <table class="table-grid">
+                      <tr style="height: 45px;">
+                        <td style="vertical-align: middle;"><strong>டோக்கன் எண்</strong></td>
+                        <td style="vertical-align: middle;"><strong>குடும்ப அட்டை எண்</strong></td>
+                      </tr>
+                      <tr style="height: 45px;">
+                        <td>
+                          <span class="company-details-span">
+                            <span t-field="item.serial_no" /></span>
+                        </td>
+                        <td>
+                          <span class="company-details-span"></span>
+                          <span t-field="item.name" />
+                        </td>
+                      </tr>
+                      <tr style="height: 45px;">
+                        <td style="vertical-align: middle;"><strong>தொலைபேசி எண்</strong></td>
+                        <td>
+<!--                          <span t-field="item.mobile_no" />-->
+                        </td>
+                      </tr>
+                    </table>
+                    <table class="table-grid">
+                      <tr>
+                        <td rowspan="2" style="width:3%;padding-top:10px;"><strong>எண்</strong></td>
+                        <td rowspan="2" style="width:30%;padding-top:10px;"><strong>குடும்ப உறுப்பினர்கள்</strong></td>
+                        <td rowspan="2" style="width:5%;padding-top:10px;"><strong>KYC</strong></td>
+                        <td colspan="2" style="width:5%;"><strong>காப்பீட்டு அட்டை</strong></td>
+                        <td colspan="2" style="width:5%;"><strong>தொகை</strong></td>
+                      </tr>
+                      <tr>
+                        <td>Y</td>
+                        <td>N</td>
+                        <td>Y</td>
+                        <td>N</td>
+                      </tr>
+                      <tr t-foreach="item.pmjay_hi_members_ids" t-as="line" style="height: 35px;vertical-align: middle;">
+                        <td style="vertical-align: middle;">
+                          <t t-esc="line_index+1" />
+                        </td>
+                        <td class="text-left" style="vertical-align: middle;">
+                          <span t-field="line.name" style="margin-left: 15px;" />
+                        </td>
+                        <td style="vertical-align: middle;">
+                          <t t-if="line.kyc_update == true">
+                            <t t-esc="'\u2713'" />
+                          </t>
+                          <t t-if="line.kyc_update == false">
+                            <t t-esc="'\u2717'" />
+                          </t>
+                        </td>
+                        <td style="vertical-align: middle;"></td>
+                        <td style="vertical-align: middle;"></td>
+                        <td style="vertical-align: middle;"></td>
+                        <td style="vertical-align: middle;"></td>
+                      </tr>
+                      <t t-if="6-len(item.pmjay_hi_members_ids.ids) > 0">
+                        <t t-foreach="range(6-len(item.pmjay_hi_members_ids.ids))" t-as="val">
+                          <tr>
+                            <td>
+                              <t t-esc="len(item.pmjay_hi_members_ids.ids)+val+1" />
+                            </td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                          </tr>
+                        </t>
+                      </t>
+                      <tr style="height: 35px;vertical-align: middle;">
+                        <td style="vertical-align: middle;"><strong>பஞ்சாயத்து</strong></td>
+                        <td colspan="6" style="vertical-align: middle;">
+                          <span t-field="o.pmjay_panchayat_id" />
+                        </td>
+                      </tr>
+                      <tr style="height: 35px;vertical-align: middle;">
+                        <td colspan="7" style="vertical-align: middle;"><strong>கிராமம்</strong></td>
+                      </tr>
+                      <tr>
+                        <td colspan="7">
+                          <table class="table-grid3">
+                            <tr style="height: 30px;">
+                              <td style="width:50px;vertical-align: middle;">1.</td>
+                              <td style="width:350px;vertical-align: middle;text-align:left;">
+                                <t t-foreach="o.pmjay_village_ids" t-as="line" t-attf-class="line-#{line_index}">
+                                  <t t-if="line_index == 0">
+                                    <!--																	<tr>-->
+                                    <!--																		<td>-->
+                                    <span t-esc="line.name" style="margin-left: 20px;"/>
+                                    <!--																		</td>-->
+                                    <!--																	</tr>-->
+                                  </t>
+                                </t>
+                              </td>
+                              <td style="width:50px;"></td>
+                              <td style="width:50px;vertical-align: middle;">5.</td>
+                              <td style="width:350px;vertical-align: middle;text-align:left;">
+                                <t t-foreach="o.pmjay_village_ids" t-as="line" t-attf-class="line-#{line_index}">
+                                  <t t-if="line_index == 4">
+                                    <!--																	<tr>-->
+                                    <!--																		<td>-->
+                                    <span t-esc="line.name" style="margin-left: 20px;" />
+                                    <!--																		</td>-->
+                                    <!--																	</tr>-->
+                                  </t>
+                                </t>
+                              </td>
+                              <td style="width:50px;"></td>
+                            </tr>
+                            <tr style="height: 30px;">
+                              <td style="width:50px;vertical-align: middle;">2.</td>
+                              <td style="width:350px;vertical-align: middle;text-align:left;">
+                                <t t-foreach="o.pmjay_village_ids" t-as="line" t-attf-class="line-#{line_index}">
+                                  <t t-if="line_index == 1">
+                                    <!--																	<tr>-->
+                                    <!--																		<td>-->
+                                    <span t-esc="line.name" style="margin-left: 20px;"/>
+                                    <!--																		</td>-->
+                                    <!--																	</tr>-->
+                                  </t>
+                                </t>
+                              </td>
+                              <td style="width:50px;"></td>
+                              <td style="width:50px;vertical-align: middle;">6.</td>
+                              <td style="width:350px;vertical-align: middle;text-align:left;">
+                                <t t-foreach="o.pmjay_village_ids" t-as="line" t-attf-class="line-#{line_index}">
+                                  <t t-if="line_index == 5">
+                                    <!--																	<tr>-->
+                                    <!--																		<td>-->
+                                    <span t-esc="line.name" style="margin-left: 20px;"/>
+                                    <!--																		</td>-->
+                                    <!--																	</tr>-->
+                                  </t>
+                                </t>
+                              </td>
+                              <td style="width:50px;"></td>
+                            </tr>
+                            <tr style="height: 30px;">
+                              <td style="width:50px;vertical-align: middle;">3.</td>
+                              <td style="width:350px;vertical-align: middle;text-align:left;">
+                                <t t-foreach="o.pmjay_village_ids" t-as="line" t-attf-class="line-#{line_index}">
+                                  <t t-if="line_index == 2">
+                                    <!--																	<tr>-->
+                                    <!--																		<td>-->
+                                    <span t-esc="line.name" style="margin-left: 20px;"/>
+                                    <!--																		</td>-->
+                                    <!--																	</tr>-->
+                                  </t>
+                                </t>
+                              </td>
+                              <td style="width:50px;"></td>
+                              <td style="width:50px;vertical-align: middle;">7.</td>
+                              <td style="width:350px;vertical-align: middle;text-align:left;">
+                                <t t-foreach="o.pmjay_village_ids" t-as="line" t-attf-class="line-#{line_index}">
+                                  <t t-if="line_index == 6">
+                                    <!--																	<tr>-->
+                                    <!--																		<td>-->
+                                    <span t-esc="line.name" style="margin-left: 20px;"/>
+                                    <!--																		</td>-->
+                                    <!--																	</tr>-->
+                                  </t>
+                                </t>
+                              </td>
+                              <td style="width:50px;"></td>
+                            </tr>
+                            <tr style="height: 30px;">
+                              <td style="width:50px;vertical-align: middle;">4.</td>
+                              <td style="width:350px;vertical-align: middle;text-align:left;">
+                                <t t-foreach="o.pmjay_village_ids" t-as="line" t-attf-class="line-#{line_index}">
+                                  <t t-if="line_index == 3">
+                                    <!--																	<tr>-->
+                                    <!--																		<td>-->
+                                    <span t-esc="line.name" style="margin-left: 20px;"/>
+                                    <!--																		</td>-->
+                                    <!--																	</tr>-->
+                                  </t>
+                                </t>
+                              </td>
+                              <td style="width:50px;"></td>
+                              <td style="width:50px;vertical-align: middle;">8.</td>
+                              <td style="width:350px;vertical-align: middle;text-align:left;">
+                                <t t-foreach="o.pmjay_village_ids" t-as="line" t-attf-class="line-#{line_index}">
+                                  <t t-if="line_index == 7">
+                                    <!--																	<tr>-->
+                                    <!--																		<td>-->
+                                    <span t-esc="line.name" style="margin-left: 20px;"/>
+                                    <!--																		</td>-->
+                                    <!--																	</tr>-->
+                                  </t>
+                                </t>
+                              </td>
+                              <td style="width:50px;"></td>
+                            </tr>
+                            <!--													<tr>-->
+                            <!--														<td class="company-details-span">HABITATION</td>-->
+                            <!--														<td class="company-details-span">HABITATION</td>-->
+                            <!--													</tr>-->
+                            <!--													<tr>-->
+                            <!--														<td class="company-details-span" style="line-height: 40px;"></td>-->
+                            <!--														<td class="company-details-span" style="line-height: 40px;"></td>-->
+                            <!--													</tr>-->
+                            <!--													<tr>-->
+                            <!--														<td class="company-details-span" style="line-height: 40px;"></td>-->
+                            <!--														<td class="company-details-span" style="line-height: 40px;"></td>-->
+                            <!--													</tr>-->
+                            <!--													<tr>-->
+                            <!--														<td class="company-details-span" style="line-height: 40px;"></td>-->
+                            <!--														<td class="company-details-span" style="line-height: 40px;"></td>-->
+                            <!--													</tr>-->
+                          </table>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="7"><strong>தெரு பெயர்</strong></td>
+                      </tr>
+                      <tr style="height: 55px;">
+                        <td colspan="7"></td>
+                      </tr>
+                    </table>
+                  </td>
+                  <td style="text-align:center;width:7%"></td>
+                  <td style="text-align:center;width:49%">
+                    <table class="table-grid">
+                      <tr>
+                        <td width="100%" height="25%" colspan="3">
+                          <img src="/multimedia/static/src/img/pmjaylogo.jpg" style="max-height: 110px;" alt="Happy face" />
+                        </td>
+                      </tr>
+                      <tr style="height: 40px;">
+                        <td width="25%" style="vertical-align: middle;">டோக்கன் எண்</td>
+                        <td width="50%" style="vertical-align: middle;">குடும்ப அட்டை எண்</td>
+                        <td width="25%" style="vertical-align: middle;">பஞ்சாயத்து</td>
+                      </tr>
+                      <tr style="height: 40px;">
+                        <td style="vertical-align: middle;">
+                          <span t-field="item.serial_no" />
+                        </td>
+                        <td style="vertical-align: middle;">
+                          <span t-field="item.name" />
+                        </td>
+                        <td style="vertical-align: middle;">
+                          <span t-field="o.pmjay_panchayat_id" />
+                        </td>
+                      </tr>
+                      <tr>
+                        <td colspan="3">
+                          <span class="company-details-span">குடும்ப உறுப்பினர்கள் <strong>KYC</strong> விவரங்கள் </span>
+                        </td>
+                      </tr>
+                    </table>
+                    <table class="table-grid">
+                      <tr style="height: 40px;">
+                        <td style="width:50px;vertical-align: middle;">1.</td>
+                        <td style="width:350px;vertical-align: middle;">
+                          <t t-foreach="item.pmjay_hi_members_ids" t-as="line" t-attf-class="line-#{line_index}">
+                            <t t-if="line_index == 0">
+                              <span t-esc="line.name" />
+<!--                              <t t-if="line.kyc_update == true">-->
+<!--                                <t t-esc="'\u2713'" />-->
+<!--                              </t>-->
+<!--                              <t t-if="line.kyc_update == false">-->
+<!--                                <t t-esc="'\u2717'" />-->
+<!--                              </t>-->
+                            </t>
+                          </t>
+                        </td>
+                        <td style="width:50px;">
+                          <t t-foreach="item.pmjay_hi_members_ids" t-as="line" t-attf-class="line-#{line_index}">
+                            <t t-if="line_index == 0">
+                              <t t-if="line.kyc_update == true">
+                                <t t-esc="'\u2713'" />
+                              </t>
+                              <t t-if="line.kyc_update == false">
+                                <t t-esc="'\u2717'" />
+                              </t>
+                            </t>
+                          </t>
+                        </td>
+                        <td style="width:50px;vertical-align: middle;">4.</td>
+                        <td style="width:350px;vertical-align: middle;">
+                          <t t-foreach="item.pmjay_hi_members_ids" t-as="line" t-attf-class="line-#{line_index}">
+                            <t t-if="line_index == 3">
+                              <span t-esc="line.name" style="vertical-align: middle;" />
+<!--                              <t t-if="line.kyc_update == true">-->
+<!--                                <t t-esc="'\u2713'" />-->
+<!--                              </t>-->
+<!--                              <t t-if="line.kyc_update == false">-->
+<!--                                <t t-esc="'\u2717'" />-->
+<!--                              </t>-->
+                            </t>
+                          </t>
+                        </td>
+                        <td style="width:50px;">
+                          <t t-foreach="item.pmjay_hi_members_ids" t-as="line" t-attf-class="line-#{line_index}">
+                            <t t-if="line_index == 3">
+                              <t t-if="line.kyc_update == true">
+                                <t t-esc="'\u2713'" />
+                              </t>
+                              <t t-if="line.kyc_update == false">
+                                <t t-esc="'\u2717'" />
+                              </t>
+                            </t>
+                          </t>
+                        </td>
+                      </tr>
+
+					  <tr style="height: 40px;">
+                        <td style="width:50px;vertical-align: middle;">2.</td>
+                        <td style="width:350px;vertical-align: middle;">
+                          <t t-foreach="item.pmjay_hi_members_ids" t-as="line" t-attf-class="line-#{line_index}">
+                            <t t-if="line_index == 1">
+                              <span t-esc="line.name" />
+<!--                              <t t-if="line.kyc_update == true">-->
+<!--                                <t t-esc="'\u2713'" />-->
+<!--                              </t>-->
+<!--                              <t t-if="line.kyc_update == false">-->
+<!--                                <t t-esc="'\u2717'" />-->
+<!--                              </t>-->
+                            </t>
+                          </t>
+                        </td>
+                        <td style="width:50px;">
+                          <t t-foreach="item.pmjay_hi_members_ids" t-as="line" t-attf-class="line-#{line_index}">
+                            <t t-if="line_index == 1">
+                              <t t-if="line.kyc_update == true">
+                                <t t-esc="'\u2713'" />
+                              </t>
+                              <t t-if="line.kyc_update == false">
+                                <t t-esc="'\u2717'" />
+                              </t>
+                            </t>
+                          </t>
+                        </td>
+                        <td style="width:50px;vertical-align: middle;">5.</td>
+                        <td style="width:350px;vertical-align: middle;">
+                          <t t-foreach="item.pmjay_hi_members_ids" t-as="line" t-attf-class="line-#{line_index}">
+                            <t t-if="line_index == 4">
+                              <span t-esc="line.name" style="vertical-align: middle;" />
+<!--                              <t t-if="line.kyc_update == true">-->
+<!--                                <t t-esc="'\u2713'" />-->
+<!--                              </t>-->
+<!--                              <t t-if="line.kyc_update == false">-->
+<!--                                <t t-esc="'\u2717'" />-->
+<!--                              </t>-->
+                            </t>
+                          </t>
+                        </td>
+                        <td style="width:50px;">
+                          <t t-foreach="item.pmjay_hi_members_ids" t-as="line" t-attf-class="line-#{line_index}">
+                            <t t-if="line_index == 4">
+                              <t t-if="line.kyc_update == true">
+                                <t t-esc="'\u2713'" />
+                              </t>
+                              <t t-if="line.kyc_update == false">
+                                <t t-esc="'\u2717'" />
+                              </t>
+                            </t>
+                          </t>
+                        </td>
+                      </tr>
+
+					  <tr style="height: 40px;">
+                        <td style="width:50px;vertical-align: middle;">3.</td>
+                        <td style="width:350px;vertical-align: middle;">
+                          <t t-foreach="item.pmjay_hi_members_ids" t-as="line" t-attf-class="line-#{line_index}">
+                            <t t-if="line_index == 2">
+                              <span t-esc="line.name" />
+<!--                              <t t-if="line.kyc_update == true">-->
+<!--                                <t t-esc="'\u2713'" />-->
+<!--                              </t>-->
+<!--                              <t t-if="line.kyc_update == false">-->
+<!--                                <t t-esc="'\u2717'" />-->
+<!--                              </t>-->
+                            </t>
+                          </t>
+                        </td>
+                        <td style="width:50px;">
+                          <t t-foreach="item.pmjay_hi_members_ids" t-as="line" t-attf-class="line-#{line_index}">
+                            <t t-if="line_index == 2">
+                              <t t-if="line.kyc_update == true">
+                                <t t-esc="'\u2713'" />
+                              </t>
+                              <t t-if="line.kyc_update == false">
+                                <t t-esc="'\u2717'" />
+                              </t>
+                            </t>
+                          </t>
+                        </td>
+                        <td style="width:50px;vertical-align: middle;">6.</td>
+                        <td style="width:350px;vertical-align: middle;">
+                          <t t-foreach="item.pmjay_hi_members_ids" t-as="line" t-attf-class="line-#{line_index}">
+                            <t t-if="line_index == 5">
+                              <span t-esc="line.name" style="vertical-align: middle;" />
+<!--                              <t t-if="line.kyc_update == true">-->
+<!--                                <t t-esc="'\u2713'" />-->
+<!--                              </t>-->
+<!--                              <t t-if="line.kyc_update == false">-->
+<!--                                <t t-esc="'\u2717'" />-->
+<!--                              </t>-->
+                            </t>
+                          </t>
+                        </td>
+                        <td style="width:50px;">
+                          <t t-foreach="item.pmjay_hi_members_ids" t-as="line" t-attf-class="line-#{line_index}">
+                            <t t-if="line_index ==5">
+                              <t t-if="line.kyc_update == true">
+                                <t t-esc="'\u2713'" />
+                              </t>
+                              <t t-if="line.kyc_update == false">
+                                <t t-esc="'\u2717'" />
+                              </t>
+                            </t>
+                          </t>
+                        </td>
+                      </tr>
+
+                    </table>
+<!--                    <table>-->
+<!--                      <t t-if="len(item.pmjay_hi_members_ids.ids) == 1">-->
+<!--                        <tr t-foreach="item.pmjay_hi_members_ids" t-as="line">-->
+<!--                          <td>-->
+<!--                            <t t-esc="line_index+1" />-->
+<!--                          </td>-->
+<!--                          <td class="text-left">-->
+<!--                            <span t-field="line.name" />-->
+<!--                          </td>-->
+<!--                          <td>-->
+<!--                            <t t-if="line.kyc_update == true">-->
+<!--                              <t t-esc="'\u2713'" />-->
+<!--                            </t>-->
+<!--                            <t t-if="line.kyc_update == false">-->
+<!--                              <t t-esc="'\u2717'" />-->
+<!--                            </t>-->
+<!--                          </td>-->
+<!--                        </tr>-->
+<!--                        <t t-foreach="range(2)" t-as="val">-->
+<!--                          <tr>-->
+<!--                            <td>-->
+<!--                              <t t-esc="len(item.pmjay_hi_members_ids.ids)+val+1" />-->
+<!--                            </td>-->
+<!--                            <td></td>-->
+<!--                          </tr>-->
+<!--                        </t>-->
+<!--                      </t>-->
+<!--                      <t t-if="len(item.pmjay_hi_members_ids.ids) == 2">-->
+<!--                        <tr t-foreach="item.pmjay_hi_members_ids" t-as="line">-->
+<!--                          <td style="text-align:center;width:3%">-->
+<!--                            <t t-esc="line_index+1" />-->
+<!--                          </td>-->
+<!--                          <td class="text-left" style="text-align:center;width:18%">-->
+<!--                            <span t-field="line.name" />-->
+<!--                          </td>-->
+<!--                          <td style="text-align:center;width:3%">-->
+<!--                            <t t-if="line.kyc_update == true">-->
+<!--                              <t t-esc="'\u2713'" />-->
+<!--                            </t>-->
+<!--                            <t t-if="line.kyc_update == false">-->
+<!--                              <t t-esc="'\u2717'" />-->
+<!--                            </t>-->
+<!--                          </td>-->
+<!--                        </tr>-->
+<!--                        <t t-foreach="range(1)" t-as="val">-->
+<!--                          <tr>-->
+<!--                            <td>-->
+<!--                              <t t-esc="len(item.pmjay_hi_members_ids.ids)+val+1" />-->
+<!--                            </td>-->
+<!--                            <td></td>-->
+<!--                          </tr>-->
+<!--                        </t>-->
+<!--                      </t>-->
+<!--                      <t t-if="len(item.pmjay_hi_members_ids.ids) == 3">-->
+<!--                        <tr t-foreach="item.pmjay_hi_members_ids" t-as="line">-->
+<!--                          <td>-->
+<!--                            <t t-esc="line_index+1" />-->
+<!--                          </td>-->
+<!--                          <td class="text-left">-->
+<!--                            <span t-field="line.name" />-->
+<!--                          </td>-->
+<!--                          <td>-->
+<!--                            <t t-if="line.kyc_update == true">-->
+<!--                              <t t-esc="'\u2713'" />-->
+<!--                            </t>-->
+<!--                            <t t-if="line.kyc_update == false">-->
+<!--                              <t t-esc="'\u2717'" />-->
+<!--                            </t>-->
+<!--                          </td>-->
+<!--                        </tr>-->
+<!--                      </t>-->
+<!--                    </table>-->
+                    <table class="table-grid">
+                      <tr>
+                        <td width="100%" height="25%" colspan="3">
+                          <img src="/multimedia/static/src/img/pmjay-content.jpg" style="max-height: 300px;" alt="Happy face" />
+                        </td>
+                      </tr>
+<!--                      <tr>-->
+<!--                        <td colspan="3">-->
+<!--                          <span class="company-details-span">KYC செய்ய தேவையான ஆவணங்கள்</span>-->
+<!--                        </td>-->
+<!--                      </tr>-->
+<!--                      <tr>-->
+<!--                        <td colspan="2">-->
+<!--                          <p class="company-details-span" style="text-align:left;line-height: 1.5;">1.குடும்ப அட்டை, 2.ஆதார்கார்ட் (மேலே குறிப்பிட்டுள்ளவர்களில் KYC செய்யாமல் இருக்கும் பயனாளர்கள் மட்டும் KYC செய்ய வரும்பொழுது அவரவர் ஆதார் கார்டை எடுத்து வரவேண்டும்) 3.தொலைபேசி <br />-->
+<!--                            <strong>குறிப்பு :- KYC</strong> செய்தால் மட்டுமே பிரதம மந்திரி மருத்துவ காப்பீட்டு திட்டத்தில் உங்களால் பயனடையமுடியும். KYC முற்றிலும் இலவசம். எனவே அனைவரும் KYC செய்து பிரதம மந்திரி மருத்துவ காப்பீட்டு திட்டத்தில் இணைந்து பயனடையுமாறு கேட்டுகொள்கிறோம். மருத்துவ காப்பீட்டு அட்டை தேவை படுபவர் அதற்க்கான குறைந்த பட்ச தொகையான ரூ30. செலுத்தி பிரதம மந்திரி மருத்துவ காப்பீட்டு அட்டையை பெற்று கொள்ளலாம்-->
+<!--                          </p>-->
+<!--                        </td>-->
+<!--                      </tr>-->
+<!--                      <tr>-->
+<!--                        <td colspan="3" style="text-align:left;line-height: 1.5;">-->
+<!--                          <span class="company-details-span">முகாம் நடை பெறும் நாள் :-</span>-->
+<!--                        </td>-->
+<!--                      </tr>-->
+<!--                      <tr>-->
+<!--                        <td colspan="3" style="text-align:left;line-height: 1.5;">-->
+<!--                          <span class="company-details-span">முகாம் நடை பெறும் இடம் :-</span>-->
+<!--                        </td>-->
+<!--                      </tr>-->
+                    </table>
+                  </td>
+                </tr>
+              </table>
+              <p style="page-break-after:always;"></p>
+            </div>
+          </t>
+        </t>
+      </t>
+    </t>
+  </template>
+</odoo>

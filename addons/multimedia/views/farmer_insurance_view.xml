@@ -705,7 +705,7 @@
                                 <field name="farmer_image"/>
                             </group>
                             <group>
-
+                                <button name="capture_webcam_image" string="Capture Webcam Image" type="object" class="oe_highlight"/>
                             </group>
                         </group>
                     </sheet>

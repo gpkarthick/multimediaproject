@@ -40,13 +40,23 @@ class PrimePMFBYCalculator(models.Model):
         if self.measurement == 'Hectare':
             self.convertion_amount = self.measurement_area * 100 * 12.67
 
-
-
+    # Old Calculation
+    # @api.onchange('area', 'service_charge')
+    # def onchange_area_insured(self):
+    #     # ~ base_insured_amt = 803.99000
+    #     base_insured_amt = 844.74000
+    #     # service_charge = 250
+    #     if self.area * 100 > 0:
+    #         area_insured = self.area * 100
+    #         premium_amt = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
+    #         self.premium_amount = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
+    #         self.service_charge = self.service_charge
+    #         self.total_amount = premium_amt + self.service_charge
 
     @api.onchange('area','service_charge')
     def onchange_area_insured(self):
         # ~ base_insured_amt = 803.99000
-        base_insured_amt = 844.74000
+        base_insured_amt = 870.68000
         # service_charge = 250
         if self.area * 100 > 0:
             area_insured = self.area * 100
