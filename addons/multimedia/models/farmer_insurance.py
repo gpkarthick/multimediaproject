@@ -935,7 +935,7 @@ class ImportMaster(models.Model):
                                     {'name': panchayat_name, 'panchayat_code': panchayat_code, 'district_id': district_id, 'block_id': block_id})
                                 panchayat_id = panchayat.id
                         if village_code and village_name:
-                            exist_village_ids = self.env['pmjay.village'].search([('name', '=', village_name)])
+                            exist_village_ids = self.env['pmjay.village'].search([('name', '=', village_name),('panchayat_id', '=', panchayat_id)])
                             if not exist_village_ids:
                                 village = self.env['pmjay.village'].create(
                                     {'name': village_name, 'village_code': village_code, 'panchayat_id': panchayat_id, 'district_id': district_id, 'block_id': block_id})
