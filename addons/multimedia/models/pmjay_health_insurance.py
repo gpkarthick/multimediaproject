@@ -140,7 +140,7 @@ class PmjayReport(models.Model):
     _description = 'Pmjay Report'
     _order = "id asc"
 
-    name = fields.Char('Name', required=True)
+    name = fields.Char('Name', default=lambda self: self.env['ir.sequence'].next_by_code('pmjay_report_auto_no'))
     pmjay_district_id = fields.Many2one('pmjay.district', string='District')
     pmjay_block_id = fields.Many2one('pmjay.block', string='Block')
     pmjay_panchayat_id = fields.Many2one('pmjay.panchayat', string='Panchayat')

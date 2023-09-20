@@ -436,16 +436,16 @@
                     </templates>
 					<group>
 						<group>
-							<field name="name"/>
+							<field name="name" readonly="1"/>
                             <field name="pmjay_district_id"/>
                             <field name="pmjay_block_id" domain="[('district_id', '=', pmjay_district_id)]"/>
                             <field name="pmjay_panchayat_id" domain="[('block_id', '=', pmjay_block_id)]"/>
-                            <field name="pmjay_village_ids" domain="[('panchayat_id', '=', pmjay_panchayat_id)]"/>
+                            <field name="pmjay_village_ids" domain="[('panchayat_id', '=', pmjay_panchayat_id)]" widget="many2many_tags" options="{'no_create_edit': True}"/>
 						</group>
 						<group>
                             <group>
-                                <field name="import_file"/>
-                                <field name="file_name"/>
+                                <field name="import_file" filename="file_name"/>
+                                <field name="file_name" invisible="1"/>
                             </group>
 						</group>
 					</group>
