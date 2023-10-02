@@ -52,7 +52,7 @@
                                 <field name="state" invisible="1"/>
                                 <field name="original_receipt_no" invisible="1"/>
                                 <field name="sheet_no" readonly="1"/>
-                                <field name="mobile_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="mobile_no" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
                         <group string="Farmer Details" invisible="1">
@@ -88,14 +88,14 @@
                         </group>
                         <group string="Premium Details">
                             <group>
-                                <field name="area" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
-                                <field name="premium_amount" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
-                                <field name="service_charge" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
-                                <field name="total_amount" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="area" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="premium_amount" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="service_charge" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="total_amount" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
-                                <field name="received_amount" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
-                                <field name="balance_amount" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="received_amount"  required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="balance_amount" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
                         <group invisible="1">
@@ -127,7 +127,7 @@
             <field name="res_model">farmer.insurance</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{}</field>
-            <field name="domain">[]</field>
+            <field name="domain">[('id', '>', 745)]</field>
             <field name="search_view_id" ref="view_multimedia_farmer_insurance_search"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
@@ -742,7 +742,7 @@
             <field name="res_model">farmer.insurance</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{}</field>
-            <field name="domain">[]</field>
+            <field name="domain">[('id', '>', 745)]</field>
             <field name="search_view_id" ref="view_multimedia_farmer_insurance_search"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
@@ -1052,7 +1052,7 @@
             <field name="res_model">farmer.insurance</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{}</field>
-            <field name="domain">[]</field>
+            <field name="domain">[('id', '>', 745)]</field>
             <field name="search_view_id" ref="view_multimedia_farmer_insurance_search"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
@@ -1084,7 +1084,7 @@
             <field name="res_model">farmer.insurance</field>
             <field name="view_mode">tree,form</field>
             <field name="context">{}</field>
-            <field name="domain">[]</field>
+            <field name="domain">[('id', '>', 700)]</field>
             <field name="search_view_id" ref="view_multimedia_farmer_insurance_search"/>
             <field name="help" type="html">
                 <p class="o_view_nocontent_smiling_face">
@@ -1256,6 +1256,14 @@
                                 <field name="insurance_tamil_addr2"/>
                                 <field name="write_uid"/>
                                 <field name="write_date"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="base_insured_amt"/>
+                            </group>
+                            <group>
+                                <field name="government_share"/>
                             </group>
                         </group>
                         <notebook>

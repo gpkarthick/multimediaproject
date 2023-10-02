@@ -54,6 +54,7 @@
 					</group>
                     <group>
 						<group colspan="1" col="1">
+                            <field name="district_id"/>
 							<field name="area"/>
                             <field name="premium_amount"/>
                             <field name="service_charge"/>

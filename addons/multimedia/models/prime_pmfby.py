@@ -15,6 +15,7 @@ class PrimePMFBYCalculator(models.Model):
             amount = 250
         return amount
 
+    district_id = fields.Many2one('district.master', string='District', required=True)
     name = fields.Char(string='Season', readonly=True, default='Rabi')
     year = fields.Char(string='Year', readonly=True, default='2021-2022')
     scheme = fields.Char(string='Scheme', readonly=True, default='Pradhan Mantri Fasal Bima Yojana')
@@ -53,10 +54,10 @@ class PrimePMFBYCalculator(models.Model):
     #         self.service_charge = self.service_charge
     #         self.total_amount = premium_amt + self.service_charge
 
-    @api.onchange('area','service_charge')
+    @api.onchange('area','service_charge',district_id)
     def onchange_area_insured(self):
         # ~ base_insured_amt = 803.99000
-        base_insured_amt = 870.68000
+        base_insured_amt = self.district_id.base_insured_amt
         # service_charge = 250
         if self.area * 100 > 0:
             area_insured = self.area * 100

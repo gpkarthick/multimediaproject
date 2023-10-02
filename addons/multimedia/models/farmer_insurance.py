@@ -492,19 +492,30 @@ class CropDataLine(models.Model):
     #         self.gov_share = round((249.2 * area_insured), 2)
     #         # self.gov_share = round(((0.84474 * 338.9807383627608) * area_insured), 2)
     #         # self.gov_share = round(((0.80399 * 335) * area_insured), 2)
+    #         self.sum_insured = round(base_insured_amt * area_insured, 2)    
+
+    # @api.onchange('area_insured')
+    # def onchange_area_insured(self):
+    #     # base_insured_amt = 803.99000
+    #     base_insured_amt = 870.68000
+    #     if self.area_insured * 100 > 0:
+    #         area_insured = self.area_insured * 100
+    #         self.farmer_share = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
+    #         self.gov_share = round((249.2 * area_insured), 2)
+    #         # self.gov_share = round(((0.84474 * 338.9807383627608) * area_insured), 2)
+    #         # self.gov_share = round(((0.80399 * 335) * area_insured), 2)
     #         self.sum_insured = round(base_insured_amt * area_insured, 2)
 
     @api.onchange('area_insured')
     def onchange_area_insured(self):
-        # base_insured_amt = 803.99000
-        base_insured_amt = 870.68000
-        if self.area_insured * 100 > 0:
-            area_insured = self.area_insured * 100
-            self.farmer_share = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
-            self.gov_share = round((249.2 * area_insured), 2)
-            # self.gov_share = round(((0.84474 * 338.9807383627608) * area_insured), 2)
-            # self.gov_share = round(((0.80399 * 335) * area_insured), 2)
-            self.sum_insured = round(base_insured_amt * area_insured, 2)
+        if self.crop_id.district_id:
+            base_insured_amt = self.crop_id.district_id.base_insured_amt
+            if self.area_insured * 100 > 0:
+                area_insured = self.area_insured * 100
+                self.farmer_share = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
+                self.gov_share = round((self.crop_id.district_id.government_share * area_insured), 2)
+                self.sum_insured = round(base_insured_amt * area_insured, 2)
+
 
     @api.onchange('survey_no','khasra_no')
     def onchange_survey_no_details(self):
@@ -626,6 +637,9 @@ class DistrictMaster(models.Model):
     insurance_tamil_email = fields.Char('Insurance Tamil Email')
     insurance_tamil_addr1 = fields.Char('Insurance Tamil Addr')
     insurance_tamil_addr2 = fields.Char('Insurance Tamil street')
+    
+    base_insured_amt = fields.Float(string='Base Insured Amount', required=True)
+    government_share = fields.Float(string='Government Share', required=True)    
 
     state_id = fields.Many2one('state.master', string='State', required=True)
     create_date = fields.Datetime(string='Created Date', readonly=True)
