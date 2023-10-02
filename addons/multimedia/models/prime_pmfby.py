@@ -54,7 +54,7 @@ class PrimePMFBYCalculator(models.Model):
     #         self.service_charge = self.service_charge
     #         self.total_amount = premium_amt + self.service_charge
 
-    @api.onchange('area','service_charge',district_id)
+    @api.onchange('area','service_charge','district_id')
     def onchange_area_insured(self):
         # ~ base_insured_amt = 803.99000
         base_insured_amt = self.district_id.base_insured_amt
