@@ -1204,6 +1204,7 @@ class ImportMaster(models.Model):
                         firka_tamil = row[7]
                         village_english = row[8]
                         village_tamil = row[9]
+                        print (district_english,subdistrict_english,block_english,firka_english,village_tamil)
                         if district_english and district_tamil:
                             exist_district_ids = self.env['district.master'].search([('name', '=', district_english)])
                             if not exist_district_ids:
@@ -1211,21 +1212,21 @@ class ImportMaster(models.Model):
                                     {'name': district_english, 'district_tamil_name': district_tamil, 'state_id': 1})
                                 district_id = district.id
                         if subdistrict_english and subdistrict_english:
-                            exist_subdistrict_ids = self.env['subdistrict.master'].search([('name', '=', subdistrict_english),('id', '>', 15)])
+                            exist_subdistrict_ids = self.env['subdistrict.master'].search([('name', '=', subdistrict_english),('district_id', '=', district_id),('id', '>', 15)])
                             if not exist_subdistrict_ids:
                                 subdistrict = self.env['subdistrict.master'].create(
                                     {'name': subdistrict_english, 'subdistrict_tamil_name': subdistrict_tamil,
                                     'district_id': district_id, 'state_id': 1})
                                 subdistrict_id = subdistrict.id
                         if block_english and block_tamil:
-                            exist_block_ids = self.env['block.master'].search([('name', '=', block_english),('id', '>', 30)])
+                            exist_block_ids = self.env['block.master'].search([('name', '=', block_english),('district_id', '=', district_id),('id', '>', 30)])
                             if not exist_block_ids:
                                 block = self.env['block.master'].create(
                                     {'name': block_english, 'block_tamil_name': block_tamil,
                                     'subdistrict_id': subdistrict_id, 'district_id': district_id, 'state_id': 1})
                                 block_id = block.id
                         if firka_english and firka_tamil:
-                            exist_firka_ids = self.env['firka.master'].search([('name', '=', firka_english),('id', '>', 60)])
+                            exist_firka_ids = self.env['firka.master'].search([('name', '=', firka_english),('district_id', '=', district_id),('id', '>', 60)])
                             if not exist_firka_ids:
                                 firka = self.env['firka.master'].create(
                                     {'name': firka_english, 'firka_tamil_name': firka_tamil, 'block_id': block_id,
@@ -1233,7 +1234,7 @@ class ImportMaster(models.Model):
                                 firka_id = firka.id
                         if village_english and village_tamil:
                             village_count += 1
-                            exist_village_ids = self.env['village.master'].search([('name', '=', village_english),('id', '=', 787)])
+                            exist_village_ids = self.env['village.master'].search([('name', '=', village_english),('district_id', '=', district_id),('id', '=', 787)])
                             if not exist_village_ids:
                                 print (district_id,subdistrict_id,block_id,firka_id)
                                 self.env['village.master'].create(
