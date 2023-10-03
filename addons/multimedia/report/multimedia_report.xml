@@ -73,6 +73,17 @@
         />
 
         <report
+            id="action_report_insurance_preview_print"
+            string="Preview Print"
+            model="farmer.insurance"
+            report_type="qweb-html"
+            file="multimedia.farmer_report_insurance_preview_print"
+            name="multimedia.farmer_report_insurance_preview_print"
+            print_report_name="'%s-%s' % (object.form_application_no,object.farmer_name)"
+            groups="multimedia.multimedia_insurance_access"
+        />
+
+        <report
             id="action_report_pmjay_kyc_data"
             string="PMJAY KYC Print"
             model="pmjay.report"

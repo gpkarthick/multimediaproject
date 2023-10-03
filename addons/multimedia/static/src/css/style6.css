@@ -1,0 +1,45 @@
+
+.header-table{
+    border-collapse: collapse;
+    font-family: Times New Roman;
+    width:100%;
+    border: none;
+}
+.header-table td {
+    border: none;
+    line-height: 1.8;
+    vertical-align: middle;
+    font-size:20px;
+}
+.customer-address {
+    vertical-align: top;
+    border-collapse: collapse;
+    border: 1px solid black;
+    border-bottom: none;
+    width: 100%;
+    font-size: 14px;
+    font-family: Times New Roman;
+}
+.customer-address td {
+    vertical-align: middle;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top: 1px solid black;
+}
+.company-details-span{
+    margin-left: 8PX;
+    line-height: 40px;
+    font-size:16px;
+}
+.company-details-span2{
+    margin-left: 5PX;
+    line-height: 26px;
+    font-size:16px;
+    font-weight: normal;
+}
+.company-details-span3{
+    margin-left: 5PX;
+    line-height: 26px;
+    font-size:14px;
+    font-weight: normal;
+}

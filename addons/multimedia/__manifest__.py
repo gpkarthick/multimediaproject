@@ -31,6 +31,7 @@
         'report/multimedia_ebbill_report.xml',
         'report/account_verification_report.xml',
         'report/pan_acknowledgement_report.xml',
+        'report/farmer_insurance_preview_print.xml',        
     ],
     'demo': [],
     'installable': True,

@@ -467,6 +467,10 @@ class FarmerInsurance(models.Model):
     def insurance_fine_print(self):
         self.write({'state': 'printtaken'})
         return self.env.ref('multimedia.action_report_fine_insurance').report_action(self)
+    
+    def insurance_preview_print(self):
+        self.write({'state': 'printtaken'})
+        return self.env.ref('multimedia.action_report_insurance_preview_print').report_action(self)
 
 class CropDataLine(models.Model):
     _name = 'crop.data.line'
