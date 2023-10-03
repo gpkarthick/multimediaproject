@@ -28,7 +28,7 @@
 }
 .company-details-span{
     margin-left: 8PX;
-    line-height: 40px;
+    line-height: 42px;
     font-size:16px;
 }
 .company-details-span2{
@@ -42,4 +42,92 @@
     line-height: 26px;
     font-size:14px;
     font-weight: normal;
+}
+
+.mcls_007 {
+    vertical-align: middle;
+    width: 100%;
+}
+
+.mcls_007 thead th {
+    font-family: Times New Roman;
+    font-weight: 900;
+    vertical-align: middle;
+    text-align:center;
+    border-collapse: collapse;
+    border-style: solid;
+    border-width: thin;
+    border-color: 1px solid black;
+    border-left: px solid black;
+    border-right: px solid black;
+    height: 80px;
+    font-size: 15.0px;
+    color:1px solid black;
+}
+
+.mcls_007 tbody {
+    font-family: Times New Roman;
+    vertical-align: middle;
+    text-align:left;
+    font-size: 15.0px;
+    color: 1px solid black;
+}
+
+.mcls_007 td {
+    font-family: Times New Roman;
+    font-weight: 500;
+    vertical-align: middle;
+    text-align:left;
+    border-collapse: collapse;
+    border-style: solid;
+    border-width: thin;
+    border-bottom-color:1px solid black;
+    border-above: none;
+    border-left: px solid black;
+    border-right: px solid black;
+    line-height: 40px;
+    font-size: 15.0px;
+    color: 1px solid black;
+}
+
+.mcls_005 {
+    font-family: Times New Roman;
+    font-size: 16.0px;
+    color:1px solid black;
+    font-weight: bold;
+    font-style: normal;
+    text-decoration: none;
+    width:100%;
+    line-height: 22.5px;
+    letter-spacing: 0.8px;
+}
+
+hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #efefef;
+    margin: 1em 0;
+    padding: 0;
+}
+
+.mcls_009 {
+    font-family: Times New Roman;
+    font-size: 19.2089px;
+    color: rgb(0,0,0);
+    font-weight: bold;
+    text-decoration: none;
+    text-align:left;
+    letter-spacing: 0.8px;
+    line-height: 22px;
+}
+
+.mcls_0012 {
+    font-family: Times New Roman;
+    font-size: 15.4067px;
+    color: rgb(0,0,0);
+    font-weight: bold;
+    width:100%;
+    letter-spacing: 0.8px;
+    line-height: 22px;
 }

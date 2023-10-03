@@ -19,7 +19,7 @@
 							</tr>
 							<tr>
 								<td style="text-align:center;width:50%">
-									<span><strong>பசலி-1433 பயிர் காப்பீடு செய்யப்படும் வருடம் 2022</strong></span>
+									<span><strong>பசலி-1433 பயிர் காப்பீடு செய்யப்படும் வருடம் 2023</strong></span>
 								</td>
 							</tr>
 						</table>
@@ -39,20 +39,56 @@
                                     </span>                                    
                                 </td>                                
                                 <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.farmer_name">                                        
-                                        <span t-esc="o.farmer_name"/>
+                                    <span class="company-details-span2" t-if="o.farmer_tamil_name">                                        
+                                        <span t-esc="o.farmer_tamil_name"/>
                                     </span>                                    
                                 </td>
                             </tr>
 							<tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">
-                                        <strong>ACCOUNT NO (வங்கி கணக்கு எண்)</strong>
+                                        <strong>RELATIVE NAME (உறவினர் பெயர்)</strong>
                                     </span>                                    
                                 </td>                                
                                 <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.bank_account_no">                                        
-                                        <span t-esc="o.bank_account_no"/>
+                                    <span class="company-details-span2" t-if="o.relative_tamil_name">                                        
+                                        <span t-esc="o.relative_tamil_name"/>
+                                    </span>                                    
+                                </td>
+                            </tr>
+							<tr>
+                                <td style="width:55%;">
+                                    <span class="company-details-span">
+                                        <strong>RELATION TYPE (உறவு முறை வகை)</strong>
+                                    </span>                                    
+                                </td>                                
+                                <td style="width:45%;">
+                                    <span class="company-details-span2" t-if="o.relative_tamil_type">                                        
+                                        <span t-esc="o.relative_tamil_type"/>
+                                    </span>                                    
+                                </td>
+                            </tr>
+							<tr>
+                                <td style="width:55%;">
+                                    <span class="company-details-span">
+                                        <strong>GENDER (பாலினம்)</strong>
+                                    </span>                                    
+                                </td>                                
+                                <td style="width:45%;">
+                                    <span class="company-details-span2" t-if="o.gender_tamil_type">                                        
+                                        <span t-esc="o.gender_tamil_type"/>
+                                    </span>                                    
+                                </td>
+                            </tr>
+							<tr>
+                                <td style="width:55%;">
+                                    <span class="company-details-span">
+                                        <strong>MOBILE NO (தொலைபேசி எண்)</strong>
+                                    </span>                                    
+                                </td>                                
+                                <td style="width:45%;">
+                                    <span class="company-details-span2" t-if="o.mobile_no">                                        
+                                        <span t-esc="o.mobile_no"/>
                                     </span>                                    
                                 </td>
                             </tr>
@@ -63,8 +99,20 @@
                                     </span>                                    
                                 </td>                                
                                 <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.account_type">                                        
-                                        <span t-esc="o.account_type"/>
+                                    <span class="company-details-span2" t-if="o.account_tamil_type">                                        
+                                        <span t-esc="o.account_tamil_type"/>
+                                    </span>                                    
+                                </td>
+                            </tr>
+							<tr>
+                                <td style="width:55%;">
+                                    <span class="company-details-span">
+                                        <strong>BRANCH (வங்கி கிளை)</strong>
+                                    </span>                                    
+                                </td>                                
+                                <td style="width:45%;">
+                                    <span class="company-details-span2" t-if="o.branch_tamil_name">                                        
+                                        <span t-esc="o.branch_tamil_name"/>
                                     </span>                                    
                                 </td>
                             </tr>
@@ -83,6 +131,18 @@
 							<tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">
+                                        <strong>ACCOUNT NO (வங்கி கணக்கு எண்)</strong>
+                                    </span>                                    
+                                </td>                                
+                                <td style="width:45%;">
+                                    <span class="company-details-span2" t-if="o.bank_account_no">                                        
+                                        <span t-esc="o.bank_account_no"/>
+                                    </span>                                    
+                                </td>
+                            </tr>		
+							<!-- <tr>
+                                <td style="width:55%;">
+                                    <span class="company-details-span">
                                         <strong>NAME AS PER PASSBOOK(வங்கி புத்தகத்தில் உள்ளவாறு என்னுடய பெயர் ஆங்கிலத்தில்)</strong>
                                     </span>                                    
                                 </td>                                
@@ -91,8 +151,8 @@
                                         <span t-esc="o.farmer_name"/>
                                     </span>                                    
                                 </td>
-                            </tr>
-							<tr>
+                            </tr> -->
+							<!-- <tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">
                                         <strong>NAME AS PER AADHAR(ஆதார் கார்டில் உள்ளவாறு என்னுடய பெயர் ஆங்கிலத்தில்)</strong>
@@ -115,56 +175,12 @@
                                         <span t-esc="o.aadhar_name"/>
                                     </span>                                    
                                 </td>
-                            </tr>
-							<tr>
-                                <td style="width:55%;">
-                                    <span class="company-details-span">
-                                        <strong>RELATION TYPE(உறவு முறை வகை)</strong>
-                                    </span>                                    
-                                </td>                                
-                                <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.relative_type">                                        
-                                        <span t-esc="o.relative_type.upper().replace('_',' ')"/>
-                                    </span>                                    
-                                </td>
-                            </tr>
-							<tr>
-                                <td style="width:55%;">
-                                    <span class="company-details-span">
-                                        <strong>RELATIVE NAME(உறவினர் பெயர்)</strong>
-                                    </span>                                    
-                                </td>                                
-                                <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.relative_name">                                        
-                                        <span t-esc="o.relative_name"/>
-                                    </span>                                    
-                                </td>
-                            </tr>
-							<tr>
-                                <td style="width:55%;">
-                                    <span class="company-details-span">
-                                        <strong>MOBILE NO(தொலைபேசி எண்)</strong>
-                                    </span>                                    
-                                </td>                                
-                                <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.mobile_no">                                        
-                                        <span t-esc="o.mobile_no"/>
-                                    </span>                                    
-                                </td>
-                            </tr>
-							<tr>
-                                <td style="width:55%;">
-                                    <span class="company-details-span">
-                                        <strong>GENDER (பாலினம்)</strong>
-                                    </span>                                    
-                                </td>                                
-                                <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.gender_type">                                        
-                                        <span t-esc="o.gender_type"/>
-                                    </span>                                    
-                                </td>
-                            </tr>
-							<tr>
+                            </tr> -->
+							
+							
+							
+							
+							<!-- <tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">
                                         <strong>CASTE CATEGORY (வகுப்பு வகை)</strong>
@@ -175,8 +191,8 @@
                                         <span t-esc="o.community_type"/>
                                     </span>                                    
                                 </td>
-                            </tr>
-							<tr>
+                            </tr> -->
+							<!-- <tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">
                                         <strong>FARMER CATEGORY (விவசாயி வகை)</strong>
@@ -187,7 +203,7 @@
                                         <span t-esc="o.farmer_category_type"/>
                                     </span>                                    
                                 </td>
-                            </tr>
+                            </tr> -->
 							<tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">
@@ -195,72 +211,131 @@
                                     </span>                                    
                                 </td>                                
                                 <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.farmer_type">                                        
-                                        <span t-esc="o.farmer_type"/>
+                                    <span class="company-details-span2" t-if="o.farmer_tamil_type">                                        
+                                        <span t-esc="o.farmer_tamil_type"/>
                                     </span>                                    
                                 </td>
                             </tr>
 							<tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">
-                                        <strong>DISTRICT (மாவட்டம்)</strong>
+                                        <strong>DISTRICT (விவசாயி விவசாயம் செய்யும் மாவட்டம்)</strong>
                                     </span>                                    
                                 </td>                                
                                 <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.district_id">                                        
-                                        <span t-esc="o.district_id.name"/>
+                                    <span class="company-details-span2" t-if="o.district_tamil_name">                                        
+                                        <span t-esc="o.district_tamil_name"/>
                                     </span>                                    
                                 </td>
                             </tr>
 							<tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">
-                                        <strong>SUB DISTRICT (TALUK) (வட்டம்)</strong>
+                                        <strong>SUB DISTRICT (TALUK) (விவசாயி விவசாயம் செய்யும்வட்டம்)</strong>
                                     </span>                                    
                                 </td>                                
                                 <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.subdistrict_id">                                        
-                                        <span t-esc="o.subdistrict_id.name"/>
+                                    <span class="company-details-span2" t-if="o.subdistrict_tamil_name">                                        
+                                        <span t-esc="o.subdistrict_tamil_name"/>
                                     </span>                                    
                                 </td>
                             </tr>
 							<tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">
-                                        <strong>BLOCK (தொகுதி)</strong>
+                                        <strong>BLOCK (விவசாயி விவசாயம் செய்யும் தொகுதி)</strong>
                                     </span>                                    
                                 </td>                                
                                 <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.block_id">                                        
-                                        <span t-esc="o.block_id.name"/>
+                                    <span class="company-details-span2" t-if="o.block_tamil_name">                                        
+                                        <span t-esc="o.block_tamil_name"/>
                                     </span>                                    
                                 </td>
                             </tr>
 							<tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">
-                                        <strong>FIRKA (பிர்கா)</strong>
+                                        <strong>FIRKA (விவசாயி விவசாயம் செய்யும் பிர்கா)</strong>
                                     </span>                                    
                                 </td>                                
                                 <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.firka_id">                                        
-                                        <span t-esc="o.firka_id.name"/>
+                                    <span class="company-details-span2" t-if="o.firka_tamil_name">                                        
+                                        <span t-esc="o.firka_tamil_name"/>
                                     </span>                                    
                                 </td>
                             </tr>
 							<tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">
-                                        <strong>VILLAGE (கிராமம்)</strong>
+                                        <strong>VILLAGE (விவசாயி விவசாயம் செய்யும் கிராமம்)</strong>
                                     </span>                                    
                                 </td>                                
                                 <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.village_id">                                        
-                                        <span t-esc="o.village_id.name"/>
+                                    <span class="company-details-span2" t-if="o.village_tamil_name">                                        
+                                        <span t-esc="o.village_tamil_name"/>
                                     </span>                                    
                                 </td>
+                            </tr>
+							<tr>
+                                <td style="width:55%;">
+                                    <span class="company-details-span">
+                                        <strong>VILLAGE (விவசாயி விவசாயம் செய்யும் கிராமம்)</strong>
+                                    </span>                                    
+                                </td>                                
+                                <td style="width:45%;">
+                                    <span class="company-details-span2" t-if="o.village_tamil_name">                                        
+                                        <span t-esc="o.village_tamil_name"/>
+                                    </span>                                    
+                                </td>
+                            </tr>
+							<tr>
+                                <td style="width:100%;text-align:center;" colspan="2">
+                                    <span class="company-details-span">
+                                        <strong>CROP DETAILS (சாகுபடி செய்த பயிரின் விவரம்)</strong>
+                                    </span>                                    
+                                </td>   
                             </tr>
                         </table>
+
+						<div>
+							<table class="mcls_007" style="width:100%">
+								<thead>
+									<tr>										
+										<th style="width:33.0%">பயிர்</th>
+										<th style="width:33.0%">சர்வே எண்</th>
+										<th style="width:34%">காப்பீடு செய்யப்படவேண்டிய பகுதி (ஹெக்டேர்/பயிர்)</th>										
+									</tr>
+								</thead>
+								<tbody>
+									<tr t-foreach="o.crop_line_ids" t-as="l">										
+										<td class="text-center">
+											<span>நெல்- II</span>
+										</td>
+										<td class="text-center">
+											<span t-field="l.survey_no"/>/<span t-field="l.khasra_no"/>
+										</td>										
+										<td class="text-center">
+											<span t-esc="'%.2f'% l.area_insured" />
+										</td>										
+									</tr>
+								</tbody>
+							</table>
+						</div>
+
+						<hr/>
+
+						<table class="mcls_005">
+							<tr>
+								<td style="text-align:left;width:50%">
+									<span class="mcls_0012">காப்பீடு செய்யப்படவேண்டிய மொத்த பகுதி<br/></span>
+									<span class="mcls_009" t-if="o.total_area_insured"><span t-field="o.total_area_insured"/> Hect.<br/></span>
+								</td>
+								<td style="text-align:left;width:33%">
+									<span class="mcls_0012">செய்யப்படவேண்டிய மொத்த பிரீமியம்<br/></span>
+									<span class="mcls_009" t-if="o.total_premium_paid">₹ <span t-esc="'%.2f'% o.total_premium_paid" /><br/></span>
+								</td>
+							</tr>
+						</table>
 
                     </div>
                 </t>
