@@ -63,9 +63,15 @@
                                     </span>                                    
                                 </td>                                
                                 <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.relative_tamil_type">                                        
-                                        <span t-esc="o.relative_tamil_type"/>
-                                    </span>                                    
+                                    <t t-if="o.relative_tamil_type == 'son_of'">
+										<span class="company-details-span2">மகன்</span>
+									</t>  
+									<t t-if="o.relative_tamil_type == 'daughter_of'">
+										<span class="company-details-span2">மகள்</span>
+									</t> 
+									<t t-if="o.relative_tamil_type == 'wife_of'">
+										<span class="company-details-span2">மனைவி</span>
+									</t>                                 
                                 </td>
                             </tr>
 							<tr>
@@ -75,9 +81,15 @@
                                     </span>                                    
                                 </td>                                
                                 <td style="width:45%;">
-                                    <span class="company-details-span2" t-if="o.gender_tamil_type">                                        
+                                    <!-- <span class="company-details-span2" t-if="o.gender_tamil_type">                                        
                                         <span t-esc="o.gender_tamil_type"/>
-                                    </span>                                    
+                                    </span>                                     -->
+									<t t-if="o.gender_tamil_type == 'Male'">
+										<span class="company-details-span2">ஆண்</span>
+									</t> 
+									<t t-if="o.gender_tamil_type == 'Female'">
+										<span class="company-details-span2">பெண்</span>
+									</t>  
                                 </td>
                             </tr>
 							<tr>
