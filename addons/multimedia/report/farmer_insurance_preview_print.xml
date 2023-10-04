@@ -33,7 +33,8 @@
                                 </td>                                
                                 <td style="width:55%;">
                                     <span class="company-details-span">
-                                        <strong>Date : <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y')"/>  </strong>
+                                        <strong>Date : <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y')"/> </strong>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                        <strong>Time : <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%I:%M %p')"/></strong>
                                     </span>                                    
                                 </td>    
                             </tr>
@@ -48,24 +49,24 @@
                             <tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">
-                                        <strong>APPLICANT NAME (விண்ணப்பதாரர்ராகிய என்னுடய பெயர்)</strong>
+                                        <strong>APPLICANT NAME (விண்ணப்பதாரர் பெயர்)</strong>
                                     </span>                                    
                                 </td>                                
                                 <td style="width:45%;">
                                     <span class="company-details-span2" t-if="o.farmer_tamil_name">                                        
-                                        <span t-esc="o.farmer_tamil_name"/>
+                                        <span t-esc="o.farmer_name"/> ( <span t-esc="o.farmer_tamil_name"/> )
                                     </span>                                    
                                 </td>
                             </tr>
 							<tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">
-                                        <strong>RELATIVE NAME (உறவினர் பெயர்)</strong>
+                                        <strong>APPLICANT RELATIVE NAME (உறவினர் பெயர்)</strong>
                                     </span>                                    
                                 </td>                                
                                 <td style="width:45%;">
                                     <span class="company-details-span2" t-if="o.relative_tamil_name">                                        
-                                        <span t-esc="o.relative_tamil_name"/>
+                                        <span t-esc="o.relative_name"/> ( <span t-esc="o.relative_tamil_name"/> )
                                     </span>                                    
                                 </td>
                             </tr>
@@ -77,13 +78,13 @@
                                 </td>                                
                                 <td style="width:45%;">
                                     <t t-if="o.relative_tamil_type == 'son_of'">
-										<span class="company-details-span2">மகன்</span>
+										<span class="company-details-span2">SON ( மகன் )</span>
 									</t>  
 									<t t-if="o.relative_tamil_type == 'daughter_of'">
-										<span class="company-details-span2">மகள்</span>
+										<span class="company-details-span2">DAUGHTER ( மகள் )</span>
 									</t> 
 									<t t-if="o.relative_tamil_type == 'wife_of'">
-										<span class="company-details-span2">மனைவி</span>
+										<span class="company-details-span2">WIFE ( மனைவி )</span>
 									</t>                                 
                                 </td>
                             </tr>
@@ -98,10 +99,10 @@
                                         <span t-esc="o.gender_tamil_type"/>
                                     </span>                                     -->
 									<t t-if="o.gender_tamil_type == 'Male'">
-										<span class="company-details-span2">ஆண்</span>
+										<span class="company-details-span2">MALE ( ஆண் )</span>
 									</t> 
 									<t t-if="o.gender_tamil_type == 'Female'">
-										<span class="company-details-span2">பெண்</span>
+										<span class="company-details-span2">FEMALE ( பெண் )</span>
 									</t>  
                                 </td>
                             </tr>
@@ -125,7 +126,7 @@
                                 </td>                                
                                 <td style="width:45%;">
                                     <span class="company-details-span2" t-if="o.account_tamil_type">                                        
-                                        <span t-esc="o.account_tamil_type"/>
+                                        <span t-esc="o.account_type"/> ( <span t-esc="o.account_tamil_type"/> )
                                     </span>                                    
                                 </td>
                             </tr>
@@ -137,7 +138,7 @@
                                 </td>                                
                                 <td style="width:45%;">
                                     <span class="company-details-span2" t-if="o.branch_tamil_name">                                        
-                                        <span t-esc="o.branch_tamil_name"/>
+                                        <span t-esc="o.branch_name"/> ( <span t-esc="o.branch_tamil_name"/> )
                                     </span>                                    
                                 </td>
                             </tr>
@@ -237,7 +238,7 @@
                                 </td>                                
                                 <td style="width:45%;">
                                     <span class="company-details-span2" t-if="o.farmer_tamil_type">                                        
-                                        <span t-esc="o.farmer_tamil_type"/>
+                                        <span t-esc="o.farmer_type.capitalize()"/> ( <span t-esc="o.farmer_tamil_type"/> )
                                     </span>                                    
                                 </td>
                             </tr>
@@ -249,7 +250,7 @@
                                 </td>                                
                                 <td style="width:45%;">
                                     <span class="company-details-span2" t-if="o.district_tamil_name">                                        
-                                        <span t-esc="o.district_tamil_name"/>
+                                        <span t-esc="o.district_id.name"/> ( <span t-esc="o.district_tamil_name"/> )
                                     </span>                                    
                                 </td>
                             </tr>
@@ -261,7 +262,7 @@
                                 </td>                                
                                 <td style="width:45%;">
                                     <span class="company-details-span2" t-if="o.subdistrict_tamil_name">                                        
-                                        <span t-esc="o.subdistrict_tamil_name"/>
+                                        <span t-esc="o.subdistrict_id.name"/> ( <span t-esc="o.subdistrict_tamil_name"/> )
                                     </span>                                    
                                 </td>
                             </tr>
@@ -273,7 +274,7 @@
                                 </td>                                
                                 <td style="width:45%;">
                                     <span class="company-details-span2" t-if="o.block_tamil_name">                                        
-                                        <span t-esc="o.block_tamil_name"/>
+                                        <span t-esc="o.block_id.name"/> ( <span t-esc="o.block_tamil_name"/> )
                                     </span>                                    
                                 </td>
                             </tr>
@@ -285,7 +286,7 @@
                                 </td>                                
                                 <td style="width:45%;">
                                     <span class="company-details-span2" t-if="o.firka_tamil_name">                                        
-                                        <span t-esc="o.firka_tamil_name"/>
+                                        <span t-esc="o.firka_id.name"/> ( <span t-esc="o.firka_tamil_name"/> ) 
                                     </span>                                    
                                 </td>
                             </tr>
@@ -297,7 +298,7 @@
                                 </td>                                
                                 <td style="width:45%;">
                                     <span class="company-details-span2" t-if="o.village_tamil_name">                                        
-                                        <span t-esc="o.village_tamil_name"/>
+                                        <span t-esc="o.village_id.name"/> ( <span t-esc="o.village_tamil_name"/> )
                                     </span>                                    
                                 </td>
                             </tr>
@@ -315,7 +316,7 @@
 							<table class="mcls_007" style="width:100%">
 								<thead>
 									<tr>
-										<th style="width:25.0%">ராபி / சம்பா</th>										
+										<th style="width:25.0%">பருவம்</th>										
 										<th style="width:25.0%">பயிர்</th>
 										<th style="width:25.0%">சர்வே எண்</th>
 										<th style="width:25%">காப்பீடு செய்யப்படவேண்டிய பகுதி (ஹெக்டேர்/பயிர்)</th>										
@@ -324,7 +325,7 @@
 								<tbody>
 									<tr t-foreach="o.crop_line_ids" t-as="l">	
 										<td class="text-center">
-											<span>பருவம்</span>
+											<span>ராபி / சம்பா</span>
 										</td>									
 										<td class="text-center">
 											<span>நெல்- II</span>
@@ -349,7 +350,7 @@
 									<span class="mcls_009" t-if="o.total_area_insured"><span t-field="o.total_area_insured"/> Hect.<br/></span>
 								</td>
 								<td style="text-align:left;width:33%">
-									<span class="mcls_0012">செய்யப்படவேண்டிய மொத்த பிரீமியம்<br/></span>
+									<span class="mcls_0012">செலுத்தப்படவேண்டிய மொத்த பிரீமியம்<br/></span>
 									<span class="mcls_009" t-if="o.total_premium_paid">₹ <span t-esc="'%.2f'% o.total_premium_paid" /><br/></span>
 								</td>
 							</tr>

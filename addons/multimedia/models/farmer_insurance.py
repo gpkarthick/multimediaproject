@@ -189,6 +189,7 @@ class FarmerInsurance(models.Model):
     pmfby_status = fields.Selection([('pmfbyPaid', 'PMFBY Paid'),('Paid', 'Paid'), ('Approved', 'Approved'), ('Rejected', 'Rejected'), ('Revert', 'Revert')], string='PMFBY Status')
 
     farmer_image = fields.Binary(string="Farmer Image", attachment=True)
+    licence_applicant_image = fields.Binary(string="Licence Applicant Image", attachment=True)
 
     def capture_webcam_image(self):
         # Open the webcam
@@ -255,10 +256,11 @@ class FarmerInsurance(models.Model):
         if self.distributor_received_amount > self.distributor_total_amount:
             raise ValidationError(_('You enter the Received amount greater then total amount, please check it'))
 
-    @api.onchange('area','received_amount', 'service_charge')
+    @api.onchange('area','received_amount', 'service_charge', 'district_id')
     def onchange_area_insured(self):
         # ~ base_insured_amt = 803.99000
-        base_insured_amt = 844.74000
+        # base_insured_amt = 844.74000
+        base_insured_amt = self.district_id.base_insured_amt
         # service_charge = 250
         if self.area * 100 > 0:
             area_insured = self.area * 100

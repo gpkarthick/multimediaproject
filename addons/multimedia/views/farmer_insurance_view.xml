@@ -88,6 +88,7 @@
                         </group>
                         <group string="Premium Details">
                             <group>
+                                <field name="district_id" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" />
                                 <field name="area" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="premium_amount" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="service_charge" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
@@ -707,7 +708,7 @@
                                 <field name="farmer_image"/>
                             </group>
                             <group>
-                                <button name="capture_webcam_image" string="Capture Webcam Image" type="object" class="oe_highlight"/>
+                                <field name="licence_applicant_image"/>
                             </group>
                         </group>
                     </sheet>
@@ -1848,6 +1849,13 @@
             </field>
         </record>
 
+        <record id="action_connect_village_master_tree_view" model="ir.actions.act_window.view">
+            <field eval="1" name="sequence"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="view_village_master_tree"/>
+            <field name="act_window_id" ref="action_village_master"/>
+        </record>
+
         <record id="view_farmer_master_form" model="ir.ui.view">
             <field name="name">farmer.master.form</field>
             <field name="type">form</field>
@@ -2240,6 +2248,9 @@
                   parent="multimedia.multimedia_main_menu" groups="multimedia.multimedia_insurance_access"/>
 
         <menuitem id="menu_surveyno_wise_land_details" name="Land Details" sequence="8" action="action_surveyno_wise_land_details"
+                  parent="multimedia_surveyno_menu"/>
+
+        <menuitem id="multimedia_insurance_village_master_menu" name="village Master" sequence="9" action="action_village_master"
                   parent="multimedia_surveyno_menu"/>
 
 
