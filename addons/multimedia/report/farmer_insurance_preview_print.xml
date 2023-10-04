@@ -361,12 +361,16 @@
                         <table class="mcls_005">
 							<tr>
 								<td width="32%">
+                                
+                                    <span class="mcls_0012">விண்ணப்பதாரர் <br/></span>
+                                    <span class="mcls_0012">புகைப்படம்<br/></span>
                                     <img t-att-src="'data:image/png;base64,%s' % to_text(o.farmer_image)" style="max-height: 175px; "/>
 								</td>
                                 <td width="3%">
 									<span class="mcls_0012">.</span>
 								</td>
 								<td width="32%">
+                                    <span class="mcls_0012">விண்ணப்பதாரர் அனுமதி பெற்றவரின் புகைப்படம்<br/></span>
 									<img t-att-src="'data:image/png;base64,%s' % to_text(o.licence_applicant_image)" style="max-height: 175px; "/>
 								</td>
 								<td width="33%">
