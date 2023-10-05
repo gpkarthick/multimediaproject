@@ -1410,3 +1410,23 @@ class CSCLogin(models.Model):
     _description = 'CSC Logins List Details'
 
     name = fields.Char('Login ID')
+
+class VillageSearch(models.Model):
+    _name = 'village.search'
+    _description = 'Village Search List Details'
+
+    village_id = fields.Many2one('village.master', string='Village', required=True)
+    firka_id = fields.Many2one('firka.master', string='Firka', required=True)
+    block_id = fields.Many2one('block.master', string='Block', required=True)
+    subdistrict_id = fields.Many2one('subdistrict.master', string='Sub District', required=True)
+    district_id = fields.Many2one('district.master', string='District', required=True)
+    state_id = fields.Many2one('state.master', string='State', required=True)
+
+    @api.onchange('village_id')
+    def onchange_village_id(self):
+        if self.village_id:
+            self.firka_id = self.village_id.firka_id.id
+            self.block_id = self.village_id.block_id.id
+            self.subdistrict_id = self.village_id.subdistrict_id.id
+            self.district_id = self.village_id.district_id.id
+            self.state_id = self.village_id.state_id.id

@@ -78,6 +78,7 @@ access_farmer_village_master_full_access,access.farmer.village.master.full_acces
 access_surveyno_wise_land_details_full_access,access.surveyno.wise.land.details.full_access,model_surveyno_wise_land_details,multimedia.multimedia_insurance_access,1,1,1,0
 access_bank_tamil_list_full_access,access.bank.tamil.list.full_access,model_bank_tamil_list,multimedia.multimedia_insurance_access,1,1,1,0
 access_csc_login_user_full_access,access.csc.login.user_full_access,model_csc_login,multimedia.multimedia_insurance_access,1,1,1,0
+access_village_search_access,access.village.search.access,model_village_search,multimedia.multimedia_insurance_access,1,1,1,0
 ,,,,,,,
 access_media_farmer_insurance_user_access,access.media.farmer.insurance.user_access,model_farmer_insurance,multimedia.multimedia_farmer_insurance_user_access,1,1,1,1
 access_pmfby_calculator_insurance_user_access,access.pmfby.calculator.insurance.user_access,model_prime_pmfby_calculator,multimedia.multimedia_farmer_insurance_user_access,1,1,1,0

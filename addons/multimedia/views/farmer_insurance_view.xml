@@ -2203,6 +2203,46 @@
         </record>
 
 
+        <record id="view_village_search_form" model="ir.ui.view">
+            <field name="name">village.search.form</field>
+            <field name="model">village.search</field>
+            <field name="arch" type="xml">
+                <form string="Village Search">
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="village_id"/>
+                                <field name="firka_id"/>
+                                <field name="block_id"/>
+                                <field name="subdistrict_id"/>
+                                <field name="district_id"/>                                
+                                <field name="state_id"/>                                
+                            </group>
+                            <group>                                
+                            </group>
+                        </group>                        
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_village_search" model="ir.actions.act_window">
+            <field name="name">Village Search</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">village.search</field>
+            <field name="view_mode">form</field>
+            <field name="domain"></field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Search Village
+                </p>
+                <p>
+                    Search Village here.
+                </p>
+            </field>
+        </record>
+
         <menuitem id="multimedia_insurance_sub_menu" name="PMFBY Insurance" sequence="3"
                   parent="multimedia.multimedia_main_menu"/>
 
@@ -2224,7 +2264,7 @@
                   parent="multimedia.multimedia_configuration_menu" groups="multimedia.media_forms_management"/>
 <!--        <menuitem id="multimedia_action_farmer_master_menu" name="Farmer Master" sequence="-1" action="action_farmer_master"-->
 <!--                  parent="multimedia_insurance_sub_child_menu"/>-->
-        <menuitem id="multimedia_state_master_menu" name="State Master" sequence="1" action="action_state_master"
+        <menuitem id="multimedia_state_master_menu" name="Village Search" sequence="1" action="action_state_master"
                   parent="multimedia_insurance_sub_child_menu"/>
         <menuitem id="multimedia_district_master_menu" name="district Master" sequence="2"
                   action="action_district_master" parent="multimedia_insurance_sub_child_menu"/>
@@ -2250,9 +2290,13 @@
         <menuitem id="menu_surveyno_wise_land_details" name="Land Details" sequence="8" action="action_surveyno_wise_land_details"
                   parent="multimedia_surveyno_menu"/>
 
-        <menuitem id="multimedia_insurance_village_master_menu" name="village Master" sequence="9" action="action_village_master"
-                  parent="multimedia_surveyno_menu"/>
+        
 
+        <menuitem id="multimedia_village_search_menu" name="Village Search" sequence="6"
+                  parent="multimedia.multimedia_main_menu" groups="multimedia.multimedia_insurance_access"/>
+
+        <menuitem id="multimedia_insurance_village_search_menu" name="village Search" sequence="1" action="action_village_search"
+                  parent="multimedia_village_search_menu"/>
 
 
 

@@ -249,9 +249,10 @@ class PmjayRationSearch(models.Model):
                                 <table cellspacing="0.0" cellpadding="6.3" border="1" width="500"> 
                                     
                                     <tr height="22" align="center">
-                                        <th width="70" colspan="3" bgcolor='#CC99CC' >Member List</th>
+                                        <th width="70" colspan="4" bgcolor='#CC99CC' >Member List</th>
                                     </tr>
                                     <tr bgcolor='#CCCCFF' align='center'>
+                                        <th>Sl.No</th>
                                         <th>Member Name</th> 
                                         <th>Gender</th>                               
                                         <th>Kyc Update</th>
@@ -274,6 +275,7 @@ class PmjayRationSearch(models.Model):
                     kyc_update = '\u2713'
                 html += """
                         <tr bgcolor='""" + color + """'>
+                             <td align='left'>""" + str(row.pmjay_id.serial_no) + """</td>
                              <td align='left'>""" + row.name + """</td>
                              <td align='center'>""" + gender + """</td>
                              <td align='center'>""" + kyc_update + """</td>
