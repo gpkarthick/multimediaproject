@@ -190,6 +190,7 @@ class FarmerInsurance(models.Model):
 
     farmer_image = fields.Binary(string="Farmer Image", attachment=True)
     licence_applicant_image = fields.Binary(string="Licence Applicant Image", attachment=True)
+    allot_name = fields.Char('Allot Name', size=60)
 
     def capture_webcam_image(self):
         # Open the webcam
@@ -228,6 +229,21 @@ class FarmerInsurance(models.Model):
             self.farmer_tamil_type = 'குறு'
         if self.farmer_type == 'other':
             self.farmer_tamil_type = 'மற்ற'
+
+    @api.onchange('form_application_no')
+    def onchange_allot_num(self):
+        if self.form_application_no:
+            self.env.cr.execute('''SELECT shop_name
+                               FROM allot_book_number_line
+                               WHERE %s BETWEEN start_no AND end_no
+                            ''', (self.form_application_no,))
+            get_list = [x[0] for x in self.env.cr.fetchall()]
+            if get_list:
+                self.allot_name = get_list[0]
+
+                
+
+
 
     @api.model
     def create(self, vals):
@@ -1430,3 +1446,23 @@ class VillageSearch(models.Model):
             self.subdistrict_id = self.village_id.subdistrict_id.id
             self.district_id = self.village_id.district_id.id
             self.state_id = self.village_id.state_id.id
+
+
+class AllotBookNumber(models.Model):
+    _name = 'allot.book.number'
+    _description = 'Allot book Numbers Details'
+
+    name = fields.Char('Year', required=True)
+    allot_line_ids = fields.One2many('allot.book.number.line', 'allot_id', "Allot Number Data")
+
+
+class AllotBookNumberLine(models.Model):
+    _name = 'allot.book.number.line'
+    _description = 'Allot book Numbers Line Details'
+
+    allot_id = fields.Many2one('allot.book.number', string='Allot Number')
+    start_no = fields.Integer('Start No')
+    end_no = fields.Integer('End No')
+    shop_name = fields.Char('Shop Name')
+
+
