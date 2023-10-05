@@ -28,7 +28,7 @@
 }
 .company-details-span{
     margin-left: 8PX;
-    line-height: 42px;
+    line-height: 40px;
     font-size:16px;
 }
 .company-details-span2{
@@ -60,7 +60,7 @@
     border-color: 1px solid black;
     border-left: px solid black;
     border-right: px solid black;
-    height: 80px;
+    height: 60px;
     font-size: 15.0px;
     color:1px solid black;
 }
@@ -85,7 +85,7 @@
     border-above: none;
     border-left: px solid black;
     border-right: px solid black;
-    line-height: 40px;
+    line-height: 37px;
     font-size: 15.0px;
     color: 1px solid black;
 }

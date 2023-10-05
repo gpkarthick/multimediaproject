@@ -30,7 +30,7 @@
                 
 		<report 
             id="action_report_tamil_insurance"
-            string="Insurance Tamil Print"
+            string="Tamil Bill"
             model="farmer.insurance" 
             report_type="qweb-html"
             file="multimedia.farmer_insurance_tamil_report_multimedia"
@@ -41,7 +41,7 @@
 
         <report
             id="action_report_insurance"
-            string="Insurance Print"
+            string="English Bill"
             model="farmer.insurance"
             report_type="qweb-html"
             file="multimedia.farmer_insurance_report_multimedia"
@@ -52,7 +52,7 @@
 
         <report
             id="action_report_overall_insurance"
-            string="All Print"
+            string="Office Bill Copy"
             model="farmer.insurance"
             report_type="qweb-html"
             file="multimedia.farmer_insurance_all_report_multimedia"
@@ -63,7 +63,7 @@
 
         <report
             id="action_report_fine_insurance"
-            string="Fine Print"
+            string="Customer Bill Copy"
             model="farmer.insurance"
             report_type="qweb-html"
             file="multimedia.farmer_insurance_fine_report_multimedia"
@@ -74,7 +74,7 @@
 
         <report
             id="action_report_insurance_preview_print"
-            string="Preview Print"
+            string="Farmer Registration Form"
             model="farmer.insurance"
             report_type="qweb-html"
             file="multimedia.farmer_report_insurance_preview_print"

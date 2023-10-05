@@ -455,20 +455,22 @@
                         <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" attrs="{'invisible': [('state', 'not in', ('draft','stage2','stage3'))]}"/>
                         <button name="action_verified" type="object" string="Verified" class="oe_highlight" states="confirmed" groups="multimedia.multimedia_insurance_access"/>
 
-                        <button name="insurance_overall_print" string="1) All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_fine_print" string="2) English &amp; Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_overall_print" string="1) Office Bill Copy" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_fine_print" string="2) Customer Bill Copy" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                         <!-- <button name="insurance_preview" string="3) Preview" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft'))]}" groups="multimedia.multimedia_insurance_access"/> -->
+                        
+                        <button name="insurance_bill_print" string="5) English Bill" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                        <button name="insurance_tamil_bill_print" string="6) Tamil Bill" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+
+                        <button name="insurance_preview_print" string="3) Farmer Registration Form" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                         <button name="action_reset" type="object" string="4) Reset" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_bill_print" string="5) English Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                        <button name="insurance_tamil_bill_print" string="6) Tamil Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-
-                        <button name="insurance_preview_print" string="3) Preview Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-
                         <button name="action_done" type="object" string="Done" class="oe_highlight" states="printtaken" style="background-color:#DA4C29;" groups="multimedia.multimedia_insurance_access"/>
 <!--                        <button name="action_complete" type="object" string="Done Original Bill" class="oe_highlight" attrs="{'invisible': [('state', '=', ('done'))]}"/>-->
 
                         <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
                         <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+
+
 
                         <field name="state" widget="statusbar" statusbar_visible="draft,stage2,stage3,confirmed,verified,printtaken,done"/>
                     </header>
@@ -2284,15 +2286,15 @@
                   parent="multimedia_insurance_sub_child_menu" groups="multimedia.multimedia_insurance_access"/>
 
 
-        <menuitem id="multimedia_surveyno_menu" name="Survey No Details" sequence="5"
+        <!-- <menuitem id="multimedia_surveyno_menu" name="Survey No Details" sequence="5"
                   parent="multimedia.multimedia_main_menu" groups="multimedia.multimedia_insurance_access"/>
 
         <menuitem id="menu_surveyno_wise_land_details" name="Land Details" sequence="8" action="action_surveyno_wise_land_details"
-                  parent="multimedia_surveyno_menu"/>
+                  parent="multimedia_surveyno_menu"/> -->
 
         
 
-        <menuitem id="multimedia_village_search_menu" name="Village Search" sequence="6"
+        <menuitem id="multimedia_village_search_menu" name="PMFBY Village" sequence="6"
                   parent="multimedia.multimedia_main_menu" groups="multimedia.multimedia_insurance_access"/>
 
         <menuitem id="multimedia_insurance_village_search_menu" name="village Search" sequence="1" action="action_village_search"

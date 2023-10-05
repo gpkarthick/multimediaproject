@@ -616,8 +616,8 @@
 
         <menuitem id="pmjay_main_menu" name="PMJAY" sequence="1"/>
         <menuitem id="pmjay_sub_menu" name="PMJAY" sequence="7" parent="multimedia.multimedia_main_menu"/>
-        <menuitem id="pmjay_report_menu" name="PMJAY Report" sequence="1" action="action_pmjay_report_view" parent="pmjay_sub_menu"/>
-        <menuitem id="pmjay_health_insurance_search_menu" name="PMJAY Insurance Search" sequence="2" action="action_pmjay_ration_search_view" parent="pmjay_sub_menu"/>
+        <menuitem id="pmjay_report_menu" name="PMJAY Beneficiary Add" sequence="1" action="action_pmjay_report_view" parent="pmjay_sub_menu"/>
+        <menuitem id="pmjay_health_insurance_search_menu" name="PMJAY Beneficiary Search" sequence="2" action="action_pmjay_ration_search_view" parent="pmjay_sub_menu"/>
 
 
         <menuitem id="pmjay_health_insurance_menu" name="PMJAY Insurance" sequence="3" action="action_pmjay_health_insurance_view" parent="pmjay_sub_menu"/>
