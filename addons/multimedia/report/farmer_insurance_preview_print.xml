@@ -396,5 +396,49 @@
                 </t>
             </t>
         </t>
+
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <div class="page">
+						<table>
+							<tr>
+								<td width="100%" style="text-align:center;">
+									<span style="font-weight: bold;font-size:19px;text-align:center;">அலுவலக பயன்பாட்டிற்க்கு மட்டும்</span>
+									<img src="/multimedia/static/src/img/RegistrationForm.png" style="max-height: 600px;" alt="Happy face"/>
+								</td>
+							</tr>
+						</table>
+						<table>
+							<tr>
+								<td width="30%">
+                                    <img t-att-src="'data:image/png;base64,%s' % to_text(o.licence_applicant_image)" style="max-height: 175px; "/>
+								</td>
+								<td width="60%">
+									
+								</td>
+								<td width="10%">
+                                    <span style="font-weight: bold;font-size:26px;text-align:right;">கையப்பம்</span>
+								</td>
+							</tr>
+						</table>
+						<!-- <table>
+							<tr>
+								<td width="20%">
+								</td>
+								<td width="30%">
+
+									<img t-att-src="'data:image/png;base64,%s' % to_text(o.farmer_image)" style="max-height: 175px; "/>
+								</td>
+								<td width="50%">
+									<img src="/multimedia/static/src/img/Applicant_And_Licence_Applicant.png" style="max-height: 240px;" alt="Happy face"/>
+								</td>
+							</tr>
+						</table> -->
+                    </div>
+                </t>
+            </t>
+        </t>
+
     </template>
 </odoo>

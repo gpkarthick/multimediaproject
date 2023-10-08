@@ -188,8 +188,8 @@ class FarmerInsurance(models.Model):
 
     pmfby_status = fields.Selection([('pmfbyPaid', 'PMFBY Paid'),('Paid', 'Paid'), ('Approved', 'Approved'), ('Rejected', 'Rejected'), ('Revert', 'Revert')], string='PMFBY Status')
 
-    farmer_image = fields.Binary(string="Farmer Image", attachment=True)
-    licence_applicant_image = fields.Binary(string="Licence Applicant Image", attachment=True)
+    farmer_image = fields.Binary(string="Bill Farmer Image", attachment=True)
+    licence_applicant_image = fields.Binary(string="Registration Farmer Image", attachment=True)
     allot_name = fields.Char('Allot Name', size=60)
 
     def capture_webcam_image(self):
@@ -239,11 +239,7 @@ class FarmerInsurance(models.Model):
                             ''', (self.form_application_no,))
             get_list = [x[0] for x in self.env.cr.fetchall()]
             if get_list:
-                self.allot_name = get_list[0]
-
-                
-
-
+                self.allot_name = get_list[0]          
 
     @api.model
     def create(self, vals):
