@@ -668,6 +668,10 @@ class DistrictMaster(models.Model):
     subdistrict_ids = fields.One2many('subdistrict.master', 'district_id', "Dub District Records")
     taluk_ids = fields.One2many('taluk.master', 'district_id', "Taluk Records")
 
+    area_calculation = fields.Float(string='Area Base', required=True)
+
+
+
     @api.constrains('name', 'state_id')
     def _district_name_unique(self):
         lst = [x.name.lower().replace(" ", "") for x in

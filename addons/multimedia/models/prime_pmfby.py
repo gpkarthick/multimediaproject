@@ -27,28 +27,29 @@ class PrimePMFBYCalculator(models.Model):
     total_amount = fields.Float(string='Total Amount', required=True)
 
     farmer_birth_year = fields.Integer('Birth Year')
-    farmer_age = fields.Integer('Age', readonly=True, compute='_age_calculation')
+    farmer_age = fields.Integer('Age', readonly=True)
 
     measurement = fields.Selection([('Kuzhi', 'Kuzhi'), ('Maa', 'Maa'), ('Acre', 'Acre'), ('Hectare', 'Hectare')], string='Measurement')
     measurement_area = fields.Float(string='Measurement Area')
     convertion_amount = fields.Float(string='Convertion Amount Ares')
 
-    @api.depends('farmer_birth_year')
-    def _age_calculation(self):
+    @api.onchange('farmer_birth_year')
+    def onchange_age_calculation(self):
         if self.farmer_birth_year:
             get_age = datetime.now().year - self.farmer_birth_year
-            self.farmer_age = get_age
+            self.farmer_age = get_age    
 
-    @api.onchange('measurement_area','measurement')
+    @api.onchange('measurement_area','measurement', 'district_id')
     def onchange_measurement(self):
+        # 2022 value is 12.67
         if self.measurement == 'Kuzhi':
-            self.convertion_amount = self.measurement_area * 0.137 * 12.67
+            self.convertion_amount = self.measurement_area * 0.137 * self.district_id.area_calculation
         if self.measurement == 'Maa':
-            self.convertion_amount = self.measurement_area * 13.66 * 12.67
+            self.convertion_amount = self.measurement_area * 13.66 * self.district_id.area_calculation
         if self.measurement == 'Acre':
-            self.convertion_amount = self.measurement_area * 40.5 * 12.67
+            self.convertion_amount = self.measurement_area * 40.5 * self.district_id.area_calculation
         if self.measurement == 'Hectare':
-            self.convertion_amount = self.measurement_area * 100 * 12.67
+            self.convertion_amount = self.measurement_area * 100 * self.district_id.area_calculation
 
     # Old Calculation
     # @api.onchange('area', 'service_charge')

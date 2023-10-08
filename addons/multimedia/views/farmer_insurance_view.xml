@@ -1272,6 +1272,13 @@
                                 <field name="government_share"/>
                             </group>
                         </group>
+                        <group>
+                            <group>
+                                <field name="area_calculation"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>
                         <notebook>
                             <page string="Sub District">
                                 <field string="Sub District" name="subdistrict_ids">
