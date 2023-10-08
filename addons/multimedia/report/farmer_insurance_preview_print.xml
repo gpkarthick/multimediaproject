@@ -416,11 +416,11 @@
 								<td width="30%">
                                     <center><img t-att-src="'data:image/png;base64,%s' % to_text(o.licence_applicant_image)" style="max-height: 200px; "/></center>
 								</td>
-								<td width="60%">
+								<td width="55%">
 									
 								</td>
-								<td width="10%">
-                                    <span style="font-weight: bold;font-size:26px;text-align:right;">கையொப்பம்</span>
+								<td width="15%">
+                                    <span style="font-weight: bold;font-size:26px;text-align:center;">கையொப்பம்</span>
 								</td>
 							</tr>
 						</table>
