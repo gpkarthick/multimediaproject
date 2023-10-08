@@ -61,6 +61,8 @@
                             <field name="total_amount"/>
 						</group>
 						<group colspan="1" col="1">
+                            <field name="farmer_birth_year"/>
+                            <field name="farmer_age"/>
 						</group>
 					</group>
 

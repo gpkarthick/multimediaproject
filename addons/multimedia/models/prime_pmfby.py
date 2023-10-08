@@ -26,9 +26,18 @@ class PrimePMFBYCalculator(models.Model):
     service_charge = fields.Float(string='Service Amount', default=_default_service_charge)
     total_amount = fields.Float(string='Total Amount', required=True)
 
+    farmer_birth_year = fields.Integer('Birth Year')
+    farmer_age = fields.Integer('Age', readonly=True, compute='_age_calculation')
+
     measurement = fields.Selection([('Kuzhi', 'Kuzhi'), ('Maa', 'Maa'), ('Acre', 'Acre'), ('Hectare', 'Hectare')], string='Measurement')
     measurement_area = fields.Float(string='Measurement Area')
     convertion_amount = fields.Float(string='Convertion Amount Ares')
+
+    @api.depends('farmer_birth_year')
+    def _age_calculation(self):
+        if self.farmer_birth_year:
+            get_age = datetime.now().year - self.farmer_birth_year
+            self.farmer_age = get_age
 
     @api.onchange('measurement_area','measurement')
     def onchange_measurement(self):
