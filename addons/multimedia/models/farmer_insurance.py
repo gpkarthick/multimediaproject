@@ -108,6 +108,8 @@ class FarmerInsurance(models.Model):
                                       store=True, readonly=True, digits=(12,3))
     total_premium_paid = fields.Float(string='Total Premium Paid', digits='Product Price', compute='_amount_all',
                                       store=True, readonly=True)
+    extra_amt_add = fields.Float(string='Extra Amount', digits='Product Price', compute='_amount_all',
+                                      store=True, readonly=True)
     total_sum_insured = fields.Float(string='Total Sum Insured', digits='Product Price', compute='_amount_all',
                                      store=True, readonly=True)
 
@@ -192,6 +194,20 @@ class FarmerInsurance(models.Model):
     licence_applicant_image = fields.Binary(string="Registration Farmer Image", attachment=True)
     allot_name = fields.Char('Allot Name', size=60)
 
+    def get_data(self):
+        if self.form_application_no:
+            self.env.cr.execute('''SELECT id
+                               FROM allot_book_number_line
+                               WHERE %s BETWEEN start_no AND end_no
+                            ''', (self.form_application_no,))
+            get_list = [x[0] for x in self.env.cr.fetchall()]
+            if get_list:
+                model_data = self.env['allot.book.number.line'].search([('id', '=', get_list[0])])
+                if model_data:
+                    for x in model_data:
+                        attachment = x.shop_image  
+                        return attachment
+
     def capture_webcam_image(self):
         # Open the webcam
         import cv2
@@ -245,7 +261,7 @@ class FarmerInsurance(models.Model):
     def create(self, vals):
         if vals.get('name', _('New')) == _('New'):
             vals['name'] = self.env['ir.sequence'].next_by_code('farmer.insurance') or _('New')
-            vals['sheet_no'] = 'PMFBY2022FY1432'+'-'+str(self.env.user.form_seqno)+'-'+str(vals['form_application_no'])
+            vals['sheet_no'] = 'PMFBY2023FY1432'+'-'+str(self.env.user.form_seqno)+'-'+str(vals['form_application_no'])
         if vals.get('auto_serial_no', _('New')) == _('New'):
             vals['auto_serial_no'] = self.env['ir.sequence'].next_by_code('farmer.insurance.serial') or _('New')
         return super(FarmerInsurance, self).create(vals)
@@ -1463,6 +1479,7 @@ class AllotBookNumberLine(models.Model):
     allot_id = fields.Many2one('allot.book.number', string='Allot Number')
     start_no = fields.Integer('Start No')
     end_no = fields.Integer('End No')
+    shop_image = fields.Binary(string="Shop Image", attachment=True)
     shop_name = fields.Char('Shop Name')
 
 
