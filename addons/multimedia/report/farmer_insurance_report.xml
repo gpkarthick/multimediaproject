@@ -195,7 +195,16 @@ No.</th>
 								<td style="text-align:left;width:33%">
 									<span class="mcls_0012">Total Premium Paid :<br/></span>
 <!--									<span class="mcls_009" t-if="o.total_premium_paid">₹ <span t-field="o.total_premium_paid"/><br/></span>-->
-									<span class="mcls_009" t-if="o.total_premium_paid">₹ <span t-esc="'%.2f'% o.total_premium_paid" /><br/></span>
+									<!-- <span class="mcls_009" t-if="o.total_premium_paid">₹ <span t-esc="'%.2f'% o.total_premium_paid" /><br/></span> -->
+									
+									
+									<span class="mcls_009" t-if="o.extra_area*100 > 0.0">									
+										<span class="mcls_009" t-if="o.total_premium_paid">₹ <span t-esc="'%.2f'% (o.total_premium_paid + o.extra_area_amt)" /><br/></span>
+									</span>
+									<span class="mcls_009" t-if="o.extra_area*100 == 0.0">									
+										<span class="mcls_009" t-if="o.total_premium_paid">₹ <span t-esc="'%.2f'% o.total_premium_paid" /><br/></span>
+									</span>
+
 								</td>
 								<td style="text-align:left;width:34%">
 									<span class="mcls_0012">Total Sum Insured:<br/></span>

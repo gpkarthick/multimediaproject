@@ -661,6 +661,14 @@
                             </group>
                         </group>
                         <group>
+                            <group>
+                                <field name="extra_area"/>
+                            </group>
+                            <group>
+                                <field name="extra_area_amt"/>
+                            </group>
+                        </group>
+                        <group>
 
                             <group>
                                 <field name="create_uid"/>

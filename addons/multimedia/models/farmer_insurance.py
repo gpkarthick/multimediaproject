@@ -194,6 +194,10 @@ class FarmerInsurance(models.Model):
     licence_applicant_image = fields.Binary(string="Registration Farmer Image", attachment=True)
     allot_name = fields.Char('Allot Name', size=60)
 
+    extra_area = fields.Float(string='Extra Area(Hectare)')
+    extra_area_amt = fields.Float(string='Extra Area Amount')
+
+
     def get_data(self):
         if self.form_application_no:
             self.env.cr.execute('''SELECT id
@@ -298,6 +302,14 @@ class FarmerInsurance(models.Model):
             self.total_amount = premium_amt + self.service_charge
             tot = premium_amt + self.service_charge
             self.balance_amount = (premium_amt + self.service_charge) - self.received_amount
+
+    @api.onchange('extra_area', 'district_id')
+    def onchange_area_insured(self):
+        base_insured_amt = self.district_id.base_insured_amt
+        print (self.extra_area, base_insured_amt,self.district_id,"aaaaaaaaaaaaa")
+        if self.extra_area * 100 > 0:
+            area_insured = self.extra_area * 100
+            self.extra_area_amt = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
 
     def action_confirm(self):
         self.write({'state': 'confirmed'})
