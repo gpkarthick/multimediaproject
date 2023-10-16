@@ -427,7 +427,8 @@ No.</th>
 											<span>நெல்- II</span>
 										</td>
 										<td class="text-left">
-											<span t-field="l.survey_no"/>/<span t-field="l.khasra_no"/>
+											<!-- <span t-field="l.survey_no"/>/<span t-field="l.khasra_no"/> -->
+											<span t-field="l.survey_no"/>
 										</td>
 										<td class="text-left">
 <!--											<span t-field="l.sum_insured" />-->
