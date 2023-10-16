@@ -107,7 +107,7 @@
         </record>
 
 
-        <menuitem id="multimedia_account_verify_sub_menu" name="IDFC Kuzhu" sequence="2" parent="multimedia.multimedia_main_menu"/>
+        <menuitem id="multimedia_account_verify_sub_menu" name="Bank Statement" sequence="2" parent="multimedia.multimedia_main_menu"/>
         <menuitem id="multimedia_account_verification_menu" name="Account Verification" sequence="1" action="action_account_verification" parent="multimedia_account_verify_sub_menu"/>
 
 

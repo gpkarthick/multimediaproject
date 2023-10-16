@@ -222,14 +222,14 @@ No.</th>
 <!--								</td>-->
 <!--							</tr>-->
 <!--						</table>-->
-						<table class="mcls_002">
+						<!-- <table class="mcls_002">
 							<tr>
 								<td style="text-align:center;width:50%">
 									<span><strong>பிரதான் மந்திரி ஃபசல் பீமா யோஜனா-பயிர் காப்பீடு I PMFBY-பயிர் காப்பீடு</strong><br/></span>
 									<span><strong>CSC விண்ணப்பம்</strong>  <span t-field="o.form_application_no"/></span>
 								</td>
 							</tr>
-						</table>
+						</table> -->
 
 
 						<hr/>
