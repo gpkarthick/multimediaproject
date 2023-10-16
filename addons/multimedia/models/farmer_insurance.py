@@ -387,7 +387,7 @@ class FarmerInsurance(models.Model):
         if self.year_val:
             year_val = self.year_val + ", "
         if self.state2_id:
-            state_name = self.state_id.name + ", "
+            state_name = self.state2_id.name + ", "
         line_details = "No of Crop(s) Insured:" + str(
             len(self.crop_line_ids)) + ' Crop(District, Area, Sum Insured(Rs.)):'
         if self.crop_line_ids:
@@ -402,6 +402,8 @@ class FarmerInsurance(models.Model):
             tai = "Total Area Insured " + str(self.total_area_insured) + " Hect,"
         if self.total_sum_insured:
             tsi = "Total Sum Insured Rs. " + str(self.total_sum_insured) + ', '
+
+        print 
 
         data = "Content: Acknowledgement No:" + receipt_no + "Farmer Name:" + farmer_name + "Season: " + season_name + 'Year: ' + year_val + "State:" + state_name + line_details + tpp + tai + tsi + "Transaction Status: PAID, Application Source:CSC"
 
