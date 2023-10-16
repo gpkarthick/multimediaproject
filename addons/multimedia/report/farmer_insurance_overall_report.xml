@@ -159,7 +159,8 @@ No.</th>
 										</td>
 										<td class="text-left">
 <!--											<span t-field="l.survey_no"/>-->
-											<span t-field="l.survey_no"/>/<span t-field="l.khasra_no"/>
+											<!-- <span t-field="l.survey_no"/>/<span t-field="l.khasra_no"/> -->
+											<span t-field="l.survey_no"/>
 										</td>
 										<td class="text-left">
 											<span t-esc="'%.2f'% l.sum_insured" />
