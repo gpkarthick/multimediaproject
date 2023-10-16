@@ -22,7 +22,7 @@
 								</td>
 							</tr>
 						</table> -->
-						
+
 						<hr/>
 
 						<table>
@@ -45,7 +45,7 @@
 								<td style="text-align:left;width:50%">
 <!--									<span t-if="o.name"><strong>Reciept No: <span t-field="o.name"/></strong><br/></span>-->
 									<span t-if="not o.original_receipt_no"><strong>Reciept No: <span t-field="o.name"/></strong><br/></span>
-									<span t-if="o.original_receipt_no"><strong>Reciept No: <span t-field="o.original_receipt_no"/></strong><br/></span>
+									<span t-if="o.original_receipt_no"><strong>Reciept No: <span t-esc="o.original_receipt_no[:-2]"/></strong><br/></span>
 								</td>
 								<td style="text-align:right;width:50%">
 									<span><strong>Application Status : PAID</strong></span>

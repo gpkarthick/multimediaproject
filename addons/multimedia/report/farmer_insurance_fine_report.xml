@@ -248,7 +248,7 @@ No.</th>
 							<tr>
 								<td style="text-align:left;width:50%">
 									<span t-if="not o.original_receipt_no"><strong>ரசீது எண்: <span t-field="o.name"/></strong><br/></span>
-									<span t-if="o.original_receipt_no"><strong>ரசீது எண்: <span t-field="o.original_receipt_no"/></strong><br/></span>
+									<span t-if="o.original_receipt_no"><strong>ரசீது எண்: <span t-esc="o.original_receipt_no[:-2]"/></strong><br/></span>
 								</td>
 								<td style="text-align:right;width:50%">
 									<span><strong>விண்ணப்ப நிலை : செலுத்தப்பட்டது</strong></span>
