@@ -137,7 +137,7 @@ No.</th>
 															(₹)</th>
 										<th style="width:11%">Area Insured
 (Hect./Plants)</th>
-										<th style="width:22%" class="text-right">Gov. <br/> Share (₹)</th>
+										<th style="width:22%" class="text-center">Gov. <br/> Share (₹)</th>
 										<!-- <th style="width:11%;border-right-color: #425364;border-style: solid;border-width: thin;border-left: none;border-right: none;">Farmer<br/> Share <br/> (₹)</th> -->
 									</tr>
 								</thead>
@@ -167,7 +167,7 @@ No.</th>
 											<span t-esc="'%.2f'% l.area_insured" />
 <!--											<span t-field="l.area_insured" />-->
 										</td>
-										<td class="text-right">
+										<td class="text-center">
 											<span t-esc="'%.2f'% l.gov_share" />
 <!--											<span t-field="l.gov_share" />-->
 										</td>
