@@ -99,22 +99,35 @@
                                 <field name="balance_amount" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
-                        <group invisible="1">
+                        <group >
                             <group>
-                                <field name="village_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <!-- <field name="village_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="firka_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                                 <field name="block_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
                                 <field name="subdistrict_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                                 <field name="district_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
-                                <field name="state2_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                                <field name="state2_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/> -->
+                                 <field name="village_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"
+                                       options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                       context="{'tree_view_ref': 'multimedia.view_village_master_tree_ref'}"/>
+                                <field name="firka_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                       context="{'tree_view_ref': 'multimedia.view_firka_master_ref_tree'}" widget="selection"/>
+                                <field name="block_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                        context="{'tree_view_ref': 'multimedia.view_block_master_ref_tree'}"/>
+                                <field name="subdistrict_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                        context="{'tree_view_ref': 'multimedia.view_subdistrict_master_ref_tree'}"/>
+                                <field name="district_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                        context="{'tree_view_ref': 'multimedia.view_district_master_ref_tree'}"/>
+                                <field name="state2_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
+                                        context="{'tree_view_ref': 'multimedia.view_state_master_ref_tree'}"/>
                             </group>
                             <group>
-                                <field name="village_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                                <!-- <field name="village_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                                 <field name="firka_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
                                 <field name="block_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
                                 <field name="subdistrict_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
                                 <field name="district_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
-                                <field name="state_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
+                                <field name="state_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/> -->
                             </group>
                         </group>
                     </sheet>
@@ -459,6 +472,8 @@
                         <button name="insurance_overall_print" string="1) Office Bill Copy" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                         <button name="insurance_fine_print" string="2) Customer Bill Copy" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                         <!-- <button name="insurance_preview" string="3) Preview" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft'))]}" groups="multimedia.multimedia_insurance_access"/> -->
+
+                        <button name="load_pdf_data" string="Load PDF Data" type="object" class="oe_highlight"/>
                         
                         <button name="insurance_bill_print" string="5) English Bill" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                         <button name="insurance_tamil_bill_print" string="6) Tamil Bill" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
