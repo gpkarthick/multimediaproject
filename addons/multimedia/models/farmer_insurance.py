@@ -6,11 +6,18 @@ import base64
 import io
 from googletrans import Translator, constants
 from pprint import pprint
-import pdfplumber
+# import pdfplumber
 import base64
-import tabula
-import pandas as pd
-import numpy as np
+# import tabula
+# import pandas as pd
+# import numpy as np
+# import pdfminer
+# from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+# from pdfminer.converter import TextConverter
+# from pdfminer.layout import LAParams
+# from pdfminer.pdfpage import PDFPage
+# import io
+# import PyPDF2
 
 class FarmerInsurance(models.Model):
     _name = "farmer.insurance"
@@ -206,16 +213,6 @@ class FarmerInsurance(models.Model):
 
     @api.onchange('upload_pdf')
     def onchange_pdf_data(self):
-
-        import pdfminer
-        from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
-        from pdfminer.converter import TextConverter
-        from pdfminer.layout import LAParams
-        from pdfminer.pdfpage import PDFPage
-        import io
-        import PyPDF2
-
-
         pdf_dict = {}
         li = []
 
