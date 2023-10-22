@@ -11,11 +11,11 @@ import base64
 # import tabula
 # import pandas as pd
 # import numpy as np
-# import pdfminer
-# from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
-# from pdfminer.converter import TextConverter
-# from pdfminer.layout import LAParams
-# from pdfminer.pdfpage import PDFPage
+import pdfminer
+from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+from pdfminer.converter import TextConverter
+from pdfminer.layout import LAParams
+from pdfminer.pdfpage import PDFPage
 # import io
 # import PyPDF2
 
