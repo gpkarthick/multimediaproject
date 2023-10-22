@@ -6,6 +6,11 @@ import base64
 import io
 from googletrans import Translator, constants
 from pprint import pprint
+import pdfplumber
+import base64
+import tabula
+import pandas as pd
+import numpy as np
 
 class FarmerInsurance(models.Model):
     _name = "farmer.insurance"
@@ -197,6 +202,187 @@ class FarmerInsurance(models.Model):
     extra_area = fields.Float(string='Extra Area(Hectare)')
     extra_area_amt = fields.Float(string='Extra Area Amount')
 
+    upload_pdf = fields.Binary(string="Upload PDF", attachment=True)
+
+    @api.onchange('upload_pdf')
+    def onchange_pdf_data(self):
+
+        import pdfminer
+        from pdfminer.pdfinterp import PDFResourceManager, PDFPageInterpreter
+        from pdfminer.converter import TextConverter
+        from pdfminer.layout import LAParams
+        from pdfminer.pdfpage import PDFPage
+        import io
+        import PyPDF2
+
+
+        pdf_dict = {}
+        li = []
+
+        pdf_data = base64.b64decode(self.upload_pdf)
+        pdf_stream = io.BytesIO(pdf_data)
+        # Initialize PDFMiner objects for text extraction
+        resource_manager = PDFResourceManager()
+        fake_file_handle = io.StringIO()
+        converter = TextConverter(resource_manager, fake_file_handle, laparams=LAParams())
+        page_interpreter = PDFPageInterpreter(resource_manager, converter)
+
+        # Process the PDF pages and extract text
+        for page in PDFPage.get_pages(pdf_stream, check_extractable=True):
+            page_interpreter.process_page(page)
+
+        text = fake_file_handle.getvalue()
+        lines = text.split('\n')
+        li = []
+
+        for line in lines:
+            li.append(line)
+
+        fake_file_handle.close()
+
+        # with open('/home/karthick/Downloads/01Pre.pdf', 'rb') as pdf_file:
+        #     resource_manager = PDFResourceManager()
+        #     fake_file_handle = io.StringIO()
+        #     converter = TextConverter(resource_manager, fake_file_handle, laparams=LAParams())
+        #     page_interpreter = PDFPageInterpreter(resource_manager, converter)
+            
+        #     for page in PDFPage.get_pages(pdf_file, check_extractable=True):
+        #         page_interpreter.process_page(page)
+
+        #     text = fake_file_handle.getvalue()   
+        #     lines = text.split('\n')
+        #     for line in lines:
+        #         li.append(line)    
+        # fake_file_handle.close()
+
+        if li:
+            li = [item for item in li if item.strip()]
+            index = li.index("Bank Name")
+            if index:
+                next_value = li[index+1]
+                pdf_dict.update({'Bank Name':li[index+1]})
+                # print ({'Bank Name':li[index+1]})
+
+            ifsc_index = li.index("IFSC")
+            print(ifsc_index,li[13])
+            if ifsc_index:
+                ifsc_value = li[ifsc_index+1]
+                if ifsc_value:
+                    self.ifsc_code = li[ifsc_index+1]
+                pdf_dict.update({'IFSC':li[ifsc_index+1]})
+                # print ({'IFSC':li[ifsc_index+1]})
+
+            acctype_index = li.index("Account Type")
+            if acctype_index:
+                acctype_value = li[acctype_index+1]
+                pdf_dict.update({'Account Type':li[acctype_index+1]})
+
+            bankloan_index = li.index("Bank Loan A/C No.")
+            if bankloan_index:
+                bankloan_index_value = li[bankloan_index+1]
+                if bankloan_index_value:
+                    self.bank_account_no = bankloan_index_value
+                    pdf_dict.update({'Bank No':li[bankloan_index+1]})
+                    print ({'IFSC':li[bankloan_index+1]})
+
+            passbookname_index = li.index("Name as per passBook")
+            if passbookname_index:
+                passbookname_index_value = li[passbookname_index+1]
+                pdf_dict.update({'Passbook Name':li[passbookname_index+1]})
+                # print ({'IFSC':li[passbookname_index_value+1]})
+
+            aadharname_index = li.index("Name as per aadhar")
+            if aadharname_index:
+                aadharname_index_value = li[aadharname_index+1]
+                if aadharname_index_value:
+                    self.aadhar_name = aadharname_index_value
+                    pdf_dict.update({'Aadhar Name':li[aadharname_index+1]})
+
+            aadharno_index = li.index("Aadhar No./ EID No./Other")
+            if aadharno_index:
+                aadharno_index_value = li[aadharno_index+1]
+                if aadharno_index_value:
+                    self.aadhar_no = aadharno_index_value
+                    pdf_dict.update({'Aadhar No':li[aadharno_index+1]})
+                
+            relationtype_index = li.index("Relation Type")
+            if relationtype_index:
+                relationtype_index_value = li[relationtype_index+1]
+                if relationtype_index_value:
+                    if relationtype_index_value.lower() == 'wife of':
+                        self.relative_type = 'wife_of'
+                    if relationtype_index_value.lower() == 'daughter of':
+                        self.relative_type = 'daughter_of'
+                    if relationtype_index_value.lower() == 'son of':
+                        self.relative_type = 'son_of'
+                pdf_dict.update({'Relation Type':li[relationtype_index+1]})
+
+            age_index = li.index("Age")
+            if age_index:
+                age_index_value = li[age_index+1]
+                if age_index_value:
+                    current_year = datetime.now().year
+                    birth_year = current_year - int(age_index_value)
+                    self.farmer_birth_year = birth_year
+                pdf_dict.update({'Age':li[age_index+1]})
+
+            relativename_index = li.index("Relative Name")
+            if relativename_index:
+                relativename_index_value = li[relativename_index+1]
+                if relativename_index_value:
+                    self.relative_name = relativename_index_value
+                pdf_dict.update({'Relative Name':li[relativename_index+1]})
+
+            mobileno_index = li.index("Mobile No.")
+            if mobileno_index:
+                mobileno_index_value = li[mobileno_index+1]
+                if mobileno_index_value:
+                    self.mobile_no = li[mobileno_index+1]
+                pdf_dict.update({'Mobile No':li[mobileno_index+1]})
+
+            gender_index = li.index("Gender")
+            if gender_index:
+                gender_index_value = li[gender_index+1]
+                if gender_index_value == 'M':
+                    self.gender_type = 'Male'
+                if gender_index_value == 'F':
+                    self.gender_type = 'Female'
+                pdf_dict.update({'Gender':li[gender_index+1]})
+                
+            caste_index = li.index("Caste Category")
+            if caste_index:
+                caste_index_value = li[caste_index+1]
+                if caste_index_value:
+                    if caste_index_value == 'SC':
+                        self.community_type = 'SC'
+                    if caste_index_value == 'ST':
+                        self.community_type = 'ST'
+                    if caste_index_value == 'OBC':
+                        self.community_type = 'OBC'
+                    if caste_index_value == 'GENERAL':
+                        self.community_type = 'GENERAL'
+                pdf_dict.update({'Caste Category':li[caste_index+1]})
+
+            farmer_categ_index = li.index("Farmer Category")
+            if farmer_categ_index:
+                farmer_categ_index_value = li[farmer_categ_index+1]
+                if farmer_categ_index_value:
+                    if farmer_categ_index_value == 'owner':
+                        self.farmer_category_type = 'OWNER'
+                    if farmer_categ_index_value == 'tenant':
+                        self.farmer_category_type = 'TENANT'
+                    if farmer_categ_index_value == 'scarecropper':
+                        self.farmer_category_type = 'SCARECROPPER'
+                pdf_dict.update({'Farmer Category':li[farmer_categ_index+1]})
+
+            farmer_name_index = li.index("Name as per passBook")
+            if farmer_name_index:
+                farmer_name_index_value = li[farmer_name_index+1]
+                if farmer_name_index_value:                    
+                    self.farmer_name = farmer_name_index_value
+
+
+        
 
     def get_data(self):
         if self.form_application_no:
@@ -403,7 +589,6 @@ class FarmerInsurance(models.Model):
         if self.total_sum_insured:
             tsi = "Total Sum Insured Rs. " + str(self.total_sum_insured) + ', '
 
-        print 
 
         data = "Content: Acknowledgement No:" + receipt_no + "Farmer Name:" + farmer_name + "Season: " + season_name + 'Year: ' + year_val + "State:" + state_name + line_details + tpp + tai + tsi + "Transaction Status: PAID, Application Source:CSC"
 

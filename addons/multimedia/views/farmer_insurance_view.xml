@@ -7,7 +7,8 @@
             <field name="model">farmer.insurance</field>
             <field name="arch" type="xml">
                 <tree string="Farmer Enrollment Details">
-                    <field name="farmer_name" string="Name as Per Passbook"/>
+                <field name="form_application_no" string="Form No"/>     
+                    <field name="farmer_name" string="Name"/>                                   
                     <field name="mobile_no"/>
                     <field name="village_id" />
                     <field name="area" sum="area"/>
@@ -20,7 +21,7 @@
                     <field name="distributor_balance_amount" sum="distributor_balance_amount" groups="multimedia.multimedia_insurance_access"/>
                     <field name="create_uid" />
                     <field name="create_date" />
-                    <field name="sheet_no" />
+                    <field name="sheet_no" invisible="1"/>
                 </tree>
             </field>
         </record>
@@ -33,6 +34,7 @@
                     <header>
                         <button name="insurance_overall_print" string="Office Copy" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
                         <button name="insurance_fine_print" string="Customer Copy" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+                        <button name="insurance_preview_print" string="Farmer Registration Form" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
                     </header>
                     <sheet>
                         <div style="color:#873260;font-size:12px;text-align:center">
@@ -107,19 +109,7 @@
                                 <field name="subdistrict_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                                 <field name="district_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
                                 <field name="state2_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/> -->
-                                 <field name="village_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"
-                                       options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
-                                       context="{'tree_view_ref': 'multimedia.view_village_master_tree_ref'}"/>
-                                <field name="firka_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
-                                       context="{'tree_view_ref': 'multimedia.view_firka_master_ref_tree'}" widget="selection"/>
-                                <field name="block_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
-                                        context="{'tree_view_ref': 'multimedia.view_block_master_ref_tree'}"/>
-                                <field name="subdistrict_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
-                                        context="{'tree_view_ref': 'multimedia.view_subdistrict_master_ref_tree'}"/>
-                                <field name="district_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
-                                        context="{'tree_view_ref': 'multimedia.view_district_master_ref_tree'}"/>
-                                <field name="state2_id" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"
-                                        context="{'tree_view_ref': 'multimedia.view_state_master_ref_tree'}"/>
+                                
                             </group>
                             <group>
                                 <!-- <field name="village_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/>
@@ -233,6 +223,14 @@
                             </group>
                             <group>
                                 <field name="form_application_no" readonly="1"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="upload_pdf"/>
+                            </group>
+                            <group>
+                            
                             </group>
                         </group>
                         <group>
@@ -445,6 +443,7 @@
                                 <field name="total_premium_paid"/>
                             </group>
                         </group>
+                        
 <!--                        <group>-->
 <!--                            <group>-->
 <!--                                <field name="farmer_image"/>-->
@@ -523,6 +522,14 @@
                                         </b>
                                     </h1>
                                 </div>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <field name="upload_pdf"/>
+                            </group>
+                            <group>
+                              
                             </group>
                         </group>
                         <group string="General Info">
@@ -738,6 +745,7 @@
                                 <field name="licence_applicant_image"/>
                             </group>
                         </group>
+                        
                     </sheet>
                 </form>
             </field>
