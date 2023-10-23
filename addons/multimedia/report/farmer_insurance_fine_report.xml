@@ -221,7 +221,9 @@ No.</th>
 							<tr>
 								<td width="100%" style="text-align:center;">
 									<span style="font-weight: bold;font-size:19px;text-align:center;">அலுவலக பயன்பாட்டிற்க்கு மட்டும்</span>
-									<img src="/multimedia/static/src/img/Nibanthanai_Suya_Uruthimozhi.png" style="max-height: 1100px;" alt="Happy face"/>
+									<!-- <img src="/multimedia/static/src/img/Nibanthanai_Suya_Uruthimozhi.png" style="max-height: 1100px;" alt="Happy face"/> -->
+									<img t-att-src="'data:image/png;base64,%s' % to_text(o.get_data())" style="max-height: 1100px;" alt="Happy face"/>
+
 								</td>
 							</tr>
 						</table>
