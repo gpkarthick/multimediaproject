@@ -32,8 +32,8 @@
             <field name="arch" type="xml">
                 <form string="Farmer Details Form">
                     <header>
-                        <button name="insurance_overall_print" string="Office Copy" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
-                        <button name="insurance_fine_print" string="Customer Copy" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+                        <!-- <button name="insurance_overall_print" string="Office Copy" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}" groups="multimedia.multimedia_farmer_insurance_user_access"/> -->
+                        <button name="insurance_fine_print" string="Bill Copy" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
                         <button name="insurance_preview_print" string="Farmer Registration Form" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
                     </header>
                     <sheet>
@@ -2352,7 +2352,6 @@
 
         <menuitem id="multimedia_insurance_sub_menu" name="PMFBY Insurance" sequence="3"
                   parent="multimedia.multimedia_main_menu"/>
-
 
         <menuitem id="multimedia_farmer_details_menu" name="Farmer Entry Form" sequence="1" action="multimedia.action_farmer_details_form_insurance_view" parent="multimedia.multimedia_insurance_sub_menu"/>
         <menuitem id="multimedia_farmer_insurance_quick_entry_menu" name="Farmer Pre Form English" sequence="2"
