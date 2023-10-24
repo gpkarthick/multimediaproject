@@ -33,8 +33,8 @@
                 <form string="Farmer Details Form">
                     <header>
                         <!-- <button name="insurance_overall_print" string="Office Copy" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}" groups="multimedia.multimedia_farmer_insurance_user_access"/> -->
-                        <button name="insurance_fine_print" string="Bill Copy" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
-                        <button name="insurance_preview_print" string="Farmer Registration Form" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+                        <button name="insurance_fine_print" string="Bill Copy" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}" />
+                        <button name="insurance_preview_print" string="Farmer Registration Form" type="object" class="oe_highlight" attrs="{'invisible': [('original_receipt_no', '=', False)]}"/>
                     </header>
                     <sheet>
                         <div style="color:#873260;font-size:12px;text-align:center">
