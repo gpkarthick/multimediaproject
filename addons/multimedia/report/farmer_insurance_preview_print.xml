@@ -230,7 +230,26 @@
                                     </span>                                    
                                 </td>
                             </tr> -->
-							<tr>
+
+                            <t t-if="o.aadhar_no">
+
+                            <!-- <t t-if="o.aadhar_no"> -->
+                                <tr>
+                                    <td style="width:55%;">
+                                        <span class="company-details-span">
+                                            <strong>Aadhar No( ஆதார் நம்பர் )</strong>
+                                        </span>                                    
+                                    </td>                                
+                                    <td style="width:45%;">
+                                        <span class="company-details-span2" t-if="o.aadhar_no">  
+                                            <span t-esc="o.aadhar_no"/>
+                                        </span>                                    
+                                    </td>
+                                </tr>
+                            </t>
+
+
+							<!-- <tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">
                                         <strong>FARMER TYPE (விவசாயி வகை)</strong>
@@ -241,7 +260,7 @@
                                         <span t-esc="o.farmer_type.capitalize()"/> ( <span t-esc="o.farmer_tamil_type"/> )
                                     </span>                                    
                                 </td>
-                            </tr>
+                            </tr> -->
 							<tr>
                                 <td style="width:55%;">
                                     <span class="company-details-span">

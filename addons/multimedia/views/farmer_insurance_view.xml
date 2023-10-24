@@ -7,7 +7,8 @@
             <field name="model">farmer.insurance</field>
             <field name="arch" type="xml">
                 <tree string="Farmer Enrollment Details">
-                <field name="form_application_no" string="Form No"/>     
+                    <field name="form_application_no" string="Form No"/>
+                    <field name="allot_name"/>     
                     <field name="farmer_name" string="Name"/>                                   
                     <field name="mobile_no"/>
                     <field name="village_id" />
