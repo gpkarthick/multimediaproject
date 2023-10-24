@@ -48,6 +48,7 @@
             name="multimedia.farmer_insurance_report_multimedia"
             print_report_name="'%s-%s' % (object.form_application_no,object.farmer_name)"
             groups="multimedia.multimedia_insurance_access"
+            menu="False"
         />
 
         <report
@@ -59,6 +60,7 @@
             name="multimedia.farmer_insurance_all_report_multimedia"
             print_report_name="'%s-%s' % (object.form_application_no,object.farmer_name)"
             groups="multimedia.multimedia_insurance_access"
+            menu="False"
         />
 
         <report
@@ -70,6 +72,7 @@
             name="multimedia.farmer_insurance_fine_report_multimedia"
             print_report_name="'%s-%s' % (object.form_application_no,object.farmer_name)"
             groups="multimedia.multimedia_insurance_access"
+            menu="False"
         />
 
         <report
@@ -81,6 +84,7 @@
             name="multimedia.farmer_report_insurance_preview_print"
             print_report_name="'%s-%s' % (object.form_application_no,object.farmer_name)"
             groups="multimedia.multimedia_insurance_access"
+            menu="False"
         />
 
         <report
