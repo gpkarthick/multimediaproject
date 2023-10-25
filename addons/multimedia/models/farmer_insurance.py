@@ -211,6 +211,8 @@ class FarmerInsurance(models.Model):
 
     upload_pdf = fields.Binary(string="Upload PDF", attachment=True)
 
+    instructions = fields.Text(string='Instructions')
+
     @api.onchange('upload_pdf')
     def onchange_pdf_data(self):
         pdf_dict = {}

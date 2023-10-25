@@ -102,6 +102,11 @@
                                 <field name="balance_amount" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
+                        <group string="Instructions Details">
+                            <field name="instructions" attrs="{'readonly': [('uid', '!=', 2)]}"/>   
+
+                        </group>
+
                         <group >
                             <group>
                                 <!-- <field name="village_id" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
@@ -120,6 +125,7 @@
                                 <field name="district_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"  groups="multimedia.multimedia_insurance_access"/>
                                 <field name="state_tamil_name" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_insurance_access"/> -->
                             </group>
+                            
                         </group>
                     </sheet>
                 </form>
