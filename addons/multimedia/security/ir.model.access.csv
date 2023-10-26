@@ -82,7 +82,7 @@ access_village_search_access,access.village.search.access,model_village_search,m
 access_allot_book_number,access.allot.book.number,model_allot_book_number,multimedia.multimedia_insurance_access,1,1,1,0
 access_allot_book_number_line,access.allot.book.number.line,model_allot_book_number_line,multimedia.multimedia_insurance_access,1,1,1,1
 ,,,,,,,
-access_media_farmer_insurance_user_access,access.media.farmer.insurance.user_access,model_farmer_insurance,multimedia.multimedia_farmer_insurance_user_access,1,1,1,1
+access_media_farmer_insurance_user_access,access.media.farmer.insurance.user_access,model_farmer_insurance,multimedia.multimedia_farmer_insurance_user_access,1,1,1,0
 access_pmfby_calculator_insurance_user_access,access.pmfby.calculator.insurance.user_access,model_prime_pmfby_calculator,multimedia.multimedia_farmer_insurance_user_access,1,1,1,0
 access_media_crop_data_line_user_access,access.media.crop.data.line.user_access,model_crop_data_line,multimedia.multimedia_farmer_insurance_user_access,1,1,1,1
 access_media_state_master_user_access,access.media.state.master.user_access,model_state_master,multimedia.multimedia_farmer_insurance_user_access,1,1,1,0

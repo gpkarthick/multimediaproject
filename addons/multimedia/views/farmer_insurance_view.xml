@@ -47,14 +47,15 @@
                         </div>
                         <group string="Office Details">
                             <group>
-                                <field name="form_serial_no" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <!-- <field name="form_serial_no" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/> -->
                                 <field name="form_application_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="allot_name" invisible="1"/>
                             </group>
                             <group>
                                 <field name="state" invisible="1"/>
                                 <field name="original_receipt_no" invisible="1"/>
-                                <field name="sheet_no" readonly="1"/>
+                                <field name="community_type" readonly="1"/>
+                                <!-- <field name="sheet_no" readonly="1"/> -->
                                 <field name="mobile_no" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
@@ -95,6 +96,7 @@
                                 <field name="area" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="premium_amount" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="service_charge" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="account_name_change_service_amt" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="total_amount" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
