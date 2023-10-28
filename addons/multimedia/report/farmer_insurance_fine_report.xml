@@ -96,7 +96,7 @@
 								<thead>
 									<tr>
 										<th style="width:13%;border-left-color: #425364;border-style: solid;border-width: thin;border-right: none;">District</th>
-										<th style="width:13%">Village</th>
+										<th style="width:13%">Villagedfdf</th>
 										<th style="width:15.0%">IU Level</th>
 										<th style="width:9.0%">Crop</th>
 										<th style="width:11.0%">Survey
@@ -112,8 +112,10 @@ No.</th>
 								</thead>
 								<tbody>
 									<tr t-foreach="o.crop_line_ids" t-as="l">
-										<td class="text-left" style="border-left-color: #425364;border-style: solid;border-width: thin;border-right: none;">
-											<span t-field="l.crop_id.district_id.name"/>
+										<td class="text-left" style="border-left-color: #425364; border-style: solid; border-width: thin; border-right: none; line-height: 20px;">
+											<span t-raw="l.crop_id.district_id.name.split('-') and l.crop_id.district_id.name.split('-')[0]" />
+											<br/>
+											<span t-raw="l.crop_id.district_id.name.split('-') and l.crop_id.district_id.name.split('-')[1]" />
 										</td>
 										<td class="text-left">
 											<span t-field="l.crop_id.village_id.name"/>
@@ -121,8 +123,11 @@ No.</th>
 										<td class="text-left">
 											<span t-field="l.crop_id.village_id.name"/>(Village)
 										</td>
-										<td class="text-left">
-											<span t-field="l.crop_data"/>
+										<td class="text-left" style="line-height: 20px;">
+											<span t-raw="l.crop_data.split('-') and l.crop_data.split('-')[0]" />
+											<br/>
+											<span  t-raw="'- ' + (l.crop_data.split('-') and l.crop_data.split('-')[1])" />
+
 										</td>
 										<td class="text-left">
 <!--											<span t-field="l.survey_no"/>-->
