@@ -213,6 +213,7 @@ class FarmerInsurance(models.Model):
 
     instructions = fields.Text(string='Instructions')
     account_name_change_service_amt = fields.Float(string='Account Name Change Service Amount')
+    account_no_verify_amt = fields.Float(string='Account No Verify Amount')
 
     @api.onchange('upload_pdf')
     def onchange_pdf_data(self):
@@ -474,7 +475,7 @@ class FarmerInsurance(models.Model):
         if self.distributor_received_amount > self.distributor_total_amount:
             raise ValidationError(_('You enter the Received amount greater then total amount, please check it'))
 
-    @api.onchange('area','received_amount', 'service_charge', 'district_id', 'account_name_change_service_amt')
+    @api.onchange('area','received_amount', 'service_charge', 'district_id', 'account_name_change_service_amt','account_no_verify_amt')
     def onchange_area_insured(self):
         # ~ base_insured_amt = 803.99000
         # base_insured_amt = 844.74000
@@ -485,9 +486,9 @@ class FarmerInsurance(models.Model):
             premium_amt = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
             self.premium_amount = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
             # self.service_charge = service_charge
-            self.total_amount = premium_amt + self.service_charge + self.account_name_change_service_amt
+            self.total_amount = premium_amt + self.service_charge + self.account_name_change_service_amt + self.account_no_verify_amt
             tot = premium_amt + self.service_charge
-            self.balance_amount = (premium_amt + self.service_charge+self.account_name_change_service_amt) - self.received_amount
+            self.balance_amount = (premium_amt + self.service_charge+self.account_name_change_service_amt + self.account_no_verify_amt) - self.received_amount
 
     @api.onchange('extra_area', 'district_id')
     def onchange_extra_area_insured(self):

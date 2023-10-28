@@ -50,13 +50,15 @@
                                 <!-- <field name="form_serial_no" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/> -->
                                 <field name="form_application_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="allot_name" invisible="1"/>
+                                <field name="mobile_no" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
                                 <field name="state" invisible="1"/>
                                 <field name="original_receipt_no" invisible="1"/>
-                                <field name="community_type"/>
+                                <field name="community_type" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="aadhar_no" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <!-- <field name="sheet_no" readonly="1"/> -->
-                                <field name="mobile_no" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                
                             </group>
                         </group>
                         <group string="Farmer Details" invisible="1">
@@ -97,6 +99,7 @@
                                 <field name="premium_amount" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="service_charge" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="account_name_change_service_amt" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="account_no_verify_amt" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="total_amount" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
@@ -2266,12 +2269,12 @@
                     <sheet>
                         <group>
                             <group>
-                                <field name="village_id"/>
-                                <field name="firka_id"/>
-                                <field name="block_id"/>
-                                <field name="subdistrict_id"/>
-                                <field name="district_id"/>                                
-                                <field name="state_id"/>                                
+                                <field name="village_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
+                                <field name="firka_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
+                                <field name="block_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
+                                <field name="subdistrict_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
+                                <field name="district_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>                                
+                                <field name="state_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>                                
                             </group>
                             <group>                                
                             </group>
@@ -2297,10 +2300,6 @@
                 </p>
             </field>
         </record>
-
-
-
-        
 
         <record id="view_allot_book_number_tree" model="ir.ui.view">
             <field name="name">allot.book.number.tree</field>
