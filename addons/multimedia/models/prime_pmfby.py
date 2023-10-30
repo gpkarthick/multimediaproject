@@ -33,6 +33,24 @@ class PrimePMFBYCalculator(models.Model):
     measurement_area = fields.Float(string='Measurement Area')
     convertion_amount = fields.Float(string='Convertion Amount Ares')
 
+    village_id = fields.Many2one('village.master', string='Village')
+    firka_id = fields.Many2one('firka.master', string='Firka')
+    block_id = fields.Many2one('block.master', string='Block')
+    subdistrict_id = fields.Many2one('subdistrict.master', string='Sub District')
+    state2_id = fields.Many2one('state.master', string='State')
+
+    @api.onchange('village_id')
+    def onchange_village_id(self):
+        if not self.village_id:
+            self.firka_id = False
+            self.block_id = False
+            self.subdistrict_id = False
+
+        if self.village_id:
+            self.firka_id = self.village_id.firka_id.id
+            self.block_id = self.village_id.block_id.id
+            self.subdistrict_id = self.village_id.subdistrict_id.id
+
     @api.onchange('farmer_birth_year')
     def onchange_age_calculation(self):
         if self.farmer_birth_year:

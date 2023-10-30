@@ -412,7 +412,7 @@
 <!--                                <field name="write_date"/>-->
 <!--                            </group>-->
 <!--                            <group>-->
-<!--                                <field name="qr_code" widget="image" class="oe_avatar" nolabel="1"/>-->
+                               <field name="qr_code" widget="image" class="oe_avatar" nolabel="1" />
 <!--                            </group>-->
 <!--                        </group>-->
                         <notebook>
@@ -2343,7 +2343,6 @@
             </field>
         </record>
 
-
         <record id="action_allot_book_number" model="ir.actions.act_window">
             <field name="name">Allot Numbers</field>
             <field name="type">ir.actions.act_window</field>
@@ -2361,7 +2360,6 @@
             </field>
         </record>
 
-
         <menuitem id="multimedia_insurance_sub_menu" name="PMFBY Insurance" sequence="3"
                   parent="multimedia.multimedia_main_menu"/>
 
@@ -2371,7 +2369,7 @@
         <menuitem id="multimedia_farmer_pre_form_tamil_menu" name="Farmer Pre Form Tamil" sequence="3"
                   action="action_farmer_insurance_pre_form_tamil_view" parent="multimedia.multimedia_insurance_sub_menu" groups="multimedia.multimedia_insurance_access"/>
         <menuitem id="multimedia_farmer_insurance_menu" name="Farmer Main Form" sequence="4"
-                  action="action_farmer_insurance_view" parent="multimedia.multimedia_insurance_sub_menu" groups="multimedia.multimedia_insurance_access"/>
+                  action="action_farmer_insurance_view" parent="multimedia.multimedia_insurance_sub_menu" groups="multimedia.multimedia_insurance_admin_access"/>
 
         <menuitem id="multimedia_village_info_sub_menu" name="PMFBY Village Info" sequence="5"
                   parent="multimedia.multimedia_insurance_access"/>

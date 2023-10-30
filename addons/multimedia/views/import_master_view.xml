@@ -26,11 +26,19 @@
                                 <field name="name"/>
                             </group>
                             <group>
-                                <button name="action_import" class="btn btn-danger" string="Imports" type="object"/>
-                                <button name="action_farmer_addr_import" class="btn btn-danger" string="Farmer Addr Imports" type="object"/>
-                                <button name="action_import_land_details" class="btn btn-danger" string="Imports Land Details" type="object"/>
-                                <button name="action_import_pmjay" class="btn btn-danger" string="Pmjay Data Upload" type="object"/>
-                                <button name="action_import_pmjay_village" class="btn btn-danger" string="Pmjay Village import" type="object"/>
+                                <button name="action_import" class="btn btn-danger" string="Imports" type="object" attrs="{'invisible':[('name','=','Excel Farmer Crop Details Import')]}"/>
+                                <button name="action_farmer_addr_import" class="btn btn-danger" string="Farmer Addr Imports" type="object" attrs="{'invisible':[('name','=','Excel Farmer Crop Details Import')]}"/>
+                                <button name="action_import_land_details" class="btn btn-danger" string="Imports Land Details" type="object" attrs="{'invisible':[('name','=','Excel Farmer Crop Details Import')]}"/>
+                                <button name="action_import_pmjay" class="btn btn-danger" string="Pmjay Data Upload" type="object" attrs="{'invisible':[('name','=','Excel Farmer Crop Details Import')]}"/>
+                                <button name="action_import_pmjay_village" class="btn btn-danger" string="Pmjay Village import" type="object" attrs="{'invisible':[('name','=','Excel Farmer Crop Details Import')]}"/>
+                            </group>
+                        </group>
+                        <group>
+                            <group>
+                                <button name="action_excel_farmer_crop_data_import" class="btn btn-danger" string="Excel Farmer Crop Details Import"  type="object"/>
+                            </group>
+                            <group>
+                                
                             </group>
                         </group>
                     </sheet>

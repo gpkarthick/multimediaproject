@@ -1137,6 +1137,55 @@ class ImportMaster(models.Model):
     import_file = fields.Binary('Import CSV File')
     name = fields.Char('Name', required=True)
 
+    def action_excel_farmer_crop_data_import(self):
+        import base64
+        import csv
+        import io
+        finallist = []
+        key_list_new = []
+        count = 0
+        if self.name == 'Excel Farmer Crop Details Import':
+            for order in self:
+                decrypted = base64.b64decode(order.import_file).decode('utf-8')
+                with io.StringIO(decrypted) as fp:
+                    reader = csv.reader(fp, delimiter=",", quotechar='"')
+                    key_list = []
+                    for row in reader:  
+                        last_row = row  
+                        count += 1   
+                        if count > 1:       
+                            key_list.append(row[0])
+                            test_list = [i for i in row if i]
+                            if row[5]:
+                                data_dict = (0, 0, {
+                                        'crop_data':row[4],
+                                        'survey_no':row[5],
+                                        'khasra_no':row[6],
+                                        'area_insured':row[7],
+                                        'farmer_share':row[8],
+                                        'gov_share':row[9],
+                                        'sum_insured':row[10]
+                                    })
+                                finallist.append(data_dict)     
+                            if not test_list:
+                                key_list = [i for i in key_list if i]                  
+                                if key_list:
+                                    val = key_list[-1]
+                                    farmer_insurance_ids = self.env['farmer.insurance'].search([('form_application_no', '=', val),('id', '>', 745)])
+                                    if farmer_insurance_ids:
+                                        if not farmer_insurance_ids.crop_line_ids.ids:
+                                            farmer_insurance_ids.write({'crop_line_ids': finallist})
+                                finallist = []
+                            if row[0] == 'The End':
+                                key_list = [i for i in key_list if i]
+                                if key_list:
+                                    val = key_list[-2]
+                                    farmer_insurance_ids = self.env['farmer.insurance'].search([('form_application_no', '=', val),('id', '>', 745)])
+                                    if farmer_insurance_ids:
+                                        if not farmer_insurance_ids.crop_line_ids.ids:
+                                            farmer_insurance_ids.write({'crop_line_ids': finallist})
+
+
     def action_import_pmjay_village(self):
         import base64
         import csv

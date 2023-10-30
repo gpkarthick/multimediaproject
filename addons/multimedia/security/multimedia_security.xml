@@ -57,6 +57,11 @@
       <field name="category_id" ref="multimedia.multimedia_management"/>
     </record>
     
+    <record id="multimedia_insurance_admin_access" model="res.groups">
+      <field name="name">Farmer Insurance Admin Access</field>
+      <field name="category_id" ref="multimedia.multimedia_management"/>
+    </record>
+    
     <record id="multimedia_insurance_access" model="res.groups">
       <field name="name">Farmer Insurance Full Access</field>
       <field name="category_id" ref="multimedia.multimedia_management"/>
@@ -81,5 +86,6 @@
         <field name="name">Hidden</field>
         <field name="category_id" ref="multimedia.multimedia_management"/>
     </record>
+    
     
 </odoo>
