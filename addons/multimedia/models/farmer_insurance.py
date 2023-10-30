@@ -1479,7 +1479,7 @@ class ImportMaster(models.Model):
                         break
                     count += 1
                     if count > 1 and len(row) > 2:
-                        # print(row)
+                        print(row)
                         district_english = row[0]
                         district_tamil = row[1]
                         subdistrict_english = row[2]
@@ -1493,11 +1493,14 @@ class ImportMaster(models.Model):
                         print (district_english,subdistrict_english,block_english,firka_english,village_tamil)
                         if district_english and district_tamil:
                             exist_district_ids = self.env['district.master'].search([('name', '=', district_english)])
+                            print (exist_district_ids,exist_district_ids.id,">>>>>>>>>>")
                             if not exist_district_ids:
                                 district = self.env['district.master'].create(
                                     {'name': district_english, 'district_tamil_name': district_tamil, 'state_id': 1})
                                 district_id = district.id
-                        if subdistrict_english and subdistrict_english:
+                            if exist_district_ids:
+                                district_id = exist_district_ids.id
+                        if subdistrict_english and subdistrict_tamil:
                             exist_subdistrict_ids = self.env['subdistrict.master'].search([('name', '=', subdistrict_english),('district_id', '=', district_id),('id', '>', 15)])
                             if not exist_subdistrict_ids:
                                 subdistrict = self.env['subdistrict.master'].create(
