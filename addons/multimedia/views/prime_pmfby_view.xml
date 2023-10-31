@@ -24,7 +24,7 @@
                             <t>
                                 <div style="color:#1391f1;font-size:22px;text-align:center;font-family:Arial;">
                                     <b style="text-align:left;">
-                                        PMFBY Calculator
+                                        PMFBY Tools
                                     </b>
                                 </div>
                             </t>
@@ -41,7 +41,7 @@
                                 </div>
                             </t>
                         </templates>
-					<group>
+					<!-- <group>
 						<group>
 							<field name="name"/>
 							<field name="year"/>
@@ -51,32 +51,33 @@
                             <field name="scheme"/>
 							<field name="state"/>
 						</group>
-					</group>
+					</group> -->
                     <group>
-						<group colspan="1" col="1">
+						<group string="PMFBY Premium Calculator">
                             <field name="district_id"/>
 							<field name="area"/>
                             <field name="premium_amount"/>
                             <field name="service_charge"/>
                             <field name="total_amount"/>
 						</group>
-						<group colspan="1" col="1">
+						<group string="Find Age Calculator">
                             <field name="farmer_birth_year"/>
                             <field name="farmer_age"/>
 						</group>
 					</group>
 
-                    <group string="Measurement Convertion Calculation">
-						<group  colspan="1" col="1">
+                    <group>
+						<group string="PMFBY Measurement Calculator">
 							<field name="measurement"/>
                             <field name="measurement_area"/>
                             <field name="convertion_amount"/>
 						</group>
-						<group>
-                            <field name="village_id" domain="[('district_id', '=', district_id)]" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
+						<group string="PMFBY Village List">
+                            <field name="village_id"  options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
                             <field name="firka_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
                             <field name="block_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
                             <field name="subdistrict_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
+                            <field name="district_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
 						</group>
 					</group>
 
@@ -99,9 +100,9 @@
             </field>
         </record>
 
-        <menuitem id="multimedia_insurance_calculator_menu" name="PMFBY Calculator" sequence="4"
+        <menuitem id="multimedia_insurance_calculator_menu" name="PMFBY Tools" sequence="4"
                   parent="multimedia.multimedia_main_menu" groups="multimedia.multimedia_insurance_access,multimedia.multimedia_farmer_insurance_calculator_user_access,multimedia.multimedia_farmer_insurance_user_access"/>
-        <menuitem id="multimedia_pmfby_calculator_menu" name="PMFBY Calculator" sequence="2" action="action_prime_pmfby_calculator_view"
+        <menuitem id="multimedia_pmfby_calculator_menu" name="PMFBY Tools" sequence="2" action="action_prime_pmfby_calculator_view"
                   parent="multimedia.multimedia_insurance_calculator_menu"/>
 
     </data>

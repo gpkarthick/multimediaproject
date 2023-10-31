@@ -2408,11 +2408,11 @@
 
         
 
-        <menuitem id="multimedia_village_search_menu" name="PMFBY Village" sequence="6"
+        <menuitem id="multimedia_village_search_menu" name="PMFBY Allot No" sequence="6"
                   parent="multimedia.multimedia_main_menu" groups="multimedia.multimedia_insurance_access"/>
 
-        <menuitem id="multimedia_insurance_village_search_menu" name="PMFBY Village" sequence="1" action="action_village_search"
-                  parent="multimedia_village_search_menu"/>
+        <!-- <menuitem id="multimedia_insurance_village_search_menu" name="PMFBY Village" sequence="1" action="action_village_search"
+                  parent="multimedia_village_search_menu"/> -->
 
         <menuitem id="multimedia_insurance_allot_numbers_menu" name="PMFBY Allot Numbers" sequence="2" action="action_allot_book_number"
                   parent="multimedia_village_search_menu"/>

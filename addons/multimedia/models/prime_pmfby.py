@@ -26,18 +26,25 @@ class PrimePMFBYCalculator(models.Model):
     service_charge = fields.Float(string='Service Amount', default=_default_service_charge)
     total_amount = fields.Float(string='Total Amount', required=True)
 
-    farmer_birth_year = fields.Integer('Birth Year')
+    farmer_birth_year = fields.Integer('Birth Year', required=True)
     farmer_age = fields.Integer('Age', readonly=True)
 
-    measurement = fields.Selection([('Kuzhi', 'Kuzhi'), ('Maa', 'Maa'), ('Acre', 'Acre'), ('Hectare', 'Hectare')], string='Measurement')
-    measurement_area = fields.Float(string='Measurement Area')
-    convertion_amount = fields.Float(string='Convertion Amount Ares')
+    measurement = fields.Selection([('Kuzhi', 'Kuzhi'), ('Maa', 'Maa'), ('Acre', 'Acre'), ('Hectare', 'Hectare')], string='Measurement', required=True)
+    measurement_area = fields.Float(string='Measurement Area', required=True)
+    convertion_amount = fields.Float(string='Convertion Amount Ares', required=True)
 
-    village_id = fields.Many2one('village.master', string='Village')
-    firka_id = fields.Many2one('firka.master', string='Firka')
-    block_id = fields.Many2one('block.master', string='Block')
-    subdistrict_id = fields.Many2one('subdistrict.master', string='Sub District')
-    state2_id = fields.Many2one('state.master', string='State')
+    # village_id = fields.Many2one('village.master', string='Village')
+    # firka_id = fields.Many2one('firka.master', string='Firka')
+    # block_id = fields.Many2one('block.master', string='Block')
+    # subdistrict_id = fields.Many2one('subdistrict.master', string='Sub District')
+    # state2_id = fields.Many2one('state.master', string='State')
+
+    village_id = fields.Many2one('village.master', string='Village', required=True)
+    firka_id = fields.Many2one('firka.master', string='Firka', required=True)
+    block_id = fields.Many2one('block.master', string='Block', required=True)
+    subdistrict_id = fields.Many2one('subdistrict.master', string='Sub District', required=True)
+    district_id = fields.Many2one('district.master', string='District', required=True)
+    state_id = fields.Many2one('state.master', string='State', required=True)
 
     @api.onchange('village_id')
     def onchange_village_id(self):
@@ -45,11 +52,14 @@ class PrimePMFBYCalculator(models.Model):
             self.firka_id = False
             self.block_id = False
             self.subdistrict_id = False
+            self.district_id = False
 
         if self.village_id:
             self.firka_id = self.village_id.firka_id.id
             self.block_id = self.village_id.block_id.id
             self.subdistrict_id = self.village_id.subdistrict_id.id
+            self.district_id = self.village_id.district_id.id
+
 
     @api.onchange('farmer_birth_year')
     def onchange_age_calculation(self):
