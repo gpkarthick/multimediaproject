@@ -52,20 +52,20 @@
 							<field name="state"/>
 						</group>
 					</group> -->
-                    <group>
+                    <group  >
 						<group string="PMFBY Premium Calculator">
                             <field name="district_id"/>
-							<field name="area"/>
-                            <field name="premium_amount"/>
-                            <field name="service_charge"/>
+							<field name="area" groups="multimedia.multimedia_insurance_admin_access"/>
+                            <field name="premium_amount" groups="multimedia.multimedia_insurance_admin_access"/>
+                            <field name="service_charge" groups="multimedia.multimedia_insurance_admin_access"/>
                             
 						</group>
-						<group string="Find Age Calculator">
+						<group string="Find Age Calculator" groups="multimedia.multimedia_insurance_admin_access">
                             <field name="farmer_birth_year"/>
                             <field name="farmer_age"/>
 						</group>
 					</group>
-                    <group>
+                    <group  groups="multimedia.multimedia_insurance_admin_access">
                         <group>
                             <field name="account_name_change_service_amt"/>
                             <field name="account_no_verify_amt"/>
@@ -85,7 +85,7 @@
                             <field name="measurement_area"/>
                             <field name="convertion_amount"/>
 						</group>
-						<group string="PMFBY Village List">
+						<group string="PMFBY Village List"  groups="multimedia.multimedia_insurance_admin_access">
                             <field name="village_id"  options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
                             <field name="firka_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
                             <field name="block_id" options="{'limit': 15, 'create': false, 'create_edit': false, 'no_create': True, 'no_open': True, 'always_reload': True}"/>
@@ -114,12 +114,9 @@
         </record>
 
         <menuitem id="multimedia_insurance_calculator_menu" name="PMFBY Tools" sequence="4"
-                  parent="multimedia.multimedia_main_menu" groups="multimedia.multimedia_insurance_admin_access"/>
+                  parent="multimedia.multimedia_main_menu" groups="multimedia.multimedia_insurance_access,multimedia.multimedia_farmer_insurance_calculator_user_access,multimedia.multimedia_farmer_insurance_user_access"/>
         <menuitem id="multimedia_pmfby_calculator_menu" name="PMFBY Tools" sequence="2" action="action_prime_pmfby_calculator_view"
-                  parent="multimedia.multimedia_insurance_calculator_menu" groups="multimedia.multimedia_insurance_admin_access"/>
+                  parent="multimedia.multimedia_insurance_calculator_menu"  groups="multimedia.multimedia_insurance_access,multimedia.multimedia_farmer_insurance_calculator_user_access,multimedia.multimedia_farmer_insurance_user_access"/>
 
     </data>
 </odoo>
-
-<!-- groups="multimedia.multimedia_insurance_access,multimedia.multimedia_farmer_insurance_calculator_user_access,multimedia.multimedia_farmer_insurance_user_access"
-multimedia_insurance_admin_access -->
