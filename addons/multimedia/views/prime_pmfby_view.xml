@@ -58,12 +58,25 @@
 							<field name="area"/>
                             <field name="premium_amount"/>
                             <field name="service_charge"/>
-                            <field name="total_amount"/>
+                            
 						</group>
 						<group string="Find Age Calculator">
                             <field name="farmer_birth_year"/>
                             <field name="farmer_age"/>
 						</group>
+					</group>
+                    <group>
+                        <group>
+                            <field name="account_name_change_service_amt"/>
+                            <field name="account_no_verify_amt"/>
+                            <field name="total_amount"/>
+                          
+						</group>
+						<group string="Farmer Payment Info">
+                            <field name="received_amount"/>
+							<field name="balance_amount"/>
+						</group>
+						
 					</group>
 
                     <group>
@@ -101,9 +114,12 @@
         </record>
 
         <menuitem id="multimedia_insurance_calculator_menu" name="PMFBY Tools" sequence="4"
-                  parent="multimedia.multimedia_main_menu" groups="multimedia.multimedia_insurance_access,multimedia.multimedia_farmer_insurance_calculator_user_access,multimedia.multimedia_farmer_insurance_user_access"/>
+                  parent="multimedia.multimedia_main_menu" groups="multimedia.multimedia_insurance_admin_access"/>
         <menuitem id="multimedia_pmfby_calculator_menu" name="PMFBY Tools" sequence="2" action="action_prime_pmfby_calculator_view"
-                  parent="multimedia.multimedia_insurance_calculator_menu"/>
+                  parent="multimedia.multimedia_insurance_calculator_menu" groups="multimedia.multimedia_insurance_admin_access"/>
 
     </data>
 </odoo>
+
+<!-- groups="multimedia.multimedia_insurance_access,multimedia.multimedia_farmer_insurance_calculator_user_access,multimedia.multimedia_farmer_insurance_user_access"
+multimedia_insurance_admin_access -->

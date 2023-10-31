@@ -23,7 +23,7 @@ class PrimePMFBYCalculator(models.Model):
     crop = fields.Char(string='Crop', readonly=True, default='Paddy-II')
     area = fields.Float(string='Area(Hectare)', required=True)
     premium_amount = fields.Float(string='Premium Amt (Rs)', required=True)
-    service_charge = fields.Float(string='Service Amount', default=_default_service_charge)
+    service_charge = fields.Float(string='Service Amount', default=_default_service_charge , required=True)
     total_amount = fields.Float(string='Total Amount', required=True)
 
     farmer_birth_year = fields.Integer('Birth Year', required=True)
@@ -45,6 +45,10 @@ class PrimePMFBYCalculator(models.Model):
     subdistrict_id = fields.Many2one('subdistrict.master', string='Sub District', required=True)
     district_id = fields.Many2one('district.master', string='District', required=True)
     state_id = fields.Many2one('state.master', string='State', required=True)
+    account_name_change_service_amt = fields.Float(string='Account Name Change Service Amount', required=True)
+    account_no_verify_amt = fields.Float(string='Account No Verify Amount', required=True)
+    received_amount = fields.Float(string='Farmer Paid Amount', required=True)
+    balance_amount = fields.Float(string='Balance Amount', required=True)
 
     @api.onchange('village_id')
     def onchange_village_id(self):
@@ -92,17 +96,33 @@ class PrimePMFBYCalculator(models.Model):
     #         self.service_charge = self.service_charge
     #         self.total_amount = premium_amt + self.service_charge
 
-    @api.onchange('area','service_charge','district_id')
+    # @api.onchange('area','service_charge','district_id')
+    # def onchange_area_insured(self):
+    #     # ~ base_insured_amt = 803.99000
+    #     base_insured_amt = self.district_id.base_insured_amt
+    #     # service_charge = 250
+    #     if self.area * 100 > 0:
+    #         area_insured = self.area * 100
+    #         premium_amt = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
+    #         self.premium_amount = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
+    #         self.service_charge = self.service_charge
+    #         self.total_amount = premium_amt + self.service_charge
+
+    @api.onchange('area','received_amount', 'service_charge', 'district_id', 'account_name_change_service_amt','account_no_verify_amt')
     def onchange_area_insured(self):
         # ~ base_insured_amt = 803.99000
+        # base_insured_amt = 844.74000
         base_insured_amt = self.district_id.base_insured_amt
         # service_charge = 250
         if self.area * 100 > 0:
             area_insured = self.area * 100
             premium_amt = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
             self.premium_amount = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
-            self.service_charge = self.service_charge
-            self.total_amount = premium_amt + self.service_charge
+            # self.service_charge = service_charge
+            self.total_amount = premium_amt + self.service_charge + self.account_name_change_service_amt + self.account_no_verify_amt
+            tot = premium_amt + self.service_charge
+            self.balance_amount = (premium_amt + self.service_charge+self.account_name_change_service_amt + self.account_no_verify_amt) - self.received_amount
+
 
     # @api.onchange('service_charge')
     # def onchange_service_charge(self):
