@@ -50,6 +50,7 @@
                                 <!-- <field name="form_serial_no" readonly="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/> -->
                                 <field name="form_application_no" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="allot_name" invisible="1"/>
+                                <field name="farmer_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft','stage2','stage3','confirmed'))]}"/>
                                 <field name="mobile_no" required="0" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                             <group>
