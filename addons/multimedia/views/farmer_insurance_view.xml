@@ -779,12 +779,14 @@
                     <field name="insurance_date" string="Insurance Date"
                            filter_domain="[('insurance_date','ilike',self)]"/>
                     <field name="state" string="State" filter_domain="[('state','ilike',self)]"/>
+
                     <separator/>
                     <filter string="Paid" name="paid" domain="[('state','=','paid')]"/>
                     <filter string="Draft" name="draft" domain="[('state','=','draft')]"/>
                     <group expand="1" string="Group By">
-                        <filter string="Month" name="insurance_date" context="{'group_by':'insurance_date:month'}"
-                                help="Insurance Date"/>
+                        <filter string="Month" name="insurance_date" context="{'group_by':'create_date:month'}"
+                                help="Create Date"/>
+                        <filter string="Allot Name" name="allot_name" domain="[]" context="{'group_by': 'allot_name'}"/>
                     </group>
                 </search>
             </field>
@@ -2366,8 +2368,8 @@
         <menuitem id="multimedia_farmer_details_menu" name="Farmer Entry Form" sequence="1" action="multimedia.action_farmer_details_form_insurance_view" parent="multimedia.multimedia_insurance_sub_menu"/>
         <menuitem id="multimedia_farmer_insurance_quick_entry_menu" name="Farmer Pre Form English" sequence="2"
                   action="action_farmer_insurance_quick_entry_view" parent="multimedia.multimedia_insurance_sub_menu" groups="multimedia.multimedia_insurance_access"/>
-        <menuitem id="multimedia_farmer_pre_form_tamil_menu" name="Farmer Pre Form Tamil" sequence="3"
-                  action="action_farmer_insurance_pre_form_tamil_view" parent="multimedia.multimedia_insurance_sub_menu" groups="multimedia.multimedia_insurance_access"/>
+        <!-- <menuitem id="multimedia_farmer_pre_form_tamil_menu" name="Farmer Pre Form Tamil" sequence="3"
+                  action="action_farmer_insurance_pre_form_tamil_view" parent="multimedia.multimedia_insurance_sub_menu" groups="multimedia.multimedia_insurance_access"/> -->
         <menuitem id="multimedia_farmer_insurance_menu" name="Farmer Main Form" sequence="4"
                   action="action_farmer_insurance_view" parent="multimedia.multimedia_insurance_sub_menu" groups="multimedia.multimedia_insurance_admin_access"/>
 

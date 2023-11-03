@@ -55,9 +55,9 @@
                     <group  >
 						<group string="PMFBY Premium Calculator">
                             <field name="district_id"/>
-							<field name="area" groups="multimedia.multimedia_insurance_access"/>
-                            <field name="premium_amount" groups="multimedia.multimedia_insurance_access"/>
-                            <field name="service_charge" groups="multimedia.multimedia_insurance_access"/>
+							<field name="area" />
+                            <field name="premium_amount" />
+                            <field name="service_charge" />
                             
 						</group>
 						<group string="Find Age Calculator" groups="multimedia.multimedia_insurance_access">
@@ -65,7 +65,7 @@
                             <field name="farmer_age"/>
 						</group>
 					</group>
-                    <group  groups="multimedia.multimedia_insurance_access">
+                    <group>
                         <group>
                             <field name="account_name_change_service_amt"/>
                             <field name="account_no_verify_amt"/>
@@ -75,8 +75,7 @@
 						<group string="Farmer Payment Info">
                             <field name="received_amount"/>
 							<field name="balance_amount"/>
-						</group>
-						
+						</group>						
 					</group>
 
                     <group>
