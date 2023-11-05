@@ -189,7 +189,7 @@ class FarmerInsurance(models.Model):
                                       store=True, readonly=True)
     distributor_received_amount = fields.Float(string='Distributor Received Amt')
     distributor_balance_amount = fields.Float(string='Distributor Bal Amt', compute='_distributor_tracking',
-                                      store=True, readonly=True)
+                                      store=True, readonly=True)    
 
     aadhar_name = fields.Char('Aadhar Name', size=60)
     aadhar_no = fields.Char('Aadhar No', size=60)
@@ -1794,4 +1794,15 @@ class AllotBookNumberLine(models.Model):
     shop_image = fields.Binary(string="Shop Image", attachment=True)
     shop_name = fields.Char('Shop Name')
 
+class ShortInsurancePrint(models.Model):
+    _name = 'short.insurance.print'
+    _description = 'Short Insurance Print Details'
 
+    ifsc_code = fields.Char('IFSC Code', size=32, track_visibility='always')
+    bank_account_no = fields.Char('Account Number', size=32, track_visibility='always')
+    farmer_birth_year = fields.Integer('Birth Year')
+    aadhar_no = fields.Char('Aadhar No', size=60)
+    aadhar_name = fields.Char('Aadhar Name', size=60)
+
+    def insurance_short_print(self):
+        return self.env.ref('multimedia.insurance_short_print').report_action(self)

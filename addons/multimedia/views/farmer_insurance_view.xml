@@ -185,6 +185,8 @@
                     <field name="farmer_image" invisible="1"/>
                     <field name="mobile_no"/>
                     <field name="village_id" />
+                    <field name="total_area_insured"/>
+                     <field name="total_premium_paid"/>
                     <field name="create_uid"/>
                     <field name="create_date"/>
                     <field name="insurance_date" invisible="1"/>
@@ -197,8 +199,6 @@
                 </tree>
             </field>
         </record>
-
-
 
         <record id="multimedia_farmer_insurance_quick_form_view" model="ir.ui.view">
             <field name="name">farmer.insurance.form</field>
@@ -2348,7 +2348,7 @@
         <record id="action_allot_book_number" model="ir.actions.act_window">
             <field name="name">Allot Numbers</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">allot.book.number</field>
+            <field name="res_model">short.insurance.print</field>
             <field name="view_mode">tree,form</field>
             <field name="domain"></field>
             <field name="context">{}</field>
@@ -2358,6 +2358,72 @@
                 </p>
                 <p>
                     You can manage Allot Numbers here.
+                </p>
+            </field>
+        </record>
+
+        <record id="view_short_insurance_print_tree" model="ir.ui.view">
+            <field name="name">short.insurance.print.tree</field>
+            <field name="model">short.insurance.print</field>
+            <field name="priority">2</field>
+            <field name="arch" type="xml">
+                <tree string="Short Form">
+                    <field name="ifsc_code"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="view_short_insurance_print_form" model="ir.ui.view">
+            <field name="name">short.insurance.print.form</field>
+            <field name="model">short.insurance.print</field>
+            <field name="arch" type="xml">
+                <form string="Short Form">
+                    <header>
+                        <button name="insurance_short_print" string="Print" type="object" class="oe_highlight"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <group>
+                                <field name="ifsc_code"/>
+                                <field name="bank_account_no"/>
+                                <field name="farmer_birth_year"/>
+                                <field name="aadhar_no"/>
+                                <field name="aadhar_name"/>
+                            </group>
+                            <group>
+                            </group>
+                        </group>                       
+                        <!-- <notebook>
+                            <page string="Allot Numbers">
+                                <field string="Allot Numbers" name="allot_line_ids">
+                                    <tree editable="bottom">
+                                        <field name="start_no"/>
+                                        <field name="end_no"/>
+                                        <field name="shop_image"/>
+                                        <field name="shop_name"/>
+                                    </tree>
+                                </field>
+                            </page>
+                        </notebook> -->
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="action_short_insurance_print" model="ir.actions.act_window">
+            <field name="name">Short Form</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">short.insurance.print</field>
+            <field name="view_mode">tree,form</field>
+            <field name="domain"></field>
+            <field name="context">{}</field>
+            <field name="help" type="html">
+                <p class="oe_view_nocontent_create">
+                    Create Short Form
+                </p>
+                <p>
+                    You Can Manage Short Form here.
                 </p>
             </field>
         </record>
@@ -2372,6 +2438,9 @@
                   action="action_farmer_insurance_pre_form_tamil_view" parent="multimedia.multimedia_insurance_sub_menu" groups="multimedia.multimedia_insurance_access"/> -->
         <menuitem id="multimedia_farmer_insurance_menu" name="Farmer Main Form" sequence="4"
                   action="action_farmer_insurance_view" parent="multimedia.multimedia_insurance_sub_menu" groups="multimedia.multimedia_insurance_admin_access"/>
+
+        <menuitem id="multimedia_short_insurance_print_menu" name="Short Form" sequence="4"
+                  action="action_short_insurance_print" parent="multimedia.multimedia_insurance_sub_menu" groups="multimedia.multimedia_insurance_access"/>
 
         <menuitem id="multimedia_village_info_sub_menu" name="PMFBY Village Info" sequence="5"
                   parent="multimedia.multimedia_insurance_access"/>

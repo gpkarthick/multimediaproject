@@ -32,6 +32,7 @@
         'report/account_verification_report.xml',
         'report/pan_acknowledgement_report.xml',
         'report/farmer_insurance_preview_print.xml',        
+        'report/farmer_insurance_short_form.xml',        
     ],
     'demo': [],
     'installable': True,
