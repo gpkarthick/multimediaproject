@@ -1814,7 +1814,7 @@ class ShortInsurancePrint(models.Model):
 
     form_application_no = fields.Integer(string='Form Number')
     ifsc_code = fields.Char('IFSC Code', size=32, track_visibility='always')
-    bank_account_no = fields.Char('Account Number', size=32, track_visibility='always')
+    bank_account_no = fields.Char('Account Number', size=32)
     farmer_birth_year = fields.Integer('Birth Year')
     farmer_age = fields.Integer('Age', store=True, readonly=True, compute='_age_calculation')
     aadhar_no = fields.Char('Aadhar No', size=60)
@@ -1832,6 +1832,7 @@ class ShortInsurancePrint(models.Model):
     @api.onchange('form_application_no')
     def onchange_gender(self):
         farmer_insurance_ids = self.env['farmer.insurance'].search([('form_application_no', '=', self.form_application_no),('id', '>', 745)])
+        self.crop_line_ids = False
         if farmer_insurance_ids:
             self.aadhar_no = farmer_insurance_ids.aadhar_no
             self.aadhar_name = farmer_insurance_ids.aadhar_name

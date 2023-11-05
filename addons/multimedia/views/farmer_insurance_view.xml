@@ -334,9 +334,10 @@
                                <field name="ifsc_code"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                <field name="bank_account_no"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="account_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
-                               <field name="bank_tamil_list_id"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                               
                                 <!-- <field name="bank_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/> -->
                                <field name="branch_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                               <field name="bank_tamil_list_id"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
                         <group string="Crop Details">
@@ -2374,7 +2375,6 @@
             </field>
         </record>
 
-
         <record id="view_short_insurance_print_form" model="ir.ui.view">
             <field name="name">short.insurance.print.form</field>
             <field name="model">short.insurance.print</field>
@@ -2394,7 +2394,7 @@
                                 <field name="aadhar_no"/>
                                 <field name="aadhar_name"/>
                                 <field name="mobile_no"/>
-                                <field name="aadhar_name"/>
+                                <field name="community_type"/>
                             </group>
                             <group>
                                 <field name="village_id"/>

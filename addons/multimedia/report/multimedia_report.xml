@@ -104,7 +104,7 @@
             report_type="qweb-html"
             file="multimedia.insurance_short_print_multimedia"
             name="multimedia.insurance_short_print_multimedia"
-            print_report_name="'%s-%s' % (object.bank_account_no)"
+            print_report_name="'%s' % (object.form_application_no)"
             groups="multimedia.multimedia_insurance_access"
             menu="False"
         />
