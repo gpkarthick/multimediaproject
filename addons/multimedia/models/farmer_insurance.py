@@ -209,6 +209,9 @@ class FarmerInsurance(models.Model):
     extra_area = fields.Float(string='Extra Area(Hectare)')
     extra_area_amt = fields.Float(string='Extra Area Amount')
 
+    extra_area_check = fields.Boolean('Extra Area')
+    extra_area_amt_check = fields.Boolean('Extra Amount')
+
     upload_pdf = fields.Binary(string="Upload PDF", attachment=True)
 
     instructions = fields.Text(string='Instructions')
@@ -1163,13 +1166,14 @@ class ImportMaster(models.Model):
                                     calculatevalue = self.env['farmer.insurance'].search([('form_application_no', '=', checkval),('id', '>', 745)])
                                     if not calculatevalue.crop_line_ids:
                                         if calculatevalue.district_id:
+                                            if row[2]:
+                                                calculatevalue.write({'original_receipt_no': row[2]})
                                             base_insured_amt = calculatevalue.district_id.base_insured_amt
                                             if float(row[7]) * 100 > 0:
                                                 area_insured = float(row[7]) * 100
                                                 res_farmer_share = round(((base_insured_amt * (1.5 / 100)) * area_insured), 2)
                                                 res_gov_share = round((calculatevalue.district_id.government_share * area_insured), 2)
                                                 res_sum_insured = round(base_insured_amt * area_insured, 2)
-
                                                 data_dict = (0, 0, {
                                                         'crop_data':row[4],
                                                         'survey_no':row[5],
@@ -1798,11 +1802,79 @@ class ShortInsurancePrint(models.Model):
     _name = 'short.insurance.print'
     _description = 'Short Insurance Print Details'
 
+    @api.depends('farmer_birth_year')
+    def _age_calculation(self):
+        """
+        Compute the age calculation
+        """
+        get_age = datetime.now().year - self.farmer_birth_year
+        self.update({
+            'farmer_age': get_age
+        })
+
+    form_application_no = fields.Integer(string='Form Number')
     ifsc_code = fields.Char('IFSC Code', size=32, track_visibility='always')
     bank_account_no = fields.Char('Account Number', size=32, track_visibility='always')
     farmer_birth_year = fields.Integer('Birth Year')
+    farmer_age = fields.Integer('Age', store=True, readonly=True, compute='_age_calculation')
     aadhar_no = fields.Char('Aadhar No', size=60)
     aadhar_name = fields.Char('Aadhar Name', size=60)
+    mobile_no = fields.Char(string='Mobile No')
+    community_type = fields.Selection([('ST', 'ST'), ('SC', 'SC'),('OBC', 'OBC'), ('GENERAL', 'GENERAL')], string='Community')
+    village_id = fields.Many2one('village.master', string='Village')
+    firka_id = fields.Many2one('firka.master', string='Firka')
+    block_id = fields.Many2one('block.master', string='Block')
+    subdistrict_id = fields.Many2one('subdistrict.master', string='Sub District')
+    district_id = fields.Many2one('district.master', string='District')
+    state2_id = fields.Many2one('state.master', string='State')
+    crop_line_ids = fields.One2many('short.crop.data.line', 'crop_id', "Drop Data")    
+
+    @api.onchange('form_application_no')
+    def onchange_gender(self):
+        farmer_insurance_ids = self.env['farmer.insurance'].search([('form_application_no', '=', self.form_application_no),('id', '>', 745)])
+        if farmer_insurance_ids:
+            self.aadhar_no = farmer_insurance_ids.aadhar_no
+            self.aadhar_name = farmer_insurance_ids.aadhar_name
+            self.ifsc_code = farmer_insurance_ids.ifsc_code
+            self.bank_account_no = farmer_insurance_ids.bank_account_no
+            self.farmer_birth_year = farmer_insurance_ids.farmer_birth_year
+            self.community_type = farmer_insurance_ids.community_type
+            self.village_id = farmer_insurance_ids.village_id
+            finallist = []
+            if farmer_insurance_ids.crop_line_ids.ids:
+                for line in farmer_insurance_ids.crop_line_ids:
+                    data_dict = (0, 0, {
+                            'survey_no':line.survey_no,
+                            'khasra_no':line.khasra_no,
+                            'area_insured':line.area_insured
+                        })
+                    finallist.append(data_dict)
+                if finallist:
+                    self.crop_line_ids = finallist
+
+    @api.onchange('village_id')
+    def onchange_village_id(self):
+        if not self.village_id:
+            self.firka_id = False
+            self.block_id = False
+            self.subdistrict_id = False
+            self.district_id = False
+
+        if self.village_id:
+            self.firka_id = self.village_id.firka_id.id
+            self.block_id = self.village_id.block_id.id
+            self.subdistrict_id = self.village_id.subdistrict_id.id
+            self.district_id = self.village_id.district_id.id
+            self.state2_id = self.village_id.state_id.id
 
     def insurance_short_print(self):
         return self.env.ref('multimedia.insurance_short_print').report_action(self)
+    
+class CropDataLine(models.Model):
+    _name = 'short.crop.data.line'
+    _description = 'Short Crop Data Line details'
+
+    survey_no = fields.Char('Survey No', required=True)
+    khasra_no = fields.Char('Khasra No', required=True)
+    area_insured = fields.Float(string='Area Insured', required=True, digits='Product Unit of Measure')
+    crop_id = fields.Many2one('short.insurance.print', string='Insurance')

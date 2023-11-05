@@ -330,13 +330,13 @@
                                  <field name="branch_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <field name="bank_name" required="1" attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
-                            <group>                               
+                            <group>
                                <field name="ifsc_code"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                <field name="bank_account_no"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
+                                <field name="account_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                <field name="bank_tamil_list_id"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                                 <!-- <field name="bank_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/> -->
                                <field name="branch_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
-                               <field name="account_tamil_type"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
                         <group string="Crop Details">
@@ -701,13 +701,14 @@
                         <group>
                             <group>
                                 <field name="extra_area"/>
+                                <field name="extra_area_check"/>
                             </group>
                             <group>
                                 <field name="extra_area_amt"/>
+                                <field name="extra_area_amt_check"/>
                             </group>
                         </group>
                         <group>
-
                             <group>
                                 <field name="create_uid"/>
                                 <field name="write_uid"/>
@@ -2385,15 +2386,48 @@
                     <sheet>
                         <group>
                             <group>
+                                <field name="form_application_no"/>
                                 <field name="ifsc_code"/>
                                 <field name="bank_account_no"/>
                                 <field name="farmer_birth_year"/>
+                                <field name="farmer_age"/>
                                 <field name="aadhar_no"/>
+                                <field name="aadhar_name"/>
+                                <field name="mobile_no"/>
                                 <field name="aadhar_name"/>
                             </group>
                             <group>
+                                <field name="village_id"/>
+                                <field name="firka_id"/>
+                                <field name="block_id"/>
+                                <field name="subdistrict_id"/>
+                                <field name="district_id"/>
                             </group>
-                        </group>                       
+                        </group> 
+                        <notebook>
+                            <page string="Crop Details">
+                                <field name="crop_line_ids">
+                                    <tree>
+                                        <field name="survey_no"/>
+                                        <field name="khasra_no"/>
+                                        <field name="area_insured" sum="area_insured"/>
+                                    </tree>
+                                    <form string="Drop Details">
+                                        <sheet>
+                                            <group>
+                                                <group>
+                                                    <field name="survey_no"/>
+                                                    <field name="khasra_no"/>
+                                                    <field name="area_insured"/>
+                                                </group>
+                                                <group>
+                                                </group>
+                                            </group>                                            
+                                        </sheet>
+                                    </form>
+                                </field>
+                            </page>
+                        </notebook>                      
                         <!-- <notebook>
                             <page string="Allot Numbers">
                                 <field string="Allot Numbers" name="allot_line_ids">
