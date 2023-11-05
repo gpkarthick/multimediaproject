@@ -2370,7 +2370,20 @@
             <field name="priority">2</field>
             <field name="arch" type="xml">
                 <tree string="Short Form">
+                    <field name="form_application_no"/>
                     <field name="ifsc_code"/>
+                    <field name="bank_account_no"/>
+                    <field name="farmer_birth_year"/>
+                    <field name="farmer_age"/>
+                    <field name="aadhar_no"/>
+                    <field name="aadhar_name"/>
+                    <field name="mobile_no"/>
+                    <field name="community_type"/>
+                    <field name="village_id"/>
+                    <field name="firka_id"/>
+                    <field name="block_id"/>
+                    <field name="subdistrict_id"/>
+                    <field name="district_id"/>
                 </tree>
             </field>
         </record>

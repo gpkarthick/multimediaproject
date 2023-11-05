@@ -105,6 +105,19 @@
                                         <span t-esc="o.community_type"/>
                                     </span>                                    
                                 </td>
+                            </tr>     
+
+                            <tr>
+                                <td style="width:55%;">
+                                    <span class="company-details-span">
+                                        <strong>Farmer Age (விவசாயி வயது)</strong>
+                                    </span>                                    
+                                </td>                                
+                                <td style="width:45%;">
+                                    <span class="company-details-span2" t-if="o.farmer_age">                                        
+                                        <span t-esc="o.farmer_age"/>
+                                    </span>                                    
+                                </td>
                             </tr>      
 
                             <tr>
