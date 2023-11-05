@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="insurance_short_print_multimedia">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="web.basic_layout">
+                    <link rel="stylesheet" href="/multimedia/static/src/css/style6.css"/>
+                    <div class="page">
+						<table class="header-table">
+							<tr>
+								<td style="text-align:center;width:50%">
+									<span><strong>FARMER REGISTRATION FORM FOR NON LOANEE</strong><br/></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:center;width:50%">
+									<span><strong>கடன்பெறா விவசாயி பதிவு படிவம் </strong></span>
+								</td>
+							</tr>
+							<tr>
+								<td style="text-align:center;width:50%">
+									<span><strong>பசலி-1433 பயிர் காப்பீடு செய்யப்படும் வருடம் 2023</strong></span>
+								</td>
+							</tr>
+						</table>
+
+						<table class="customer-address" style="height: 50px;">
+							<tr>
+                                <td style="width:55%;">
+                                    <span class="company-details-span">
+                                        <strong>Form No : <span t-esc="o.ifsc_code"/></strong>
+                                    </span>                                    
+                                </td>                                
+                                <td style="width:55%;">
+                                    <span class="company-details-span">
+                                        <strong>Date : <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d-%m-%Y')"/> </strong>&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;
+                                        <strong>Time : <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%I:%M %p')"/></strong>
+                                    </span>                                    
+                                </td>    
+                            </tr>
+							 
+							<tr>
+                                <td style="width:55%;">
+                                    <span class="company-details-span">
+                                        <strong>BANK IFSC CODE (வங்கி கிளை எண்)</strong>
+                                    </span>                                    
+                                </td>                                
+                                <td style="width:45%;">
+                                    <span class="company-details-span2" t-if="o.ifsc_code">                                        
+                                        <span t-esc="o.ifsc_code"/>
+                                    </span>                                    
+                                </td>
+                            </tr>
+							<tr>
+                                <td style="width:55%;">
+                                    <span class="company-details-span">
+                                        <strong>ACCOUNT NO (வங்கி கணக்கு எண்)</strong>
+                                    </span>                                    
+                                </td>                                
+                                <td style="width:45%;">
+                                    <span class="company-details-span2" t-if="o.bank_account_no">                                        
+                                        <span t-esc="o.bank_account_no"/>
+                                    </span>                                    
+                                </td>
+                            </tr>		
+
+                            <t t-if="o.aadhar_no">
+
+                                <tr>
+                                    <td style="width:55%;">
+                                        <span class="company-details-span">
+                                            <strong>Aadhar No( ஆதார் நம்பர் )</strong>
+                                        </span>                                    
+                                    </td>                                
+                                    <td style="width:45%;">
+                                        <span class="company-details-span2" t-if="o.aadhar_no">  
+                                            <span t-esc="o.aadhar_no"/>
+                                        </span>                                    
+                                    </td>
+                                </tr>
+                            </t>
+
+                        </table>
+
+                    </div>
+                </t>
+            </t>
+        </t>
+
+    </template>
+</odoo>
