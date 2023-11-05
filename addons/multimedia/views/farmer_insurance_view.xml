@@ -366,6 +366,17 @@
                                 <field name="state_tamil_name"  attrs="{'readonly': [('state', 'not in', ('draft', 'stage2','stage3','confirmed'))]}"/>
                             </group>
                         </group>
+                        
+                        <group groups="multimedia.multimedia_insurance_admin_access">
+                            <group>
+                                <field name="extra_area"/>
+                                <field name="extra_area_check"/>
+                            </group>
+                            <group>
+                                <field name="extra_area_amt"/>
+                                <field name="extra_area_amt_check"/>
+                            </group>
+                        </group>
 <!--                        <group string="PMFBY Area Calculation">-->
 <!--                            <group>-->
 <!--                                <field name="area" readonly="1"/>-->
