@@ -195,6 +195,7 @@
                     <field name="distributor_received_amount" sum="distributor_received_amount" groups="multimedia.multimedia_insurance_access" invisible="1"/>
                     <field name="distributor_balance_amount" sum="distributor_balance_amount" groups="multimedia.multimedia_insurance_access" invisible="1"/>
                     <field name="state"/>
+                    <field name="crop_line_ids"/>                   
                     <field name="pmfby_status"/>
                 </tree>
             </field>
