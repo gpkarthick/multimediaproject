@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+
+        <record id="view_multi_bill_print" model="ir.ui.view">
+            <field name="name">Multi Bill</field>
+            <field name="model">multi.bill.print</field>
+            <field name="arch" type="xml">
+                <form string="Multi Bill Print">
+                    <group>                    	
+                   		<field name="start_no"/>
+                   		<field name="end_no"/>
+                    </group>
+                    <newline/>     
+                    <button name="multi_attachment_download" string="Multi Attchment Download" type="object" class="oe_highlight"/>               
+                    <footer>
+                        <button name="print_report" string="Multi Print" type="object" class="oe_highlight"/>
+                        or
+                        <button string="Cancel" class="oe_link" special="cancel"/>
+                    </footer>
+                </form>
+            </field>
+        </record>
+        
+		<record id="action_multi_bill_print_wizard" model="ir.actions.act_window">
+            <field name="name">Multi Bill Print</field>
+            <field name="res_model">multi.bill.print</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+        
+        
+        <menuitem action="action_multi_bill_print_wizard" id="action_multi_bill_print_wizard_menu" 
+                  name="Multi Print" parent="multimedia.multimedia_insurance_sub_menu" sequence="6"   groups="multimedia.multimedia_insurance_admin_access"/>   
+                     
+      
+    </data>
+</odoo>

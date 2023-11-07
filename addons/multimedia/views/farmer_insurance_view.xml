@@ -493,7 +493,6 @@
             <field name="arch" type="xml">
                 <form string="Insurance Form" create="false">
                     <header>
-
                         <button name="action_confirm" type="object" string="Confirm" class="oe_highlight" attrs="{'invisible': [('state', 'not in', ('draft','stage2','stage3'))]}"/>
                         <button name="action_verified" type="object" string="Verified" class="oe_highlight" states="confirmed" groups="multimedia.multimedia_insurance_access"/>
 
@@ -513,8 +512,7 @@
 
                         <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
                         <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
-
-
+                        <button name="download_attachment" string="Download Attachment" type="object" class="oe_highlight"/>
 
                         <field name="state" widget="statusbar" statusbar_visible="draft,stage2,stage3,confirmed,verified,printtaken,done"/>
                     </header>
@@ -2498,7 +2496,7 @@
         <menuitem id="multimedia_farmer_insurance_menu" name="Farmer Main Form" sequence="4"
                   action="action_farmer_insurance_view" parent="multimedia.multimedia_insurance_sub_menu" groups="multimedia.multimedia_insurance_admin_access"/>
 
-        <menuitem id="multimedia_short_insurance_print_menu" name="Short Form" sequence="4"
+        <menuitem id="multimedia_short_insurance_print_menu" name="Short Form" sequence="5"
                   action="action_short_insurance_print" parent="multimedia.multimedia_insurance_sub_menu" groups="multimedia.multimedia_insurance_access"/>
 
         <menuitem id="multimedia_village_info_sub_menu" name="PMFBY Village Info" sequence="5"

@@ -25,10 +25,114 @@ from odoo.http import content_disposition
 import smtplib
 import datetime
 from datetime import datetime, date
+import io
+import zipfile
 
 class ReportCall(http.Controller):
         
     _cp_path = '/multimedia'
+
+    @http.route('/multimedia/attachment_download', type='http', auth="public")
+    def attachment_download(self, **data):
+        curid = data.get('id')
+        buffer = io.BytesIO()
+        with zipfile.ZipFile(buffer, 'w') as zipf:
+            attachment_obj = request.env['ir.attachment']
+            attachment_ids = attachment_obj.search([
+                ('res_model', '=', 'farmer.insurance'),
+                ('res_id', '=', curid)
+            ])
+            if attachment_ids:
+                for attachment in attachment_ids:
+                    file_name = attachment.name
+                    file_data = base64.b64decode(attachment.datas)
+                    zipf.writestr(file_name, file_data)
+        buffer.seek(0)
+        file_content = buffer.read()
+        insurance_ids = http.request.env['farmer.insurance'].search([('id', '=', data.get('id'))])
+
+        if file_content and insurance_ids:
+            filename = str(insurance_ids.form_application_no) + '.zip'
+            return request.make_response(file_content, headers=[
+                ('Content-Type', 'application/zip'),
+                ('Content-Disposition', content_disposition(filename))
+            ])
+
+    @http.route('/multimedia/multi_attachment_download', type='http', auth="public")
+    def multi_attachment_download(self, **data):
+        curid = data.get('id')
+        start = data.get('start_no')
+        end = data.get('end_no')
+        print (start,type(start))
+        numbers = [i for i in range(int(start), int(end) + 1)]
+        buffer = io.BytesIO()
+        with zipfile.ZipFile(buffer, 'w') as zipf_bulk:
+            insurance_ids = request.env['farmer.insurance'].search([('form_application_no', 'in', numbers)])
+            for insurance in insurance_ids:
+                subfolder_buffer = io.BytesIO()
+                with zipfile.ZipFile(subfolder_buffer, 'w') as zipf_individual:
+                    attachment_obj = request.env['ir.attachment']
+                    attachment_ids = attachment_obj.search([
+                        ('res_model', '=', 'farmer.insurance'),
+                        ('res_id', '=', insurance.id)
+                    ])
+                    if attachment_ids:
+                        for attachment in attachment_ids:
+                            file_name = attachment.name
+                            file_data = base64.b64decode(attachment.datas)
+                            zipf_individual.writestr(file_name, file_data)
+
+                subfolder_buffer.seek(0)
+                zipf_bulk.writestr(f'farmer_{insurance.id}.zip', subfolder_buffer.read())
+
+        buffer.seek(0)
+        file_content = buffer.read()
+
+        if file_content:
+            filename = 'bulk_attachments.zip'
+            return request.make_response(file_content, headers=[
+                ('Content-Type', 'application/zip'),
+                ('Content-Disposition', content_disposition(filename))
+            ])
+        
+
+
+    # @http.route('/multimedia/attachment_download', type='http', auth="public")
+    # def attachment_download(self, **data):
+    #     print ("+++++++++++++++++++++++++")
+        
+    #     print ("________________________")
+    #     curid = data.get('id')
+    #     buffer = io.BytesIO()
+    #     with zipfile.ZipFile(buffer, 'w') as zipf:
+    #         attachment_obj = http.request.env['ir.attachment']
+    #         attachment_ids = attachment_obj.search([
+    #             ('res_model', '=', 'farmer.insurance'),
+    #             ('res_id', '=', curid)
+    #         ])
+    #         if attachment_ids:
+    #             for attachment in attachment_ids:
+    #                 # file_name = attachment.name  # Use 'name' instead of 'datas_fname'
+    #                 file_data = base64.b64decode(attachment.datas)
+    #                 zipf.writestr(file_name, file_data)
+    #         insurance_ids = http.request.env['farmer.insurance'].search([('id', '=', data.get('id'))])
+    #         file_content = base64.b64decode(zipf)
+    #         filename = insurance_ids.name
+    #         if file_content and filename:
+    #             return request.make_response(file_content,
+    #                                          headers=[('Content-Type', 'application/octet-stream'),
+    #                                                   ('Content-Disposition', content_disposition(filename))])
+
+        # buffer.seek(0)
+        # file_name = 'attachments.zip'
+        # content_type = 'application/zip'
+        # return {
+        #     'type': 'ir.actions.act_url',
+        #     'url': '/web/content/?model={}&id={}&field=attachment_ids&filename_field=name&download=true'.format(self._name, self.id),
+        #     'target': 'self',
+        #     'res_id': self.id,
+        #     'headers': [('Content-Type', content_type), ('Content-Disposition', content_disposition(file_name))],
+        # }
                                                       
     @http.route('/multimedia/insurance_preview', type='http', auth="public")
     def insurance_preview(self, **data):
@@ -198,15 +302,7 @@ class ReportCall(http.Controller):
                 <td>""" + farmer_district_id + """</td>
               </tr>              
               <tr>
-                <td>""" + 'Residential Village/Town' + """</td>
-                <td>""" + farmer_village_id + """</td>
-              </tr>
-              <tr>
-                <td>""" + 'Pincode' + """</td>
-                <td>""" + pincode + """</td>
-              </tr>
-              <tr>
-                <td>""" + 'Address' + """</td>
+                <td>""" + 'Residential Village/Town' + """</td>self.id
                 <td>""" + farmer_addr + """</td>
               </tr>
               

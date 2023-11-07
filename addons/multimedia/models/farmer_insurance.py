@@ -218,6 +218,11 @@ class FarmerInsurance(models.Model):
     account_name_change_service_amt = fields.Float(string='Account Name Change Service Amount')
     account_no_verify_amt = fields.Float(string='Account No Verify Amount')
 
+    def download_attachment(self):
+        return {'type': 'ir.actions.act_url',
+                'url': '/multimedia/attachment_download?id=' + str(self.id) + '&db=' + str(
+                    self.env.cr.dbname) + '&uid=' + str(self.env.uid), 'nodestroy': True, 'target': 'new'}
+
     @api.onchange('upload_pdf')
     def onchange_pdf_data(self):
         pdf_dict = {}
