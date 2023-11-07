@@ -223,6 +223,8 @@
                         <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
                         <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft', 'stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
 
+                        <button name="download_attachment" string="Download Attachment" type="object" class="oe_highlight"/>
+
                         <field name="state" widget="statusbar" statusbar_visible="draft,stage2,stage3,confirmed,verified,printtaken,done"/>
                     </header>
                     <sheet>
@@ -512,7 +514,6 @@
 
                         <button name="insurance_overall_print" string="All Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
                         <button name="insurance_fine_print" string="Fine Print" type="object" class="oe_highlight" attrs="{'invisible': [('state', 'in', ('draft','stage2','stage3','confirmed'))]}" groups="multimedia.multimedia_farmer_insurance_user_access"/>
-                        <button name="download_attachment" string="Download Attachment" type="object" class="oe_highlight"/>
 
                         <field name="state" widget="statusbar" statusbar_visible="draft,stage2,stage3,confirmed,verified,printtaken,done"/>
                     </header>
