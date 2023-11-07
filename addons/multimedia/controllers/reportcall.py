@@ -83,7 +83,7 @@ class ReportCall(http.Controller):
                             zipf_individual.writestr(file_name, file_data)
 
                 subfolder_buffer.seek(0)
-                zipf_bulk.writestr(f'farmer_{insurance.id}.zip', subfolder_buffer.read())
+                zipf_bulk.writestr(f'farmer_{insurance.form_application_no}.zip', subfolder_buffer.read())
 
         buffer.seek(0)
         file_content = buffer.read()
