@@ -8,9 +8,15 @@ class MultiDeliveryPass(models.TransientModel):
     
     start_no = fields.Integer(string="Start No")
     end_no = fields.Integer(string="End No")
+    insurance_numbers = fields.Text('Print Numbers')
     
     def print_report(self):
-        insurance_ids = self.env['farmer.insurance'].search([('form_application_no', '>=', self.start_no),('form_application_no', '<=', self.end_no)])
+        input_string = self.insurance_numbers
+        integer_list = [int(x) for x in input_string.split(',')]
+        print(integer_list)
+        insurance_ids = self.env['farmer.insurance'].search([('form_application_no', 'in', integer_list)])
+
+        # insurance_ids = self.env['farmer.insurance'].search([('form_application_no', '>=', self.start_no),('form_application_no', '<=', self.end_no)])
         return self.env.ref('multimedia.report_multi_insurance_pdf_print').report_action(insurance_ids)
 
     def multi_attachment_download(self):
