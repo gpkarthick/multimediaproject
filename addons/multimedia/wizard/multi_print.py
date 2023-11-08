@@ -11,14 +11,7 @@ class MultiDeliveryPass(models.TransientModel):
     
     def print_report(self):
         insurance_ids = self.env['farmer.insurance'].search([('form_application_no', '>=', self.start_no),('form_application_no', '<=', self.end_no)])
-        print (insurance_ids,">>>>>>>>>>>>>>>>>")
-        # ~ return self.env['report'].get_action(insurance_ids, 'multimedia.farmer_insurance_fine_report_multimedia')
-        
-        # ~ return self.env.ref('multimedia.farmer_insurance_fine_report_multimedia').render(insurance_ids)
-        pdf, _ = report_template.render(insurance_ids.ids)
-
-        # Return the PDF report
-        return pdf
+        return self.env.ref('multimedia.report_multi_insurance_pdf_print').report_action(insurance_ids)
 
     def multi_attachment_download(self):
         return {'type': 'ir.actions.act_url',

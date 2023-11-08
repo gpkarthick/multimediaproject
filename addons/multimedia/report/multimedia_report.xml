@@ -109,5 +109,14 @@
             menu="False"
         />
 
+        <report
+            id = "report_multi_insurance_pdf_print"
+            model = "farmer.insurance"
+            string = "Multi Print"
+            report_type = "qweb-html"
+            name = "multimedia.multi_print_pdf"
+            file="multimedia.multi_print_pdf"
+            attachment_use ="False"/>
+
     </data>
 </odoo>

@@ -33,6 +33,7 @@
         'report/pan_acknowledgement_report.xml',
         'report/farmer_insurance_preview_print.xml',        
         'report/farmer_insurance_short_form.xml',        
+        'report/farmer_insurance_multi_print.xml',        
         'wizard/multi_print_view.xml',
     ],
     'demo': [],
