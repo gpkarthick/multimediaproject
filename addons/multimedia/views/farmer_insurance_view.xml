@@ -181,13 +181,15 @@
                     <field name="original_receipt_no" groups="multimedia.multimedia_insurance_access"/>
                     <field name="name" groups="multimedia.multimedia_insurance_access" invisible="1"/>
                     <field name="csc_id" invisible="1"/>
-                    <field name="farmer_name"/>
+                    <field name="farmer_name"/>                    
+                    <field name="total_area_insured" sum="total_area_insured"/>
+                    <field name="total_premium_paid" sum="total_premium_paid"/>
+                    <field name="crop_line_ids"/>
+                    <field name="service_charge" sum="service_charge"/>
                     <field name="farmer_image" invisible="1"/>
                     <field name="mobile_no"/>
                     <field name="village_id" />
-                    <field name="total_area_insured" sum="total_area_insured"/>
-                     <field name="total_premium_paid" sum="total_premium_paid"/>
-                    <field name="create_uid"/>
+                    <field name="create_uid"/>                    
                     <field name="create_date"/>
                     <field name="insurance_date" invisible="1"/>
                     <field name="insurance_finished_date"/>
@@ -195,7 +197,7 @@
                     <field name="distributor_received_amount" sum="distributor_received_amount" groups="multimedia.multimedia_insurance_access" invisible="1"/>
                     <field name="distributor_balance_amount" sum="distributor_balance_amount" groups="multimedia.multimedia_insurance_access" invisible="1"/>
                     <field name="state"/>
-                    <field name="crop_line_ids"/>                   
+                                       
                     <field name="pmfby_status"/>
                 </tree>
             </field>
@@ -2361,7 +2363,7 @@
         <record id="action_allot_book_number" model="ir.actions.act_window">
             <field name="name">Allot Numbers</field>
             <field name="type">ir.actions.act_window</field>
-            <field name="res_model">short.insurance.print</field>
+            <field name="res_model">allot.book.number</field>
             <field name="view_mode">tree,form</field>
             <field name="domain"></field>
             <field name="context">{}</field>

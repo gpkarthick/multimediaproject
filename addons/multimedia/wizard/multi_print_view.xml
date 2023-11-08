@@ -17,6 +17,17 @@
                    		<field name="insurance_numbers"/>
                     </group>
                     <newline/>   
+                     <group>                    	
+                   		<group>                    	
+                   		    <field name="extra_area"/>
+                        </group>
+                        <group>                    	
+                            <field name="extra_area_check"/>
+                            <field name="extra_area_amt_check"/>
+                        </group>
+                    </group>
+                    <newline/>     
+                    <button name="multi_calculation" string="Multi Calculation" type="object" class="oe_highlight"/>    
                     <footer>
                         <button name="print_report" string="Multi Print" type="object" class="oe_highlight"/>
                         or
