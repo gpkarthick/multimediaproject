@@ -18,7 +18,7 @@ class MultiDeliveryPass(models.TransientModel):
     def print_report(self):
         input_string = self.insurance_numbers
         integer_list = [int(x) for x in input_string.split(',')]
-        insurance_ids = self.env['farmer.insurance'].search([('form_application_no', 'in', integer_list)])
+        insurance_ids = self.env['farmer.insurance'].search([('form_application_no', 'in', integer_list),('id', '>', 745)])
 
         # insurance_ids = self.env['farmer.insurance'].search([('form_application_no', '>=', self.start_no),('form_application_no', '<=', self.end_no)])
         return self.env.ref('multimedia.report_multi_insurance_pdf_print').report_action(insurance_ids)
