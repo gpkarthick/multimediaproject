@@ -12,6 +12,7 @@
                     <field name="farmer_name" string="Name"/>                                   
                     <field name="mobile_no"/>
                     <field name="village_id" />
+                     <field name="community_type" />                    
                     <field name="area" sum="area"/>
                     <field name="premium_amount" sum="premium_amount"/>
                     <field name="service_charge" sum="service_charge"/>
