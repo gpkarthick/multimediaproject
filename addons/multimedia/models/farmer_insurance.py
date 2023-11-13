@@ -474,8 +474,8 @@ class FarmerInsurance(models.Model):
             self.state = 'stage2'
         if self.farmer_tamil_name:
             self.state = 'stage3'
-        # if form_application_ids.ids:
-        #     raise ValidationError(_('Already Used this Form No %s please check it.') % (self.form_application_no,))
+        if form_application_ids.ids:
+            raise ValidationError(_('Already Used this Form No %s please check it.') % (self.form_application_no,))
         if original_receipt_ids.ids:
             raise ValidationError(_('Already Used this Original Receipt No, please check it'))
         if sheet_no_ids.ids:
