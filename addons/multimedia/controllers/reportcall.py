@@ -49,7 +49,7 @@ class ReportCall(http.Controller):
                     zipf.writestr(file_name, file_data)
         buffer.seek(0)
         file_content = buffer.read()
-        insurance_ids = http.request.env['farmer.insurance'].search([('id', '=', data.get('id'))])
+        insurance_ids = http.request.env['farmer.insurance'].search([('id', '=', data.get('id')), ('id', '>', 745)])
 
         if file_content and insurance_ids:
             filename = str(insurance_ids.form_application_no) + '.zip'
@@ -63,38 +63,74 @@ class ReportCall(http.Controller):
         curid = data.get('id')
         start = data.get('start_no')
         end = data.get('end_no')
-        print (start,type(start))
-        numbers = [i for i in range(int(start), int(end) + 1)]
-        buffer = io.BytesIO()
-        with zipfile.ZipFile(buffer, 'w') as zipf_bulk:
-            insurance_ids = request.env['farmer.insurance'].search([('form_application_no', 'in', numbers)])
-            for insurance in insurance_ids:
-                subfolder_buffer = io.BytesIO()
-                with zipfile.ZipFile(subfolder_buffer, 'w') as zipf_individual:
-                    attachment_obj = request.env['ir.attachment']
-                    attachment_ids = attachment_obj.search([
-                        ('res_model', '=', 'farmer.insurance'),
-                        ('res_id', '=', insurance.id)
+        insurance_numbers = data.get('insurance_numbers')
+        if start and end:
+          print (start,type(start),insurance_numbers,type(insurance_numbers))
+          numbers = [i for i in range(int(start), int(end) + 1)]
+          buffer = io.BytesIO()
+          insurance_check_ids = request.env['farmer.insurance'].search([('form_application_no', 'in', numbers), ('id', '>', 745)])
+          if insurance_check_ids:
+            with zipfile.ZipFile(buffer, 'w') as zipf_bulk:
+                insurance_ids = request.env['farmer.insurance'].search([('form_application_no', 'in', numbers), ('id', '>', 745)])
+                for insurance in insurance_ids:
+                    subfolder_buffer = io.BytesIO()
+                    with zipfile.ZipFile(subfolder_buffer, 'w') as zipf_individual:
+                        attachment_obj = request.env['ir.attachment']
+                        attachment_ids = attachment_obj.search([
+                            ('res_model', '=', 'farmer.insurance'),
+                            ('res_id', '=', insurance.id)
+                        ])
+                        if attachment_ids:
+                            for attachment in attachment_ids:
+                                file_name = attachment.name
+                                file_data = base64.b64decode(attachment.datas)
+                                zipf_individual.writestr(file_name, file_data)
+
+                    subfolder_buffer.seek(0)
+                    zipf_bulk.writestr(f'farmer_{insurance.form_application_no}.zip', subfolder_buffer.read())
+
+            buffer.seek(0)
+            file_content = buffer.read()
+
+            if file_content:
+                filename = 'bulk_attachments.zip'
+                return request.make_response(file_content, headers=[
+                    ('Content-Type', 'application/zip'),
+                    ('Content-Disposition', content_disposition(filename))
+                ])
+        if insurance_numbers:
+            integer_list = [int(x) for x in insurance_numbers.split(',')]        
+            insurance_check_ids = request.env['farmer.insurance'].search([('form_application_no', 'in', integer_list), ('id', '>', 745)])
+            if insurance_check_ids:
+                with zipfile.ZipFile(buffer, 'w') as zipf_bulk:
+                  insurance_ramdom_ids = request.env['farmer.insurance'].search([('form_application_no', 'in', integer_list), ('id', '>', 745)])
+                  for insurance in insurance_ramdom_ids:
+                      subfolder_buffer = io.BytesIO()
+                      with zipfile.ZipFile(subfolder_buffer, 'w') as zipf_individual:
+                          attachment_obj = request.env['ir.attachment']
+                          attachment_ids = attachment_obj.search([
+                              ('res_model', '=', 'farmer.insurance'),
+                              ('res_id', '=', insurance.id)
+                          ])
+                          if attachment_ids:
+                              for attachment in attachment_ids:
+                                  file_name = attachment.name
+                                  file_data = base64.b64decode(attachment.datas)
+                                  zipf_individual.writestr(file_name, file_data)
+
+                      subfolder_buffer.seek(0)
+                      zipf_bulk.writestr(f'farmer_{insurance.form_application_no}.zip', subfolder_buffer.read())
+
+                buffer.seek(0)
+                file_content = buffer.read()
+
+                if file_content:
+                    filename = 'bulk_attachments.zip'
+                    return request.make_response(file_content, headers=[
+                        ('Content-Type', 'application/zip'),
+                        ('Content-Disposition', content_disposition(filename))
                     ])
-                    if attachment_ids:
-                        for attachment in attachment_ids:
-                            file_name = attachment.name
-                            file_data = base64.b64decode(attachment.datas)
-                            zipf_individual.writestr(file_name, file_data)
-
-                subfolder_buffer.seek(0)
-                zipf_bulk.writestr(f'farmer_{insurance.form_application_no}.zip', subfolder_buffer.read())
-
-        buffer.seek(0)
-        file_content = buffer.read()
-
-        if file_content:
-            filename = 'bulk_attachments.zip'
-            return request.make_response(file_content, headers=[
-                ('Content-Type', 'application/zip'),
-                ('Content-Disposition', content_disposition(filename))
-            ])
-        
+          
 
 
     # @http.route('/multimedia/attachment_download', type='http', auth="public")

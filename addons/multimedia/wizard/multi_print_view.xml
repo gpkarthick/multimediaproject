@@ -11,11 +11,12 @@
                    		<field name="start_no"/>
                    		<field name="end_no"/>
                     </group>
-                    <newline/>     
-                    <button name="multi_attachment_download" string="Multi Attchment Download" type="object" class="oe_highlight"/>    
+                     
                     <group>                    	
                    		<field name="insurance_numbers"/>
                     </group>
+                    <newline/>     
+                    <button name="multi_attachment_download" string="Multi Attchment Download" type="object" class="oe_highlight"/>   
                     <newline/>   
                      <group>                    	
                    		<group>                    	

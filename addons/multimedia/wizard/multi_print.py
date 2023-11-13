@@ -19,6 +19,7 @@ class MultiDeliveryPass(models.TransientModel):
         input_string = self.insurance_numbers
         integer_list = [int(x) for x in input_string.split(',')]
         insurance_ids = self.env['farmer.insurance'].search([('form_application_no', 'in', integer_list),('id', '>', 745)])
+        
 
         # insurance_ids = self.env['farmer.insurance'].search([('form_application_no', '>=', self.start_no),('form_application_no', '<=', self.end_no)])
         return self.env.ref('multimedia.report_multi_insurance_pdf_print').report_action(insurance_ids)
@@ -53,5 +54,5 @@ class MultiDeliveryPass(models.TransientModel):
     def multi_attachment_download(self):
         return {'type': 'ir.actions.act_url',
                 'url': '/multimedia/multi_attachment_download?id=' + str(self.id) + '&db=' + str(
-                    self.env.cr.dbname)+ '&start_no=' + str(self.start_no)+ '&end_no=' + str(self.end_no) + '&uid=' + str(self.env.uid), 'nodestroy': True, 'target': 'new'}
+                    self.env.cr.dbname)+ '&start_no=' + str(self.start_no)+ '&end_no=' + str(self.end_no)+ '&insurance_numbers=' + str(self.insurance_numbers) + '&uid=' + str(self.env.uid), 'nodestroy': True, 'target': 'new'}
 
