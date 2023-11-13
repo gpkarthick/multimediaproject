@@ -7,7 +7,28 @@
             <field name="model">farmer.insurance</field>
             <field name="arch" type="xml">
                 <tree string="Farmer Enrollment Details">
+                    <field name="create_date" />
                     <field name="form_application_no" string="Form No"/>
+                    <field name="allot_name"/>     
+                    <field name="farmer_name" string="Name"/>                                   
+                    <field name="mobile_no"/>
+                    <field name="village_id" />
+                     <field name="community_type" />                    
+                    <field name="area" sum="area"/>
+                    <field name="premium_amount" sum="premium_amount"/>
+                    <field name="crop_line_ids"/>
+                    <field name="service_charge" sum="service_charge"/>
+                    <field name="total_amount" sum="total_amount" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+                    <field name="balance_amount" sum="balance_amount" groups="multimedia.multimedia_farmer_insurance_user_access"/>
+                    <!-- <field name="distributor_total_amount" sum="distributor_total_amount" groups="multimedia.multimedia_insurance_access"/>
+                    <field name="distributor_received_amount" sum="distributor_received_amount" groups="multimedia.multimedia_insurance_access"/>
+                    <field name="distributor_balance_amount" sum="distributor_balance_amount" groups="multimedia.multimedia_insurance_access"/>
+                    <field name="create_uid" /> -->
+                    <field name="original_receipt_no" />    
+                    
+                    <field name="sheet_no" invisible="1"/>
+
+                    <!-- <field name="form_application_no" string="Form No"/>
                     <field name="allot_name"/>     
                     <field name="farmer_name" string="Name"/>                                   
                     <field name="mobile_no"/>
@@ -23,7 +44,7 @@
                     <field name="distributor_balance_amount" sum="distributor_balance_amount" groups="multimedia.multimedia_insurance_access"/>
                     <field name="create_uid" />
                     <field name="create_date" />
-                    <field name="sheet_no" invisible="1"/>
+                    <field name="sheet_no" invisible="1"/> -->
                 </tree>
             </field>
         </record>
