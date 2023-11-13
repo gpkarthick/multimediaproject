@@ -467,15 +467,15 @@ class FarmerInsurance(models.Model):
 
     @api.constrains('form_application_no', 'original_receipt_no', 'sheet_no', 'distributor_received_amount', 'farmer_name','farmer_tamil_name')
     def _check_insurance_formno_receiptno(self):
-        form_application_ids = self.env['farmer.insurance'].search([('id', '!=', self.id),('form_application_no', '=', self.form_application_no)])
+        form_application_ids = self.env['farmer.insurance'].search([('id', '!=', self.id),('form_application_no', '=', self.form_application_no), ('id', '>', 745)])
         original_receipt_ids = self.env['farmer.insurance'].search([('id', '!=', self.id),('original_receipt_no', '=', self.original_receipt_no),('original_receipt_no', '!=', '')])
         sheet_no_ids = self.env['farmer.insurance'].search([('id', '!=', self.id),('sheet_no', '=', self.sheet_no)])
         if self.farmer_name:
             self.state = 'stage2'
         if self.farmer_tamil_name:
             self.state = 'stage3'
-        if form_application_ids.ids:
-            raise ValidationError(_('Already Used this Form No %s please check it.') % (self.form_application_no,))
+        # if form_application_ids.ids:
+        #     raise ValidationError(_('Already Used this Form No %s please check it.') % (self.form_application_no,))
         if original_receipt_ids.ids:
             raise ValidationError(_('Already Used this Original Receipt No, please check it'))
         if sheet_no_ids.ids:
