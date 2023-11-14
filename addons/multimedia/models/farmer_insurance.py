@@ -218,6 +218,13 @@ class FarmerInsurance(models.Model):
     account_name_change_service_amt = fields.Float(string='Account Name Change Service Amount')
     account_no_verify_amt = fields.Float(string='Account No Verify Amount')
 
+    line_count = fields.Integer(string='Record Count', compute='_compute_line_count', store=True)
+
+    @api.depends('crop_line_ids')
+    def _compute_line_count(self):
+        for record in self:
+            record.line_count = len(record.crop_line_ids)
+
     def download_attachment(self):
         return {'type': 'ir.actions.act_url',
                 'url': '/multimedia/attachment_download?id=' + str(self.id) + '&db=' + str(

@@ -25,6 +25,7 @@
                     <field name="distributor_balance_amount" sum="distributor_balance_amount" groups="multimedia.multimedia_insurance_access"/>
                     <field name="create_uid" /> -->
                     <field name="original_receipt_no" />    
+                    <field name="line_count" />    
                     
                     <field name="sheet_no" invisible="1"/>
 
