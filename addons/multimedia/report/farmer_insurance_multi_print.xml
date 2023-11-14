@@ -9,9 +9,10 @@
 						<hr/>
 						<table class="mcls_002">
 							<tr>
-								<td style="text-align:center;width:50%">
+								<td style="text-align:right;width:50%;font-weight: normal;">
 									<!-- <span><strong>Pradhan Mantri Fasal Bima Yojana - Crop Insurance | PMFBY - Crop Insurance</strong><br/></span> -->
 									<!-- <span><strong>CSC Application</strong>  <span t-field="o.form_application_no"/></span> -->
+									<span>  <span t-field="o.form_application_no"/></span>
 								</td>
 							</tr>
 						</table>
